@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as n}from"./app.f3e6f992.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"frontend/rollup/index.md","lastUpdated":null}'),r={name:"frontend/rollup/index.md"};function a(o,s,d,c,p,l){return n(),t("div")}const f=e(r,[["render",a]]);export{_ as __pageData,f as default};
