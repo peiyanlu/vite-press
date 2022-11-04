@@ -1,6 +1,6 @@
-## 使用 webpack 打包 svg 图标
+# 使用 webpack 打包 svg 图标
 
-### 1、初始化 项目
+## 1、初始化 项目
 
 >创建文件夹，初始化项目
 
@@ -12,7 +12,7 @@ cd "dirname"
 yarn init
 ```
 
-### 2、初始化 webpack
+## 2、初始化 webpack
 
 >安装 webpack、webpack-cli，创建 webpack.config.js 文件
 
@@ -20,7 +20,7 @@ yarn init
 yarn add webpack webpack-cli -D
 ```
 
-### 3、处理 svg
+## 3、处理 svg
 
 >安装 svg 加载器；通过 js 批量引入 .svg
 
@@ -41,7 +41,7 @@ const req = require.context('../src', true, /\.svg$/)
 req.keys().forEach(req)
 ```
 
-### 4、配置 webpack
+## 4、配置 webpack
 
 > 创建 webpack.config.js 文件
 
@@ -79,7 +79,7 @@ module.exports = {
 }
 ```
 
-### 5、选用 webpack-chain
+## 5、选用 webpack-chain
 
 >使用 webpack-chain 链式操作配置webpackConfig
 

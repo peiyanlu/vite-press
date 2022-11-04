@@ -1,47 +1,78 @@
 import {DefaultTheme, defineConfig, HeadConfig} from "vitepress";
 import {monochrome} from "./icon";
 
+const BASE_URL = '/vite-press/'
 
 const getHead = (): HeadConfig[] => [
-  ['link', {rel: 'icon', href: './logo.svg'}]
+  ['link', {rel: 'icon', href: `${BASE_URL}logo.svg`}]
 ];
 
 const getNav = (): DefaultTheme.NavItem[] => [
-  {text: 'Rollup', link: '/rollup/', activeMatch: '^/rollup/'},
-  {text: 'Webpack', link: '/webpack/', activeMatch: '^/webpack/'},
+  {
+    text: '前端',
+    items: [
+      {
+        text: '构建工具',
+        items: [
+          {
+            text: 'Rollup',
+            link: '/frontend/rollup/',
+          },
+          {
+            text: 'Webpack',
+            link: '/frontend/webpack/'
+          },
+        ]
+      },
+      {
+        // Title for the section.
+        text: 'Section A Title',
+        items: [
+          { text: 'Section A Item A', link: '...' },
+          { text: 'Section B Item B', link: '...' }
+        ]
+      }
+    ],
+    activeMatch: '^/frontend/'
+  },
+  {
+    text: '后端',
+    items: [],
+    activeMatch: '^/backend/'
+  },
 ];
 
 const getSidebar = (): DefaultTheme.Sidebar => ({
-  '/rollup/': [
+  '/frontend/rollup/': [
     {
       text: 'Rollup',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建JS库', link: '/rollup/rollup-lib'},
-        {text: '构建TS库', link: '/rollup/rollup-ts'},
+        {text: '构建JS库', link: '/frontend/rollup/rollup-lib'},
+        {text: '构建TS库', link: '/frontend/rollup/rollup-ts'},
       ]
     }
   ],
-  '/webpack/': [
+  '/frontend/webpack/': [
     {
       text: 'Webpack',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建ICON库', link: '/webpack/webpack-icon'},
+        {text: '构建ICON库', link: '/frontend/webpack/webpack-icon'},
       ]
     }
   ]
 });
 
 
-export default defineConfig({
+const config = defineConfig({
   lang: "zh-CN",
   title: "开发笔记",
   titleTemplate: '开发笔记',
   description: "小路的开发笔记",
-  base: '/vite-press/',
+  base: BASE_URL,
   head: getHead(),
   appearance: true,
   ignoreDeadLinks: true,
@@ -81,3 +112,5 @@ export default defineConfig({
     lineNumbers: true
   }
 })
+
+export default config
