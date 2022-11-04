@@ -1,3 +1,0 @@
-:::tip
-webpack
-:::

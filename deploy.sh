@@ -20,7 +20,7 @@ git push -f origin master:docs-build
 cd -
 
 # 删除dist文件夹
-rm -rf docs/.vitepress/dist/.git
+rm -rf docs/.vitepress/dist
 
 # 是否关闭命令行窗口
-#exec /bin/bash
+exec /bin/bash

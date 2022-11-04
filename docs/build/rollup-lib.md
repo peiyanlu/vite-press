@@ -1,9 +1,10 @@
 # 使用 rollup 构建一个 js 库
 
 ## 1、全局安装 rollup
-```text
+```shell
 yarn global add rollup
 ```
+
 ## 2、增加 rollup.config.js
 ```javascript
 import babel from '@rollup/plugin-babel'
@@ -36,6 +37,7 @@ export default {
 }
 
 ```
+
 ## 3、package.json
 ```json
 {
@@ -45,8 +47,9 @@ export default {
   }
 }
 ```
+
 ## 4、打包
-```text
+```shell
 yarn lib
 ```
 

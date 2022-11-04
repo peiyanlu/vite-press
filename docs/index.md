@@ -14,19 +14,19 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /build/rollup/
+      link: /build/
     - theme: alt
       text: View on Gitee
       link: https://gitee.com/peiyanlu/vite-press/tree/docs/
 
 features:
   - icon: ⚡️
-    title: 这是一个闪电图标
-    details: wawawa
+    title: vite + vue3
+    details: 两岸猿声啼不住，轻舟已过万重山
   - icon: 🖖
-    title: 这是一个手掌图标
-    details: good...
+    title: 知新
+    details: 书读百遍其义自见
   - icon: 🛠️
-    title: 这是一个修理图标
-    details: cocococo
+    title: 温故
+    details: 好记性不如烂笔头
 ---

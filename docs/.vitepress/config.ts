@@ -3,59 +3,52 @@ import {monochrome} from "./icon";
 
 const BASE_URL = '/vite-press/'
 
+const withBase = (path: string): string => `${BASE_URL}${path}`.replace(/\/+/g, '/');
+
 const getHead = (): HeadConfig[] => [
-  ['link', {rel: 'icon', href: `${BASE_URL}logo.svg`}]
+  ['link', {rel: 'icon', href: withBase('/logo.svg')}],
 ];
 
 const getNav = (): DefaultTheme.NavItem[] => [
   {
+    text: '首页',
+    link: '/',
+    activeMatch: ''
+  },
+  {
     text: '构建工具',
-    items: [
-      {
-        text: 'Rollup',
-        link: '/build/rollup/',
-      },
-      {
-        text: 'Webpack',
-        link: '/build/webpack/'
-      },
-      {
-        // Title for the section.
-        text: 'Section A Title',
-        items: [
-          { text: 'Section A Item A', link: '...' },
-          { text: 'Section B Item B', link: '...' }
-        ]
-      }
-    ],
-    activeMatch: '^/frontend/'
+    link: '/build/',
+    activeMatch: '^/build/'
   },
   {
     text: '后端',
     items: [],
     activeMatch: '^/backend/'
   },
+  {
+    text: 'Windows',
+    link: '/windows/disable-scripts',
+    activeMatch: '^/windows/'
+  },
 ];
 
 const getSidebar = (): DefaultTheme.Sidebar => ({
-  '/build/rollup/': [
+  '/build/': [
     {
       text: 'Rollup',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建JS库', link: '/build/rollup/rollup-lib'},
-        {text: '构建TS库', link: '/build/rollup/rollup-ts'},
+        {text: '构建JS库', link: '/build/rollup-lib'},
+        {text: '构建TS库', link: '/build/rollup-ts'},
       ]
-    }
-  ],
-  '/build/webpack/': [
+    },
     {
       text: 'Webpack',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建ICON库', link: '/frontend/webpack/webpack-icon'},
+        {text: '构建ICON库', link: '/build/webpack-icon'},
       ]
     }
   ]
@@ -64,7 +57,7 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
 
 const config = defineConfig({
   lang: "zh-CN",
-  title: "开发笔记",
+  title: "笔记",
   titleTemplate: '开发笔记',
   description: "小路的开发笔记",
   base: BASE_URL,
@@ -72,6 +65,7 @@ const config = defineConfig({
   appearance: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
+  cleanUrls: 'with-subfolders',
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: '开发笔记',
@@ -91,7 +85,7 @@ const config = defineConfig({
       message: 'Released under the MIT License.',
       copyright: `Copyright © 2022-${new Date().getFullYear()} Yanlu Pei`
     },
-    lastUpdatedText: '上次更新',
+    lastUpdatedText: '上次更新时间',
     socialLinks: [
       // You can also add custom icons by passing SVG as string:
       {
