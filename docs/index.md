@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /frontend/rollup/
+      link: /build/rollup/
     - theme: alt
       text: View on Gitee
       link: https://gitee.com/peiyanlu/vite-press/tree/docs/

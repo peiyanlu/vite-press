@@ -9,20 +9,15 @@ const getHead = (): HeadConfig[] => [
 
 const getNav = (): DefaultTheme.NavItem[] => [
   {
-    text: '前端',
+    text: '构建工具',
     items: [
       {
-        text: '构建工具',
-        items: [
-          {
-            text: 'Rollup',
-            link: '/frontend/rollup/',
-          },
-          {
-            text: 'Webpack',
-            link: '/frontend/webpack/'
-          },
-        ]
+        text: 'Rollup',
+        link: '/build/rollup/',
+      },
+      {
+        text: 'Webpack',
+        link: '/build/webpack/'
       },
       {
         // Title for the section.
@@ -43,18 +38,18 @@ const getNav = (): DefaultTheme.NavItem[] => [
 ];
 
 const getSidebar = (): DefaultTheme.Sidebar => ({
-  '/frontend/rollup/': [
+  '/build/rollup/': [
     {
       text: 'Rollup',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建JS库', link: '/frontend/rollup/rollup-lib'},
-        {text: '构建TS库', link: '/frontend/rollup/rollup-ts'},
+        {text: '构建JS库', link: '/build/rollup/rollup-lib'},
+        {text: '构建TS库', link: '/build/rollup/rollup-ts'},
       ]
     }
   ],
-  '/frontend/webpack/': [
+  '/build/webpack/': [
     {
       text: 'Webpack',
       collapsible: true, // 可折叠

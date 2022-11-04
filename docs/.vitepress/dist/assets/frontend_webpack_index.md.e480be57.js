@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.f3e6f992.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"frontend/webpack/index.md","lastUpdated":null}'),n={name:"frontend/webpack/index.md"};function r(o,c,s,d,p,i){return a(),t("div")}const l=e(n,[["render",r]]);export{f as __pageData,l as default};
