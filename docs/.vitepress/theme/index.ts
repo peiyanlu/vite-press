@@ -1,7 +1,15 @@
+import {Theme} from "vitepress";
 import DefaultTheme from "vitepress/theme";
 
-import './style/home.css'
+// 样式文件
+import './style/index'
 
-export default {
-  ...DefaultTheme
+// 公共组件
+
+
+export default <Theme>{
+  ...DefaultTheme,
+  enhanceApp({app}) {
+    // app.component()
+  }
 }

@@ -65,7 +65,7 @@ const config = defineConfig({
   appearance: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
-  cleanUrls: 'with-subfolders',
+  cleanUrls: 'without-subfolders',
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: '开发笔记',
