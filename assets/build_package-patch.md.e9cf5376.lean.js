@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as p}from"./app.8963a211.js";const y=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"build/package-patch.md","lastUpdated":1667580197000}'),l={name:"build/package-patch.md"},e=p("",14),c=[e];function r(o,t,i,b,C,A){return a(),n("div",null,c)}const m=s(l,[["render",r]]);export{y as __pageData,m as default};
