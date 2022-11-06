@@ -92,7 +92,7 @@ const config = defineConfig({
         icon: {
           svg: monochrome.gitee
         },
-        link: 'https://gitee.com/peiyanlu/vite-press/tree/docs/'
+        link: 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/'
       }
     ]
   },

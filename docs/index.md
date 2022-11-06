@@ -17,7 +17,7 @@ hero:
       link: /build/
     - theme: alt
       text: View on Gitee
-      link: https://gitee.com/peiyanlu/vite-press/tree/docs/
+      link: https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/
 
 features:
   - icon: ⚡️
