@@ -21,6 +21,11 @@ const getNav = (): DefaultTheme.NavItem[] => [
     activeMatch: '^/build/'
   },
   {
+    text: '版本控制',
+    link: '/version-control/',
+    activeMatch: '^/version-control/'
+  },
+  {
     text: '后端',
     items: [],
     activeMatch: '^/backend/'
@@ -35,7 +40,7 @@ const getNav = (): DefaultTheme.NavItem[] => [
 const getSidebar = (): DefaultTheme.Sidebar => ({
   '/build/': [
     {
-      text: 'Rollup',
+      text: 'rollup',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
@@ -44,13 +49,31 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
       ]
     },
     {
-      text: 'Webpack',
+      text: 'webpack',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         {text: '构建ICON库', link: '/build/webpack-icon'},
       ]
+    },
+    {
+      text: '依赖包管理',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        {text: '依赖包推荐', link: '/build/npm-dependencies'},
+      ]
     }
+  ],
+  '/version-control/': [
+    {
+      text: 'Git',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        {text: 'Git 基础', link: '/version-control/git-basics'}
+      ]
+    },
   ]
 });
 
