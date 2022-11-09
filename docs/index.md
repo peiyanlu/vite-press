@@ -14,10 +14,10 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /build/
+      link: /frontend/
     - theme: alt
-      text: View on Gitee
-      link: https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/
+      text: 在 Gitee 上查看
+      link: https://gitee.com/peiyanlu/vite-press/
 
 features:
   - icon: ⚡️
@@ -30,3 +30,4 @@ features:
     title: 温故
     details: 书读百遍其义自见
 ---
+
