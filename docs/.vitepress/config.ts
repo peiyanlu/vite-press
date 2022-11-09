@@ -1,9 +1,11 @@
 import {DefaultTheme, defineConfig, HeadConfig} from "vitepress";
-import {monochrome} from "./icon";
+import {MONOCHROME} from "./icon";
+import MENU from "./menu";
 
 const BASE_URL = '/vite-press/'
 
-const withBase = (path: string): string => `${BASE_URL}${path}`.replace(/\/+/g, '/');
+const joinPath = (base: string, path: string): string => `${base}${path}`.replace(/\/+/g, '/');
+const withBase = (path: string): string => joinPath(BASE_URL, path);
 
 const getHead = (): HeadConfig[] => [
   ['link', {rel: 'icon', href: withBase('/logo.svg')}],
@@ -12,13 +14,12 @@ const getHead = (): HeadConfig[] => [
 const getNav = (): DefaultTheme.NavItem[] => [
   {
     text: '首页',
-    link: '/',
-    activeMatch: ''
+    link: MENU.HOME
   },
   {
-    text: '构建工具',
-    link: '/build/',
-    activeMatch: '^/build/'
+    text: '前端',
+    link: MENU.FRONTEND,
+    activeMatch: MENU.FRONTEND
   },
   {
     text: '版本控制',
@@ -32,20 +33,20 @@ const getNav = (): DefaultTheme.NavItem[] => [
   },
   {
     text: 'Windows',
-    link: '/windows/disable-scripts',
+    link: '/windows/',
     activeMatch: '^/windows/'
   },
 ];
 
 const getSidebar = (): DefaultTheme.Sidebar => ({
-  '/build/': [
+  '/frontend/': [
     {
       text: 'rollup',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建JS库', link: '/build/rollup-lib'},
-        {text: '构建TS库', link: '/build/rollup-ts'},
+        {text: '构建JS库', link: '/frontend/rollup-lib'},
+        {text: '构建TS库', link: '/frontend/rollup-ts'},
       ]
     },
     {
@@ -53,7 +54,7 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建ICON库', link: '/build/webpack-icon'},
+        {text: '构建ICON库', link: '/frontend/webpack-icon'},
       ]
     },
     {
@@ -61,7 +62,7 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '依赖包推荐', link: '/build/npm-dependencies'},
+        {text: '依赖包推荐', link: '/frontend/npm-dependencies'},
       ]
     }
   ],
@@ -113,7 +114,7 @@ const config = defineConfig({
       // You can also add custom icons by passing SVG as string:
       {
         icon: {
-          svg: monochrome.gitee
+          svg: MONOCHROME.GITEE
         },
         link: 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/'
       }
