@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.8963a211.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"windows/index.md","lastUpdated":1667662819000}'),n={name:"windows/index.md"};function o(s,r,d,c,i,p){return a(),t("div")}const f=e(n,[["render",o]]);export{m as __pageData,f as default};
