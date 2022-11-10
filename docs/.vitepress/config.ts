@@ -1,42 +1,43 @@
-import {DefaultTheme, defineConfig, HeadConfig} from "vitepress";
-import {MONOCHROME} from "./icon";
-import MENU from "./menu";
+import { DefaultTheme, defineConfig, HeadConfig } from 'vitepress'
+import { MONOCHROME } from './icon'
+import MENU from './menu'
 
 const BASE_URL = '/vite-press/'
 
-const joinPath = (base: string, path: string): string => `${base}${path}`.replace(/\/+/g, '/');
-const withBase = (path: string): string => joinPath(BASE_URL, path);
+const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
+const withBase = (path: string): string => joinPath(BASE_URL, path)
 
 const getHead = (): HeadConfig[] => [
-  ['link', {rel: 'icon', href: withBase('/logo.svg')}],
-];
+  [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ],
+]
 
 const getNav = (): DefaultTheme.NavItem[] => [
   {
     text: '首页',
-    link: MENU.HOME
+    link: MENU.HOME,
+    activeMatch: '^/version-control/',
   },
   {
     text: '前端',
     link: MENU.FRONTEND,
-    activeMatch: MENU.FRONTEND
+    activeMatch: MENU.FRONTEND,
   },
   {
     text: '版本控制',
     link: '/version-control/',
-    activeMatch: '^/version-control/'
+    activeMatch: '^/version-control/',
   },
   {
     text: '后端',
     items: [],
-    activeMatch: '^/backend/'
+    activeMatch: '^/backend/',
   },
   {
     text: 'Windows',
     link: '/windows/',
-    activeMatch: '^/windows/'
+    activeMatch: '^/windows/',
   },
-];
+]
 
 const getSidebar = (): DefaultTheme.Sidebar => ({
   '/frontend/': [
@@ -45,26 +46,26 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建JS库', link: '/frontend/rollup-lib'},
-        {text: '构建TS库', link: '/frontend/rollup-ts'},
-      ]
+        { text: '构建JS库', link: '/frontend/rollup-lib' },
+        { text: '构建TS库', link: '/frontend/rollup-ts' },
+      ],
     },
     {
       text: 'webpack',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '构建ICON库', link: '/frontend/webpack-icon'},
-      ]
+        { text: '构建ICON库', link: '/frontend/webpack-icon' },
+      ],
     },
     {
       text: '依赖包管理',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: '依赖包推荐', link: '/frontend/npm-dependencies'},
-      ]
-    }
+        { text: '依赖包推荐', link: '/frontend/npm-dependencies' },
+      ],
+    },
   ],
   '/version-control/': [
     {
@@ -72,18 +73,18 @@ const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        {text: 'Git 基础', link: '/version-control/git-basics'}
-      ]
+        { text: 'Git 基础', link: '/version-control/git-basics' },
+      ],
     },
-  ]
-});
+  ],
+})
 
 
 const config = defineConfig({
-  lang: "zh-CN",
-  title: "笔记",
+  lang: 'zh-CN',
+  title: '笔记',
   titleTemplate: '开发笔记',
-  description: "小路的开发笔记",
+  description: '小路的开发笔记',
   base: BASE_URL,
   head: getHead(),
   appearance: true,
@@ -99,31 +100,39 @@ const config = defineConfig({
     sidebar: getSidebar(),
     editLink: {
       pattern: 'https://gitee.com/peiyanlu/vite-press/tree/docs/docs/:path',
-      text: '在 gitee 编辑此页'
+      text: '在 gitee 编辑此页',
     },
     docFooter: {
       prev: '上一节',
-      next: '下一节'
+      next: '下一节',
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2022-${new Date().getFullYear()} Yanlu Pei`
+      copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`,
     },
     lastUpdatedText: '上次更新时间',
     socialLinks: [
       // You can also add custom icons by passing SVG as string:
       {
         icon: {
-          svg: MONOCHROME.GITEE
+          svg: MONOCHROME.GITEE,
         },
-        link: 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/'
+        link: 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/',
+      },
+    ],
+    algolia: {
+      appId: '02WXO09HIV',
+      apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
+      indexName: 'vite-press',
+      searchParameters: {
+        facetFilters: ['tags:zh']
       }
-    ]
+    }
   },
   markdown: {
-    theme: 'material-palenight',
-    lineNumbers: true
-  }
+    theme: 'github-dark',
+    lineNumbers: true,
+  },
 })
 
 export default config

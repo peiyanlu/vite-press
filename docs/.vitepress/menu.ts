@@ -1,9 +1,9 @@
 const MENU = <Record<string, string>>{
-  HOEM: '/',
+  HOME: '/',
   FRONTEND: '/frontend/',
   VCS: '/version-control/',
   BACKEND: '/backend/',
-  windows: '/windows/'
+  windows: '/windows/',
 }
 
 export default MENU

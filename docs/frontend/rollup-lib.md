@@ -74,7 +74,7 @@ rollup打包的结果是ES6，如果需要兼容低版本，则需要babel
       [
         "@babel/preset-env",
         {
-          "modules": false, // 不允许babel转码为commonjs，让rollup处理
+          "modules": false, // 不允许babel转码为commonjs，让rollup处理  // [!code focus]
           "loose": true // 某些情况会导致class编译报错
         }
       ]

@@ -89,6 +89,9 @@ git branch [branch-name]
 # 新建一个分支，并切换到该分支
 git checkout -b [branch]
 
+# 从远程分支新建一个分支，并切换到该分支
+git checkout -b [branch] origin/[remote-branch] // [!code hl]
+
 # 新建一个分支，指向指定commit
 git branch [branch] [commit]
 
