@@ -108,7 +108,7 @@ config
   .output
   .path(resolve('./lib'))
   .filename('[name].js')
-  // .library('CFWICON')
+  // .library('YLICON')
   // .libraryTarget('umd')
   // .umdNamedDefine(true)
   // .globalObject('this')
@@ -129,3 +129,8 @@ config.module
 
 module.exports = config.toConfig();
 ```
+
+## 参考文档
+[webpack（中文文档）](https://webpack.docschina.org/concepts/)
+
+[webpack-chain（中文文档）](https://github.com/Yatoo2018/webpack-chain/tree/zh-cmn-Hans)

@@ -26,11 +26,11 @@ export default defineConfig({
     },
     docFooter: {
       prev: '上一节',
-      next: '下一节'
+      next: '下一节',
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2022-${new Date().getFullYear()} Yanlu Pei`
+      copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`,
     },
     lastUpdatedText: '上次更新时间',
     socialLinks: [
@@ -40,11 +40,19 @@ export default defineConfig({
           svg: MONOCHROME.GITEE
         },
         link: GIT_PAGE
+      },
+    ],
+    algolia: {
+      appId: '02WXO09HIV',
+      apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
+      indexName: 'vite-press',
+      searchParameters: {
+        facetFilters: ['tags:zh']
       }
-    ]
+    }
   },
   markdown: {
-    theme: 'material-palenight',
-    lineNumbers: true
-  }
+    theme: 'github-dark',
+    lineNumbers: true,
+  },
 })
