@@ -80,7 +80,8 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') }
+        { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') },
+        { text: 'GitHub', link: joinPath(MENU.VCS, 'git-github') },
       ]
     },
   ]

@@ -14,7 +14,7 @@ git init
 git add -A
 git commit -m "Updated version of git repositoryMap"
 git remote add origin https://gitee.com/peiyanlu/vite-press.git
-git push -f origin master:docs-build
+git push -f origin master:gh-pages
 
 # 返回上次所在的目录
 cd -
