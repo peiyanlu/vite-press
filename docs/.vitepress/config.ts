@@ -36,7 +36,6 @@ export default defineConfig({
     },
     lastUpdatedText: '上次更新时间',
     socialLinks: [
-      // You can also add custom icons by passing SVG as string:
       {
         icon: {
           svg: MONOCHROME.GITEE
