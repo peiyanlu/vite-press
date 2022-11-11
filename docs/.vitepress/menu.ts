@@ -1,15 +1,11 @@
-import { DefaultTheme, HeadConfig } from 'vitepress'
+import { DefaultTheme } from 'vitepress'
 
 export const BASE_URL = '/vite-press/'
 
 export const GIT_PAGE = 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/'
 
-export const joinPath = (base: string, path: string): string => `${base}${path}`.replace(/\/+/g, '/')
+export const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
 export const withBase = (path: string): string => joinPath(BASE_URL, path)
-
-export const getHead = (): HeadConfig[] => [
-  ['link', { rel: 'icon', href: withBase('/logo.svg') }],
-]
 
 export const enum MENU {
   HOME = '/',
@@ -43,7 +39,7 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     text: 'Windows',
     link: MENU.WINDOWS,
     activeMatch: MENU.WINDOWS
-  },
+  }
 ]
 
 export const getSidebar = (): DefaultTheme.Sidebar => ({
@@ -54,7 +50,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup-lib') },
-        { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup-ts') },
+        { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup-ts') }
       ]
     },
     {
@@ -62,7 +58,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack-icon') },
+        { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack-icon') }
       ]
     },
     {
@@ -70,7 +66,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') },
+        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') }
       ]
     }
   ],
@@ -81,8 +77,8 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') },
-        { text: 'GitHub', link: joinPath(MENU.VCS, 'git-github') },
+        { text: 'GitHub', link: joinPath(MENU.VCS, 'git-github') }
       ]
-    },
+    }
   ]
 })

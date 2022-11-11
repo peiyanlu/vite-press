@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { MONOCHROME } from './icon'
-import { BASE_URL, GIT_PAGE, getHead, getNav, getSidebar } from './menu'
+import { BASE_URL, getNav, getSidebar, GIT_PAGE, withBase } from './menu'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -8,7 +8,9 @@ export default defineConfig({
   titleTemplate: '开发笔记',
   description: '小路的开发笔记',
   base: BASE_URL,
-  head: getHead(),
+  head: [
+    [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ]
+  ],
   appearance: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
@@ -21,16 +23,16 @@ export default defineConfig({
     nav: getNav(),
     sidebar: getSidebar(),
     editLink: {
-      pattern: `${GIT_PAGE}docs/:path`,
+      pattern: `${ GIT_PAGE }docs/:path`,
       text: '在 gitee 编辑此页'
     },
     docFooter: {
       prev: '上一节',
-      next: '下一节',
+      next: '下一节'
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`,
+      copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`
     },
     lastUpdatedText: '上次更新时间',
     socialLinks: [
@@ -40,11 +42,11 @@ export default defineConfig({
           svg: MONOCHROME.GITEE
         },
         link: GIT_PAGE
-      },
+      }
     ]
   },
   markdown: {
     theme: 'github-dark',
-    lineNumbers: true,
-  },
+    lineNumbers: true
+  }
 })
