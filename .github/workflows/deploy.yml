@@ -35,7 +35,7 @@ jobs:
           git config user.email github-actions@github.com
           git add -A
           git commit -m "sync"
-          git remote add origin-gitee https://gitee.com/peiyanlu/vite-press.git
+          git remote add origin-gitee git@gitee.com:peiyanlu/vite-press.git
           git push -f origin-gitee docs-deploy:gh-pages
 
   repo-sync:
