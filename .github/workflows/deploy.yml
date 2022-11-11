@@ -34,8 +34,9 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "generated"
-          git push https://gitee.com/peiyanlu/vite-press.git gh-pages
+          git commit -m "sync"
+          git remote add origin-gitee https://gitee.com/peiyanlu/vite-press.git
+          git push -f origin-gitee gh-pages
 
   repo-sync:
     runs-on: ubuntu-latest
