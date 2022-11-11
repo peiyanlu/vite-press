@@ -37,6 +37,7 @@ jobs:
           git commit -m "sync"
           git remote add origin-gitee git@gitee.com:peiyanlu/vite-press.git
           git push -f origin-gitee docs-deploy:gh-pages
+          
 
   repo-sync:
     runs-on: ubuntu-latest
