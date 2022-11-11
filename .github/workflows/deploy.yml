@@ -28,21 +28,7 @@ jobs:
           publish_dir: docs/.vitepress/dist
           # cname: example.com # if wanna deploy to custom domain
 
-      - uses: actions/checkout@v3
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -A
-          git commit -m "sync"
-          git remote add origin-gitee git@gitee.com:peiyanlu/vite-press.git
-          git push -f origin-gitee docs-deploy:gh-pages
-          
-
-  repo-sync:
+  gitee-pages-sync:
     runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
