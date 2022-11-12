@@ -30,7 +30,7 @@ jobs:
   git-mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: wearerequired/git-mirror-action@v1
+      - uses: peiyanlu/git-branch-sync-action
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 #          SSH_KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
