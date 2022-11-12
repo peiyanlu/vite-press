@@ -42,8 +42,8 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 
 -t：指定生成密钥的类型，默认使用SSH2d的rsa
 -f：指定生成密钥的文件名，默认id_rsa（私钥id_rsa，公钥id_rsa.pub）
--P：提供旧密码，空表示不需要密码（-P ‘’）
--N：提供新密码，空表示不需要密码(-N ‘’)
+-P：提供旧密码，空表示不需要密码（-P ''）
+-N：提供新密码，空表示不需要密码(-N '')
 -b：指定密钥长度（bits），RSA最小要求768位，默认是2048位；DSA密钥必须是1024位（FIPS 1862标准规定）
 -C：提供一个新注释
 -R hostname：从known_hosta（第一次连接时就会在家目录.ssh目录下生产该密钥文件）文件中删除所有属于hostname的密钥
