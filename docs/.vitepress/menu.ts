@@ -77,7 +77,8 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') },
-        { text: 'GitHub', link: joinPath(MENU.VCS, 'git-github') }
+        { text: 'Git 集成', link: joinPath(MENU.VCS, 'git-hub') },
+        { text: 'Git 使用', link: joinPath(MENU.VCS, 'git-use') },
       ]
     }
   ]
