@@ -9,6 +9,7 @@ export const withBase = (path: string): string => joinPath(BASE_URL, path)
 
 export const enum MENU {
   HOME = '/',
+  ORIGIN = '/origin',
   FRONTEND = '/frontend/',
   VCS = '/version-control/',
   BACKEND = '/backend/',
@@ -19,6 +20,11 @@ export const getNav = (): DefaultTheme.NavItem[] => [
   {
     text: '首页',
     link: MENU.HOME
+  },
+  {
+    text: '起源',
+    link: MENU.ORIGIN,
+    activeMatch: MENU.ORIGIN
   },
   {
     text: '前端',
@@ -79,6 +85,14 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') },
         { text: 'Git 集成', link: joinPath(MENU.VCS, 'git-hub') },
         { text: 'Git 使用', link: joinPath(MENU.VCS, 'git-use') },
+      ]
+    },
+    {
+      text: 'Shell',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: 'Shell 基础', link: joinPath(MENU.VCS, 'shell-basics') },
       ]
     }
   ]
