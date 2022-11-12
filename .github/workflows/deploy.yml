@@ -38,6 +38,7 @@ jobs:
           source-repo: "git@github.com:peiyanlu/vite-press.git"
           destination-repo: "git@gitee.com:peiyanlu/vite-press-test.git"
 
+
   gitee-pages-sync:
     runs-on: ubuntu-latest
     steps:
