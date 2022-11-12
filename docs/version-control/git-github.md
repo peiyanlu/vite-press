@@ -40,14 +40,31 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 
 5、输入保存的秘钥，点击 `Add SSH Key`。
 
--t：指定生成密钥的类型，默认使用SSH2d的rsa
--f：指定生成密钥的文件名，默认id_rsa（私钥id_rsa，公钥id_rsa.pub）
+```haml
+-t：指定生成密钥的类型，默认使用 SSH2d 的 rsa
+
+-f：指定生成密钥的文件名，默认 id_rsa （私钥 id_rsa ，公钥i d_rsa.pub）
+
 -P：提供旧密码，空表示不需要密码（-P ''）
--N：提供新密码，空表示不需要密码(-N '')
--b：指定密钥长度（bits），RSA最小要求768位，默认是2048位；DSA密钥必须是1024位（FIPS 1862标准规定）
+
+-N：提供新密码，空表示不需要密码（-N ''）
+
+-b：指定密钥长度（bits），RSA 最小要求 768 位，默认是2048位；DSA 密钥必须是 1024 位（FIPS 1862 标准规定）
+
 -C：提供一个新注释
--R hostname：从known_hosta（第一次连接时就会在家目录.ssh目录下生产该密钥文件）文件中删除所有属于hostname的密钥
+
+-R hostname：从 known_hosta （.ssh目录下）文件中删除所有属于 hostname 的密钥
+```
 :::
+
+## 查看秘钥文件夹位置（路径地址）
+
+1. 输入 `cd ~/.ssh` 进入到 .ssh 文件夹
+
+2.输入 `ls` 查看 .ssh 文件夹里面有 `id_rsa` `id_rsa.pub` `known_hosts` 文件
+
+3.输入 `pwd` 查看 .ssh 文件路径位置地址
+
 
 ## 设置 SSH Deploy Key
 ::: info

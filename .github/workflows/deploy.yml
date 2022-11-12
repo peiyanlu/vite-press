@@ -27,6 +27,16 @@ jobs:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: docs/.vitepress/dist
           # cname: example.com # if wanna deploy to custom domain
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+        with:
+          source-repo: "git@github.com:peiyanlu/vite-press.git"
+          destination-repo: "git@gitee.com:peiyanlu/vite-press-test.git"
 
   gitee-pages-sync:
     runs-on: ubuntu-latest
