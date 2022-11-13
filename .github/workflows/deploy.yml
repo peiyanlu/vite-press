@@ -31,7 +31,7 @@ jobs:
     needs: ["deploy"]
     runs-on: ubuntu-latest
     steps:
-      - uses: peiyanlu/git-branch-sync-action@master
+      - uses: peiyanlu/git-sync-action@master
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
