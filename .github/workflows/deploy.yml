@@ -31,7 +31,7 @@ jobs:
     needs: ["deploy"]
     runs-on: ubuntu-latest
     steps:
-      - uses: peiyanlu/git-sync-action@master
+      - uses: peiyanlu/git--branch-sync-action@master
         with:
           source-repo: "git@github.com:peiyanlu/vite-press.git"
           destination-repo: "git@gitee.com:peiyanlu/vite-press.git"
