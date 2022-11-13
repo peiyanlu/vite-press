@@ -12,7 +12,7 @@ export default defineConfig({
     [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ]
   ],
   appearance: true,
-  ignoreDeadLinks: true,
+  ignoreDeadLinks: false,
   lastUpdated: true,
   cleanUrls: 'without-subfolders',
   themeConfig: {

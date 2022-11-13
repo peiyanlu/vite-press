@@ -6,7 +6,7 @@ on:
       - docs-deploy
 
 jobs:
-  deploy:
+  gh-pages-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
           publish_dir: docs/.vitepress/dist
 
   gitee-branch-sync:
-    needs: ["deploy"]
+    needs: ["gh-pages-deploy"]
     runs-on: ubuntu-latest
     steps:
       - uses: peiyanlu/git-sync-action@v1
