@@ -9,9 +9,9 @@ export const withBase = (path: string): string => joinPath(BASE_URL, path)
 
 export const enum MENU {
   HOME = '/',
-  ORIGIN = '/origin',
+  ORIGIN = '/origin/',
   FRONTEND = '/frontend/',
-  VCS = '/version-control/',
+  VCS = '/vcs/',
   BACKEND = '/backend/',
   WINDOWS = '/windows/'
 }
@@ -52,6 +52,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.FRONTEND]: [
     {
       text: 'rollup',
+
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [

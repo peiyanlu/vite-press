@@ -34,7 +34,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`
     },
-    lastUpdatedText: '上次更新时间',
+    lastUpdatedText: '上次更新',
     socialLinks: [
       {
         icon: {

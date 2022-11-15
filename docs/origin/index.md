@@ -1,16 +1,16 @@
 # Vitepress 搭建个人博客网站并部署 GitHub pages 和 Gitee pages
 
+
 ## 1、创建一个新项目
 ```shell
 mkdir vitepress-starter && cd vitepress-starter
 ```
-
-## 2、初始化项目
+> 初始化项目
 ```shell
 yarn init
 ```
 
-## 3、安装 VitePress
+## 2、安装 VitePress
 ```shell
 yarn add --dev vitepress
 ```
@@ -19,7 +19,7 @@ yarn add --dev vitepress
 mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```
 
-## 4、启动开发环境
+## 3、启动开发环境
 > 添加脚本到 package.json
 ```json{4}
 {
@@ -34,8 +34,15 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```
 > 执行 `yarn docs:dev` ，然后就可以看到最简单的页面效果
 
-
-## 5、配置首页
+## 4、添加更多页面
+```text{3}
+.
+├─ docs
+│  ├─ getting-started.md // [!code focus:2]
+│  └─ index.md
+└─ package.json
+```
+> 配置首页 ->`index.md`
 ```markdown
 ---
 layout: home
@@ -70,18 +77,12 @@ features:
     details: 书读百遍其义自见
 ---
 ```
-> [参考链接](https://vitepress.vuejs.org/guide/theme-home-page)
+[参考链接](https://vitepress.vuejs.org/guide/theme-home-page)
 
-## 5、添加更多页面
-```text{3}
-.
-├─ docs
-│  ├─ getting-started.md // [!code focus]
-│  └─ index.md
-└─ package.json
-```
+> 现在，已经有了一个基本但功能强大的 VitePress 文档站点。但目前，我们无法在网站上导航，因为它缺少了导航栏和侧边栏菜单。要启用这些导航，我们必须向站点添加一些配置
 
-## 6、添加网站配置
+
+## 5、添加网站配置
 > docs 文件下创建 .vitepress 文件放置页面配置
 ```text{3-4}
 .
@@ -92,7 +93,18 @@ features:
 └─ package.json
 ```
 
-### 1、基础配置
+> docs 文件下创建 public 文件放置公共文件
+```text{4-5}
+.
+├─ docs
+│  ├─ .vitepress
+│  ├─ public // [!code focus:2] 
+│  │  └─ logo.svg
+│  └─ index.md
+└─ package.json
+```
+
+### 5.1、基础配置
 ```ts
 export default {
   // These are app level configs.
@@ -102,24 +114,26 @@ export default {
   description: 'Vite & Vue powered static site generator.', // 网站描述 - <meta name="description" content="Vite & Vue powered static site generator.">
   base: '/', // base url
   head: [
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]
+    [ 'link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' } ],
     // 渲染为: <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    [ 'link', { rel: 'icon', href: '/logo.svg' } ]
+    // 渲染为: <link rel="icon" href="/logo.svg" />
   ],
   appearance: true, // 外观切换 - 深色浅色
   ignoreDeadLinks: false, // 当设置为 true 时，VitePress 不会因为死链接而导致构建失败。
-  lastUpdated: true, // 页面最后更新时间
+  lastUpdated: true, // 显示页面最后更新时间
   cleanUrls: 'without-subfolders', // 删除路径中的.html后缀
-  themeConfig: {}, // 主题配置
+  themeConfig: {}, // 主题配置，详见 5.2
   markdown: { // markdown 解析配置
     theme: 'material-palenight', // 主体配色
     lineNumbers: true // 显示行号
   }
 }
 ```
-::: tip
+::: details 注意事项
 1、titleTemplate：当 titleTemplate 的内容与 title 的内容相同时，不出现后缀;
 
-2、base：当网站部署在 GitHub Pages 或 Gitee Pages 时会存在子路径，例如：https://username.github.io/repo/ ，需要设置 base 为仓库名称;
+2、base：当网站部署在 GitHub Pages 或 Gitee Pages 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 base 为仓库名称;
 
 3、head：引入的公共资源不会自动在路径拼接 base 内容，需自行处理，例如：
 ```ts
@@ -136,7 +150,7 @@ const getHead = () => {
 :::
 
 
-### 2、主题配置
+### 5.2、主题配置
 ```ts
 export default {
   // Theme related configurations.
@@ -158,7 +172,7 @@ export default {
       prev: '上一节',
       next: '下一节'
     },
-    footer: {
+    footer: { // 有 sidebar 时不显示
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2019-present Evan You'
     },
@@ -175,8 +189,8 @@ export default {
   }
 }
 ```
-::: tip
-1、link：页面路由，支持外链；'/guid/' 表示加载 guid/index.md，'/guid' 表示加载 guid.md
+::: details 注意事项
+1、link：页面路由，支持外链；'/guid/' 表示加载 `guid/index.md`，'/guid' 表示加载 `guid.md`
 
 2、sidebar：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 key ，该路径需要显示的侧边栏数组作为 value，例如：
 ```ts
@@ -200,12 +214,11 @@ const getSildBar = ()=>({
 ```
 :::
 
-## 7、写写写
-```text
-逐步完善博客内容
-```
 
-## 8、网站部署
+## 6、网站创建完成
+> 现在，一个完整的 VitePress 站点已经搭建完成，只需要逐步完善博客内容即可
+
+## 7、网站部署
 
 因为我选择的仓库是 `Gitee` ，所以选择使用 `Gitee pages` 部署:
 
@@ -251,16 +264,28 @@ exec /bin/bash
 
 6、点击 `启动` ，稍等片刻即可部署完成；后续分支内容更新后，点击 `更新`
 
-## 9、优化部署
-Gitee 相比 GitHub 在国内可以访问更加快速，但是在功能上还是有些差别，比如 Gitee Pages 不能自动更新，每次内容推送后都需要手动执行，非常麻烦；
+## 8、优化部署
+`Gitee` 相比 `GitHub` 在国内可以访问更加快速，但是在功能上还是有些差别，比如 `Gitee Pages` 不能自动更新，每次内容推送后都需要手动执行，非常麻烦；
+经过一番思考，最终还是选择使用 `GitHub Actions` 辅助完成，`GitHub` 中有相对丰富的资源可以利用；
 
-经过一番思考，最终还是选择使用 GitHub Actions 辅助完成，GitHub 中有相对丰富的资源可以利用；
-
-整体的想法是将仓库镜像到 `GitHub` ，然后使用 `GitHub Actions` 的能力实现对 `Gitee Pages` 的自动更新
+___
+> 需求：`Gitee Pages` 自动更新
+>> 思路：将仓库镜像到 `GitHub` ，然后使用 `GitHub Actions` 的能力实现对 `Gitee Pages` 的自动更新
+---
 
 接下来开始实施：
 
-### 9.1、使用 VitePress 官方提供的部署到 GitHub Pages 的脚本
+### 8.1、在 `GitHub` 新建仓库导入 `Gitee` 仓库
+> 既然在 GitHub 建了仓库，那么也顺道将站点部署到 `GitHub Pages` 
+
+1、通过路径：仓库 -> Settings -> Pages -> Build and deployment，进入部署页面
+
+2、`Source`：选择 `Deploy from a branch`
+
+3、 `Branch`：选择分支，选择资源目录，点击 `Save`
+
+
+### 8.2、使用 VitePress 官方提供的部署到 GitHub Pages 的脚本
 > `.github/workflows` 文件夹下的 `.yml` 文件会自动执行
 ```yaml
 name: Deploy
@@ -293,10 +318,10 @@ jobs:
           publish_dir: docs/.vitepress/dist # 部署的文件目录
           # cname: example.com # if wanna deploy to custom domain
 ```
-[获取个人令牌](/version-control/git-hub#获取-token-私人令牌)
+[获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
 
-### 9.2、解决更新 Gitee Pages 的问题。
-我们使用第三方 actions 来完成操作，通过路径 github.com -> Marketplace；直接以 gitee 为关键字搜索相关内容，找一个 stars 高的，
+### 8.3、解决更新 Gitee Pages 的问题。
+我们使用第三方 actions 来完成操作，通过路径 [github.com/marketplace](https://github.com/marketplace)，以 gitee 为关键字搜索相关内容，找一个 stars 高的，
 这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action),
 在第一步创建的文件中添加新的 job ：
 ```yaml{2-16}
@@ -321,12 +346,12 @@ jobs:
 - `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
 - 对于 `gitee-repo` 参数，如果你的项目在 Gitee 的地址为 https://gitee.com/用户名/xxx ，那么 `gitee-repo` 就填写为 `用户名/xxx`
 
-### 9.3、提交代码、测试结果
+### 8.4、提交代码、测试结果
 在仓库的 `Actions` 标签页查看运行结果 ，什么也没有发生，What？，这是为什么呢，因为仓库的 `actions` 默认是关闭的，通过路径：仓库 -> Settings -> Actions -> General -> Actions permissions，设置允许执行 `actions`
 
 完成修改后，再次提交代码测试执行结果：发现预设的两个 job 都已完成，打开 Gitee 部署的站点发现并未更新，又是为什么呢？回看执行流程就会发现，虽然打包后代码已经更新到了 `gh-pages` 分支，但是并没有同步到 Gitee，所以在 Gitee 中更新了个寂寞！！！
 
-### 9.4、解决将 GitHub 的分支同步到 Gitee 的问题
+### 8.5、解决将 GitHub 的分支同步到 Gitee 的问题
 作为一个小白，本着面向搜索引擎编程的原则，先搜索了一把，发现基本都是将 GitHub 仓库镜像到 Gitee 的操作，并没有只同步某一分支的情况；这里如果采用再将整个项目镜像到 Gitee 的方式的话会陷入死循环；
 于是乎，只能想办法自己解决，最终，参考镜像仓库的方式，自己实现了同步某一分支的 `action`：[git-sync-action](https://github.com/peiyanlu/git-sync-action)，用法如下：
 ```yaml{2-12}
