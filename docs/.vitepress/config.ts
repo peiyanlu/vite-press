@@ -41,7 +41,8 @@ export default defineConfig({
           svg: MONOCHROME.GITEE
         },
         link: GIT_PAGE
-      }
+      },
+      { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' }
     ]
   },
   markdown: {

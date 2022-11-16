@@ -1,4 +1,4 @@
-# Vitepress 搭建个人博客网站并部署 GitHub pages 和 Gitee pages
+# VitePress 搭建静态网站并在 `GitHub/Gitee Pages` 部署
 
 
 ## 1、创建一个新项目
@@ -24,7 +24,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```json{4}
 {
    ...
-  "scripts": {
+  "scripts": { // [!code focus:5] 
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
@@ -79,11 +79,11 @@ features:
 ```
 [参考链接](https://vitepress.vuejs.org/guide/theme-home-page)
 
-> 现在，已经有了一个基本但功能强大的 VitePress 文档站点。但目前，我们无法在网站上导航，因为它缺少了导航栏和侧边栏菜单。要启用这些导航，我们必须向站点添加一些配置
+> 现在，已经有了一个基本的 VitePress 文档站点。但我们无法在网站上导航，因为它缺少了导航栏和侧边栏菜单。要启用这些导航，我们必须向站点添加一些配置
 
 
 ## 5、添加网站配置
-> docs 文件下创建 .vitepress 文件放置页面配置
+> docs 文件下创建 .vitepress 文件夹放置页面配置
 ```text{3-4}
 .
 ├─ docs
@@ -93,7 +93,7 @@ features:
 └─ package.json
 ```
 
-> docs 文件下创建 public 文件放置公共文件
+> docs 文件下创建 public 文件夹放置公共文件
 ```text{4-5}
 .
 ├─ docs
@@ -107,11 +107,13 @@ features:
 ### 5.1、基础配置
 ```ts
 export default {
-  // These are app level configs.
-  lang: 'en-US', // <html lang="en-US">
+  // 应用层面的配置
+  lang: 'en-US', 
+  // 渲染为： <html lang="en-US">
   title: 'VitePress', // 网站标题
   titleTemplate: 'Blog', // 网站标题后缀- “VitePress | Blog”
-  description: 'Vite & Vue powered static site generator.', // 网站描述 - <meta name="description" content="Vite & Vue powered static site generator.">
+  description: 'Vite & Vue powered static site generator.', // 网站描述 
+  // 渲染为：<meta name="description" content="Vite & Vue powered static site generator.">
   base: '/', // base url
   head: [
     [ 'link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' } ],
@@ -130,12 +132,16 @@ export default {
   }
 }
 ```
-::: details 注意事项
-1、titleTemplate：当 titleTemplate 的内容与 title 的内容相同时，不出现后缀;
 
-2、base：当网站部署在 GitHub Pages 或 Gitee Pages 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 base 为仓库名称;
+注意事项：
 
-3、head：引入的公共资源不会自动在路径拼接 base 内容，需自行处理，例如：
+1、`titleTemplate`：当 `titleTemplate` 的内容与 `title` 的内容相同时，不出现后缀;
+
+2、`base`：当网站部署在 `GitHub Pages` 或 `Gitee Pages` 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 `base` 为仓库名称;
+
+3、`head`：引入的公共资源不会自动在路径拼接 `base` 内容，需自行处理，例如：
+
+::: raw 121
 ```ts
 const BASE_URL = '/vite-press/'
 const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
@@ -284,14 +290,14 @@ ___
 ### 8.1、在 `GitHub` 新建仓库导入 `Gitee` 仓库
 > 既然在 GitHub 建了仓库，那么也顺道将站点部署到 `GitHub Pages` 
 
-1、通过路径：仓库 -> Settings -> Pages，进入部署页面
+1、通过路径：`仓库 -> Settings -> Pages`，进入部署页面
 
 2、Build and deployment
 - `Source`：选择 `Deploy from a branch`
 - `Branch`：选择分支，选择资源目录，点击 `Save`
 
 ::: warning
-仓库的 `actions` 默认是关闭的，通过路径：`仓库 -> Settings -> Actions -> General -> Actions permissions`，设置允许执行 `actions`
+仓库的 **actions** 默认是关闭的，通过路径：**仓库 -> Settings -> Actions -> General -> Actions permissions** ，设置允许执行 **actions**
 :::
 
 ### 8.2、同步 Gitee 仓库到 GitHub
@@ -305,7 +311,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main # 监听的分支
+      - docs-deploy # 监听的分支
 
 jobs:
   deploy:
@@ -335,22 +341,22 @@ jobs:
 ### 8.4、同步 gh-pages 分支到 Gitee
 > 在 [github.com/marketplace](https://github.com/marketplace) 可以找合适的第三方 actions 来辅助完成操作
 
-由于没有找到仅同步分支的 `action`，自己实现了同步某一分支的 `action`：[git-sync-action](https://github.com/peiyanlu/git-sync-action)，在第一步创建的文件中添加新的 job ：
+由于没有找到仅同步分支的 `action`，自己实现了[git-sync-action](https://github.com/peiyanlu/git-sync-action)，在第一步创建的文件中添加新的 job ：
 ::: warning
 这里如果采用将整个项目镜像到 Gitee 的方式的话会陷入死循环
 :::
 ```yaml{2-11}
 jobs:
-  gitee-branch-sync:
+  gitee-branch-sync: // [!code focus:10]
     runs-on: ubuntu-latest
     steps:
       - uses: peiyanlu/git-sync-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
-          source-repo: "git@github.com:peiyanlu/vite-press.git"
-          destination-repo: "git@gitee.com:peiyanlu/vite-press.git"
-          destination-branch: "gh-pages"
+          source-repo: git@github.com:peiyanlu/vite-press.git
+          destination-repo: git@gitee.com:peiyanlu/vite-press.git
+          destination-branch: gh-pages
 ```
 
 配置公钥：
@@ -359,32 +365,84 @@ jobs:
 
 
 ### 8.4、更新 Gitee Pages
-我们使用第三方 actions 来完成操作，通过路径 [github.com/marketplace](https://github.com/marketplace)，以 gitee 为关键字搜索相关内容，找一个 stars 高的，
-这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action),
-在第一步创建的文件中添加新的 job ：
-```yaml{2-15}
+这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action), 在第一步创建的文件中添加新的 job ：
+```yaml{2-11}
 jobs:
-  gitee-pages-sync: 
+  gitee-pages-sync: // [!code focus:10]
     runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
         with:
-          # 注意替换为你的 Gitee 用户名
-          gitee-username: xxxxx
-          # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
+          gitee-username: peiyanlu
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
-          gitee-repo: xxxxx/xxxx
-          # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
+          gitee-repo: peiyanlu/vite-press
           branch: gh-pages
 ```
 参数说明：
-- `branch` 参数默认是 `master`，如果你是部署在 `gh-pages` (或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
-- `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
-- `gitee-repo` 参数，如果你的项目在 Gitee 的地址为 `https://gitee.com/用户名/仓库名` ，那么 `gitee-repo` 就填写为 `用户名/仓库名`
+- `gitee-username`：`Gitee` 用户名，例如：`https://gitee.com/用户名/仓库名` ，那么 `gitee-username` 就填写为 `用户名`
+- `gitee-password`：`Gitee` 密码，通过路径 `Settings -> Secrets -> Actions` 新建 `GITEE_PASSWORD` 存放 `Gitee 帐号的密码`
+- `gitee-repo` ：指定部署的仓库，例如：`https://gitee.com/用户名/仓库名` ，那么 `gitee-repo` 就填写为 `用户名/仓库名`
+- `branch` ：指定部署的分支，默认 master
 
-配置秘钥：
-- 在 GitHub 项目的 `Settings -> Secrets` 路径下配置好命名为 `GITEE_PASSWORD` 的密钥，存放 `Gitee 帐号的密码`。
+### 8.5、控制任务执行顺序
+执行前几步加入的任务后就会发现，虽然各个任务都已经成功执行，但是并没有实现同步更新、同步部署，再次执行就会发现各个任务并行执行，之间没有关联，需要再次处理，完整的任务流如下：
 
+> 通过 `needs` 指定任务的先行条件
+```yaml{31,43}
+name: Deploy
 
+on:
+  push:
+    branches:
+      - docs-deploy
+
+jobs:
+  gh-pages-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn docs:build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+
+  gitee-branch-sync:
+    needs: ["gh-pages-deploy"] // [!code focus]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peiyanlu/git-sync-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        with:
+          source-repo: git@github.com:peiyanlu/vite-press.git
+          destination-repo: git@gitee.com:peiyanlu/vite-press.git
+          destination-branch: gh-pages
+
+  gitee-pages-sync:
+    needs: ["gitee-branch-sync"] // [!code focus]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: peiyanlu
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: peiyanlu/vite-press
+          branch: gh-pages
+```
+
+## 9、结束
+至此，通过 `VitePress` 搭建博客站点，并且部署到 `GitHub Pages` 和 `Gitee Pages` 已全部完成

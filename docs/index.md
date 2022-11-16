@@ -14,10 +14,13 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /frontend/
+      link: /origin/
     - theme: alt
       text: 在 Gitee 上查看
       link: https://gitee.com/peiyanlu/vite-press/
+    - theme: alt
+      text: 在 GitHub 上查看
+      link: https://github.com/peiyanlu/vite-press/
 
 features:
   - icon: ⚡️

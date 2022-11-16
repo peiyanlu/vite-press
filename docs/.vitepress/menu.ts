@@ -32,14 +32,14 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     activeMatch: MENU.FRONTEND
   },
   {
-    text: '版本控制',
-    link: MENU.VCS,
-    activeMatch: MENU.VCS
-  },
-  {
     text: '后端',
     items: [],
     activeMatch: MENU.BACKEND
+  },
+  {
+    text: 'VSC',
+    link: MENU.VCS,
+    activeMatch: MENU.VCS
   },
   {
     text: 'Windows',
