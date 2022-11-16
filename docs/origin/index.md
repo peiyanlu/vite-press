@@ -195,6 +195,12 @@ export default {
 2、sidebar：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 key ，该路径需要显示的侧边栏数组作为 value，例如：
 ```ts
 const getSildBar = ()=>({
+  '/': [ // 所有页面都显示
+    {
+      text: 'Global Settings',
+      link: '/global'
+    },
+  ],
   '/guid/': [
     {
       text: 'Guid',
@@ -220,7 +226,7 @@ const getSildBar = ()=>({
 
 ## 7、网站部署
 
-因为我选择的仓库是 `Gitee` ，所以选择使用 `Gitee pages` 部署:
+因为选择的仓库是 `Gitee` ，所以使用 `Gitee pages` 部署:
 
 > 通过脚本打包并推送到仓库
 ```shell
@@ -278,14 +284,20 @@ ___
 ### 8.1、在 `GitHub` 新建仓库导入 `Gitee` 仓库
 > 既然在 GitHub 建了仓库，那么也顺道将站点部署到 `GitHub Pages` 
 
-1、通过路径：仓库 -> Settings -> Pages -> Build and deployment，进入部署页面
+1、通过路径：仓库 -> Settings -> Pages，进入部署页面
 
-2、`Source`：选择 `Deploy from a branch`
+2、Build and deployment
+- `Source`：选择 `Deploy from a branch`
+- `Branch`：选择分支，选择资源目录，点击 `Save`
 
-3、 `Branch`：选择分支，选择资源目录，点击 `Save`
+::: warning
+仓库的 `actions` 默认是关闭的，通过路径：`仓库 -> Settings -> Actions -> General -> Actions permissions`，设置允许执行 `actions`
+:::
 
+### 8.2、同步 Gitee 仓库到 GitHub
+通过路径：`仓库 -> 管理 -> 仓库镜像管理`，添加新的镜像，选择镜像方向为 `push`，将仓库同步到 `GitHub`
 
-### 8.2、使用 VitePress 官方提供的部署到 GitHub Pages 的脚本
+### 8.3、更新 `GitHub` 的 `gh-pages` 分支
 > `.github/workflows` 文件夹下的 `.yml` 文件会自动执行
 ```yaml
 name: Deploy
@@ -320,41 +332,14 @@ jobs:
 ```
 [获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
 
-### 8.3、解决更新 Gitee Pages 的问题。
-我们使用第三方 actions 来完成操作，通过路径 [github.com/marketplace](https://github.com/marketplace)，以 gitee 为关键字搜索相关内容，找一个 stars 高的，
-这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action),
-在第一步创建的文件中添加新的 job ：
-```yaml{2-16}
-jobs:
-  gitee-pages-sync: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build Gitee Pages
-        uses: yanglbme/gitee-pages-action@main
-        with:
-          # 注意替换为你的 Gitee 用户名
-          gitee-username: xxxxx
-          # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
-          gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
-          gitee-repo: xxxxx/vite-press
-          # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
-          branch: gh-pages
-```
-注：
-- `branch` 参数默认是 `master`，如果你是部署在 `gh-pages` (或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
-- `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
-- 对于 `gitee-repo` 参数，如果你的项目在 Gitee 的地址为 https://gitee.com/用户名/xxx ，那么 `gitee-repo` 就填写为 `用户名/xxx`
+### 8.4、同步 gh-pages 分支到 Gitee
+> 在 [github.com/marketplace](https://github.com/marketplace) 可以找合适的第三方 actions 来辅助完成操作
 
-### 8.4、提交代码、测试结果
-在仓库的 `Actions` 标签页查看运行结果 ，什么也没有发生，What？，这是为什么呢，因为仓库的 `actions` 默认是关闭的，通过路径：仓库 -> Settings -> Actions -> General -> Actions permissions，设置允许执行 `actions`
-
-完成修改后，再次提交代码测试执行结果：发现预设的两个 job 都已完成，打开 Gitee 部署的站点发现并未更新，又是为什么呢？回看执行流程就会发现，虽然打包后代码已经更新到了 `gh-pages` 分支，但是并没有同步到 Gitee，所以在 Gitee 中更新了个寂寞！！！
-
-### 8.5、解决将 GitHub 的分支同步到 Gitee 的问题
-作为一个小白，本着面向搜索引擎编程的原则，先搜索了一把，发现基本都是将 GitHub 仓库镜像到 Gitee 的操作，并没有只同步某一分支的情况；这里如果采用再将整个项目镜像到 Gitee 的方式的话会陷入死循环；
-于是乎，只能想办法自己解决，最终，参考镜像仓库的方式，自己实现了同步某一分支的 `action`：[git-sync-action](https://github.com/peiyanlu/git-sync-action)，用法如下：
-```yaml{2-12}
+由于没有找到仅同步分支的 `action`，自己实现了同步某一分支的 `action`：[git-sync-action](https://github.com/peiyanlu/git-sync-action)，在第一步创建的文件中添加新的 job ：
+::: warning
+这里如果采用将整个项目镜像到 Gitee 的方式的话会陷入死循环
+:::
+```yaml{2-11}
 jobs:
   gitee-branch-sync:
     runs-on: ubuntu-latest
@@ -367,3 +352,39 @@ jobs:
           destination-repo: "git@gitee.com:peiyanlu/vite-press.git"
           destination-branch: "gh-pages"
 ```
+
+配置公钥：
+- 在 GitHub 的个人设置页面 `Settings -> SSH and GPG keys` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
+- 在 Gitee 的个人设置页面 `安全设置 -> SSH 公钥` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
+
+
+### 8.4、更新 Gitee Pages
+我们使用第三方 actions 来完成操作，通过路径 [github.com/marketplace](https://github.com/marketplace)，以 gitee 为关键字搜索相关内容，找一个 stars 高的，
+这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action),
+在第一步创建的文件中添加新的 job ：
+```yaml{2-15}
+jobs:
+  gitee-pages-sync: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          # 注意替换为你的 Gitee 用户名
+          gitee-username: xxxxx
+          # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
+          gitee-repo: xxxxx/xxxx
+          # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
+          branch: gh-pages
+```
+参数说明：
+- `branch` 参数默认是 `master`，如果你是部署在 `gh-pages` (或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
+- `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
+- `gitee-repo` 参数，如果你的项目在 Gitee 的地址为 `https://gitee.com/用户名/仓库名` ，那么 `gitee-repo` 就填写为 `用户名/仓库名`
+
+配置秘钥：
+- 在 GitHub 项目的 `Settings -> Secrets` 路径下配置好命名为 `GITEE_PASSWORD` 的密钥，存放 `Gitee 帐号的密码`。
+
+
