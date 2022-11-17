@@ -33,7 +33,8 @@ export const getNav = (): DefaultTheme.NavItem[] => [
   },
   {
     text: '后端',
-    items: [],
+    // items: [],
+    link: MENU.BACKEND,
     activeMatch: MENU.BACKEND
   },
   {
@@ -52,7 +53,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.FRONTEND]: [
     {
       text: 'rollup',
-
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
@@ -74,6 +74,32 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') }
+      ]
+    }
+  ],
+  [MENU.BACKEND]: [
+    {
+      text: 'Koa2',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '开始', link: joinPath(MENU.BACKEND, 'koa2-start') },
+      ]
+    },
+    {
+      text: 'MySQL',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '开始', link: joinPath(MENU.BACKEND, 'mysql-start') }
+      ]
+    },
+    {
+      text: 'Radis',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '开始', link: joinPath(MENU.BACKEND, 'radis-start') }
       ]
     }
   ],

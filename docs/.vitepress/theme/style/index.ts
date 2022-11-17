@@ -2,4 +2,4 @@ import './base.css'
 
 import './home.css'
 
-import './sidebar-cover.scss'
+import './cover.scss'

@@ -10,6 +10,7 @@ mkdir vitepress-starter && cd vitepress-starter
 yarn init
 ```
 
+
 ## 2、安装 VitePress
 ```shell
 yarn add --dev vitepress
@@ -18,6 +19,7 @@ yarn add --dev vitepress
 ```shell
 mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```
+
 
 ## 3、启动开发环境
 > 添加脚本到 package.json
@@ -33,6 +35,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 }
 ```
 > 执行 `yarn docs:dev` ，然后就可以看到最简单的页面效果
+
 
 ## 4、添加更多页面
 ```text{3}
@@ -104,6 +107,20 @@ features:
 └─ package.json
 ```
 
+> .vitepress 文件下创建 theme 文件夹放置样式文件
+```text{4-6}
+.
+├─ docs
+│  ├─ .vitepress
+│  │  ├─ theme // [!code focus:3] 
+│  │  │  ├─ index.css 
+│  │  │  └─ index.ts
+│  │  └─ config.ts
+│  ├─ public
+│  └─ index.md
+└─ package.json
+```
+
 ### 5.1、基础配置
 ```ts
 export default {
@@ -127,21 +144,20 @@ export default {
   cleanUrls: 'without-subfolders', // 删除路径中的.html后缀
   themeConfig: {}, // 主题配置，详见 5.2
   markdown: { // markdown 解析配置
-    theme: 'material-palenight', // 主体配色
+    // theme: 'material-palenight', // 主体配色
     lineNumbers: true // 显示行号
   }
 }
 ```
 
-注意事项：
+**注意事项：**
 
 1、`titleTemplate`：当 `titleTemplate` 的内容与 `title` 的内容相同时，不出现后缀;
 
-2、`base`：当网站部署在 `GitHub Pages` 或 `Gitee Pages` 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 `base` 为仓库名称;
+2、`base`：当网站部署在 `GitHub Pages` 或 `Gitee Pages` 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 `base` 为 `/repo/`;
 
 3、`head`：引入的公共资源不会自动在路径拼接 `base` 内容，需自行处理，例如：
 
-::: raw 121
 ```ts
 const BASE_URL = '/vite-press/'
 const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
@@ -153,13 +169,12 @@ const getHead = () => {
   ]
 }
 ```
-:::
 
 
 ### 5.2、主题配置
 ```ts
 export default {
-  // Theme related configurations.
+  // 主题相关配置
   themeConfig: {
     logo: '/logo.svg', // 左侧导航栏图标
     siteTitle: 'Hello World', // 左侧导航栏标题
@@ -173,7 +188,7 @@ export default {
       pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     },
-    lastUpdatedText: '上次更新时间', // 上次更新时间显示文本
+    lastUpdatedText: '上次更新', // 上次更新时间显示文本
     docFooter: { // 文档底部文本
       prev: '上一节',
       next: '下一节'
@@ -195,10 +210,12 @@ export default {
   }
 }
 ```
-::: details 注意事项
+**注意事项：**
+
 1、link：页面路由，支持外链；'/guid/' 表示加载 `guid/index.md`，'/guid' 表示加载 `guid.md`
 
 2、sidebar：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 key ，该路径需要显示的侧边栏数组作为 value，例如：
+
 ```ts
 const getSildBar = ()=>({
   '/': [ // 所有页面都显示
@@ -224,11 +241,11 @@ const getSildBar = ()=>({
   ]
 })
 ```
-:::
 
 
 ## 6、网站创建完成
 > 现在，一个完整的 VitePress 站点已经搭建完成，只需要逐步完善博客内容即可
+
 
 ## 7、网站部署
 
@@ -276,9 +293,10 @@ exec /bin/bash
 
 6、点击 `启动` ，稍等片刻即可部署完成；后续分支内容更新后，点击 `更新`
 
+
 ## 8、优化部署
-`Gitee` 相比 `GitHub` 在国内可以访问更加快速，但是在功能上还是有些差别，比如 `Gitee Pages` 不能自动更新，每次内容推送后都需要手动执行，非常麻烦；
-经过一番思考，最终还是选择使用 `GitHub Actions` 辅助完成，`GitHub` 中有相对丰富的资源可以利用；
+`Gitee` 相比于 `GitHub` 在国内可以访问更加快速，但是在功能上还是有些差别，比如 `Gitee Pages` 不能自动更新，每次内容推送后都需要手动执行，非常麻烦；
+经过一番思考，最终还是选择使用 `GitHub Actions` 辅助完成自动更新操作，`GitHub` 中有相对丰富的资源可以利用；
 
 ___
 > 需求：`Gitee Pages` 自动更新
@@ -363,8 +381,7 @@ jobs:
 - 在 GitHub 的个人设置页面 `Settings -> SSH and GPG keys` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
 - 在 Gitee 的个人设置页面 `安全设置 -> SSH 公钥` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
 
-
-### 8.4、更新 Gitee Pages
+### 8.5、更新 Gitee Pages
 这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action), 在第一步创建的文件中添加新的 job ：
 ```yaml{2-11}
 jobs:
@@ -385,10 +402,14 @@ jobs:
 - `gitee-repo` ：指定部署的仓库，例如：`https://gitee.com/用户名/仓库名` ，那么 `gitee-repo` 就填写为 `用户名/仓库名`
 - `branch` ：指定部署的分支，默认 master
 
-### 8.5、控制任务执行顺序
-执行前几步加入的任务后就会发现，虽然各个任务都已经成功执行，但是并没有实现同步更新、同步部署，再次执行就会发现各个任务并行执行，之间没有关联，需要再次处理，完整的任务流如下：
+::: warning 短信验证
+关注 Gitee 官方公众号，并绑定个人 Gitee 账号，用于接收账号登录通知、以及绕过短信验证码校验
+:::
 
-> 通过 `needs` 指定任务的先行条件
+### 8.6、控制任务执行顺序
+这时，即使三个任务可以正常执行，但也无法达到预期的效果，因为任务之间没有关联，需要设定任务按顺序执行而非同步执行。完整的任务流如下：
+
+> 通过 `needs` 字段指定任务的先行条件
 ```yaml{31,43}
 name: Deploy
 
@@ -443,6 +464,7 @@ jobs:
           gitee-repo: peiyanlu/vite-press
           branch: gh-pages
 ```
+
 
 ## 9、结束
 至此，通过 `VitePress` 搭建博客站点，并且部署到 `GitHub Pages` 和 `Gitee Pages` 已全部完成
