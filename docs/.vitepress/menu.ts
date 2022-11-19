@@ -75,6 +75,39 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       items: [
         { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') }
       ]
+    },
+    {
+      text: 'HTML',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
+      ]
+    },
+    {
+      text: 'CSS',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
+      ]
+    },
+    {
+      text: 'JavaScript',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
+      ]
+    },
+    {
+      text: '正则',
+      collapsible: true, // 可折叠
+      collapsed: false, // 折叠
+      items: [
+        { text: '基础', link: joinPath(MENU.FRONTEND, 'regex-basics') },
+        { text: '使用', link: joinPath(MENU.FRONTEND, 'regex-use') }
+      ]
     }
   ],
   [MENU.BACKEND]: [
@@ -109,9 +142,9 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: 'Git 基础', link: joinPath(MENU.VCS, 'git-basics') },
-        { text: 'Git 集成', link: joinPath(MENU.VCS, 'git-hub') },
-        { text: 'Git 使用', link: joinPath(MENU.VCS, 'git-use') },
+        { text: '基础', link: joinPath(MENU.VCS, 'git-basics') },
+        { text: '集成', link: joinPath(MENU.VCS, 'git-hub') },
+        { text: '使用', link: joinPath(MENU.VCS, 'git-use') },
       ]
     },
     {
