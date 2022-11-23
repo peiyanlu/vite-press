@@ -39,17 +39,19 @@
 
 7、复制私人令牌并妥善保管。
 
-
 ## 获取和设置 SSH
 
 命令行生成秘钥
+
 ```shell
 ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 
 # 常用
 ssh-keygen -t rsa -C "$(git config user.email)"
 ```
+
 得到两个文件：
+
 - `gh-pages.pub` 是公钥
 - `gh-pages` 是私钥
 
@@ -73,8 +75,8 @@ ssh-keygen -t rsa -C "$(git config user.email)"
 
 4、输入秘钥，点击 `确定`。
 
-
 ::: details 参数说明
+
 ```haml
 -t：指定生成密钥的类型，默认使用 SSH2d 的 rsa
 
@@ -90,8 +92,8 @@ ssh-keygen -t rsa -C "$(git config user.email)"
 
 -R hostname：从 known_hosta （.ssh目录下）文件中删除所有属于 hostname 的密钥
 ```
-:::
 
+:::
 
 ## 查看秘钥文件夹位置（路径地址）
 
@@ -101,14 +103,16 @@ ssh-keygen -t rsa -C "$(git config user.email)"
 
 3、输入 `pwd` 查看 .ssh 文件路径位置地址
 
-
 ## GitHub设置 SSH Deploy Key
+
 > 在 `个人设置` 中配置了公钥就可以不用设置仓库的 Deploy Key
 
 前往个人设置
+
 - 通过路径：`用户头像 → Settings -> SSH and GPG keys` 添加公钥
 
 前往代码仓库设置
+
 - 通过路径： `仓库 -> Settings -> Deploy Keys` 添加公钥，并且勾选 `Allow write access`
 
 [参考链接](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-create-ssh-deploy-key)

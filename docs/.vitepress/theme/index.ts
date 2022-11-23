@@ -1,5 +1,5 @@
-import {Theme} from "vitepress";
-import DefaultTheme from "vitepress/theme";
+import { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
 
 // 样式文件
 import './style/index'
@@ -9,7 +9,7 @@ import './style/index'
 
 export default <Theme>{
   ...DefaultTheme,
-  enhanceApp({app}) {
+  enhanceApp({ app }) {
     // app.component()
   }
 }

@@ -1,6 +1,7 @@
-###依赖包重新打包
+# 依赖包重新打包
 
-######设置package.json
+## 设置package.json
+
 ```json
 {
   "scripts": {
@@ -8,13 +9,15 @@
   }
 }
 ```
+
 ```text
 yarn install 时将会自动为依赖包打补丁
 
 // yarn install --registry=http://nexus.simulate.com:8081/repository/npm-group/
 ```
 
-######1、安装依赖
+## 1、安装依赖
+
 ```text
 yarn add patch-package postinstall-postinstall
 
@@ -22,11 +25,14 @@ Notes：
 yarn环境安装postinstall-postinstall是为了使用yarn remove后也可以重新执行postinstall hook
 ```
 
-######2、修改依赖包
+## 2、修改依赖包
+
 ```javascript
 // javascript code
 ```
-######3、创建补丁
+
+## 3、创建补丁
+
 ```text
 // 为依赖包创建补丁
 yarn patch-package packageName
@@ -57,7 +63,9 @@ patch-package 默认是根据项目中的 lockfile 来决定使用 npm 还是 ya
 --patch-dir
 指定放置补丁文件的目录
 ```
-######4、应用补丁
+
+## 4、应用补丁
+
 ```text
 yarn patch-package 不带参数应用所有补丁
 
@@ -71,7 +79,9 @@ Options：
 --patch-dir
 指定放置补丁文件的目录
 ```
-######Dev-only
+
+## Dev-only
+
 ```text
 打包 devDependencies 中的依赖
 

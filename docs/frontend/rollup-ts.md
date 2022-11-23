@@ -20,7 +20,8 @@ yarn init
 ```shell
 yarn add typescript -D
 
-tsc --init 
+tsc --init
+
 ```
 
 >生成声明文件的方法

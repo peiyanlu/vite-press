@@ -2,7 +2,7 @@
 
 ## 1、初始化 项目
 
->创建文件夹，初始化项目
+> 创建文件夹，初始化项目
 
 ```shell
 mkdir "dirname"
@@ -14,7 +14,7 @@ yarn init
 
 ## 2、初始化 webpack
 
->安装 webpack、webpack-cli，创建 webpack.config.js 文件
+> 安装 webpack、webpack-cli，创建 webpack.config.js 文件
 
 ```shell
 yarn add webpack webpack-cli -D
@@ -22,7 +22,7 @@ yarn add webpack webpack-cli -D
 
 ## 3、处理 svg
 
->安装 svg 加载器；通过 js 批量引入 .svg
+> 安装 svg 加载器；通过 js 批量引入 .svg
 
 ```shell
 yarn add svg-sprite-loader -D
@@ -81,7 +81,7 @@ module.exports = {
 
 ## 5、选用 webpack-chain
 
->使用 webpack-chain 链式操作配置webpackConfig
+> 使用 webpack-chain 链式操作配置webpackConfig
 
 ```shell
 yarn add webpack-chain -D
@@ -131,6 +131,7 @@ module.exports = config.toConfig();
 ```
 
 ## 参考文档
+
 [webpack（中文文档）](https://webpack.docschina.org/concepts/)
 
 [webpack-chain（中文文档）](https://github.com/Yatoo2018/webpack-chain/tree/zh-cmn-Hans)

@@ -116,7 +116,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'koa2-start') },
+        { text: '开始', link: joinPath(MENU.BACKEND, 'koa2-start') }
       ]
     },
     {
@@ -124,7 +124,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'mysql-start') }
+        { text: '安装', link: joinPath(MENU.BACKEND, 'mysql-install') }
       ]
     },
     {
@@ -132,7 +132,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'radis-start') }
+        { text: '安装', link: joinPath(MENU.BACKEND, 'radis-install') }
       ]
     }
   ],
@@ -144,7 +144,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       items: [
         { text: '基础', link: joinPath(MENU.VCS, 'git-basics') },
         { text: '集成', link: joinPath(MENU.VCS, 'git-hub') },
-        { text: '使用', link: joinPath(MENU.VCS, 'git-use') },
+        { text: '使用', link: joinPath(MENU.VCS, 'git-use') }
       ]
     },
     {
@@ -152,7 +152,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: 'Shell 基础', link: joinPath(MENU.VCS, 'shell-basics') },
+        { text: '基础', link: joinPath(MENU.VCS, 'shell-basics') }
       ]
     }
   ]
