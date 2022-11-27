@@ -112,11 +112,11 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   ],
   [MENU.BACKEND]: [
     {
-      text: 'Koa2',
+      text: 'Koa',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'koa2-start') }
+        { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') }
       ]
     },
     {
