@@ -47,10 +47,7 @@ export default defineConfig({
     algolia: {
       appId: '02WXO09HIV',
       apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
-      indexName: 'vite-press',
-      // appId: '8J64VVRP8K',
-      // apiKey: 'a18e2f4cc5665f6602c5631fd868adfd',
-      // indexName: 'vitepress'
+      indexName: 'vite-press'
     }
   },
   markdown: {

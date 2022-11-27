@@ -116,7 +116,8 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') }
+        { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') },
+        { text: '实战', link: joinPath(MENU.BACKEND, 'koa-use') }
       ]
     },
     {
