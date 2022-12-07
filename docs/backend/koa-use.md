@@ -126,7 +126,7 @@ ts-node + nodemon：组合使用可以支持 ESModule
 ├─ controllers                   // 接收数据传递给业务层
 ├─ middlewares                   // 中间件
 ├─ models                        // 数据模型
-├─ public                        // 公共资源
+├─ logs                          // 日志文件
 ├─ routes                        // 路由配置
 ├─ www                           // 静态资源访问
 │  └─ index.html
