@@ -507,6 +507,8 @@ jobs:
 
 3、配置 `algolia.json`
 
+> 而更多配置可参考 [apis/configuration](https://www.algolia.com/doc/tools/crawler/apis/configuration/)
+
 ```json
 {
   "index_name": "vite-press",

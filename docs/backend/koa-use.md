@@ -27,8 +27,8 @@ yarn add koa
 yarn add @types/koa -D
 
 #数据库
-yarn add sequelize mysql2 redis
-yarn add @types/sequelize @types/redis -D
+yarn add redis  mysql2 sequelize reflect-metadata sequelize-typescript
+yarn add @types/redis @types/sequelize @types/validator -D
 
 #中间件
 yarn add koa-body koa-compose @koa/router koa-combine-routers koa-logger @koa/cors koa-views koa-static
@@ -43,7 +43,6 @@ yarn add @types/nanoid @types/mkdirp -D
 - `ts-node` 用于 Node.js 的 TypeScript 执行和 REPL
 - `nodemon` Node.js 文件变更监听
 
-- `@types/node` Node.js 对 TS 的支持
 
 - `koa` 框架核心包
 - `koa-compose` 合并中间件，简化中间件引入
@@ -99,8 +98,7 @@ app.listen(3000, () => {
 {
   "private": true,
   "scripts": {
-    "dev:tsnd": "tsnd --respawn app.ts", // [!code focus：2]
-    "dev": "nodemon --exec node --experimental-specifier-resolution=node --loader ts-node/esm app.ts"
+    "dev": "nodemon --exec node --experimental-specifier-resolution=node --loader ts-node/esm app.ts" // [!code focus]
   },
   "devDependencies": {},
   "dependencies": {}
@@ -108,12 +106,13 @@ app.listen(3000, () => {
 ```
 
 ::: warning
-1、ts-node-dev： 只支持 CommonJS，无法设置 `"module": "ESNext"`，无法使用 `Top-Level-Await`
-2、ts-node + nodemon：组合使用可以支持 ESNext
+ts-node + nodemon：组合使用可以支持 ESModule
 
 - 用于不带扩展名的导入：--experimental-specifier-resolution=node
 - 用于支持esm语法：ts-node/esm
-  :::
+
+~~ts-node-dev： 只支持 CommonJS，无法设置 `"module": "ESNext"`，无法使用 `Top-Level-Await`~~
+:::
 
 > 执行 `yarn dev` 即可启动服务
 
@@ -124,11 +123,11 @@ app.listen(3000, () => {
 ```
 .
 ├─ config                        // 项目配置文件目录
-├─ controller                    // 接收数据传递给业务层
-├─ middleware                    // 中间件
+├─ controllers                   // 接收数据传递给业务层
+├─ middlewares                   // 中间件
 ├─ models                        // 数据模型
 ├─ public                        // 公共资源
-├─ router                        // 路由配置
+├─ routes                        // 路由配置
 ├─ www                           // 静态资源访问
 │  └─ index.html
 ├─ app.ts                        // 入口文件
