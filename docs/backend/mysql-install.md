@@ -19,16 +19,55 @@
 #### 1、双击运行下载好的文件；使用默认设置，点击 `Next`
 
 ::: warning
-默认安装在 `C盘`，如果需要更改，选择 `Custom`，后续流程与下方不同
+默认安装在 `C盘`，如果需要更改，选择 `Custom`
 :::
+
 ![img.png](img/mysql/install_img.png)
+![img_0.png](img/mysql/install_img_0.png)
+
+:::details 自定义安装
+
+##### 选择 `Custom`，点击 `Next`
+
+![custom_img_1.png](img/mysql/custom_img_1.png)
+
+##### 从左边选择 `MySQL Server` 添加到右边
+
+![custom_img_2.png](img/mysql/custom_img_2.png)
+
+##### 选中选择的服务，然后点击出现的 `Advanced Options` 设置安装路径，然后点击 `OK`
+
+![custom_img_3.png](img/mysql/custom_img_3.png)
+![custom_img_4.png](img/mysql/custom_img_4.png)
+
+##### 点击 `Next`
+
+![custom_img_5.png](img/mysql/custom_img_5.png)
+
+##### 点击 `Exectue` （安装需要的运行环境）
+
+![custom_img_6.png](img/mysql/custom_img_6.png)
+![custom_img_7.png](img/mysql/custom_img_7.png)
+
+##### 点击 `Next`
+
+![custom_img_7.png](img/mysql/custom_img_8.png)
+
+##### 点击 `Exectue`，执行完之后，点击 `Next`
+
+![custom_img_7.png](img/mysql/custom_img_9.png)
+![custom_img_7.png](img/mysql/custom_img_10.png)
+
+##### 接下方第 4 条
+
+:::
 
 #### 2、使用默认设置，点击 `Next`（出现弹窗，选择 `Yes`）
 
 ![img_1.png](img/mysql/install_img_1.png)
 ![img_2.png](img/mysql/install_img_2.png)
 
-#### 3、点击 `Execute` ，执行完之后，点击 `Next
+#### 3、点击 `Execute` ，执行完之后，点击 `Next`
 
 ![img_3.png](img/mysql/install_img_3.png)
 ![img_4.png](img/mysql/install_img_4.png)
@@ -97,3 +136,7 @@
 
 - 输入 `密码` 回车
 - 输入 `show databases;` 回车  
+
+
+
+

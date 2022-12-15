@@ -15,7 +15,7 @@ yarn init
 ## 2、安装依赖
 
 ```shell
-#https://registry.npmjs.org/
+# --registry=https://registry.npmjs.org/
 #编译
 yarn add typescript ts-node nodemon -D
 
@@ -68,7 +68,7 @@ yarn add @types/nanoid @types/mkdirp -D
 tsc --init
 ```
 
-> 新建 app.ts
+> 新建 app.test.ts
 
 ```ts
 import Koa, { Context } from 'koa'
@@ -94,11 +94,11 @@ app.listen(3000, () => {
 
 > 添加运行脚本
 
-```json{4-5}
+```json{4}
 {
   "private": true,
   "scripts": {
-    "dev": "nodemon --exec node --experimental-specifier-resolution=node --loader ts-node/esm app.ts" // [!code focus]
+    "dev": "nodemon --exec node --experimental-specifier-resolution=node --loader ts-node/esm app.test.ts" // [!code focus]
   },
   "devDependencies": {},
   "dependencies": {}
@@ -416,7 +416,7 @@ export default combineRouters(routes) // [!code hl]
 ```
 
 ```ts
-// app.ts
+// app.test.ts
 import router from './router' // [!code hl]
 
 app.use(router()) // [!code hl]
@@ -424,7 +424,7 @@ app.use(router()) // [!code hl]
 
 ## 9、配置中间件
 ```ts
-// app.ts
+// app.test.ts
 
 app.use(compose([
   KoaLogger(), // 接口执行日志输出

@@ -19,7 +19,9 @@ export default {
     // file: 'bundle.js', // 输出单个文件时使用
     dir: 'lib', // 输出多个文件时使用
     format: 'es', // 输出模式
-    exports: 'named' // 入口文件有多个导出时，取消警告
+    exports: 'named', // 入口文件有多个导出时，取消警告
+    preserveModules: true, // 保留模块结构
+    preserveModulesRoot: 'source', // 将保留的模块放在根级别的此路径下
   },
   plugins: [
     nodeResolve(),
