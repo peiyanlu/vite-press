@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          node-version: 16
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
@@ -59,8 +58,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-        with:
-          node-version: 16
 
       - name: Get the content of algolia.json as config
         id: algolia_config
