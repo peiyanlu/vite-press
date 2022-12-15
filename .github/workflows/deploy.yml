@@ -7,10 +7,11 @@ on:
 
 jobs:
   gh-pages-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
         with:
+          node-version: 16
           fetch-depth: 0
 
       - uses: actions/setup-node@v3
@@ -31,7 +32,7 @@ jobs:
 
   gitee-branch-sync:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: peiyanlu/git-sync-action@v1
         env:
@@ -43,7 +44,7 @@ jobs:
 
   gitee-pages-sync:
     needs: [ "gitee-branch-sync" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
@@ -55,17 +56,21 @@ jobs:
 
   search-algolia:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          node-version: 16
 
       - name: Get the content of algolia.json as config
         id: algolia_config
-        run: echo "::set-output name=config::$(cat algolia.json | jq -r tostring)"
+        # run: echo "::set-output name=config::$(cat algolia.json | jq -r tostring)"
+        run: echo "config=$(cat algolia.json | jq -r tostring)" >> $ALGOLIA_CONFIG
 
       - name: Push indices to Algolia
         uses: signcl/docsearch-scraper-action@master
         env:
           APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
           API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          CONFIG: ${{ steps.algolia_config.outputs.config }}
+          # CONFIG: ${{ steps.algolia_config.outputs.config }}
+          CONFIG: ${{ secrets.ALGOLIA_CONFIG }}
