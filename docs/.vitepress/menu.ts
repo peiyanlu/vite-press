@@ -73,7 +73,8 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') }
+        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-dependencies') },
+        { text: '开源许可', link: joinPath(MENU.FRONTEND, 'npm-license') },
       ]
     },
     {
