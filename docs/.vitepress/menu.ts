@@ -19,34 +19,34 @@ export const enum MENU {
 export const getNav = (): DefaultTheme.NavItem[] => [
   {
     text: '首页',
-    link: MENU.HOME
+    link: MENU.HOME,
   },
   {
     text: '起源',
     link: MENU.ORIGIN,
-    activeMatch: MENU.ORIGIN
+    activeMatch: MENU.ORIGIN,
   },
   {
     text: '前端',
     link: MENU.FRONTEND,
-    activeMatch: MENU.FRONTEND
+    activeMatch: MENU.FRONTEND,
   },
   {
     text: '后端',
     // items: [],
     link: MENU.BACKEND,
-    activeMatch: MENU.BACKEND
+    activeMatch: MENU.BACKEND,
   },
   {
     text: 'VSC',
     link: MENU.VCS,
-    activeMatch: MENU.VCS
+    activeMatch: MENU.VCS,
   },
   {
     text: 'Windows',
     link: MENU.WINDOWS,
-    activeMatch: MENU.WINDOWS
-  }
+    activeMatch: MENU.WINDOWS,
+  },
 ]
 
 export const getSidebar = (): DefaultTheme.Sidebar => ({
@@ -56,60 +56,63 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup-lib') },
-        { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup-ts') }
-      ]
+        { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-lib') },
+        { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-ts') },
+      ],
     },
     {
       text: 'webpack',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack-icon') }
-      ]
+        { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack/webpack-icon') },
+      ],
     },
     {
       text: '依赖包管理',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm-libs') },
-        { text: '开源许可', link: joinPath(MENU.FRONTEND, 'npm-license') },
-      ]
+        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
+        { text: '依赖包打补丁', link: joinPath(MENU.FRONTEND, 'npm/package-patch') },
+        { text: '开源许可协议', link: joinPath(MENU.FRONTEND, 'npm/npm-license') },
+      ],
     },
     {
       text: 'HTML',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
-      ]
+        // { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
+      ],
     },
     {
       text: 'CSS',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
-      ]
+        { text: '选择器', link: joinPath(MENU.FRONTEND, 'css/css-selector') },
+      ],
     },
     {
       text: 'JavaScript',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: 'fetch', link: joinPath(MENU.FRONTEND, 'js-fetch') }
-      ]
+        { text: 'fetch请求', link: joinPath(MENU.FRONTEND, 'javascript/js-fetch') },
+        { text: '二进制（binary）', link: joinPath(MENU.FRONTEND, 'javascript/js-binary') },
+        { text: '作用域（scope）', link: joinPath(MENU.FRONTEND, 'javascript/js-scope') },
+      ],
     },
     {
       text: '正则',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '基础', link: joinPath(MENU.FRONTEND, 'regex-basics') },
-        { text: '使用', link: joinPath(MENU.FRONTEND, 'regex-use') }
-      ]
-    }
+        { text: '基础', link: joinPath(MENU.FRONTEND, 'regex/regex-basics') },
+        { text: '使用', link: joinPath(MENU.FRONTEND, 'regex/regex-use') },
+      ],
+    },
   ],
   [MENU.BACKEND]: [
     {
@@ -118,25 +121,25 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') },
-        { text: '实战', link: joinPath(MENU.BACKEND, 'koa-use') }
-      ]
+        { text: '实战', link: joinPath(MENU.BACKEND, 'koa-use') },
+      ],
     },
     {
       text: 'MySQL',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '安装', link: joinPath(MENU.BACKEND, 'mysql-install') }
-      ]
+        { text: '安装', link: joinPath(MENU.BACKEND, 'mysql-install') },
+      ],
     },
     {
       text: 'Radis',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '安装', link: joinPath(MENU.BACKEND, 'radis-install') }
-      ]
-    }
+        { text: '安装', link: joinPath(MENU.BACKEND, 'radis-install') },
+      ],
+    },
   ],
   [MENU.VCS]: [
     {
@@ -146,16 +149,16 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       items: [
         { text: '基础', link: joinPath(MENU.VCS, 'git-basics') },
         { text: '集成', link: joinPath(MENU.VCS, 'git-hub') },
-        { text: '使用', link: joinPath(MENU.VCS, 'git-use') }
-      ]
+        { text: '使用', link: joinPath(MENU.VCS, 'git-use') },
+      ],
     },
     {
       text: 'Shell',
       collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
-        { text: '基础', link: joinPath(MENU.VCS, 'shell-basics') }
-      ]
-    }
-  ]
+        { text: '基础', link: joinPath(MENU.VCS, 'shell-basics') },
+      ],
+    },
+  ],
 })

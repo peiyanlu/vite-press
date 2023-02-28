@@ -8,7 +8,7 @@
 :nth-child(2n)
 ```
 
-![img.png](img/css/nth-child_img.png)
+![img.png](img/nth-child_img.png)
 
 2、选择列表中的奇数标签
 
@@ -16,7 +16,7 @@
 :nth-child(2n-1)
 ```
 
-![img_1.png](img/css/nth-child_img_1.png)
+![img_1.png](img/nth-child_img_1.png)
 
 3、选择从第6个开始的，直到最后
 
@@ -24,7 +24,7 @@
 :nth-child(n+6)
 ```
 
-![img_2.png](img/css/nth-child_img_2.png)
+![img_2.png](img/nth-child_img_2.png)
 
 4、选择第1个到第6个
 
@@ -32,7 +32,7 @@
 :nth-child(-n+6)
 ```
 
-![img_3.png](img/css/nth-child_img_3.png)
+![img_3.png](img/nth-child_img_3.png)
 
 5、选择第6个到第9个
 
@@ -40,4 +40,4 @@
 :nth-child(n+6):nth-child(-n+9)
 ```
 
-![img_4.png](img/css/nth-child_img_4.png)
+![img_4.png](img/nth-child_img_4.png)
