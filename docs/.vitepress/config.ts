@@ -12,14 +12,16 @@ export default defineConfig({
     [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ]
   ],
   appearance: true,
-  ignoreDeadLinks: false,
+  ignoreDeadLinks: true,
   lastUpdated: true,
-  cleanUrls: 'without-subfolders',
+  cleanUrls: true,
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: '开发笔记',
-    outline: 'deep',
-    outlineTitle: '快速导航',
+    outline: {
+      level: 'deep',
+      label: '快速导航'
+    },
     nav: getNav(),
     sidebar: getSidebar(),
     editLink: {
@@ -34,7 +36,10 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`
     },
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '返回顶部',
     lastUpdatedText: '上次更新',
+    darkModeSwitchLabel: '外观',
     socialLinks: [
       {
         icon: {
