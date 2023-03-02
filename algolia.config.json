@@ -38,6 +38,8 @@
         "ECMAScript2015"
       ]
     ],
-    "selectors_exclude": []
+    "selectors_exclude": [
+      "outline-link"
+    ]
   }
 }
