@@ -480,8 +480,8 @@ jobs:
 - 使用官方的 `Algolia Crawler` 爬虫后台
 - 使用 `GitHub Actions` 的 `DocSearch Scraper Action` （个人博客网站 推荐）
 
-1、通过路径 `Settings -> Secrets -> Actions` 分别新建 `ALGOLIA_APP_ID` 和 `ALGOLIA_API_KEY` 存放  `Application ID`
-和 `Admin API Key`
+1、分别新建 `ALGOLIA_APP_ID` 和 `ALGOLIA_API_KEY` 存放 `Application ID`和 `Admin API Key`
+> path: Settings -> Secrets and variables -> Actions
 
 2、在 `deploy.yml` 中新增job
 
@@ -611,9 +611,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Get the content of algolia.json as config
+      - name: Get the content of algolia.config.json as config
         id: algolia_config
-        run: echo "::set-output name=config::$(cat algolia.json | jq -r tostring)"
+        run: echo "::set-output name=config::$(cat algolia.config.json | jq -r tostring)"
 
       - name: Push indices to Algolia
         uses: signcl/docsearch-scraper-action@master

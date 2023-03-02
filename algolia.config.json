@@ -26,6 +26,18 @@
   "custom_settings": {
     "attributesForFaceting": [
       "lang"
-    ]
+    ],
+    "synonyms": [
+      [
+        "js",
+        "javascript"
+      ],
+      [
+        "es6",
+        "ECMAScript6",
+        "ECMAScript2015"
+      ]
+    ],
+    "selectors_exclude": []
   }
 }
