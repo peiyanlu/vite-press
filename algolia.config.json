@@ -37,9 +37,9 @@
         "ECMAScript6",
         "ECMAScript2015"
       ]
-    ],
-    "selectors_exclude": [
-      "outline-link"
     ]
-  }
+  },
+  "selectors_exclude": [
+    "outline-link"
+  ]
 }
