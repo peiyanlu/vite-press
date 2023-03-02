@@ -59,15 +59,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get the content of algolia.json as config
-        id: algolia_config
-        run: echo "CONFIG=$(cat algolia.json | jq -r tostring)" >> $GITHUB_ENV
-
       - name: Push indices to Algolia
         uses: peiyanlu/algolia-docsearch-action@master
         with:
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
+          algolia_config_file: 'algolia.json'
 #        uses: signcl/docsearch-scraper-action@master
 #        env:
 #          APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
