@@ -15,6 +15,7 @@ export default defineConfig({
   ignoreDeadLinks: true,
   lastUpdated: true,
   cleanUrls: true,
+  locales: {},
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: '开发笔记',
@@ -50,9 +51,6 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' }
     ],
     algolia: {
-      locales: {
-      
-      },
       appId: '02WXO09HIV',
       apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
       indexName: 'vite-press',
