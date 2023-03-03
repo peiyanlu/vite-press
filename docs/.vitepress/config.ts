@@ -15,10 +15,10 @@ export default defineConfig({
   ignoreDeadLinks: true,
   lastUpdated: true,
   cleanUrls: true,
-  locales: {},
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: '开发笔记',
+    i18nRouting: true,
     outline: {
       level: 'deep',
       label: '快速导航'

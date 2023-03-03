@@ -9,19 +9,27 @@ jobs:
   gh-pages-deploy:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Use node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
 
-      - run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: yarn docs:build
+        run: pnpm docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -33,7 +41,8 @@ jobs:
     needs: [ "gh-pages-deploy" ]
     runs-on: ubuntu-22.04
     steps:
-      - uses: peiyanlu/git-sync-action@v1
+      - name: Sync branches to GitHube
+        uses: peiyanlu/git-sync-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
@@ -57,7 +66,8 @@ jobs:
     needs: [ "gh-pages-deploy" ]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
       - name: Push indices to Algolia
         uses: peiyanlu/algolia-docsearch-action@master

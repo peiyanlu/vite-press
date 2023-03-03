@@ -9,6 +9,7 @@ export const withBase = (path: string): string => joinPath(BASE_URL, path)
 
 export const enum MENU {
   HOME = '/',
+  NAVIGATION = '/navigation/',
   ORIGIN = '/origin/',
   FRONTEND = '/frontend/',
   VCS = '/vcs/',
@@ -20,6 +21,11 @@ export const getNav = (): DefaultTheme.NavItem[] => [
   {
     text: '首页',
     link: MENU.HOME,
+  },
+  {
+    text: '网站导航',
+    link: MENU.NAVIGATION,
+    activeMatch: MENU.NAVIGATION,
   },
   {
     text: '起源',
@@ -53,7 +59,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.FRONTEND]: [
     {
       text: 'rollup',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-lib') },
@@ -62,7 +67,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'webpack',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack/webpack-icon') },
@@ -70,7 +74,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: '依赖包管理',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
@@ -80,7 +83,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'HTML',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         // { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
@@ -88,7 +90,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'CSS',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '选择器', link: joinPath(MENU.FRONTEND, 'css/css-selector') },
@@ -96,7 +97,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'JavaScript',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: 'fetch请求', link: joinPath(MENU.FRONTEND, 'javascript/js-fetch') },
@@ -106,7 +106,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: '正则',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '基础', link: joinPath(MENU.FRONTEND, 'regex/regex-basics') },
@@ -117,7 +116,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.BACKEND]: [
     {
       text: 'Koa',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') },
@@ -126,7 +124,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'MySQL',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '安装', link: joinPath(MENU.BACKEND, 'mysql-install') },
@@ -134,7 +131,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'Radis',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '安装', link: joinPath(MENU.BACKEND, 'radis-install') },
@@ -144,7 +140,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.VCS]: [
     {
       text: 'Git',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '基础', link: joinPath(MENU.VCS, 'git-basics') },
@@ -154,7 +149,6 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'Shell',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: '基础', link: joinPath(MENU.VCS, 'shell-basics') },
