@@ -1,25 +1,60 @@
+// 公共组件
+import ImagePreview from '@theme/ImagePreview.vue'
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { h } from 'vue'
+import { createVNode, h, nextTick, render } from 'vue'
 
 // 样式文件
 import './style/index'
-
-// 公共组件
 
 
 export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
-    // 获取 frontmatter
     const { frontmatter } = useData()
     
-    return h(DefaultTheme.Layout, {
-      /* 添加自定义 class */
-      class: frontmatter.value?.layoutClass
-    })
+    nextTick(imagePreviewFn).catch()
+    
+    return h(
+      DefaultTheme.Layout,
+      {
+        class: frontmatter.value?.layoutClass,
+      },
+    )
   },
-  enhanceApp({ app }) {
-    // app.component()
+  enhanceApp({ app, router, siteData }) {
+    // console.log(app, router, siteData)
   },
+  setup() {
+  
+  },
+}
+
+const imagePreviewFn = () => {
+  const allImg = document.querySelectorAll('p>img')
+  
+  allImg.forEach(img => {
+    const p = img.parentElement
+    
+    if (!p) return
+    
+    let container
+    if (p.childNodes.length > 1) {
+      container = document.createElement('div')
+      p.appendChild(container)
+    } else {
+      container = p
+    }
+    
+    const vNode = createVNode(
+      ImagePreview,
+      {
+        src: img.getAttribute('src'),
+      },
+    )
+    
+    img.remove()
+    
+    render(vNode, container)
+  })
 }

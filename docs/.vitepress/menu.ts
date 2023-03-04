@@ -118,22 +118,22 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       text: 'Koa',
       collapsed: false, // 折叠
       items: [
-        { text: '开始', link: joinPath(MENU.BACKEND, 'koa-start') },
-        { text: '实战', link: joinPath(MENU.BACKEND, 'koa-use') },
+        { text: '开始', link: joinPath(MENU.BACKEND, 'koa/koa-start') },
+        { text: '实战', link: joinPath(MENU.BACKEND, 'koa/koa-use') },
       ],
     },
     {
       text: 'MySQL',
       collapsed: false, // 折叠
       items: [
-        { text: '安装', link: joinPath(MENU.BACKEND, 'mysql-install') },
+        { text: '安装', link: joinPath(MENU.BACKEND, 'mysql/mysql-install') },
       ],
     },
     {
       text: 'Radis',
       collapsed: false, // 折叠
       items: [
-        { text: '安装', link: joinPath(MENU.BACKEND, 'radis-install') },
+        { text: '安装', link: joinPath(MENU.BACKEND, 'radis/radis-install') },
       ],
     },
   ],

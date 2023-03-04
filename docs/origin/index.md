@@ -1,4 +1,4 @@
-# VitePress 搭建静态网站并在 `GitHub/Gitee Pages` 部署
+# VitePress 搭建静态网站
 
 ## 1、创建新项目
 
