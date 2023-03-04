@@ -357,21 +357,29 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Use node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
 
-      - run: yarn install --frozen-lockfile
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: yarn docs:build
+        run: pnpm docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -396,9 +404,10 @@ jobs:
 ```yaml{2-11}
 jobs:
   gitee-branch-sync: // [!code focus:10]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: peiyanlu/git-sync-action@v1
+      - name: Sync branches to GitHube
+        uses: peiyanlu/git-sync-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
@@ -491,21 +500,18 @@ jobs:
     needs: [ "gh-pages-deploy" ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Get the content of algolia.json as config
-        id: algolia_config
-        run: echo "::set-output name=config::$(cat algolia.json | jq -r tostring)"
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
       - name: Push indices to Algolia
-        uses: signcl/docsearch-scraper-action@master
-        env:
-          APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          CONFIG: ${{ steps.algolia_config.outputs.config }}
+        uses: peiyanlu/algolia-docsearch-action@master
+        with:
+          algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
+          algolia_config_file: algolia.config.json
 ```
 
-3、配置 `algolia.json`
+3、配置 `algolia.config.json`
 
 > 而更多配置可参考 [apis/configuration](https://www.algolia.com/doc/tools/crawler/apis/configuration/)
 
@@ -528,8 +534,32 @@ jobs:
     "lvl3": ".content h3",
     "lvl4": ".content h4",
     "lvl5": ".content h5",
-    "content": ".content p, .content li"
-  }
+    "content": ".content p, .content li",
+    "lang": {
+      "selector": "/html/@lang",
+      "type": "xpath",
+      "global": true
+    }
+  },
+  "custom_settings": {
+    "attributesForFaceting": [
+      "lang"
+    ],
+    "synonyms": [
+      [
+        "js",
+        "javascript"
+      ],
+      [
+        "es6",
+        "ECMAScript6",
+        "ECMAScript2015"
+      ]
+    ]
+  },
+  "selectors_exclude": [
+    "outline-link"
+  ]
 }
 ```
 
@@ -541,7 +571,7 @@ export default defineConfig({
     algolia: { // [!code focus:5]
       appId: 'ALGOLIA_APP_ID',
       apiKey: 'ALGOLIA_API_KEY',
-      indexName: 'vite-press'
+      indexName: 'INDEX_NAME'
     }
   }
 })
@@ -559,21 +589,29 @@ on:
 
 jobs:
   gh-pages-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Use node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
+          cache: pnpm
 
-      - run: yarn install --frozen-lockfile
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: yarn docs:build
+        run: pnpm docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -583,9 +621,10 @@ jobs:
 
   gitee-branch-sync:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: peiyanlu/git-sync-action@v1
+      - name: Sync branches to GitHube
+        uses: peiyanlu/git-sync-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
@@ -595,7 +634,7 @@ jobs:
 
   gitee-pages-sync:
     needs: [ "gitee-branch-sync" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
@@ -607,20 +646,17 @@ jobs:
 
   search-algolia:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Get the content of algolia.config.json as config
-        id: algolia_config
-        run: echo "::set-output name=config::$(cat algolia.config.json | jq -r tostring)"
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
       - name: Push indices to Algolia
-        uses: signcl/docsearch-scraper-action@master
-        env:
-          APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          CONFIG: ${{ steps.algolia_config.outputs.config }}
+        uses: peiyanlu/algolia-docsearch-action@master
+        with:
+          algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
+          algolia_config_file: algolia.config.json
 ```
 
 :::

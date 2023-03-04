@@ -25,7 +25,7 @@ jobs:
           node-version: 16
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Install
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -75,4 +75,3 @@ jobs:
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           algolia_config_file: algolia.config.json
-#          file: algolia.config.json

@@ -54,9 +54,6 @@ export default defineConfig({
       appId: '02WXO09HIV',
       apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
       indexName: 'vite-press',
-      searchParameters: {
-        facetFilters: ''
-      }
     }
   },
   markdown: {
