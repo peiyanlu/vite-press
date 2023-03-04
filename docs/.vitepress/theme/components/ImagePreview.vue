@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ImagePreviewDirective } from 'vue-devui'
-const vImagePreview = ImagePreviewDirective
+import * as DevUI from 'vue-devui'
+const vImagePreview = DevUI.ImagePreviewDirective
+
 
 const props = defineProps<{
   src: string

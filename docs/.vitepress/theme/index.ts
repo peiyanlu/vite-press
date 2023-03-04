@@ -1,5 +1,5 @@
 // 公共组件
-import ImagePreview from '@theme/ImagePreview.vue'
+import ImagePreview from '@theme/components/ImagePreview.vue'
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { createVNode, h, nextTick, render } from 'vue'
@@ -13,7 +13,7 @@ export default <Theme>{
   Layout: () => {
     const { frontmatter } = useData()
     
-    nextTick(imagePreviewFn).catch()
+    nextTick(imagePreviewFn).catch(e => console.error(e))
     
     return h(
       DefaultTheme.Layout,
@@ -23,7 +23,7 @@ export default <Theme>{
     )
   },
   enhanceApp({ app, router, siteData }) {
-    // console.log(app, router, siteData)
+  
   },
   setup() {
   
@@ -35,9 +35,9 @@ const imagePreviewFn = () => {
   
   allImg.forEach(img => {
     const p = img.parentElement
-    
+
     if (!p) return
-    
+
     let container
     if (p.childNodes.length > 1) {
       container = document.createElement('div')
@@ -45,16 +45,16 @@ const imagePreviewFn = () => {
     } else {
       container = p
     }
-    
+
     const vNode = createVNode(
       ImagePreview,
       {
         src: img.getAttribute('src'),
       },
     )
-    
+
     img.remove()
-    
+
     render(vNode, container)
   })
 }

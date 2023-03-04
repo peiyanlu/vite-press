@@ -130,10 +130,10 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       ],
     },
     {
-      text: 'Radis',
+      text: 'Redis',
       collapsed: false, // 折叠
       items: [
-        { text: '安装', link: joinPath(MENU.BACKEND, 'radis/radis-install') },
+        { text: '安装', link: joinPath(MENU.BACKEND, 'redis/redis-install') },
       ],
     },
   ],
