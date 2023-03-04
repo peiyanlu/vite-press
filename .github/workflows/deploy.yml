@@ -70,9 +70,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Push indices to Algolia
-        uses: darrenjennings/algolia-docsearch-action@master
+        uses: peiyanlu/algolia-docsearch-action@master
         with:
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
-#          algolia_config_file: algolia.config.json
-          file: algolia.config.json
+          algolia_config_file: algolia.config.json
+#          file: algolia.config.json
