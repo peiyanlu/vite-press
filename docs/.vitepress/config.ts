@@ -35,7 +35,7 @@ export default defineConfig({
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2022-${ new Date().getFullYear() } Yanlu Pei`
+      copyright: `Copyright © 2022-${ new Date().getFullYear() } YanluPei`
     },
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',

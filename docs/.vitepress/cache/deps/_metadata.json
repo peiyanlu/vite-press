@@ -1,35 +1,41 @@
 {
-  "hash": "b596d35f",
-  "browserHash": "cc68c1ae",
+  "hash": "4aad4cd9",
+  "browserHash": "6778308f",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "30372298",
+      "fileHash": "646af4fc",
       "needsInterop": false
     },
     "@mdit-vue/shared": {
       "src": "../../../../node_modules/.pnpm/@mdit-vue+shared@0.12.0/node_modules/@mdit-vue/shared/dist/index.mjs",
       "file": "@mdit-vue_shared.js",
-      "fileHash": "81086a8c",
+      "fileHash": "6db3e07c",
       "needsInterop": false
     },
     "vue-devui": {
       "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/vue-devui.es.js",
       "file": "vue-devui.js",
-      "fileHash": "7ac0eae7",
+      "fileHash": "f6116190",
       "needsInterop": false
     },
     "vue-devui/": {
       "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/vue-devui.es.js",
       "file": "vue-devui_.js",
-      "fileHash": "4fa0e52a",
+      "fileHash": "6c282647",
       "needsInterop": false
     },
     "vue-devui/image-preview": {
       "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/image-preview/index.es.js",
       "file": "vue-devui_image-preview.js",
-      "fileHash": "b75fd408",
+      "fileHash": "58ff0bef",
+      "needsInterop": false
+    },
+    "tippy.js": {
+      "src": "../../../../node_modules/.pnpm/tippy.js@6.3.7/node_modules/tippy.js/dist/tippy.esm.js",
+      "file": "tippy__js.js",
+      "fileHash": "d6b3eed8",
       "needsInterop": false
     }
   },

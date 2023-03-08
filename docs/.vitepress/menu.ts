@@ -99,9 +99,13 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       text: 'JavaScript',
       collapsed: false, // 折叠
       items: [
-        { text: 'fetch请求', link: joinPath(MENU.FRONTEND, 'javascript/js-fetch') },
-        { text: '二进制（binary）', link: joinPath(MENU.FRONTEND, 'javascript/js-binary') },
-        { text: '作用域（scope）', link: joinPath(MENU.FRONTEND, 'javascript/js-scope') },
+        { text: 'ES6+', link: joinPath(MENU.FRONTEND, 'javascript/js-ES6+') },
+        { text: '数组', link: joinPath(MENU.FRONTEND, 'javascript/js-array') },
+        { text: '字符串', link: joinPath(MENU.FRONTEND, 'javascript/js-string') },
+        { text: '对象', link: joinPath(MENU.FRONTEND, 'javascript/js-object') },
+        { text: 'fetch', link: joinPath(MENU.FRONTEND, 'javascript/js-fetch') },
+        { text: '二进制', link: joinPath(MENU.FRONTEND, 'javascript/js-binary') },
+        { text: '作用域', link: joinPath(MENU.FRONTEND, 'javascript/js-scope') },
       ],
     },
     {

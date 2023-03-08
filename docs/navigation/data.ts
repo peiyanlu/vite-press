@@ -181,6 +181,12 @@ export const NAV_DATA: NavData[] = [
         desc: '一个基于 promise 的网络请求库，可以用于浏览器和 node.js',
         link: 'https://www.axios-http.cn/',
       },
+      {
+        icon: 'https://tippyjs.bootcss.com/icons/icon-48x48.png?v=96d696c3bcea9d7ae650df936a86d565',
+        title: 'Tippy.js',
+        desc: '高度可定制的工具提示和弹出框库',
+        link: 'https://tippyjs.bootcss.com/',
+      },
     ],
   },
   {
@@ -329,9 +335,15 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: 'https://docsearch.algolia.com/img/favicon.ico',
-        title: 'Algolia docsearch',
+        title: 'Algolia DocSearch',
         desc: '使用搜索引擎解决文档挑战',
         link: 'https://docsearch.algolia.com/',
+      },
+      {
+        icon: 'https://storage.googleapis.com/algolia-crawler-assets/a770def/favicon.ico?5c824db6ffedc30698b1',
+        title: 'Algolia Crawler',
+        desc: 'Algolia 配套的爬虫工具',
+        link: 'https://crawler.algolia.com/admin/crawlers/',
       },
     ],
   },
