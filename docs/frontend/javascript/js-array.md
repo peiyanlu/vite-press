@@ -1,6 +1,53 @@
 # 数组 Array
 
+## ES5.1及更早
+
+[在 ECMA 查看](https://262.ecma-international.org/5.1/#sec-15.4)
+
+Array ( [ item1 [ , item2 [ , … ] ] ] )
+new Array ( [ item0 [ , item1 [ , … ] ] ] )
+new Array (len)
+
+Array.isArray ( arg )
+
+Array.prototype.toLocaleString
+Array.prototype.toString
+Array.prototype.concat
+Array.prototype.join
+Array.prototype.pop
+Array.prototype.push
+Array.prototype.reverse
+Array.prototype.shift
+Array.prototype.slice
+Array.prototype.sort
+Array.prototype.splice
+Array.prototype.unshift
+Array.prototype.indexOf
+Array.prototype.lastIndexOf
+Array.prototype.every
+Array.prototype.some
+Array.prototype.forEach
+Array.prototype.map
+Array.prototype.filter
+Array.prototype.reduce
+Array.prototype.reduceRight
+
+
+
 ## ES2015
+
+[在 ECMA 查看](https://262.ecma-international.org/6.0/#sec-array-objects)
+
+Array.from ()
+Array.of
+
+Array.prototype.copyWithin
+Array.prototype.entries
+Array.prototype.fill
+Array.prototype.find
+Array.prototype.findIndex
+Array.prototype.keys
+Array.prototype.values
 
 ## ES2016
 

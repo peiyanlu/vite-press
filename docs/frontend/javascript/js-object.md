@@ -1,6 +1,42 @@
 # 对象 Object
 
+## ES5.1及更早
+
+[在 ECMA 查看](https://262.ecma-international.org/5.1/#sec-15.2)
+
+Object ( [ value ] )
+new Object ( [ value ] )
+Object.getPrototypeOf ( O )
+Object.getOwnPropertyDescriptor ( O, P )
+Object.getOwnPropertyNames ( O )
+Object.create ( O [, Properties] )
+Object.defineProperty ( O, P, Attributes )
+Object.defineProperties ( O, Properties )
+Object.seal()
+Object.freeze ( O )
+Object.preventExtensions ( O )
+Object.isSealed ( O )
+Object.isFrozen ( O )
+Object.isExtensible ( O )
+Object.keys ( O )
+
+Object.prototype.toString ( )
+Object.prototype.toLocaleString ( )
+Object.prototype.valueOf ( )
+Object.prototype.hasOwnProperty (V)
+Object.prototype.isPrototypeOf (V)
+Object.prototype.propertyIsEnumerable (V)
+
+
 ## ES2015
+
+[在 ECMA 查看](https://262.ecma-international.org/6.0/#sec-object-objects)
+Object.assign
+Object.getOwnPropertySymbols
+Object.is
+Object.setPrototypeOf
+
+
 
 ## ES2017
 
@@ -56,8 +92,8 @@ const obj = { foo: 'bar', baz: 42 };
 console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
 
 // array like object
-const obj = { 0: 'a', 1: 'b', 2: 'c' };
-console.log(Object.entries(obj)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
+const objA = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.entries(objA)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
 
 // array like object with random key ordering
 const anObj = { 100: 'a', 2: 'b', 7: 'c' };
@@ -72,16 +108,18 @@ console.log(Object.entries(myObj)); // [ ['foo', 'bar'] ]
 console.log(Object.entries('foo')); // [ ['0', 'f'], ['1', 'o'], ['2', 'o'] ]
 
 // iterate through key-value gracefully
-const obj = { a: 5, b: 7, c: 9 };
-for (const [ key, value ] of Object.entries(obj)) {
+const objB = { a: 5, b: 7, c: 9 };
+for (const [ key, value ] of Object.entries(objB)) {
   console.log(`${ key } ${ value }`); // "a 5", "b 7", "c 9"
 }
 
 // Or, using array extras
-Object.entries(obj).forEach(([ key, value ]) => {
+Object.entries(objB).forEach(([ key, value ]) => {
   console.log(`${ key } ${ value }`); // "a 5", "b 7", "c 9"
 });
 ```
+
+### Object.getOwnPropertyDescriptors
 
 ## ES2019
 

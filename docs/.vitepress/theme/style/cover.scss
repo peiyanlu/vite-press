@@ -5,6 +5,11 @@
 }
 
 .VPDocAside {
+  .outline-marker {
+    width: 4px;
+    border-radius: 4px;
+  }
+
   .outline-link.active {
     color: var(--vp-c-brand) !important;
   }

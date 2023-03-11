@@ -1,48 +1,27 @@
 {
-  "hash": "4aad4cd9",
-  "browserHash": "6778308f",
+  "hash": "b596d35f",
+  "browserHash": "f9fbd650",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "646af4fc",
-      "needsInterop": false
-    },
-    "@mdit-vue/shared": {
-      "src": "../../../../node_modules/.pnpm/@mdit-vue+shared@0.12.0/node_modules/@mdit-vue/shared/dist/index.mjs",
-      "file": "@mdit-vue_shared.js",
-      "fileHash": "6db3e07c",
+      "fileHash": "30372298",
       "needsInterop": false
     },
     "vue-devui": {
       "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/vue-devui.es.js",
       "file": "vue-devui.js",
-      "fileHash": "f6116190",
+      "fileHash": "f047b15b",
       "needsInterop": false
     },
-    "vue-devui/": {
-      "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/vue-devui.es.js",
-      "file": "vue-devui_.js",
-      "fileHash": "6c282647",
-      "needsInterop": false
-    },
-    "vue-devui/image-preview": {
-      "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/image-preview/index.es.js",
-      "file": "vue-devui_image-preview.js",
-      "fileHash": "58ff0bef",
-      "needsInterop": false
-    },
-    "tippy.js": {
-      "src": "../../../../node_modules/.pnpm/tippy.js@6.3.7/node_modules/tippy.js/dist/tippy.esm.js",
-      "file": "tippy__js.js",
-      "fileHash": "d6b3eed8",
+    "@mdit-vue/shared": {
+      "src": "../../../../node_modules/.pnpm/@mdit-vue+shared@0.12.0/node_modules/@mdit-vue/shared/dist/index.mjs",
+      "file": "@mdit-vue_shared.js",
+      "fileHash": "81086a8c",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-O3J2V62T": {
-      "file": "chunk-O3J2V62T.js"
-    },
     "chunk-LZPJ5JBW": {
       "file": "chunk-LZPJ5JBW.js"
     }

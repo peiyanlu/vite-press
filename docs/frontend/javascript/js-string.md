@@ -1,6 +1,48 @@
 # 字符串 String
 
+## ES5.1及更早
+
+[在 ECMA 查看](https://262.ecma-international.org/5.1/#sec-15.5)
+
+
+String ( [ value ] )
+new String ( [ value ] )
+String.fromCharCode ( [ char0 [ , char1 [ , … ] ] ] )
+
+String.prototype.toString
+String.prototype.valueOf
+String.prototype.charAt
+String.prototype.charCodeAt
+String.prototype.concat
+String.prototype.indexOf
+String.prototype.lastIndexOf
+String.prototype.localeCompare
+String.prototype.match
+String.prototype.replace
+String.prototype.search
+String.prototype.slice
+String.prototype.split
+String.prototype.substring
+String.prototype.toLowerCase
+String.prototype.toLocaleLowerCase
+String.prototype.toUpperCase
+String.prototype.toLocaleUpperCase
+String.prototype.trim
+
+
 ## ES2015
+
+[在 ECMA 查看](https://262.ecma-international.org/6.0/#sec-string-objects)
+
+String.fromCodePoint
+String.raw
+String.prototype.codePointAt
+String.prototype.endsWith
+String.prototype.includes
+String.prototype.normalize
+String.prototype.repeat
+String.prototype.startsWith
+
 
 ## ES2017
 

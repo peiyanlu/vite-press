@@ -452,6 +452,12 @@ export const NAV_DATA: NavData[] = [
         desc: '中国古典色彩',
         link: 'http://zhongguose.com/',
       },
+      {
+        icon: 'https://c.staticblitz.com/assets/favicon_sb-861fe1b85c0dc928750c62de15fed96fc75e57ee366bd937bad17a3938917b3f.svg',
+        title: 'StackBlitz',
+        desc: '在线开发工具',
+        link: 'https://stackblitz.com/',
+      },
     ],
   },
   {

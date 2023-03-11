@@ -117,6 +117,7 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
       width: 24px;
       height: 24px;
       font-size: 18px;
+      font-weight: 800;
       line-height: 24px;
       text-align: center;
       background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
