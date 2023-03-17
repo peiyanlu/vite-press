@@ -1,29 +1,19 @@
 {
-  "hash": "b596d35f",
-  "browserHash": "f9fbd650",
+  "hash": "9fe3c946",
+  "browserHash": "ffd2dcc1",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "30372298",
-      "needsInterop": false
-    },
-    "vue-devui": {
-      "src": "../../../../node_modules/.pnpm/vue-devui@1.5.2_vue@3.2.47/node_modules/vue-devui/vue-devui.es.js",
-      "file": "vue-devui.js",
-      "fileHash": "f047b15b",
+      "fileHash": "5c308fca",
       "needsInterop": false
     },
     "@mdit-vue/shared": {
       "src": "../../../../node_modules/.pnpm/@mdit-vue+shared@0.12.0/node_modules/@mdit-vue/shared/dist/index.mjs",
       "file": "@mdit-vue_shared.js",
-      "fileHash": "81086a8c",
+      "fileHash": "f0735279",
       "needsInterop": false
     }
   },
-  "chunks": {
-    "chunk-LZPJ5JBW": {
-      "file": "chunk-LZPJ5JBW.js"
-    }
-  }
+  "chunks": {}
 }

@@ -1,6 +1,9 @@
 ---
 layoutClass: site-nav-layout
 outline: [2, 3, 4]
+aside: true
+lastUpdated: false
+editLink: false
 ---
 
 <script setup>

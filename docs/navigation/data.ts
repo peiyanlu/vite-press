@@ -222,13 +222,13 @@ export const NAV_DATA: NavData[] = [
     title: 'Node 相关',
     items: [
       {
-        icon: 'https://nodejs.org/static/images/favicons/favicon.ico',
+        icon: '',
         title: 'Node.js',
         desc: 'Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境',
         link: 'https://nodejs.org/zh-cn',
       },
       {
-        icon: 'https://nodejs.org/static/images/favicons/favicon.ico',
+        icon: '',
         title: 'Node.js Doc',
         desc: 'Node.js 中文文档',
         link: 'http://api.nodejs.cn/',
@@ -240,7 +240,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://expressjs.com',
       },
       {
-        icon: 'https://nodejs.org/static/images/favicons/',
+        icon: '',
         title: 'Koa',
         desc: '基于 Node.js 平台的下一代 web 开发框架',
         link: 'https://koajs.com.cn',
@@ -287,10 +287,10 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.rollupjs.com',
       },
       {
-        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
-        title: 'Turbo',
-        desc: 'Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust',
-        link: 'https://turbo.build',
+        icon: 'https://turbo.build/images/favicon-light/favicon.ico',
+        title: 'Turbopack',
+        desc: 'Turbopack is an incremental bundler optimized for JavaScript and TypeScript, written in Rust.',
+        link: 'https://turbo.build/pack',
       },
       {
         icon: 'https://www.babeljs.cn/img/favicon.png',
@@ -461,6 +461,29 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
+    title: '工程化',
+    items: [
+      {
+        icon: 'https://www.pnpm.cn/img/favicon.png',
+        title: 'pnpm',
+        desc: '速度快、节省磁盘空间的软件包管理器',
+        link: 'https://www.pnpm.cn/installation',
+      },
+      {
+        icon: 'https://turbo.build/images/favicon-light/favicon.ico',
+        title: 'Turboropo',
+        desc: 'JavaScript 和 TypeScript 代码库的高性能构建系统',
+        link: 'https://turbo.build/repo',
+      },
+      {
+        icon: 'https://rushjs.io/zh-cn/images/site/favicon.ico',
+        title: 'Rush',
+        desc: '可扩展的 Web 单存储库管理器',
+        link: 'https://rushjs.io/zh-cn/pages/intro/welcome/',
+      },
+    ],
+  },
+  {
     title: '学习',
     items: [
       {
@@ -513,20 +536,20 @@ export const NAV_DATA: NavData[] = [
         link: 'https://stackoverflow.com',
       },
       {
-        title: '稀土掘金',
         icon: 'https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web//static/favicons/apple-touch-icon.png',
+        title: '稀土掘金',
         desc: '面向全球中文开发者的技术内容分享与交流平台',
         link: 'https://juejin.cn',
       },
       {
-        title: 'SegmentFault 思否',
         icon: 'https://static.segmentfault.com/main_site_next/0dc4bace/touch-icon.png',
+        title: 'SegmentFault 思否',
         desc: '技术问答开发者社区',
         link: 'https://segmentfault.com',
       },
       {
+        icon: '',
         title: '博客园',
-        icon: 'https://common.cnblogs.com/favicon.svg',
         desc: '博客园是一个面向开发者的知识分享社区',
         link: 'https://www.cnblogs.com',
       },

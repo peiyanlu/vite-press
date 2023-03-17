@@ -2,19 +2,19 @@
 layout: home
 
 title: 开发笔记
-titleTemplate: Vite & Vue powered static site generator
+titleTemplate: Vite & Vue 驱动的静态站点生成器
 
 hero:
   name: 小路的开发笔记
   text: </dev>
-  tagline: coding
+  tagline: writing
   image:
     src: /logo.svg
     alt: logo
   actions:
     - theme: brand
       text: 快速开始
-      link: /origin/
+      link: /navigation/
     - theme: alt
       text: 在 Gitee 上查看
       link: https://gitee.com/peiyanlu/vite-press/

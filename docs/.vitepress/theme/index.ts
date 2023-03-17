@@ -11,14 +11,14 @@ import './style/index'
 export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
-    const { frontmatter } = useData()
+    const data = useData()
     
     nextTick(imagePreviewFn).catch(e => console.error(e))
     
     return h(
       DefaultTheme.Layout,
       {
-        class: frontmatter.value?.layoutClass,
+        class: data.frontmatter.value?.layoutClass,
       },
     )
   },
@@ -31,13 +31,14 @@ export default <Theme>{
 }
 
 const imagePreviewFn = () => {
-  const allImg = document.querySelectorAll('p>img')
+  const allImg = document.querySelectorAll('p > img')
   
   allImg.forEach(img => {
     const p = img.parentElement
 
     if (!p) return
-
+    
+    
     let container
     if (p.childNodes.length > 1) {
       container = document.createElement('div')

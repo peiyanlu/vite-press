@@ -48,6 +48,7 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
 
   return nameDisplay
 };
+
 </script>
 
 <template>
@@ -55,10 +56,11 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
     <article class="box">
       <div class="box-header">
         <div v-if="svg" class="icon" v-html="svg" />
-        <div v-else-if="icon && typeof icon === 'string'" class="icon">
+        <div v-else class="icon">
           <img v-if="!imgError" :src="icon" :alt="title" @error="handlerImgError" />
-          <div v-else v-html="setDisplayName(title, 24).value"></div>
+          <div v-else v-html="setDisplayName(title, 24).value" />
         </div>
+
         <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
       </div>
       <p v-if="desc" class="desc">{{ desc }}</p>
@@ -120,7 +122,7 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
       font-weight: 800;
       line-height: 24px;
       text-align: center;
-      background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+      background: linear-gradient(120deg, rgb(189 52 253 / 50%) 30%, rgb(65 209 255));
       -webkit-background-clip: text;
       -webkit-text-fill-color: var(--vp-home-hero-name-color);
     }

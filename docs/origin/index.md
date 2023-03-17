@@ -401,9 +401,9 @@ jobs:
 这里如果采用将整个项目镜像到 Gitee 的方式的话会陷入死循环
 :::
 
-```yaml{2-11}
+```yaml{2-12}
 jobs:
-  gitee-branch-sync: // [!code focus:10]
+  gitee-branch-sync: // [!code focus:11]
     runs-on: ubuntu-22.04
     steps:
       - name: Sync branches to GitHube

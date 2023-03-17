@@ -1,42 +1,34 @@
 .site-nav-layout {
-  /* 覆盖全局的 vp-layout-max-width（仅当前页面使用） */
-  --vp-layout-max-width: 1280px;
+  .VPDoc {
+    .container {
+      max-width: var(--vp-layout-max-width) !important;
 
-  /* layout 样式 */
-  .container {
-    max-width: var(--vp-layout-max-width) !important;
-  }
+      .aside {
+        padding-left: 0;
+        max-width: 160px;
+        position: sticky;
+        top: 0;
+      }
 
-  .content-container,
-  .content {
-    max-width: 100% !important;
-  }
+      .content {
+        max-width: 100% !important;
+        padding-bottom: 32px;
 
-  /* aside 样式 */
-  .aside {
-    padding-left: 0;
-    max-width: 160px;
-  }
+        .content-container {
+          max-width: 100% !important;
 
-  .content {
-    padding-bottom: 32px;
-    .VPDocFooter {
-      display: none;
+          .main {
+            .vp-doc h2 {
+              margin-top: 24px;
+              border-top: none;
+            }
+          }
+
+          .VPDocFooter {
+            //display: none;
+          }
+        }
+      }
     }
-  }
-
-  /* tip */
-  .tip {
-    .custom-block-title {
-      display: none;
-    }
-    p {
-      margin: 0;
-    }
-  }
-
-  .vp-doc h2 {
-    margin-top: 24px;
-    border-top: none;
   }
 }

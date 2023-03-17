@@ -3,11 +3,10 @@
 > `ES6` 是 [ECMA](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/) 为 `JavaScript` 制定的第6个标准版本。
 > `ES6` 既是一个历史名词也是一个泛指，含义是 `5.1` 版本以后的JavaScript下一代标准
 
-
 ## ES6(2015)
 
 [ES6](https://262.ecma-international.org/6.0/)
-增加了大量内容，主要有：变量声明、函数扩展、字符串扩展、数组扩展、集合操作、异步编程、迭代 等
+新增内容主要有：变量声明、函数扩展、字符串扩展、数组扩展、集合操作、异步编程、迭代等
 
 ### 声明和变量声明
 
@@ -73,6 +72,8 @@ const { name: myName, age: myAge = 18 } = info
 
 ### 函数扩展
 
+新增了箭头函数、新的方法定义方式、支持默认参数，新增 class
+
 #### 箭头函数
 
 箭头函数是使用 `=>` 语法的函数简写。与一般函数不同的是
@@ -87,7 +88,7 @@ const { name: myName, age: myAge = 18 } = info
 const date = () => Date.now()
 ```
 
-#### Method 定义
+#### 方法定义
 
 > 省略 function 关键字
 
@@ -231,6 +232,33 @@ Object.setPrototypeOf(SuperHero.prototype, Human.prototype)
 let obj1 = { a: 0, b: { c: 0 } };
 let obj2 = Object.assign({}, obj1);
 console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
+```
+
+### Object.getOwnPropertySymbols
+
+> 返回一个给定对象自身的所有 Symbol 属性的数组。
+
+* 语法
+
+```markdown
+Object.getOwnPropertySymbols(obj)
+```
+
+* 示例
+
+```ts
+let obj = {};
+let a = Symbol("a");
+let b = Symbol.for("b");
+
+obj[a] = "localSymbol";
+obj[b] = "globalSymbol";
+
+let objectSymbols = Object.getOwnPropertySymbols(obj);
+
+console.log(objectSymbols.length); // 2
+console.log(objectSymbols)         // [Symbol(a), Symbol(b)]
+console.log(objectSymbols[0])      // Symbol(a)
 ```
 
 ### 数组扩展
@@ -385,20 +413,6 @@ const getName = `
 
 * String.prototype.startsWith
 
-> 判断当前字符串是否是以另外一个给定的子字符串结尾
-
-```ts
-// str.endsWith(searchString[, length])
-
-const str = "To be, or not to be, that is the question.";
-
-alert(str.endsWith("question."));  // true
-alert(str.endsWith("to be"));      // false
-alert(str.endsWith("to be", 19));  // true
-```
-
-* String.prototype.endsWith
-
 > 判断当前字符串是否以另外一个给定的子字符串开头
 
 ```ts
@@ -409,7 +423,20 @@ const str = "To be, or not to be, that is the question.";
 alert(str.startsWith("To be"));         // true
 alert(str.startsWith("not to be"));     // false
 alert(str.startsWith("not to be", 10)); // true
+```
 
+* String.prototype.endsWith
+
+> 判断当前字符串是否是以另外一个给定的子字符串结尾
+
+```ts
+// str.endsWith(searchString[, length])
+
+const str = "To be, or not to be, that is the question.";
+
+alert(str.endsWith("question."));  // true
+alert(str.endsWith("to be"));      // false
+alert(str.endsWith("to be", 19));  // true
 ```
 
 * String.prototype.includes
@@ -439,13 +466,13 @@ console.log(str.includes("To be", 1)); // false
 "abc".repeat(2)      // "abcabc"
 ```
 
-### Spread & Rest 运算符
+### 运算符扩展
 
-由上下文环境决定是 spread 还是 rest
+`...` 运算符由上下文环境决定是展开运算符 `Spread operator` 还是剩余运算符 `Rest operator`
 
-#### 扩展操作符(spread operator)
+#### 展开运算符
 
-扩展操作符（spread operator）允许一个表达式在某处展开。扩展操作符在多个参数（用于函数调用）或多个元素（用于数组字面量）或者多个变量（用于解构赋值）的地方可以使用
+展开运算符允许一个表达式在某处展开。展开运算符在多个参数（用于函数调用）或多个元素（用于数组字面量）或者多个变量（用于解构赋值）的地方可以使用
 
 * 函数调用-展开参数
 
@@ -465,7 +492,7 @@ const arr = [ 1, 2, 3 ]
 const args = [ ...arr, ...'456', 7 ]
 ```
 
-#### 剩余运算符(rest operator)
+#### 剩余运算符
 
 > 剩余运算符和扩展运算符的区别就是，剩余运算符会收集这些集合，放到右边的数组中，扩展运算符是将右边的数组拆分成元素的集合，它们是相反的
 
@@ -670,7 +697,7 @@ console.log(iterator.next().value); // 20
 * `import` 导入的变量都是只读的，import命令具有提升效果，会提升到整个模块的头部，首先执行
 
 > 一个模块中，`export` 支持导出多个但是导入时使用导出时的名字而且要使用 `{}`，`export default` 只能有一个但是导入时不一定使用导入时的名字
-> > `as` 关键字可实现对模块内变量名的改写
+> > `as` 关键字可实现对模块内变量名的改写，但不能用于 `export default` 导出的变量
 
 ```ts
 // a.ts
@@ -686,6 +713,7 @@ export default function hello() {
 ```ts
 // b.ts
 import hello, { name, age as myAge } from 'a.js'
+import * as aModule from 'a.js'
 ```
 
 ### Proxy、Reflect
@@ -817,9 +845,9 @@ mySet.add("some text"); // Set [ 1, 5, "some text" ]
 [ 1, 2, NaN ].includes(NaN); // true
 ```
 
-### 运算符
+### 运算符扩展
 
-* 幂运算符
+* `**` 幂运算符
 
 ```ts
 console.log(Math.pow(2, 10)); // 1024
@@ -832,26 +860,133 @@ console.log(2 ** 10); // 1024
 
 * Object.values
 
+> 返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用 for...in 循环的顺序相同（区别在于 for-in 循环枚举原型链中的属性）。
+
+```ts
+// Object.values(obj)
+
+const objA = { foo: 'bar', baz: 42 };
+console.log(Object.values(objA)); // ['bar', 42]
+
+// array like object
+const obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.values(obj)); // ['a', 'b', 'c']
+
+// array like object with random key ordering
+// when we use numeric keys, the value returned in a numerical order according to the keys
+const an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.values(an_obj)); // ['b', 'c', 'a']
+
+// getFoo is property which isn't enumerable
+const my_obj = Object.create({}, { getFoo: { value: function () { return this.foo; } } });
+my_obj.foo = 'bar';
+console.log(Object.values(my_obj)); // ['bar']
+
+// non-object argument will be coerced to an object
+console.log(Object.values('foo')); // ['f', 'o', 'o']
+```
 
 * Object.entries
 
+> 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环还会枚举原型链中的属性）
+
+```ts
+// Object.entries(obj)
+const objA = { foo: 'bar', baz: 42 };
+console.log(Object.entries(objA)); // [ ['foo', 'bar'], ['baz', 42] ]
+
+// array like object
+const objB = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.entries(objB)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
+
+// array like object with random key ordering
+const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.entries(anObj)); // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]
+
+// getFoo is property which isn't enumerable
+const myObj = Object.create({}, { getFoo: { value() { return this.foo; } } });
+myObj.foo = 'bar';
+console.log(Object.entries(myObj)); // [ ['foo', 'bar'] ]
+
+// non-object argument will be coerced to an object
+console.log(Object.entries('foo')); // [ ['0', 'f'], ['1', 'o'], ['2', 'o'] ]
+
+// iterate through key-value gracefully
+const obj = { a: 5, b: 7, c: 9 };
+for (const [ key, value ] of Object.entries(obj)) {
+  console.log(`${ key } ${ value }`); // "a 5", "b 7", "c 9"
+}
+
+// Or, using array extras
+Object.entries(obj).forEach(([ key, value ]) => {
+  console.log(`${ key } ${ value }`); // "a 5", "b 7", "c 9"
+});
+```
+
 * Object.getOwnPropertyDescriptors
+
+> 获取一个对象的所有自身属性的描述符。
+
+```ts
+// Object.getOwnPropertyDescriptors(obj)
+
+// 浅拷贝一个对象
+Object.create(
+  Object.getPrototypeOf(obj),
+  Object.getOwnPropertyDescriptors(obj)
+);
+```
 
 ### 字符串扩展
 
 * String.prototype.padStart
 
+> 用另一个字符串填充当前字符串（如果需要的话，会重复多次），以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。
+
+```ts
+// str.padStart(targetLength[, padString])
+
+'abc'.padStart(10);         // "       abc"
+'abc'.padStart(10, "foo");  // "foofoofabc"
+'abc'.padStart(6, "123465"); // "123abc"
+'abc'.padStart(8, "0");     // "00000abc"
+'abc'.padStart(1);          // "abc"
+```
+
 * String.prototype.padEnd
+
+> 用一个字符串填充当前字符串（如果需要的话则重复填充），返回填充后达到指定长度的字符串。从当前字符串的末尾（右侧）开始填充。
+
+```ts
+// str.padEnd(targetLength[, padString])
+
+'abc'.padEnd(10);          // "abc       "
+'abc'.padEnd(10, "foo");   // "abcfoofoof"
+'abc'.padEnd(6, "123456"); // "abc123"
+'abc'.padEnd(1);           // "abc"
+```
+
+### 函数扩展
+
+函数参数列表结尾允许逗号
 
 ### Promise增强
 
 * async/await
 
+> `async` 和 `await` 关键字让我们可以用一种更简洁的方式写出基于 `Promise` 的异步行为，而无需刻意地链式调用 `promise`
+
+```ts
+const getInfo = async () => {
+  await fetch()
+}
+```
+
 ## ES2018(ES9)
 
-### Spread & Rest 运算符
+### 运算符扩展
 
-增加了对对象的支持
+`...` 运算符增加了对 `Object` 的支持
 
 ```ts
 const obj = { name: 'Yanlu' }
@@ -869,11 +1004,44 @@ const { name, ...other } = info
 在模板字符串中，如果输入无效的unicode字符，还是会报错
 :::
 
-### for await of
+### `for await...of`
+
+`for await...of` 语句创建一个循环，该循环遍历异步可迭代对象以及同步可迭代对象，包括：内置的 `String`, `Array`，类似数组对象 (例如 `arguments` 或 `NodeList`)，`TypedArray`, `Map`, `Set`
+和 `用户定义的异步/同步迭代器`。它使用对象的每个不同属性的值调用要执行的语句来调用自定义迭代钩子。
+
+> 类似于 `await` 运算符一样，该语句只能在一个 `async function` 内部使用。
+
+:::warning
+`for await...of` 不适用于不是异步可迭代的异步迭代器。
+:::
+
+```ts
+for await (variable of iterable) {
+  // statement
+}
+```
 
 ### Promise扩展
 
 * Promise.prototype.finally
+
+> 无论结果是 fulfilled 或者是 rejected，都会执行指定的回调函数。避免了同样的语句需要在 then() 和 catch() 中各写一次的情况
+
+```ts
+let isLoading = true;
+
+fetch(myRequest)
+  .then(function (response) {
+    var contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      return response.json();
+    }
+    throw new TypeError("Oops, we haven't got JSON!");
+  })
+  .then(function (json) { /* process your JSON further */ })
+  .catch(function (error) { console.log(error); })
+  .finally(function () { isLoading = false; });
+```
 
 ## ES2019(ES10)
 
@@ -881,17 +1049,111 @@ const { name, ...other } = info
 
 * Object.fromEntries
 
+> 把键值对列表转换为一个对象。
+
+```ts
+// Object.fromEntries(iterable);
+
+const map = new Map([ [ 'foo', 'bar' ], [ 'baz', 42 ] ]);
+const obj = Object.fromEntries(map);
+console.log(obj); // { foo: "bar", baz: 42 }
+
+
+const arr = [ [ '0', 'a' ], [ '1', 'b' ], [ '2', 'c' ] ];
+const objA = Object.fromEntries(arr);
+console.log(objA); // { 0: "a", 1: "b", 2: "c" }
+```
+
 ### 数组扩展
 
 * Array.prototype.flat
+
+> 按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
+
+```ts
+// arr.flat([depth])
+
+const arr1 = [ 1, 2, [ 3, 4 ] ];
+arr1.flat();
+// [1, 2, 3, 4]
+
+const arr2 = [ 1, 2, [ 3, 4, [ 5, 6 ] ] ];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+
+const arr3 = [ 1, 2, [ 3, 4, [ 5, 6 ] ] ];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+
+//使用 Infinity，可展开任意深度的嵌套数组
+const arr4 = [ 1, 2, [ 3, 4, [ 5, 6, [ 7, 8, [ 9, 10 ] ] ] ] ];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
 * Array.prototype.flatMap
+
+> 首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 连着深度值为 1 的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些
+
+```ts
+// arr.flatMap(callbackFn[, thisArg])
+
+var arr1 = [ 1, 2, 3, 4 ];
+
+arr1.map(x => [ x * 2 ]);
+// [[2], [4], [6], [8]]
+
+arr1.flatMap(x => [ x * 2 ]);
+// [2, 4, 6, 8]
+
+// only one level is flattened
+arr1.flatMap(x => [ [ x * 2 ] ]);
+// [[2], [4], [6], [8]]
+
+let arr2 = [ "it's Sunny in", "", "California" ];
+
+arr2.map(x => x.split(" "));
+// [["it's","Sunny","in"],[""],["California"]]
+
+arr2.flatMap(x => x.split(" "));
+// ["it's","Sunny","in", "", "California"]
+```
 
 ### 字符串扩展
 
 * String.prototype.trimStart
+
+> 删除字符串开头的空白字符。trimLeft() 是此方法的别名
+
+```ts
+// str.trimStart()
+
+let str = "   foo  ";
+
+console.log(str.length); // 8
+
+str = str.trimStart();
+console.log(str.length); // 5
+console.log(str); // 'foo  '
+```
+
 * String.prototype.trimEnd
 
-### try/catch
+> 删除字符串末尾的空白字符。trimRight() 是这个方法的别名
+
+```ts
+// str.trimEnd()
+
+let str = "   foo  ";
+
+console.log(str.length); // 8
+
+str = str.trimEnd();
+console.log(str.length); // 6
+console.log(str); // '   foo'
+```
+
+### try...catch扩展
 
 可选的 Catch Binding
 
@@ -915,6 +1177,19 @@ try {
 
 * Symbol.prototype.description
 
+> 只读属性，它会返回 `Symbol` 对象的可选描述的字符串。
+
+```ts
+console.log(Symbol('desc').description);
+// Expected output: "desc"
+
+console.log(Symbol.iterator.description);
+// Expected output: "Symbol.iterator"
+
+console.log(Symbol.for('foo').description);
+// Expected output: "foo"
+```
+
 ### JSON增强
 
 * JSON.stringify
@@ -931,7 +1206,7 @@ try {
 
 ### 运算符扩展
 
-* 空值合并操作符
+* `??` 空值合并操作符
 
 > `??` 是一个逻辑操作符，当左侧的操作数为 null或者undefined时，返回其右侧操作数，否则返回左侧操作数
 
@@ -942,14 +1217,14 @@ console.log(foo) // foo
 console.log(bar) // bar
 ```
 
-* 可选链 Optional chaining
+* `?.` 可选链(Optional chaining)
 
 > 可选链操作符 `?.` 允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效
 
 ```ts
 const obj = {
   name: 'Ynalu',
-  say(){
+  say() {
     return 'hello'
   }
 }
@@ -962,7 +1237,7 @@ console.log(obj?.say?.())
 
 `globalThis` 提供了一个标准的方式来获取不同环境下的全局 `this` 对象（也就是全局对象自身）
 
-### 
+### 数字扩展
 
 * BigInt
 
@@ -988,23 +1263,70 @@ console.log(1n === 1) // false
 
 * String.prototype.matchAll
 
+> 返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。
+
+:::warning
+RegExp 必须是设置了全局模式 `g` 的形式，否则会抛出异常 TypeError
+:::
+
+```ts
+// str.matchAll(regexp)
+const regexp = RegExp('foo[a-z]*', 'g');
+const str = 'table football, foosball';
+const matches = str.matchAll(regexp);
+
+for (const match of matches) {
+  console.log(`Found ${ match[0] } start=${ match.index } end=${ match.index + match[0].length }.`);
+}
+// expected output: "Found football start=6 end=14."
+// expected output: "Found foosball start=16 end=24."
+
+// matches iterator is exhausted after the for..of iteration
+// Call matchAll again to create a new iterator
+Array.from(str.matchAll(regexp), m => m[0]);
+// Array [ "football", "foosball" ]
+```
+
 ### Promise扩展
 
 * Promise.allSettled
 
+> Promise.allSettled() 方法以 promise 组成的可迭代对象作为输入，并且返回一个 Promise 实例。当输入的所有 promise 都已敲定时（包括传递空的可迭代类型），返回的 promise 将兑现，并带有描述每个
+> promsie 结果的对象数组。
+
+```ts
+// Promise.allSettled(iterable)
+
+Promise.allSettled([
+  Promise.resolve(33),
+  new Promise((resolve) => setTimeout(() => resolve(66), 0)),
+  99,
+  Promise.reject(new Error("an error")),
+]).then((values) => console.log(values));
+
+// [
+//   { status: 'fulfilled', value: 33 },
+//   { status: 'fulfilled', value: 66 },
+//   { status: 'fulfilled', value: 99 },
+//   { status: 'rejected', reason: Error: an error }
+// ]
+```
+
 ### Module扩展
 
-* Dynamic Import
-> 
+* `import()` 动态导入
+
+> 在希望按照一定的条件或者按需加载模块的时候，动态 `import()` 是非常有用的
+
 ```ts
-import(./a.js)
+let module = await import('/modules/my-module.js');
 ```
 
 ## ES2021(ES12)
 
-### 运算符
+### 运算符扩展
 
-* &&=
+* `&&=` 逻辑与赋值
 
 > 逻辑与赋值 `x ||= y` 运算仅在 `x` 为 `true` 时赋值
 
@@ -1021,7 +1343,7 @@ b &&= 2;
 console.log(b);  // 0
 ```
 
-* ||=
+* `||=` 逻辑或赋值
 
 > 逻辑或赋值 `x ||= y` 运算仅在 `x` 为 `false` 时赋值
 
@@ -1036,7 +1358,8 @@ console.log(a.duration); // 50
 a.title ||= 'title is empty.';
 console.log(a.title); // "title is empty"
 ```
-* ??=
+
+* `??=` 逻辑空赋值
 
 > 逻辑空赋值运算符 `x ??= y` 仅在 `x` 是 `nullish(null 或 undefined)` 时对其赋值
 
@@ -1056,14 +1379,30 @@ console.log(a.speed); // 25
 
 * String.prototype.replaceAll
 
-### 数字增强
+> 返回一个新字符串，新字符串所有满足 `pattern` 的部分都已被 `replacement` 替换。
+
+:::warning
+使用正则表达式搜索值时，它必须是全局的
+:::
+
+```ts
+// const newStr = str.replaceAll(regexp|substr, newSubstr|function)
+
+'aabbcc'.replaceAll('b', '.');
+// 'aa..cc'
+
+'aabbcc'.replaceAll(/b/g, '.');
+"aa..cc"
+```
+
+### 数字扩展
 
 * 数字分隔符
 
-不能放在数值的最前面（leading）或最后面（trailing）。
-不能两个或两个以上的分隔符连在一起。
-小数点的前后不能有分隔符。
-科学计数法里面，表示指数的e或E前后不能有分隔符。
+1. 不能放在数值的最前面（leading）或最后面（trailing）。
+2. 不能两个或两个以上的分隔符连在一起。
+3. 小数点的前后不能有分隔符。
+4. 科学计数法里面，表示指数的e或E前后不能有分隔符。
 
 ```ts
 let budget = 1_000_000_000_000;
@@ -1074,8 +1413,234 @@ budget === 10 ** 12 // true
 
 * Promise.any
 
+> `Promise.any()` 接收一个由 `Promise` 所组成的可迭代对象，该方法会返回一个新的 promise，一旦可迭代对象内的任意一个 `promise` 变成了兑现状态，那么由该方法所返回的 promise
+> 就会变成兑现状态，并且它的兑现值就是可迭代对象内的首先兑现的 promise 的兑现值。如果可迭代对象内的 promise 最终都没有兑现（即所有 promise 都被拒绝了），那么该方法所返回的 promise
+> 就会变成拒绝状态，并且它的拒因会是一个 AggregateError 实例，这是 Error 的子类，用于把单一的错误集合在一起。
+
+1. Promise.all() 会返回一组兑现值
+2. Promise.race() 总是返回第一个敲定值（兑现或拒绝）
+3. Promise.any() 第一个兑现的值
+
+```ts
+// Promise.any(iterable);
+
+const pErr = new Promise((resolve, reject) => {
+  reject("总是失败");
+});
+
+const pSlow = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "最终完成");
+});
+
+const pFast = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "很快完成");
+});
+
+Promise.any([ pErr, pSlow, pFast ]).then((value) => {
+  console.log(value);
+  // pFast fulfils first
+})
+// 期望输出："很快完成"
+```
+
 ### WeakRef
 
+WeakRef 对象允许您保留对另一个对象的弱引用，而不会阻止被弱引用对象被 GC 回收
+
 ## ES2022(ES13)
+
+### Class扩展
+
+* 类字段定义
+
+> 类字段可以在类的顶层被定义和初始化。在这之前，类的字段定义和初始化是在类的构造函数中完成的
+
+:::tip
+类公有字段通过 Object.defineProperty 定义
+:::
+
+```ts
+class Person {
+  name;
+  age: 18;
+}
+```
+
+* 类私有域
+
+> 类属性在默认情况下是公有的，但可以使用增加哈希前缀 # 的方法来定义私有类属性
+
+1. 私有字段包括 `私有实例字段` 和 `私有静态字段`
+2. 私有方法包括 `私有实例方法` 和 `私有静态方法`
+
+:::tip
+`in` 操作符，如果指定的`属性/字段`在指定的`对象/类`中，则返回真，并且也能判断`私有字段`
+::::
+
+```ts
+class Person {
+  #privateField;
+  static #PRIVATE_STATIC_FIELD;
+  
+  #privateMethod() {
+    return 'hello world';
+  }
+  
+  static #privateStaticMethod() {
+    return 42;
+  }
+  
+  static hasAttr() {
+    return this.#PRIVATE_STATIC_FIELD in this
+  }
+}
+```
+
+* 类静态域
+
+> 在 `类字段` 和 `私有字段` 基础上，增加了 `静态公共字段`、`静态私有方法` 和 `静态私有字段`
+
+```ts
+class Person {
+  static name;
+  
+  static #age;
+  
+  static #getAge() {
+    return this.#age
+  }
+}
+```
+
+* 静态块
+
+> 可以访问修改私有静态字段和方法
+
+```ts
+class Counter {
+  static #baseNum = 100;
+  
+  static getDoubleBaseNum() {
+    return this.#baseNum * 2;
+  }
+  
+  static {
+    this.#baseNum = 200;
+  }
+}
+
+console.log(Counter.getDoubleBaseNum());  // 400
+```
+
+### 数组扩展
+
+* Array.prototype.at
+
+> 接收一个整数值并返回该索引对应的元素，允许正数和负数。负整数从数组中的最后一个元素开始倒数。
+
+```ts
+// arr.at(index)
+
+const cart = [ 'apple', 'banana', 'pear' ];
+
+console.log(cart.at(0)) // apple
+console.log(cart.at(-1)) // pear
+```
+
+### 字符串扩展
+
+* String.prototype.at
+
+> 接受一个整数值，并返回一个新的 `String`，该字符串由位于指定偏移量处的单个 `UTF-16` 码元组成。该方法允许正整数和负整数。负整数从字符串中的最后一个字符开始倒数。
+
+```ts
+// str.at(index)
+
+const myString = 'Every green bus drives fast.';
+
+console.log(myString.at(0)) // E
+console.log(myString.at(-1)) // .
+```
+
+### 正则扩展
+
+* `/d` 修饰符
+
+> 利用 `/d` 标识符来表示想要匹配字符串的开始和结束索引
+> > 通过 `/d` 标识符，匹配结果会多出一个属性 `.indices`
+
+```ts
+const re1 = /a+(z)?/d;
+
+const s1 = "xaaaz";
+const m1 = re1.exec(s1);
+
+console.log(m1.indices[0]);               // [1, 5]
+console.log(s1.slice(...m1.indices[0]));  // 'aaaz'
+console.log(m1.indices[1]);               // [4, 5]
+console.log(s1.slice(...m1.indices[1]));  // 'z'
+```
+
+### 对象扩展
+
+* Object.hasOwn
+
+> 如果指定的对象自身有指定的属性，则静态方法` Object.hasOwn()` 返回 true。如果属性是继承的或者不存在，该方法返回 false
+> > `Object.hasOwn()` 旨在取代 `Object.prototype.hasOwnProperty()`
+
+```ts
+// Object.hasOwn(instance, prop)
+
+const example = {};
+Object.hasOwn(example, 'prop');   // false - 'prop' has not been defined
+
+example.prop = 'exists';
+Object.hasOwn(example, 'prop');   // true - 'prop' has been defined
+
+example.prop = null;
+Object.hasOwn(example, 'prop');   // true - own property exists with value of null
+
+example.prop = undefined;
+Object.hasOwn(example, 'prop');   // true - own property exists with value of undefined
+```
+
+### Error扩展
+
+* Error cause
+
+> Error 实例中的 cause 数据属性指示导致该错误的具体原始原因。
+
+在捕获错误时，我们可能会使用更具体或更加实用的信息对错误进行包装，再将其重新抛出。cause 属性就用于这一场景，以便仍然可以访问原始的错误。
+
+:::tip
+🎉 Error cause 是第一个由中国公司（阿里巴巴 TC39 代表 `legendecas`）代表主导推动的 JavaScript 达到 stage 4 的新特性提案！
+:::
+
+```ts
+try {
+  connectToDatabase();
+} catch ( err ) {
+  throw new Error('Connecting to database failed.', { cause: err });
+}
+```
+
+### Promise扩展
+
+* 顶层 await
+
+> 在模块的顶层，可以单独使用关键字 await（异步函数的外面）。也就是说一个模块如果包含用了 await 的子模块，该模块就会等待该子模块，这一过程并不会阻塞其他子模块
+
+:::warning
+在 class 代码块或非 async 函数仍不支持
+:::
+
+任何文件只要导入这个模块，后面的代码就会等待，直到 fetch 完成。
+
+```ts
+// fetch request
+const colors = fetch("../data/colors.json").then((response) => response.json());
+
+export default await colors;
+```
 
 ## ES2023(ES14)

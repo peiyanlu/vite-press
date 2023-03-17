@@ -10,9 +10,7 @@ const props = defineProps<{
   items: NavLink[]
 }>()
 
-const formatTitle = computed(() => {
-  return slugify(props.title)
-})
+const formatTitle = computed(() => (slugify(props.title)))
 </script>
 
 <template>
