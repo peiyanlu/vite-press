@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /navigation/
+      link: /frontend/
     - theme: alt
       text: 在 Gitee 上查看
       link: https://gitee.com/peiyanlu/vite-press/

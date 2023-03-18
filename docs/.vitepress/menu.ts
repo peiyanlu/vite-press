@@ -23,14 +23,14 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     link: MENU.HOME,
   },
   {
-    text: '网站导航',
-    link: MENU.NAVIGATION,
-    activeMatch: MENU.NAVIGATION,
-  },
-  {
     text: '起源',
     link: MENU.ORIGIN,
     activeMatch: MENU.ORIGIN,
+  },
+  {
+    text: '导航',
+    link: MENU.NAVIGATION,
+    activeMatch: MENU.NAVIGATION,
   },
   {
     text: '前端',
@@ -106,6 +106,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: 'fetch', link: joinPath(MENU.FRONTEND, 'javascript/js-fetch') },
         { text: '二进制', link: joinPath(MENU.FRONTEND, 'javascript/js-binary') },
         { text: '作用域', link: joinPath(MENU.FRONTEND, 'javascript/js-scope') },
+        { text: '事件循环', link: joinPath(MENU.FRONTEND, 'javascript/js-EventLoop') },
       ],
     },
     {
