@@ -107,6 +107,9 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: '二进制', link: joinPath(MENU.FRONTEND, 'javascript/js-binary') },
         { text: '作用域', link: joinPath(MENU.FRONTEND, 'javascript/js-scope') },
         { text: '事件循环', link: joinPath(MENU.FRONTEND, 'javascript/js-EventLoop') },
+        { text: '调用栈', link: joinPath(MENU.FRONTEND, 'javascript/js-CallStack') },
+        { text: '元素位置', link: joinPath(MENU.FRONTEND, 'javascript/js-ElementPosition') },
+        { text: '浏览器监听', link: joinPath(MENU.FRONTEND, 'javascript/js-BOMObserver') },
       ],
     },
     {
