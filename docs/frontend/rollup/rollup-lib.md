@@ -56,7 +56,7 @@ yarn lib
 ```
 
 #### output.format
-```text
+```markdown
 1、cjs - CommonJS，适用于 Node 和 Browserify/Webpack，使用require导入，exports导出；如果设置了output.esModule:true，会增加 Object.defineProperty(exports,'__exModule',{value:true}); 设置，表示导出的是ES模块命名空间
 2、es - 将软件包保存为 ES 模块文件，在现代浏览器中可以通过 <script type=module> 标签引入，使用import导入，export导出，rollup的默认打包方式
 3、amd - 异步模块定义，用于像RequireJS这样的模块加载器
@@ -66,7 +66,7 @@ yarn lib
 ```
 
 #### *使用babel
-```text
+```markdown
 rollup打包的结果是ES6，如果需要兼容低版本，则需要babel
 
 1、配置babel预设
@@ -107,7 +107,7 @@ babel({
 ```
 
 #### *常用插件
-```text
+```markdown
 @rollup/plugin-node-resolve --- rollup 无法识别 node_modules 中的包，帮助 rollup 查找外部模块，然后导入
 
 @rollup/plugin-commonjs --- 将 CommonJS 模块转换为 ES6 供 rollup 处理

@@ -44,7 +44,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 
 ## 4、添加更多页面
 
-```text{3}
+```markdown{3}
 .
 ├─ docs
 │  ├─ getting-started.md // [!code focus:2]
@@ -99,7 +99,7 @@ features:
 
 > docs 文件下创建 .vitepress 文件夹放置页面配置
 
-```text{3-4}
+```markdown{3-4}
 .
 ├─ docs
 │  ├─ .vitepress // [!code focus:2] 
@@ -110,7 +110,7 @@ features:
 
 > docs 文件下创建 public 文件夹放置公共文件
 
-```text{4-5}
+```markdown{4-5}
 .
 ├─ docs
 │  ├─ .vitepress
@@ -122,7 +122,7 @@ features:
 
 > .vitepress 文件下创建 theme 文件夹放置样式文件
 
-```text{4-6}
+```markdown{4-6}
 .
 ├─ docs
 │  ├─ .vitepress

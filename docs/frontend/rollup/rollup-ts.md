@@ -26,7 +26,7 @@ tsc --init
 
 >生成声明文件的方法
 
-```text
+```markdown
 1、tsc --emitDeclarationOnly // 不会捆绑.d.ts
 2、rollup-plugin-dts // 捆绑.d.ts
 

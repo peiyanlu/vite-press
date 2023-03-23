@@ -243,7 +243,7 @@ export default client
 
 > 定义各个业务模块的数据库模型
 
-```text
+```markdown
 .
 ├─ models
 │  └─ xxxModel.ts                // 各模块业务对应的数据模型
@@ -328,7 +328,7 @@ export default svgModel
 
 > 接收用户传递的数据，并处理业务
 
-```text
+```markdown
 .
 ├─ controller
 │  └─ xxxController.ts                // 各模块业务逻辑
@@ -368,7 +368,7 @@ export default class SvgController {
 - 通过 `koa-combine-routers` 插件可以将各模块的依赖合并，并且自动使用 `router.allowedMethods()` 中间件
 - 通过实现类似 `require.context` 的 `autoRequireFile` 方法自动导入，简化后续的导入操作
 
-```text
+```markdown
 .
 ├─ router
 │  └─ index.ts                     // 路由统一导出
@@ -440,7 +440,7 @@ app.use(compose([
 ```
 
 ## 10、模板渲染
-```text
+```markdown
 .
 ├─ www                        // HTML 页面
 │  └─ index.html

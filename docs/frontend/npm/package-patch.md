@@ -10,7 +10,7 @@
 }
 ```
 
-```text
+```markdown
 yarn install 时将会自动为依赖包打补丁
 
 // yarn install --registry=http://nexus.simulate.com:8081/repository/npm-group/
@@ -18,7 +18,7 @@ yarn install 时将会自动为依赖包打补丁
 
 ## 1、安装依赖
 
-```text
+```markdown
 yarn add patch-package postinstall-postinstall
 
 Notes：
@@ -33,7 +33,7 @@ yarn环境安装postinstall-postinstall是为了使用yarn remove后也可以重
 
 ## 3、创建补丁
 
-```text
+```markdown
 // 为依赖包创建补丁
 yarn patch-package packageName
 
@@ -66,7 +66,7 @@ patch-package 默认是根据项目中的 lockfile 来决定使用 npm 还是 ya
 
 ## 4、应用补丁
 
-```text
+```markdown
 yarn patch-package 不带参数应用所有补丁
 
 Options：
@@ -82,7 +82,7 @@ Options：
 
 ## Dev-only
 
-```text
+```markdown
 打包 devDependencies 中的依赖
 
 package-name+0.44.0.patch

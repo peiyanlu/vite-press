@@ -85,7 +85,7 @@ const semver = require('semver')
 semver.valid('1.2.3') // '1.2.3'
 ```
 
-```text
+```markdown
 版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
 主版本号：当你做了不兼容的 API 修改，
 次版本号：当你做了向下兼容的功能性新增，

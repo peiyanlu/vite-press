@@ -17,9 +17,11 @@ const intersectionObserver = new IntersectionObserver(
     entries.forEach(item => {
       console.log(item.target, item.intersectionRatio)
     })
-  }, {
+  },
+  {
     threshold: [ 0.5, 1 ],
-  })
+  },
+)
 
 intersectionObserver.observe(dom)
 ```
@@ -86,10 +88,12 @@ const measureClick = () => {
 const reportingObserver = new ReportingObserver(
   (reports, observer) => {
     for (const report of reports) {
-      console.log(report.body)//上报
+      console.log(report.body) // 上报
     }
   },
-  { types: [ 'intervention', 'deprecation' ] },
+  {
+    types: [ 'intervention', 'deprecation' ],
+  },
 )
 
 reportingObserver.observe()
