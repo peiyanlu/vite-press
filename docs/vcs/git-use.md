@@ -32,7 +32,7 @@ git tag --sort==-createordate | head -n2000 | git push -f [target_repository]
 三条命令同步仓库：
 > 需要有强制推送的权限；部分需要把分支保护关闭
 
-```markdown
+```shell
 git clone --bare [source_repository] [dir_name]  # 源仓库
 
 cd [dir_name]

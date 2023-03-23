@@ -3,8 +3,7 @@
 浏览器提供了 `5` 种 Observers：`MutationObserver`、`IntersectionObserver`、`PerformanceObserver`、`ResizeObserver`、`ReportingObserver`。
 
 ---
-监听用户的交互行为时我们会用 addEventListener 来监听 click、mousedown、keydown、input 等事件，但对于元素的变化、performance 的记录、浏览器干预行为这些不是用户交互的事件就要用 XxxObserver
-的 api 了
+监听用户的交互行为时我们会用 `addEventListener` 来监听 `click、mousedown、keydown、input` 等事件，但对于 `元素的变化、performance的记录、浏览器干预行为` 这些不是用户交互的事件就要用 `XxxObserver` 的 `api` 了
 
 ## IntersectionObserver
 
