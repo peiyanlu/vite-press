@@ -13,19 +13,19 @@ git clone --mirror
 
 2、将远端已经删除的分支在本地清理掉
 
-```markdown
+```shell
 git remote update --prune origin
 ```
 
 3、推送所有分支到目标仓库
 
-```markdown
+```shell
 git push -f --prune --all [target_repository]
 ```
 
 4、同步tag
 
-```markdown
+```shell
 git tag --sort==-createordate | head -n2000 | git push -f [target_repository]
 ```
 

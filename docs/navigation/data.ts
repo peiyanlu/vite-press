@@ -187,6 +187,12 @@ export const NAV_DATA: NavData[] = [
         desc: '高度可定制的工具提示和弹出框库',
         link: 'https://tippyjs.bootcss.com/',
       },
+      {
+        icon: 'https://pptr.dev/img/favicon.ico',
+        title: 'Puppeteer',
+        desc: '使用 Node 执行浏览器API',
+        link: 'https://pptr.dev/',
+      },
     ],
   },
   {
@@ -457,6 +463,12 @@ export const NAV_DATA: NavData[] = [
         title: 'StackBlitz',
         desc: '在线开发工具',
         link: 'https://stackblitz.com/',
+      },
+      {
+        icon: 'https://cms.pixso.cn/images/favicon.ico',
+        title: 'pixso',
+        desc: '产品设计协作一体化工具',
+        link: 'https://pixso.cn/',
       },
     ],
   },
