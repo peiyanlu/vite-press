@@ -36,3 +36,30 @@ DEL [/S] [/Q] [drive:]path
 
 - /S 除目录本身外，还将删除指定目录下的所有子目录和文件。用于删除目录树。
 - /Q 安静模式，带 /S 删除目录树时不要求确认
+
+## 端口占用
+
+* 查看所有端口的占用情况
+
+```shell
+netstat -ano
+```
+
+* 查看指定端口的占用情况
+
+```shell
+netstat -ano|findstr "端口"
+```
+
+* 查看 PID 对应的进程名
+
+```shell
+tasklist|findstr "PID"
+```
+
+* 结束进程
+
+```shell
+taskkill /f /t /im PID
+```
+

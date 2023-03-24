@@ -4,7 +4,7 @@
 
 1、拉取所有分支
 
-```markdown
+```shell
 git clone --mirror
 ```
 
