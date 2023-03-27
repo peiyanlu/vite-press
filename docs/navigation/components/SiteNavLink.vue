@@ -75,9 +75,11 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
   border-radius: 8px;
   height: 100%;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   &:hover {
     background-color: var(--vp-c-bg-soft);
+    transform: scale(1.05);
+    text-decoration: unset;
   }
 
   .box {

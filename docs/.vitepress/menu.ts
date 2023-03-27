@@ -2,8 +2,6 @@ import { DefaultTheme } from 'vitepress'
 
 export const BASE_URL = '/vite-press/'
 
-export const GIT_PAGE = 'https://gitee.com/peiyanlu/vite-press/tree/docs-deploy/'
-
 export const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
 export const withBase = (path: string): string => joinPath(BASE_URL, path)
 

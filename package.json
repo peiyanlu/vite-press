@@ -13,5 +13,8 @@
     "sass": "^1.56.0",
     "vitepress": "*",
     "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.10"
   }
 }
