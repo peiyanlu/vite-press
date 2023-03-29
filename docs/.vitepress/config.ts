@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { BASE_URL, isGithub, withBase } from './common'
 import { MONOCHROME } from './icon'
-import { BASE_URL, getNav, getSidebar, withBase } from './menu'
+import { getNav, getSidebar } from './menu'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -9,14 +10,14 @@ export default defineConfig({
   description: '小路的开发笔记',
   base: BASE_URL,
   head: [
-    [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ]
+    [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ],
   ],
   appearance: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
   cleanUrls: true,
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
   },
   themeConfig: {
     logo: '/logo.svg',
@@ -24,21 +25,21 @@ export default defineConfig({
     i18nRouting: true,
     outline: {
       level: 'deep',
-      label: '快速导航'
+      label: '快速导航',
     },
     nav: getNav(),
     sidebar: getSidebar(),
     editLink: {
-      pattern: `/peiyanlu/vite-press/tree/docs-deploy/docs/:path`,
-      text: '编辑此页'
+      pattern: `https://${ isGithub() ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/:path`,
+      text: `在 ${ isGithub() ? 'github' : 'gitee' } 编辑此页`,
     },
     docFooter: {
       prev: '上一节',
-      next: '下一节'
+      next: '下一节',
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: `Copyright © 2022-${ new Date().getFullYear() } YanLuPei`
+      copyright: `Copyright © 2022-${ new Date().getFullYear() } YanLuPei`,
     },
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',
@@ -48,27 +49,27 @@ export default defineConfig({
     socialLinks: [
       {
         icon: {
-          svg: MONOCHROME.GITEE
+          svg: MONOCHROME.GITEE,
         },
-        link: 'https://gitee.com/peiyanlu/vite-press'
+        link: 'https://gitee.com/peiyanlu/vite-press',
       },
-      { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' }
+      { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
     algolia: {
       appId: '02WXO09HIV',
       apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
-      indexName: 'vite-press'
-    }
+      indexName: 'vite-press',
+    },
   },
   locales: {
     root: {
       label: '中文',
-      lang: 'zh-CN'
+      lang: 'zh-CN',
     },
     // zh: {
     //   label: '中文d',
     //   lang: 'zh-CN',
     //   link: '/zh-CN/'
     // }
-  }
+  },
 })

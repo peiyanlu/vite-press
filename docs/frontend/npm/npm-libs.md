@@ -353,11 +353,7 @@ result; // '<p title=blah id=moo>foo</p>'
 
 ```shell
 npm init release-it
-```
-
-或者
-
-```shell
+# or
 npm install -D release-it
 ```
 
@@ -376,11 +372,20 @@ npm install -D release-it
 
 [release-it](https://www.npmjs.com/package/release-it)
 
+## colors
 
+> 在 node.js 控制台中获取颜色和样式
 
+```js
+const colors = require('colors/safe');
 
+console.log(colors.green('hello')); // outputs green text
+console.log(colors.red.underline('i like cake and pies')) // outputs red underlined text
+console.log(colors.inverse('inverse the color')); // inverses the color
+console.log(colors.rainbow('OMG Rainbows!')); // rainbow
+console.log(colors.trap('Run the trap')); // Drops the bass
+```
 
-
-
+[colors](https://www.npmjs.com/package/colors)
 
 

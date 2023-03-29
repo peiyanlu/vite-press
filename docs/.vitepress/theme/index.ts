@@ -14,7 +14,7 @@ export default <Theme>{
     const data = useData()
     
     nextTick(imagePreviewFn).catch(e => console.error(e))
-    
+
     return h(
       DefaultTheme.Layout,
       {
@@ -22,22 +22,17 @@ export default <Theme>{
       },
     )
   },
-  enhanceApp({ app, router, siteData }) {
-  
-  },
-  setup() {
-  
-  },
 }
 
 const imagePreviewFn = () => {
+  if (!globalThis.document) return
+  
   const allImg = document.querySelectorAll('p > img')
   
   allImg.forEach(img => {
     const p = img.parentElement
 
     if (!p) return
-    
     
     let container
     if (p.childNodes.length > 1) {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useNamespace } from '@theme/hooks/useNamespace'
-import { computed, onMounted, onUnmounted, PropType, ref } from 'vue'
+import { computed, onMounted, onUnmounted, PropType, ref, watch } from 'vue'
 import icons from './image-preview-icons'
 import ImagePreviewService from './image-preview-service'
 import Transform from './transform'
@@ -45,10 +45,12 @@ const initIndex = () => {
 
 const onPrev = () => {
   index.value = index.value <= 0 ? props.previewUrlList.length - 1 : index.value - 1
+  transform?.setZoomOriginal()
 }
 
 const onNext = () => {
   index.value = index.value >= props.previewUrlList.length - 1 ? 0 : index.value + 1
+  transform?.setZoomOriginal()
 }
 
 const onClose = () => {
@@ -95,6 +97,9 @@ onMounted(() => {
 onUnmounted(() => {
   unKeyBoard()
 })
+watch(()=>transform?.zoom,(value)=>{
+  console.log(value)
+})
 </script>
 
 <template>
@@ -102,19 +107,24 @@ onUnmounted(() => {
     <!--{/* 预览图 */}-->
     <img :class="ns.e('main-image')" :src="url" alt="" />
     <!--{/* 按钮区 */}-->
-    <button :class="ns.e('close-btn')" @click="onClose" v-html="icons.close" />
-    <button :class="ns.e('arrow-left')" @click="onPrev" v-html="icons.left" />
-    <button :class="ns.e('arrow-right')" @click="onNext" v-html="icons.right" />
-    <!--{/* 底部固定区 */}-->
     <div :class="ns.e('toolbar')">
-      <button @click="onZoomIn" v-html="icons.zoomIn" />
-      <button @click="onZoomOut" v-html="icons.zoomOut" />
-      <button @click="onRotate" v-html="icons.rotate" />
-      <button @click="onPrev" v-html="icons.left" />
-      <div :class="ns.e('index')">{{ index + 1 }}:{{ props.previewUrlList.length }}</div>
-      <button @click="onNext" v-html="icons.right" />
-      <button @click="onZoomBest" v-html="icons.reset" />
-      <button @click="onZoomOriginal" v-html="icons.best" />
+      <div :class="ns.e('toolbar-left')">
+        <button @click="onPrev" v-html="icons.left" />
+        <button>{{ index + 1 }} / {{ props.previewUrlList.length }}</button>
+        <button @click="onNext" v-html="icons.right" />
+      </div>
+
+      <div :class="ns.e('toolbar-middle')">
+        <button @click="onZoomIn" v-html="icons.zoomIn" />
+        <button @click="onZoomOut" v-html="icons.zoomOut" />
+        <button @click="onRotate" v-html="icons.rotate" />
+        <button @click="onZoomOriginal" v-html="icons.best" />
+        <button @click="onZoomBest" v-html="icons.reset" />
+      </div>
+
+      <div :class="ns.e('toolbar-right')">
+        <button @click="onClose" v-html="icons.close" />
+      </div>
     </div>
   </div>
   <div :class="ns.e('bg')" :style="bgStyle" />
@@ -142,104 +152,80 @@ $v-z-index: 1080;
     height: auto;
     max-width: 90%;
     max-height: 90%;
-    margin-top: -20px;
     cursor: grab;
     background: #ffffff;
-    box-shadow: 0 0 20px 2px var(--vp-c-text-inverse-3);
     border-radius: 4px;
+    transform: translate3d(0, 0, 0);
+    animation: img 0.1s steps(120);
   }
 
-  @mixin fixed-button() {
-    position: fixed;
-    z-index: $v-z-index;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    background: var(--vp-c-text-inverse-2);
-    box-shadow: 0 0 6px 0 var(--vp-c-text-inverse-3);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--vp-c-text-2);
-    transition: all 0.15s ease-in-out;
-    backdrop-filter: blur(10px);
-
-    &:hover {
-      background: var(--vp-c-text-inverse-1);
-      color: var(--vp-c-text-1);
+  @keyframes img {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.0);
     }
-
-    :deep(svg) {
-      height: 18px;
+    50% {
+      opacity: 0.6;
+      transform: translate3d(0, 0, 0) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1.0);
     }
   }
 
-  &__close-btn {
-    @include fixed-button();
-
-    top: 15px;
-    right: 20px;
-  }
-
-  &__arrow-left {
-    @include fixed-button();
-
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-  }
-
-  &__arrow-right {
-    @include fixed-button();
-
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-  }
+  //@mixin fixed-button() {}
+  //@include fixed-button();
 
   &__toolbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    min-width: 460px;
     height: 50px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 16px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
-    background: var(--vp-c-text-inverse-2);
-    box-shadow: 0 0 6px 0 var(--vp-c-text-inverse-3);
-    color: var(--vp-c-text-2);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 
-    button {
-      display: inline-flex;
-      width: 24px;
-      height: 24px;
+    &-left,
+    &-middle,
+    &-right, {
+      height: 100%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-      outline: 0;
-      padding: 0;
-    }
+      gap: 8px;
 
-    .#{$doc-prefix}-image-preview__index {
-      display: inline-flex;
-      width: 100px;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        outline: 0;
+        font-size: 16px;
 
-    & > * {
-      transition: color 0.15s ease-in;
+        &:has(svg) {
+          width: 36px;
+          height: 36px;
+          padding: 6px;
+          border-radius: 30%;
+          transition: all 0.15s ease;
 
-      &:hover {
-        color: var(--vp-c-text-1);
+          &:hover {
+            background: rgba(66, 66, 66, 1);
+            color: rgba(255, 255, 255, 1);
+          }
+        }
       }
     }
   }
@@ -252,8 +238,23 @@ $v-z-index: 1080;
   right: 0;
   bottom: 0;
   z-index: calc($v-z-index - 1);
-  //background: var(--vp-c-text-3);
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
+  animation: bg 0.15s ease-in-out;
+  transform: translate3d(0, 0, 0);
+}
+@keyframes bg {
+  0% {
+    backdrop-filter: blur(0px);
+    background: rgba(0, 0, 0, 0);
+  }
+  50% {
+    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 </style>

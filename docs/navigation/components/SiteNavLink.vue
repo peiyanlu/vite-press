@@ -15,8 +15,8 @@ const formatTitle = computed(() => props.title ? slugify(props.title) : '')
 
 const svg = computed(() => typeof props.icon !== 'string' ? props.icon.svg : '')
 
-const imgError = ref<boolean>(false)
-const handlerImgError = ()=> imgError.value = true
+const imgLoad = ref<boolean>(false)
+const handlerImgLoad = ()=> imgLoad.value = true
 
 const setDisplayName = (nameValue: string, widthValue: number) => {
   const nameDisplay = ref<string>('')
@@ -57,8 +57,8 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
       <div class="box-header">
         <div v-if="svg" class="icon" v-html="svg" />
         <div v-else class="icon">
-          <img v-if="!imgError" :src="icon" :alt="title" @error="handlerImgError" />
-          <div v-else v-html="setDisplayName(title, 24).value" />
+          <div v-if="!imgLoad && !icon" v-html="setDisplayName(title, 24).value" />
+          <img v-else :src="icon" :alt="title" @load="handlerImgLoad" />
         </div>
 
         <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
