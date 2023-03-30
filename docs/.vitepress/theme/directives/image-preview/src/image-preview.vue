@@ -120,6 +120,7 @@ watch(()=>transform?.zoom,(value)=>{
         <button @click="onRotate" v-html="icons.rotate" />
         <button @click="onZoomOriginal" v-html="icons.best" />
         <button @click="onZoomBest" v-html="icons.reset" />
+        <button @click="onZoomBest" v-html="icons.download" />
       </div>
 
       <div :class="ns.e('toolbar-right')">
