@@ -97,9 +97,7 @@ onMounted(() => {
 onUnmounted(() => {
   unKeyBoard()
 })
-watch(()=>transform?.zoom,(value)=>{
-  console.log(value)
-})
+const span = `<span>78</span>`
 </script>
 
 <template>
@@ -121,6 +119,7 @@ watch(()=>transform?.zoom,(value)=>{
         <button @click="onZoomOriginal" v-html="icons.best" />
         <button @click="onZoomBest" v-html="icons.reset" />
         <button @click="onZoomBest" v-html="icons.download" />
+        <button @click="onZoomBest" v-html="span" />
       </div>
 
       <div :class="ns.e('toolbar-right')">
@@ -206,6 +205,8 @@ $v-z-index: 1080;
       gap: 8px;
 
       button {
+        width: 36px;
+        height: 36px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
