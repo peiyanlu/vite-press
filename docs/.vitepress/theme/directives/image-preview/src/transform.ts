@@ -3,16 +3,17 @@ interface Options {
   transformY?: number;
   zoom?: number;
   rotate?: number;
+  callback: (...args: unknown[]) => void
 }
 
 export default class Transform {
-  private el: HTMLImageElement
+  private readonly el: HTMLImageElement
   
   private oTransformX = 0
   private oTransformY = 0
   private transformX: number
   private transformY: number
-  public zoom: number
+  private zoom: number
   private rotate: number
   
   private STEP = 0.25
@@ -22,13 +23,16 @@ export default class Transform {
   private TRANSFORM_Y = 0
   private ZOOM = 1
   private ROTATE = 0
+  private readonly callback?: (...args: unknown[]) => void
   
-  constructor(el: HTMLImageElement, options: Options = {}) {
+  constructor(el: HTMLImageElement, options?: Options) {
     this.el = el
-    this.transformX = options.transformX || this.TRANSFORM_X
-    this.transformY = options.transformY || this.TRANSFORM_Y
-    this.zoom = options.zoom || this.ZOOM
-    this.rotate = options.rotate || this.ROTATE
+    
+    this.transformX = options?.transformX || this.TRANSFORM_X
+    this.transformY = options?.transformY || this.TRANSFORM_Y
+    this.zoom = options?.zoom || this.ZOOM
+    this.rotate = options?.rotate || this.ROTATE
+    this.callback = options?.callback
     
     this.handleDefaultDraggable()
     this.onDraggable()
@@ -107,11 +111,13 @@ export default class Transform {
   setZoomIn(step = this.STEP): void {
     this.zoom = Math.min(this.MAX_SCALE, this.zoom + step)
     this.setPosition()
+    this.callback?.(this.zoom)
   }
   
   setZoomOut(step = this.STEP): void {
     this.zoom = Math.max(this.MIN_SCALE, this.zoom - step)
     this.setPosition()
+    this.callback?.(this.zoom)
   }
   
   setZoomBest(): void {
@@ -120,12 +126,31 @@ export default class Transform {
     const { clientWidth: w, clientHeight: h } = this.el
     const { clientWidth: W = 0, clientHeight: H = 0 } = this.el.parentElement || {}
     
-    const scale = isEven
-      ? Math.min(W, H) / Math.min(w, h)
-      : Math.min(W, H) / Math.max(w, h)
+    const minmax = (...arg: number[]) => ([ Math.min(...arg), Math.max(...arg) ])
     
+    const [ minE, maxE ] = minmax(w, h)
+    const [ minP, maxP ] = minmax(W - 32, H - 32)
+    
+    const ratioP = +(W / H).toFixed(4)
+    const ratioE = +(isEven ? w / h : h / w).toFixed(4)
+    
+    const scale = (ratioP > 1) && (ratioE > 1)
+      ? ratioP > ratioE
+        ? minP / minE
+        : maxP / maxE
+      : ratioP < ratioE
+        ? ratioE > 1
+          ? 1
+          : minP / minE
+        : ratioP > 1
+          ? minP / maxE
+          : minP / minE
+    
+    this.transformX = this.TRANSFORM_X
+    this.transformY = this.TRANSFORM_Y
     this.zoom = Math.min(this.MAX_SCALE, scale)
     this.setPosition()
+    this.callback?.(this.zoom)
   }
   
   setZoomOriginal(): void {
@@ -144,6 +169,7 @@ export default class Transform {
     this.oTransformX = this.transformX
     this.oTransformY = this.transformY
     this.zoom = this.ZOOM
+    this.callback?.(this.zoom)
   }
   
   setPosition(): void {

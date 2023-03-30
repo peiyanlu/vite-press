@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import vFileDownload from '@theme/directives/file-download'
 import { useNamespace } from '@theme/hooks/useNamespace'
-import { computed, onMounted, onUnmounted, PropType, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, PropType, reactive, ref, watch } from 'vue'
 import icons from './image-preview-icons'
 import ImagePreviewService from './image-preview-service'
 import Transform from './transform'
@@ -30,13 +31,18 @@ const ns = useNamespace('image-preview')
 let transform: Transform | null = null
 const index = ref(0)
 const url = computed(() => props.previewUrlList[index.value])
+const zoom = ref(1)
 
 const imageStyle = props.zIndex ? { zIndex: props.zIndex } : {}
 const bgStyle = props.backDropZIndex ? { zIndex: props.backDropZIndex } : {}
 
 const initTransform = () => {
   const imageElement: HTMLImageElement = document.querySelector(`.${ ns.e('main-image') }`)!
-  transform = new Transform(imageElement)
+  transform = new Transform(imageElement,{
+    callback: args => {
+      zoom.value = args as number
+    }
+  })
 }
 
 const initIndex = () => {
@@ -53,9 +59,7 @@ const onNext = () => {
   transform?.setZoomOriginal()
 }
 
-const onClose = () => {
-  ImagePreviewService.close()
-}
+const onClose = () => ImagePreviewService.close()
 
 const onZoomIn = () => transform?.setZoomIn()
 
@@ -68,9 +72,7 @@ const onZoomBest = () => transform?.setZoomBest()
 const onZoomOriginal = () => transform?.setZoomOriginal()
 
 const onKeyDown = (event: KeyboardEvent) => {
-  if (event.defaultPrevented) {
-    return
-  }
+  if (event.defaultPrevented) return
 
   if (event.code === 'Escape') {
     onClose()
@@ -81,13 +83,9 @@ const onKeyDown = (event: KeyboardEvent) => {
   }
 }
 
-const initKeyboard = () => {
-  document.addEventListener('keydown', onKeyDown, false)
-}
+const initKeyboard = () => document.addEventListener('keydown', onKeyDown, false)
 
-const unKeyBoard = () => {
-  document.removeEventListener('keydown', onKeyDown, false)
-}
+const unKeyBoard = () => document.removeEventListener('keydown', onKeyDown, false)
 
 onMounted(() => {
   initIndex()
@@ -97,7 +95,7 @@ onMounted(() => {
 onUnmounted(() => {
   unKeyBoard()
 })
-const span = `<span>78</span>`
+
 </script>
 
 <template>
@@ -107,19 +105,19 @@ const span = `<span>78</span>`
     <!--{/* 按钮区 */}-->
     <div :class="ns.e('toolbar')">
       <div :class="ns.e('toolbar-left')">
-        <button @click="onPrev" v-html="icons.left" />
-        <button>{{ index + 1 }} / {{ props.previewUrlList.length }}</button>
-        <button @click="onNext" v-html="icons.right" />
+        <button :disabled="index === 0" @click="onPrev" v-html="icons.left" />
+        <button><span>{{ index + 1 }}/{{ props.previewUrlList.length }}</span></button>
+        <button :disabled="index === props.previewUrlList?.length - 1" @click="onNext" v-html="icons.right" />
       </div>
 
       <div :class="ns.e('toolbar-middle')">
-        <button @click="onZoomIn" v-html="icons.zoomIn" />
-        <button @click="onZoomOut" v-html="icons.zoomOut" />
+        <button :disabled="zoom >= 2.5" @click="onZoomIn" v-html="icons.zoomIn" />
+        <button><span>{{ Math.round(zoom * 100) }}%</span></button>
+        <button :disabled="zoom <= 0.2" @click="onZoomOut" v-html="icons.zoomOut" />
         <button @click="onRotate" v-html="icons.rotate" />
         <button @click="onZoomOriginal" v-html="icons.best" />
         <button @click="onZoomBest" v-html="icons.reset" />
-        <button @click="onZoomBest" v-html="icons.download" />
-        <button @click="onZoomBest" v-html="span" />
+        <button v-file-download="{src: url}" v-html="icons.download" />
       </div>
 
       <div :class="ns.e('toolbar-right')">
@@ -178,13 +176,12 @@ $v-z-index: 1080;
   //@include fixed-button();
 
   &__toolbar {
-    min-width: 460px;
     height: 50px;
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0 16px;
+    padding: 0 12px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -205,7 +202,7 @@ $v-z-index: 1080;
       gap: 8px;
 
       button {
-        width: 36px;
+        min-width: 36px;
         height: 36px;
         display: inline-flex;
         align-items: center;
@@ -214,19 +211,39 @@ $v-z-index: 1080;
         background-color: transparent;
         cursor: pointer;
         outline: 0;
-        font-size: 16px;
+        font-size: 14px;
 
         &:has(svg) {
-          width: 36px;
-          height: 36px;
-          padding: 6px;
           border-radius: 30%;
           transition: all 0.15s ease;
 
-          &:hover {
+          &:hover:not(:disabled) {
             background: rgba(66, 66, 66, 1);
             color: rgba(255, 255, 255, 1);
           }
+        }
+
+        &:has(span) {
+          display: inline-flex;
+          min-width: 48px;
+          margin-left: -8px;
+          margin-right: -8px;
+          text-align: center;
+          white-space: nowrap;
+          cursor: auto;
+        }
+
+        :deep(svg) {
+          width: 36px;
+          height: 36px;
+          padding: 6px;
+          aspect-ratio: 1 / 1;
+          border-radius: 30%;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          filter: brightness(0.5);
         }
       }
     }
@@ -245,6 +262,7 @@ $v-z-index: 1080;
   animation: bg 0.15s ease-in-out;
   transform: translate3d(0, 0, 0);
 }
+
 @keyframes bg {
   0% {
     backdrop-filter: blur(0px);
@@ -257,6 +275,41 @@ $v-z-index: 1080;
   100% {
     backdrop-filter: blur(5px);
     background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+@media (max-width: 750px) {
+  .#{$doc-prefix}-image-preview{
+    &__toolbar {
+      height: 40px;
+      padding: 0 8px;
+      border-radius: 8px;
+      gap: 4px;
+
+      &-left,
+      &-middle,
+      &-right, {
+        gap: 4px;
+
+        button {
+          min-width: 28px;
+          height: 28px;
+          font-size: 12px;
+
+          &:has(span) {
+            min-width: 38px;
+            margin-left: -6px;
+            margin-right: -6px;
+          }
+
+          :deep(svg) {
+            width: 28px;
+            height: 28px;
+            padding: 5px;
+          }
+        }
+      }
+    }
   }
 }
 </style>
