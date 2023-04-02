@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import vFileDownload from '@theme/directives/file-download'
 import { useNamespace } from '@theme/hooks/useNamespace'
-import { computed, onMounted, onUnmounted, PropType, reactive, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, PropType, ref } from 'vue'
 import icons from './image-preview-icons'
 import ImagePreviewService from './image-preview-service'
 import Transform from './transform'
@@ -38,10 +38,10 @@ const bgStyle = props.backDropZIndex ? { zIndex: props.backDropZIndex } : {}
 
 const initTransform = () => {
   const imageElement: HTMLImageElement = document.querySelector(`.${ ns.e('main-image') }`)!
-  transform = new Transform(imageElement,{
+  transform = new Transform(imageElement, {
     callback: args => {
       zoom.value = args as number
-    }
+    },
   })
 }
 
@@ -87,6 +87,15 @@ const initKeyboard = () => document.addEventListener('keydown', onKeyDown, false
 
 const unKeyBoard = () => document.removeEventListener('keydown', onKeyDown, false)
 
+const handleSwitch = (i: number) => {
+  index.value = i
+}
+
+const showThumbnail = ref(false)
+const handleModule = () => {
+  showThumbnail.value = !showThumbnail.value
+}
+
 onMounted(() => {
   initIndex()
   initTransform()
@@ -95,7 +104,6 @@ onMounted(() => {
 onUnmounted(() => {
   unKeyBoard()
 })
-
 </script>
 
 <template>
@@ -108,6 +116,7 @@ onUnmounted(() => {
         <button :disabled="index === 0" @click="onPrev" v-html="icons.left" />
         <button><span>{{ index + 1 }}/{{ props.previewUrlList.length }}</span></button>
         <button :disabled="index === props.previewUrlList?.length - 1" @click="onNext" v-html="icons.right" />
+        <button v-if="props.previewUrlList?.length > 2" @click="handleModule"><i v-html="icons.modular" /></button>
       </div>
 
       <div :class="ns.e('toolbar-middle')">
@@ -124,6 +133,23 @@ onUnmounted(() => {
         <button @click="onClose" v-html="icons.close" />
       </div>
     </div>
+    <!--{/* 缩略图 */}-->
+    <Transition name="thumbnail">
+      <div
+        v-if="showThumbnail"
+        :class="ns.e('thumbnail')"
+      >
+        <template v-for="(item, i) of props.previewUrlList" :key="item">
+          <div
+            :class="[ns.e('thumbnail-item'),  i === index ?'active' : '']"
+            @click="handleSwitch(i)"
+          >
+            <img :src="item" alt="">
+            <span>{{ i + 1 }}</span>
+          </div>
+        </template>
+      </div>
+    </Transition>
   </div>
   <div :class="ns.e('bg')" :style="bgStyle" />
 </template>
@@ -131,6 +157,7 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 $doc-prefix: VPDoc;
 $v-z-index: 1080;
+
 
 .#{$doc-prefix}-image-preview {
   position: fixed;
@@ -175,8 +202,9 @@ $v-z-index: 1080;
   //@mixin fixed-button() {}
   //@include fixed-button();
 
+  --toolbar-height: 42px;
   &__toolbar {
-    height: 50px;
+    height: var(--toolbar-height);
     position: fixed;
     top: 0;
     left: 50%;
@@ -186,24 +214,26 @@ $v-z-index: 1080;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 24px;
     background: rgba(0, 0, 0, 0.8);
     color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
+    z-index: 2;
 
     &-left,
     &-middle,
-    &-right, {
+    &-right {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
 
+      --size: 32px;
       button {
-        min-width: 36px;
-        height: 36px;
+        min-width: var(--size);
+        height: var(--size);
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -211,7 +241,7 @@ $v-z-index: 1080;
         background-color: transparent;
         cursor: pointer;
         outline: 0;
-        font-size: 14px;
+        font-size: 12px;
 
         &:has(svg) {
           border-radius: 30%;
@@ -228,14 +258,19 @@ $v-z-index: 1080;
           min-width: 48px;
           margin-left: -8px;
           margin-right: -8px;
-          text-align: center;
           white-space: nowrap;
           cursor: auto;
         }
 
+        &:has(i > svg) {
+          display: inline-flex;
+          width: var(--size);
+          margin-left: -10px;
+        }
+
         :deep(svg) {
-          width: 36px;
-          height: 36px;
+          width: var(--size);
+          height: var(--size);
           padding: 6px;
           aspect-ratio: 1 / 1;
           border-radius: 30%;
@@ -246,6 +281,90 @@ $v-z-index: 1080;
           filter: brightness(0.5);
         }
       }
+    }
+  }
+
+  &__thumbnail {
+    width: 100%;
+    min-height: 60px;
+    max-height: 124px;
+    overflow-y: overlay;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-rows: repeat(auto-fill, 60px);
+    grid-gap: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
+    transform: translate3d(0, 0, 0);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    &-item {
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      object-fit: fill;
+      display: block;
+      cursor: pointer;
+      background: white;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      span {
+        min-width: 20px;
+        display: block;
+        padding: 4px 4px;
+        font-size: 12px;
+        line-height: 1;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        text-shadow: 0 0 white;
+        border-radius: 0 10px 0 0;
+      }
+
+      &.active {
+        &:before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          background: var(--vp-c-green-dimm-2);
+          border: 3px solid var(--vp-c-green);
+        }
+      }
+    }
+  }
+
+  .thumbnail-enter-active {
+    animation: show 0.3s ease-in-out;
+  }
+
+  .thumbnail-leave-active {
+    animation: show 0.8s ease-in-out reverse;
+  }
+
+  @keyframes show {
+    0% {
+      bottom: -100%;
+    }
+    50% {
+      bottom: -50%;
+    }
+    100% {
+      bottom: 0;
     }
   }
 }
@@ -279,23 +398,20 @@ $v-z-index: 1080;
 }
 
 @media (max-width: 750px) {
-  .#{$doc-prefix}-image-preview{
+  .#{$doc-prefix}-image-preview {
+    --toolbar-height: 36px;
     &__toolbar {
-      height: 40px;
       padding: 0 8px;
       border-radius: 8px;
-      gap: 4px;
+      gap: 6px;
 
       &-left,
       &-middle,
       &-right, {
         gap: 4px;
 
+        --size: 28px;
         button {
-          min-width: 28px;
-          height: 28px;
-          font-size: 12px;
-
           &:has(span) {
             min-width: 38px;
             margin-left: -6px;
@@ -303,8 +419,6 @@ $v-z-index: 1080;
           }
 
           :deep(svg) {
-            width: 28px;
-            height: 28px;
             padding: 5px;
           }
         }

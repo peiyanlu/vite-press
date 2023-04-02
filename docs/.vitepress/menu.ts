@@ -71,8 +71,9 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       text: '依赖包管理',
       collapsed: false, // 折叠
       items: [
-        { text: '依赖包推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
-        { text: '依赖包打补丁', link: joinPath(MENU.FRONTEND, 'npm/package-patch') },
+        { text: 'NPM包推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
+        { text: 'NPM包打补丁', link: joinPath(MENU.FRONTEND, 'npm/package-patch') },
+        { text: 'NPM包版本规范', link: joinPath(MENU.FRONTEND, 'npm/npm-SemVer') },
         { text: '开源许可协议', link: joinPath(MENU.FRONTEND, 'npm/npm-license') },
       ],
     },
