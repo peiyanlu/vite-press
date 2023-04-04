@@ -158,7 +158,6 @@ onUnmounted(() => {
 $doc-prefix: VPDoc;
 $v-z-index: 1080;
 
-
 .#{$doc-prefix}-image-preview {
   position: fixed;
   left: 0;
@@ -209,8 +208,8 @@ $v-z-index: 1080;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0 12px;
-    border-radius: 12px;
+    padding: 0 8px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -253,7 +252,7 @@ $v-z-index: 1080;
           }
         }
 
-        &:has(span) {
+        &:has(span > svg) {
           display: inline-flex;
           min-width: 48px;
           margin-left: -8px;
@@ -381,7 +380,6 @@ $v-z-index: 1080;
   animation: bg 0.15s ease-in-out;
   transform: translate3d(0, 0, 0);
 }
-
 @keyframes bg {
   0% {
     backdrop-filter: blur(0px);
@@ -401,16 +399,16 @@ $v-z-index: 1080;
   .#{$doc-prefix}-image-preview {
     --toolbar-height: 36px;
     &__toolbar {
-      padding: 0 8px;
-      border-radius: 8px;
-      gap: 6px;
+      padding: 0 4px;
+      border-radius: 4px;
+      gap: 4px;
 
       &-left,
       &-middle,
       &-right, {
         gap: 4px;
 
-        --size: 28px;
+        --size: 26px;
         button {
           &:has(span) {
             min-width: 38px;
@@ -418,8 +416,12 @@ $v-z-index: 1080;
             margin-right: -6px;
           }
 
+          &:has(i > svg) {
+            margin-left: -8px;
+          }
+
           :deep(svg) {
-            padding: 5px;
+            padding: 4px;
           }
         }
       }

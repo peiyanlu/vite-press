@@ -1,12 +1,6 @@
 import { Directive } from 'vue'
 import ImagePreviewService from './image-preview-service'
-import { BindingValue, ImagePreviewProps } from './image-preview-types'
-
-interface PreviewHTMLElement extends HTMLElement {
-  zIndex?: number;
-  backDropZIndex?: number;
-  scopeSelector?: string;
-}
+import { PreviewHTMLElement, BindingValue, ImagePreviewProps } from './image-preview-types'
 
 const mountedPreviewImages = (props: ImagePreviewProps): void => {
   ImagePreviewService.open({

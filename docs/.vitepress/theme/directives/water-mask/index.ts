@@ -1,34 +1,6 @@
-import { nextTick, ObjectDirective } from 'vue'
+import { ObjectDirective } from 'vue'
+import { ImgOptions, TextOptions, WaterMaskOptions } from './water-mask-types'
 
-interface BaseOptions {
-  maxWidth: number// 水平时最大宽度
-  minWidth: number // 水平时最小宽度
-  deg: number // 旋转的角度 0至-90之间
-  marginRight: number// 每个水印的右间隔
-  marginBottom: number// 每个水印的下间隔
-  left: number// 整体背景距左边的距离
-  top: number // 整体背景距上边的距离
-  opacity: number  // 文字透明度
-  position: 'fixed' | 'absolute'// 容器定位方式（值为absolute时，需要指定一个父元素非static定位）
-  drawType: 'text' | 'img' // 使用文字还是图片
-}
-
-interface TextOptions extends BaseOptions {
-  drawType: 'text'
-  textArr: Array<string>  // 需要展示的文字，多行就多个元素【必填】
-  font: string  // 字体样式
-  fillStyle: string  // 描边样式
-  lineHeight: number// 文字行高
-}
-
-interface ImgOptions extends BaseOptions {
-  drawType: 'img'
-  src: string
-}
-
-export type WaterMaskOptions = TextOptions | ImgOptions
-
-// 将绘制好的canvas转成图片
 const insertToDocument = (el: HTMLElement, imgData: string, settings: WaterMaskOptions) => {
   const id = 'vite-press__water-mask'
   
@@ -59,7 +31,11 @@ const insertToDocument = (el: HTMLElement, imgData: string, settings: WaterMaskO
   return div
 }
 
-const observerWaterMaskDom = (node: Node, style: string | null)=>{
+const observerWaterMaskDom = (el: HTMLElement, dom: HTMLElement) => {
+  const getStyle = (dom: HTMLElement): string | null => dom.getAttribute('style')
+  const elStyle = getStyle(el)
+  const style = getStyle(dom)
+  
   // 禁止修改水印
   const observer = new MutationObserver((mutations: MutationRecord[]) => {
     mutations.forEach(mutation => {
@@ -70,8 +46,19 @@ const observerWaterMaskDom = (node: Node, style: string | null)=>{
           break
         case 'attributes':
           const target = mutation.target as HTMLElement
-          if (target.getAttribute('style') !== style) {
-            ;(mutation.target as HTMLElement).setAttribute('style', style ?? '')
+          if (mutation.target.isSameNode(el)) {
+            if (getStyle(target) !== elStyle) {
+              if (!elStyle) {
+                target.removeAttribute('style')
+              } else {
+                target.setAttribute('style', elStyle)
+              }
+            }
+          }
+          if (mutation.target.isSameNode(dom)){
+            if (getStyle(target) !== style) {
+              target.setAttribute('style', style ?? '')
+            }
           }
           break
         default:
@@ -80,12 +67,40 @@ const observerWaterMaskDom = (node: Node, style: string | null)=>{
     })
   })
   
-  observer.observe(node, {
+  observer.observe(el, {
     attributes: true,
     childList: true,
     subtree: true,
     attributeOldValue: true,
   })
+}
+
+const createCanvas = () => {
+  const canvasElement = document.createElement('canvas')
+  canvasElement.style.display = 'none'
+  document.body.appendChild(canvasElement)
+  return canvasElement
+}
+const updateCanvas = (canvas: HTMLCanvasElement, width: number, height: number, settings: WaterMaskOptions) => {
+  const { deg, marginRight, marginBottom } = settings
+  
+  const degToPI = (Math.PI * deg) / 180
+  const absDeg = Math.abs(degToPI)
+  // 根据旋转后的矩形计算最小画布的宽高
+  const hSinDeg = height * Math.sin(absDeg)
+  const hCosDeg = height * Math.cos(absDeg)
+  const wSinDeg = width * Math.sin(absDeg)
+  const wCosDeg = width * Math.cos(absDeg)
+  
+  canvas.width = Math.round(hSinDeg + wCosDeg + marginRight)
+  canvas.height = Math.round(wSinDeg + hCosDeg + marginBottom)
+  
+  // 移动并旋转画布
+  const ctx = canvas.getContext('2d')
+  ctx?.translate(0, wSinDeg)
+  ctx?.rotate(degToPI)
+  
+  return canvas
 }
 
 const drawText = async (context2D: CanvasRenderingContext2D, settings: TextOptions) => {
@@ -195,13 +210,16 @@ const drawImage = async (context2D: CanvasRenderingContext2D, settings: ImgOptio
   const { minWidth, maxWidth, src } = settings
   
   const image = await createImg(src)
-  const { clientWidth, clientHeight } = image
-  const scale = clientWidth / clientHeight
-  image.width = Math.max(Math.min(clientWidth, maxWidth), minWidth)
-  image.height = image.width * scale
+  const scale = image.width / image.height
+  
+  const width = Math.max(Math.min(image.width, maxWidth), minWidth)
+  const height = Math.round(width / scale)
+  
+  image.width = width
+  image.height = height
   
   const execute = () => {
-    context2D.drawImage(image, 0, 0)
+    context2D.drawImage(image, 0, 0, image.width, image.height)
   }
   
   return {
@@ -211,6 +229,11 @@ const drawImage = async (context2D: CanvasRenderingContext2D, settings: ImgOptio
   }
 }
 
+const canvas2img = (canvas: HTMLCanvasElement) => {
+  const img = canvas.toDataURL('image/png')
+  canvas.parentNode?.removeChild(canvas)
+  return img
+}
 const createWaterMaskImg = async (canvas: HTMLCanvasElement, settings: WaterMaskOptions) => {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
@@ -225,48 +248,14 @@ const createWaterMaskImg = async (canvas: HTMLCanvasElement, settings: WaterMask
   
   return canvas2img(canvasNew)
 }
-const canvas2img = (canvas: HTMLCanvasElement) => {
-  const img = canvas.toDataURL('image/png')
-  
-  canvas.parentNode?.removeChild(canvas)
-  
-  return img
-}
-const createCanvas = () => {
-  const canvasElement = document.createElement('canvas')
-  canvasElement.style.display = 'none'
-  document.body.appendChild(canvasElement)
-  return canvasElement
-}
-const updateCanvas = (canvas: HTMLCanvasElement, width: number, height: number, settings: WaterMaskOptions) => {
-  const { deg, marginRight, marginBottom } = settings
-  
-  const degToPI = (Math.PI * deg) / 180
-  const absDeg = Math.abs(degToPI)
-  // 根据旋转后的矩形计算最小画布的宽高
-  const hSinDeg = height * Math.sin(absDeg)
-  const hCosDeg = height * Math.cos(absDeg)
-  const wSinDeg = width * Math.sin(absDeg)
-  const wCosDeg = width * Math.cos(absDeg)
-  
-  canvas.width = Math.round(hSinDeg + wCosDeg + marginRight)
-  canvas.height = Math.round(wSinDeg + hCosDeg + marginBottom)
-  
-  // 移动并旋转画布
-  const ctx = canvas.getContext('2d')
-  ctx?.translate(0, wSinDeg)
-  ctx?.rotate(degToPI)
-  
-  return canvas
-}
 
 const defaultSettings: WaterMaskOptions = {
   textArr: [ 'vite-press', '开发笔记' ],
   font: '200 12px Helvetica',
   fillStyle: 'rgba(170,170,170,0.5)',
+  lineHeight: 16,
   maxWidth: 200,
   minWidth: 120,
-  lineHeight: 16,
   deg: -45,
   marginRight: 120,
   marginBottom: 40,
@@ -275,16 +264,33 @@ const defaultSettings: WaterMaskOptions = {
   opacity: .75,
   position: 'absolute',
   drawType: 'text',
+  // drawType: 'img',
+  // src: 'http://10.214.110.131:5173/vite-press/logo.svg',
+}
+
+const defaultSetting: WaterMaskOptions = {
+  maxWidth: 120,
+  minWidth: 80,
+  deg: -45,
+  marginRight: 40,
+  marginBottom: 40,
+  left: 20,
+  top: 20,
+  opacity: .25,
+  position: 'absolute',
+  drawType: 'img',
+  src: 'http://localhost:5174/vite-press/logo.text.svg',
 }
 
 const WaterMask: ObjectDirective<HTMLElement, WaterMaskOptions> = {
   async beforeMount(el: HTMLElement, { value }) {
     const settings: WaterMaskOptions = { ...defaultSettings, ...value }
+    // const settings: WaterMaskOptions = { ...defaultSetting, ...value }
     const canvas = createCanvas()
     const img = await createWaterMaskImg(canvas, settings)
     const dom = insertToDocument(el, img || '', settings) // 转化图像
     
-    observerWaterMaskDom(el, dom.getAttribute('style'))
+    observerWaterMaskDom(el, dom)
   },
 }
 export default WaterMask

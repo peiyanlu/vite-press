@@ -21,6 +21,12 @@ const imagePreviewProps = {
   },
 } as const;
 
+export interface PreviewHTMLElement extends HTMLElement {
+  zIndex?: number;
+  backDropZIndex?: number;
+  scopeSelector?: string;
+}
+
 export interface BindingValue {
   custom?: Record<string, unknown>;
   disableDefault?: boolean;

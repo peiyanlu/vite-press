@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ImagePreviewDirective } from '@theme/directives/image-preview'
 const vImagePreview = ImagePreviewDirective
-import WaterMask from '@theme/directives/water-mask'
-const vWaterMask = WaterMask
 
 const props = defineProps<{
   src: string
@@ -13,7 +11,6 @@ const props = defineProps<{
   <div class="image-preview" v-image-preview="{scopeSelector: '.VPDoc .main'}">
     <img :src="src" alt=""  />
   </div>
-  <div class="image-water-mask" v-water-mask />
 </template>
 
 <style lang="scss" scoped>
@@ -24,9 +21,5 @@ const props = defineProps<{
   img {
     cursor: pointer;
   }
-}
-.image-water-mask {
-  display: contents;
-  position: relative;
 }
 </style>
