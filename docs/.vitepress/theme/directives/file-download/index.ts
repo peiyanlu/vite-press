@@ -8,8 +8,8 @@ interface BindingValue {
 const download = ({ src, filename }: BindingValue) => {
   const a = document.createElement('a')
   a.download = filename ?? `vite-press_${ Date.now() }.${ src.split('.').pop() }`
-  a.setAttribute('href',src)
-  a.setAttribute('style','display: none;')
+  a.setAttribute('href', src)
+  a.setAttribute('style', 'display: none;')
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)
@@ -17,10 +17,7 @@ const download = ({ src, filename }: BindingValue) => {
 
 const vFileDownload: Directive<HTMLElement, BindingValue> = {
   mounted(el, { value }): void {
-    el.onclick = () => download(value)
-  },
-  beforeUnmount(el): void {
-    el.onclick = () => {}
+    el.addEventListener('click', () => download(value))
   },
 }
 

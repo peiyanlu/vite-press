@@ -72,8 +72,10 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       collapsed: false, // 折叠
       items: [
         { text: 'NPM包推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
-        { text: 'NPM包打补丁', link: joinPath(MENU.FRONTEND, 'npm/package-patch') },
         { text: 'NPM包版本规范', link: joinPath(MENU.FRONTEND, 'npm/npm-SemVer') },
+        { text: 'NPM包打补丁', link: joinPath(MENU.FRONTEND, 'npm/npm-package-patch') },
+        { text: 'NPM包package', link: joinPath(MENU.FRONTEND, 'npm/npm-package-json') },
+        { text: 'NPM包exports', link: joinPath(MENU.FRONTEND, 'npm/npm-package-exports') },
         { text: '开源许可协议', link: joinPath(MENU.FRONTEND, 'npm/npm-license') },
       ],
     },

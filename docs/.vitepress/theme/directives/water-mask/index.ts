@@ -42,7 +42,9 @@ const observerWaterMaskDom = (el: HTMLElement, dom: HTMLElement) => {
       switch (mutation.type) {
         case 'childList':
           // 删除节点，直接从删除的节点数组中添加回来
-          mutation.removedNodes.forEach(node => mutation.target?.appendChild(node))
+          Array.from(mutation.removedNodes)
+            .filter(node=> node.isSameNode(dom))
+            .forEach(node => mutation.target?.appendChild(node))
           break
         case 'attributes':
           const target = mutation.target as HTMLElement

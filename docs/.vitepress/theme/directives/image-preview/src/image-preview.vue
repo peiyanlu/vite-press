@@ -107,7 +107,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="ns.b()" :style="imageStyle">
+  <div :class="ns.b()" :style="imageStyle" >
     <!--{/* 预览图 */}-->
     <img :class="ns.e('main-image')" :src="url" alt="" />
     <!--{/* 按钮区 */}-->
@@ -182,7 +182,6 @@ $v-z-index: 1080;
     transform: translate3d(0, 0, 0);
     animation: img 0.1s steps(120);
   }
-
   @keyframes img {
     0% {
       opacity: 0;
@@ -244,6 +243,7 @@ $v-z-index: 1080;
 
         &:has(svg) {
           border-radius: 30%;
+          overflow: hidden;
           transition: all 0.15s ease;
 
           &:hover:not(:disabled) {
@@ -252,7 +252,7 @@ $v-z-index: 1080;
           }
         }
 
-        &:has(span > svg) {
+        &:has(span) {
           display: inline-flex;
           min-width: 48px;
           margin-left: -8px;
