@@ -1,6 +1,6 @@
 # VitePress 搭建静态网站
 
-## 1、创建新项目
+## 创建新项目
 
 ```shell
 mkdir vitepress-starter && cd vitepress-starter
@@ -12,7 +12,7 @@ mkdir vitepress-starter && cd vitepress-starter
 yarn init
 ```
 
-## 2、安装 VitePress
+## 安装 VitePress
 
 ```shell
 yarn add --dev vitepress
@@ -24,7 +24,7 @@ yarn add --dev vitepress
 mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```
 
-## 3、启动开发环境
+## 启动开发环境
 
 > 添加脚本到 package.json
 
@@ -42,7 +42,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 
 > 执行 `yarn docs:dev` ，然后就可以看到最简单的页面效果
 
-## 4、添加更多页面
+## 添加更多页面
 
 ```markdown{3}
 .
@@ -95,7 +95,7 @@ features:
 
 > 现在，已经有了一个基本的 VitePress 文档站点。但我们无法在网站上导航，因为它缺少了导航栏和侧边栏菜单。要启用这些导航，我们必须向站点添加一些配置
 
-## 5、添加网站配置
+## 添加网站配置
 
 > docs 文件下创建 .vitepress 文件夹放置页面配置
 
@@ -135,7 +135,7 @@ features:
 └─ package.json
 ```
 
-### 5.1、基础配置
+### 基础配置
 
 ```ts
 export default {
@@ -167,12 +167,11 @@ export default {
 
 **注意事项：**
 
-1、`titleTemplate`：当 `titleTemplate` 的内容与 `title` 的内容相同时，不出现后缀;
+1. `titleTemplate`：当 `titleTemplate` 的内容与 `title` 的内容相同时，不出现后缀;
 
-2、`base`：当网站部署在 `GitHub Pages` 或 `Gitee Pages` 时会存在子路径，例如：`https://username.github.io/repo/`
-，需要设置 `base` 为 `/repo/`;
+2. `base`：当网站部署在 `GitHub Pages` 或 `Gitee Pages` 时会存在子路径，例如：`https://username.github.io/repo/` ，需要设置 `base` 为 `/repo/`;
 
-3、`head`：引入的公共资源不会自动在路径拼接 `base` 内容，需自行处理，例如：
+3. `head`：引入的公共资源不会自动在路径拼接 `base` 内容，需自行处理，例如：
 
 ```ts
 const BASE_URL = '/vite-press/'
@@ -186,7 +185,7 @@ const getHead = () => {
 }
 ```
 
-### 5.2、主题配置
+### 主题配置
 
 ```ts
 export default {
@@ -218,7 +217,7 @@ export default {
       // You can also add custom icons by passing SVG as string:
       {
         icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Dribbble</title><path d="M12...6.38z"/></svg>'
+          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12...6.38z"/></svg>'
         },
         link: '...'
       }
@@ -229,10 +228,9 @@ export default {
 
 **注意事项：**
 
-1、link：页面路由，支持外链；'/guid/' 表示加载 `guid/index.md`，'/guid' 表示加载 `guid.md`
+1. **link**：页面路由，支持外链；`/guid/` 表示加载 `guid/index.md`，`/guid` 表示加载 `guid.md`
 
-2、sidebar：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 key ，该路径需要显示的侧边栏数组作为
-value，例如：
+2. **sidebar**：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 `key` ，该路径需要显示的侧边栏数组作为 `value`，例如：
 
 ```ts
 const getSildBar = () => ({
@@ -260,11 +258,11 @@ const getSildBar = () => ({
 })
 ```
 
-## 6、网站创建完成
+## 网站创建完成
 
 > 现在，一个完整的 VitePress 站点已经搭建完成，只需要逐步完善博客内容即可
 
-## 7、网站部署
+## 网站部署
 
 因为选择的仓库是 `Gitee` ，所以使用 `Gitee pages` 部署:
 
@@ -299,19 +297,19 @@ rm -rf docs/.vitepress/dist
 exec /bin/bash
 ```
 
-1、通过路径：项目仓库 -> 服务 -> `Gitee pages`，进入部署页面
+1. 通过路径：项目仓库 -> 服务 -> `Gitee pages`，进入部署页面
 
-2、按照要求进行实名认证
+2. 按照要求进行实名认证
 
-3、选择部署额分支
+3. 选择部署额分支
 
-4、选择部署的目录，如果整个分支就是打包后的内容，空着即可；否则，选择项目打包后的目录
+4. 选择部署的目录，如果整个分支就是打包后的内容，空着即可；否则，选择项目打包后的目录
 
-5、勾选强制使用 `https`
+5. 勾选强制使用 `https`
 
-6、点击 `启动` ，稍等片刻即可部署完成；后续分支内容更新后，点击 `更新`
+6. 点击 `启动` ，稍等片刻即可部署完成；后续分支内容更新后，点击 `更新`
 
-## 8、优化部署
+## 优化部署
 
 `Gitee` 相比于 `GitHub` 在国内可以访问更加快速，但是在功能上还是有些差别，比如 `Gitee Pages` 不能自动更新，每次内容推送后都需要手动执行，非常麻烦；
 经过一番思考，最终还是选择使用 `GitHub Actions` 辅助完成自动更新操作，`GitHub` 中有相对丰富的资源可以利用；
@@ -323,7 +321,7 @@ ___
 
 接下来开始实施：
 
-### 8.1、在 `GitHub` 新建仓库导入 `Gitee` 仓库
+### 在 `GitHub` 新建仓库导入 `Gitee` 仓库
 
 > 既然在 GitHub 建了仓库，那么也顺道将站点部署到 `GitHub Pages`
 
@@ -339,11 +337,11 @@ ___
 **actions**
 :::
 
-### 8.2、同步 Gitee 仓库到 GitHub
+### 同步 Gitee 仓库到 GitHub
 
 通过路径：`仓库 -> 管理 -> 仓库镜像管理`，添加新的镜像，选择镜像方向为 `push`，将仓库同步到 `GitHub`
 
-### 8.3、更新 `GitHub` 的 `gh-pages` 分支
+### 更新 `GitHub` 的 `gh-pages` 分支
 
 > `.github/workflows` 文件夹下的 `.yml` 文件会自动执行；创建 `deploy.yml` 文件
 
@@ -391,7 +389,7 @@ jobs:
 
 [获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
 
-### 8.4、同步 gh-pages 分支到 Gitee
+### 同步 gh-pages 分支到 Gitee
 
 > 在 [github.com/marketplace](https://github.com/marketplace) 可以找合适的第三方 actions 来辅助完成操作
 
@@ -421,9 +419,9 @@ jobs:
 - 在 GitHub 的个人设置页面 `Settings -> SSH and GPG keys` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
 - 在 Gitee 的个人设置页面 `安全设置 -> SSH 公钥` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
 
-### 8.5、更新 Gitee Pages
+### 更新 Gitee Pages
 
-这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action), 在 `deploy.yml` 中添加新的
+这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，在 `deploy.yml` 中添加新的
 job ：
 
 ```yaml{2-11}
@@ -451,7 +449,7 @@ jobs:
 关注 Gitee 官方公众号，并绑定个人 Gitee 账号，用于接收账号登录通知、以及绕过短信验证码校验
 :::
 
-### 8.6、控制任务执行顺序
+### 控制任务执行顺序
 
 这时，即使三个任务可以正常执行，但也无法达到预期的效果，因为任务之间没有关联，需要设定任务按顺序执行而非同时执行。
 
@@ -477,7 +475,7 @@ jobs:
       // ...
 ```
 
-## 9、Algolia 搜索
+## Algolia 搜索
 
 > [algolia](https://www.algolia.com/) 是一个搜索、推荐服务平台，可以通过简单的配置来为站点添加全文检索功能。
 >> 基本原理：通过爬虫对目标网站的内容创建 `Records`（记录），在用户搜索时调用接口返回相关内容。
@@ -661,6 +659,6 @@ jobs:
 
 :::
 
-## 10、结束
+## 结束
 
 至此，通过 `VitePress` 搭建博客站点，并且部署到 `GitHub Pages` 和 `Gitee Pages` 已全部完成

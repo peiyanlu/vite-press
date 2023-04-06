@@ -193,6 +193,12 @@ export const NAV_DATA: NavData[] = [
         desc: '使用 Node 执行浏览器API',
         link: 'https://pptr.dev/',
       },
+      {
+        icon: 'http://lodash.think2011.net/images/favicon.ico',
+        title: 'lodash',
+        desc: '一个现代的 JavaScript 工具库',
+        link: 'http://lodash.think2011.net/',
+      },
     ],
   },
   {
@@ -496,6 +502,92 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
+    title: '代码风格检查',
+    items: [
+      {
+        icon: 'https://eslint.org/favicon.ico',
+        title: 'ESLint',
+        desc: '可组装的、用于 JavaScript 和 JSX 的代码检查工具',
+        link: 'https://eslint.org/',
+      },
+      {
+        icon: 'https://stylelint.docschina.org/_/src/components/DefaultHeadMeta/favicon.7f672624abe02127db4972965ea73002.ico',
+        title: 'StyleLint',
+        desc: '强大的现代 CSS 检测工具，帮助样式表遵循一致的约定和避免错误',
+        link: 'https://stylelint.docschina.org/',
+      },
+      {
+        icon: 'https://standardjs.com/favicon.ico',
+        title: 'Standard JS',
+        desc: 'JavaScript 风格指南、检查工具和格式化工具',
+        link: 'https://standardjs.com/',
+      },
+    ],
+  },
+  {
+    title: '函数式编程',
+    items: [
+      {
+        icon: 'https://cn.rx.js.org/favicon.ico',
+        title: 'RxJS',
+        desc: 'RxJS 是 Reactive Extensions 的 JavaScript 实现，可以通过响应式和函数式编程模型组合异步数据流',
+        link: 'https://cn.rx.js.org/',
+      },
+      {
+        icon: '',
+        title: 'Cycle.js',
+        desc: '函数式和响应式的 JavaScript 框架',
+        link: 'https://cycle.js.org/',
+      },
+      {
+        icon: 'https://ramda.cn/favicon.ico',
+        title: 'Ramda',
+        desc: '一款实用的 JavaScript 函数式编程库。',
+        link: 'https://ramda.cn/',
+      },
+    ],
+  },
+  {
+    title: '视频音频',
+    items: [
+      {
+        icon: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.4/favicon.ico',
+        title: 'XGPlayer',
+        desc: '带解析器、能节省流量的 Web 视频播放器',
+        link: 'https://v2.h5player.bytedance.com/',
+      },
+      {
+        icon: 'https://chimee.pyzy.net/favicon.ico',
+        title: 'chimee',
+        desc: '奇舞团研制的 h5 播放器，它支持 mp4、m3u8、flv 等多种格式',
+        link: 'https://chimee.pyzy.net/',
+      },
+      {
+        icon: '',
+        title: 'flv.js',
+        desc: 'HTML5 视频播放器以纯 JavaScript 编写，不含 Flash',
+        link: 'https://github.com/Bilibili/flv.js',
+      },
+    ],
+  },
+  {
+    title: '开发工具',
+    items: [
+      {
+        icon: 'https://www.jetbrains.com/favicon.ico?r=1234',
+        title: 'WebStorm',
+        desc: '一个适用于 JavaScript 和相关技术的集成开发环境。',
+        link: 'https://www.jetbrains.com/zh-cn/webstorm/',
+      },
+      {
+        icon: 'https://code.visualstudio.com/favicon.ico',
+        title: 'Visual Studio Code',
+        desc: '免费、开源的编辑器',
+        link: 'https://code.visualstudio.com/',
+      },
+    ],
+  },
+  {
     title: '学习',
     items: [
       {
@@ -511,16 +603,28 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.runoob.com',
       },
       {
-        icon: 'https://cloud.tencent.com/favicon.ico',
-        title: '腾讯云 开发者社区',
-        desc: '开发者的技术分享型社区',
-        link: 'https://cloud.tencent.com/developer/doc/1121',
-      },
-      {
-        title: 'BEM',
         icon: 'https://en.bem.info/favicon.ico',
+        title: 'BEM',
         desc: '命名规范',
         link: 'https://en.bem.info/methodology/',
+      },
+      {
+        icon: 'https://www.markdownguide.org/favicon.ico',
+        title: 'Markdown',
+        desc: 'Markdown 基本语法',
+        link: 'https://www.markdownguide.org/basic-syntax/',
+      },
+      {
+        icon: '',
+        title: 'markdown-it',
+        desc: 'markdown-it 中文文档',
+        link: 'https://markdown-it.docschina.org/',
+      },
+      {
+        icon: 'https://www.ecma-international.org/wp-content/uploads/ecma-favicon@2x-300x300.png',
+        title: 'ECMAScript',
+        desc: 'ECMAScript 规范',
+        link: 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/',
       },
     ],
   },
@@ -564,6 +668,12 @@ export const NAV_DATA: NavData[] = [
         title: '博客园',
         desc: '博客园是一个面向开发者的知识分享社区',
         link: 'https://www.cnblogs.com',
+      },
+      {
+        icon: 'https://cloud.tencent.com/favicon.ico',
+        title: '腾讯云 开发者社区',
+        desc: '开发者的技术分享型社区',
+        link: 'https://cloud.tencent.com/developer/doc/1121',
       },
     ],
   },

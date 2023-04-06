@@ -22,7 +22,7 @@
 
 项目的版本号，开源项目的版本号通常遵循 [semver](npm-SemVer) 语义化规范
 
-> name + version 能共同构成一个完全唯一的项目标识符，所以它两是最重要的两个字段。
+> **name + version** 能共同构成一个完全唯一的项目标识符，所以它两是最重要的两个字段。
 
 ```json
 {
@@ -42,7 +42,7 @@
 
 ### keywords
 
-一组项目的技术关键词，好的关键词可以帮助别人在 `npm` 官网上更好地检索到此项目，增加曝光率。比如 `Ant Design` 组件库的 `keywords` 如下：
+一组项目的技术关键词，好的关键词可以帮助别人在 `npm` 官网上更好地检索到此项目，增加曝光率。
 
 ```json
 {
@@ -108,11 +108,7 @@
 
 项目在进行 `npm` 发布时，可以通过 `files` 指定需要跟随一起发布的内容来控制 `npm` 包的大小，避免安装时间太长。
 
-发布时默认会包括 `package.json`，`license`，`README` 和 `main` 字段里指定的文件。忽略 `node_modules`，`lockfile` 等文件。
-
-在此基础上，我们可以指定更多需要一起发布的内容。可以是单独的文件，整个文件夹，或者使用通配符匹配到的文件。
-
-> 一般情况下，`files` 里会指定**构建出来的产物**以及**类型文件**，而 `src`，`test` 等目录下的文件不需要跟随发布。
+> 一般情况下，`files` 里会指定**构建出来的产物**以及**类型文件**，而 `src`、`test` 等目录下的文件不需要跟随发布。
 
 ```json
 {
@@ -123,6 +119,12 @@
   ]
 }
 ```
+::: tip
+* 发布时默认会包括 `package.json`、`license`、`README` 和 `main` 字段里指定的文件。忽略 `node_modules`、`lockfile` 等文件。
+
+* 在此基础上，我们可以指定更多需要一起发布的内容。可以是单独的文件，整个文件夹，或者使用通配符匹配到的文件。
+:::
+
 
 ### type
 
@@ -156,7 +158,9 @@
 ```
 
 ::: tip
-比如 `packageA` 的 `main` 字段指定为 `index.js`。 我们引入 `packageA` 时，实际上引入的就是 `node_modules/packageA/index.js`。
+
+* 比如 `packageA` 的 `main` 字段指定为 `index.js`。 我们引入 `packageA` 时，实际上引入的就是 `node_modules/packageA/index.js`。
+
 :::
 
 ### browser
@@ -293,7 +297,6 @@ workspace-a
   ]
 }
 ```
-
 :::
 
 ## 脚本配置
@@ -342,11 +345,15 @@ workspace-a
 }
 ```
 
+::: tip
+
 在执行脚本时，我们可以通过 `npm_package_config_port` 这个变量访问到 `3001`。
 
 ```js
 console.log(process.env.npm_package_config_port); // 3001
 ```
+:::
+
 
 ## 依赖配置
 
@@ -354,7 +361,7 @@ console.log(process.env.npm_package_config_port); // 3001
 
 ### dependencies
 
-运行依赖，也就是项目生产环境下需要用到的依赖。比如 react，vue，状态管理库以及组件库等。
+运行依赖，也就是项目生产环境下需要用到的依赖。比如 react、vue、状态管理库以及组件库等。
 
 > 使用 `npm install xxx` 或 `npm install xxx --save` 时，会被自动插入到该字段中。
 
@@ -369,7 +376,7 @@ console.log(process.env.npm_package_config_port); // 3001
 
 ### devDependencies
 
-开发依赖，项目开发环境需要用到而运行时不需要的依赖，用于辅助开发，通常包括项目工程化工具比如 webpack，vite，eslint 等。
+开发依赖，项目开发环境需要用到而运行时不需要的依赖，用于辅助开发，通常包括项目工程化工具比如 webpack、vite、eslint 等。
 
 
 > 使用 `npm install xxx -D` 或 `npm install xxx --save-dev` 时，会被自动插入到该字段中。
@@ -384,11 +391,7 @@ console.log(process.env.npm_package_config_port); // 3001
 
 ### peerDependencies
 
-同伴依赖，一种特殊的依赖，不会被自动安装，通常用于表示与另一个包的依赖与兼容性关系来警示使用者。
-
-比如我们安装 A，A 的正常使用依赖 B@2.x 版本，那么 B@2.x 就应该被列在 A 的 peerDependencies 下，表示“如果你使用我，那么你也需要安装 B，并且至少是 2.x 版本”。
-
-比如 React 组件库 Ant Design，它的 package.json 里 peerDependencies 为
+同伴依赖，一种特殊的依赖，不会被自动安装，通常用于表示与另一个包的依赖与兼容性关系来**警示使用者**。
 
 ```json
 {
@@ -399,15 +402,19 @@ console.log(process.env.npm_package_config_port); // 3001
 }
 ```
 
-表示如果你使用 Ant Design，那么你的项目也应该安装 react 和 react-dom，并且版本需要大于等于 16.9.0。
+::: tip
+
+* 我们安装 `A`，`A` 的正常使用依赖为 `B@2.x`，那么 `B@2.x` 就应该被列在 `A` 的 `peerDependencies` 下，表示 “如果你使用我，那么你也需要安装 `B`，并且至少是 `2.x` 版本”。
+
+* 上面示例为 `React` 组件库 `Ant Design` 的 `package.json` 里的 `peerDependencies` 配置，表示如果你使用 `Ant Design`，那么你的项目也应该安装 `react` 和 `react-dom`，并且版本需要大于等于 `16.9.0`。
+
+:::
 
 ### optionalDependencies
 
 可选依赖，顾名思义，表示依赖是可选的，它**不会阻塞主功能的使用**，安装或者引入失败也无妨。这类依赖如果安装失败，那么 `npm` 的整个安装过程也是成功的。
 
 > 使用 npm install xxx -O 或者 npm install xxx --save-optional 时，依赖会被自动插入到该字段中。
-
-比如我们使用 colors 这个包来对 console.log 打印的信息进行着色来增强和区分提示，但它并不是必需的，所以可以将其加入到 optionalDependencies，并且在运行时处理引入失败的逻辑。
 
 ```json
 {
@@ -416,6 +423,12 @@ console.log(process.env.npm_package_config_port); // 3001
   }
 }
 ```
+
+::: tip
+
+* 比如我们使用 `colors` 这个包来对 `console.log` 打印的信息进行着色来增强和区分提示，但它并不是必需的，所以可以将其加入到 `optionalDependencies`，并且在运行时处理引入失败的逻辑。
+
+:::
 
 ### peerDependenciesMeta
 
@@ -451,10 +464,11 @@ console.log(process.env.npm_package_config_port); // 3001
 
 * 比如指定 `react` 和 `react-dom `为打包依赖，在执行 `npm pack` 打包生成 `tgz` 压缩包中，将出现 `node_modules` 并包含 `react` 和 `react-dom`。
 
-* 需要注意的是，这个字段数组中的值必须是在 dependencies，devDependencies 两个里面声明过的依赖才行。
+* 需要注意的是，这个字段数组中的值必须是在 `dependencies`、`devDependencies` 两个里面声明过的依赖才行。
 
 * 普通依赖通常从 `npm registry` 安装，但当你想用一个**不在** `npm registry` 里的包，或者一个**被修改过的第三方包**时，打包依赖会比普通依赖更好用。
-  :::
+
+:::
 
 ### overrides
 
@@ -509,8 +523,6 @@ console.log(process.env.npm_package_config_port); // 3001
 
 `publishConfig` 就是 `npm` 包发布时使用的配置。
 
-比如在安装依赖时指定了 `registry` 为 `taobao` 镜像源，但发布时希望在公网发布，就可以指定 `publishConfig.registry`
-
 ```json
 {
   "publishConfig": {
@@ -518,6 +530,11 @@ console.log(process.env.npm_package_config_port); // 3001
   }
 }
 ```
+::: tip
+
+* 安装依赖时指定了 `registry` 为**私有镜像源**，但发布时希望在公网发布，就可以指定 `publishConfig.registry`
+
+:::
 
 ## 系统配置
 
@@ -525,7 +542,7 @@ console.log(process.env.npm_package_config_port); // 3001
 
 ### engines
 
-一些项目由于兼容性问题会对 `node` 或者包管理器有特定的版本号要求，比如：
+一些项目由于兼容性问题会对 `node` 或者包管理器有特定的版本号要求。
 
 ```json
 {
@@ -535,8 +552,11 @@ console.log(process.env.npm_package_config_port); // 3001
   }
 }
 ```
+::: tip
 
-要求 `node` 版本大于等于 `14` 且小于 `16`，同时 `pnpm` 版本号需要大于 `7`。
+* 上面示例中，要求 `node` 版本大于等于 `14` 且小于 `16`，同时 `pnpm` 版本号需要大于 `7`。
+
+:::
 
 ### os
 
@@ -588,12 +608,12 @@ console.log(process.env.npm_package_config_port); // 3001
 }
 ```
 
-比如` vue package.json` 的 `unpkg` 定义为 `dist/vue.global.js`。当我们想通过 `CDN` 的方式使用链接引入 `vue` 时。 访问 https://unpkg.com/vue
-会重定向到 https://unpkg.com/vue@3.2.37/dist/vue.global.js ，其中 `3.2.27` 是 `Vue` 的最新版本。
+* `vue` 通过上面的配置。当我们想通过 `CDN` 的方式使用链接引入 `vue` 时。 访问 https://unpkg.com/vue 会重定向到 https://unpkg.com/vue@3.2.37/dist/vue.global.js ，其中 `3.2.27` 是 `Vue`的版本。
+
 
 ### jsdelivr
 
-与 `unpkg` 类似，`vue` 通过如下的配置
+与 `unpkg` 类似。
 
 ```json
 {
@@ -601,7 +621,7 @@ console.log(process.env.npm_package_config_port); // 3001
 }
 ```
 
-访问 https://cdn.jsdelivr.net/npm/vue 实际上获取到的是 `jsdelivr` 字段里配置的文件地址。
+* `vue` 通过上面的配置，访问 https://cdn.jsdelivr.net/npm/vue 实际上获取到的是 `jsdelivr` 字段里配置的文件地址。
 
 ### browserslist
 
@@ -641,7 +661,8 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 * 如果 `Ant Design` 的 `package.json` 里不设置 `sideEffects`，那么 `webpack` 构建打包时会认为这段代码只是引入了但并没有使用，可以 `tree-shaking` 剔除掉，最终导致产物缺少样式。
 
 * 如果 `Ant Design` 在 `package.json` 里设置了 `sideEffects`，将告知 `webpack` 这些文件具有副作用，引入后不能被删除。
-  :::
+
+:::
 
 ### lint-staged
 
@@ -658,6 +679,8 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 }
 ```
 
-`lint-staged` 通常配合 `husky` 这样的 `git-hooks` 工具一起使用。`git-hooks` 用来定义一个钩子，这些钩子方法会在 `git` 工作流程中比如 `pre-commit`，`commit-msg`
-时触发，可以把 `lint-staged` 放到这些钩子方法中。
+::: tip
 
+* `lint-staged` 通常配合 `husky` 这样的 `git-hooks` 工具一起使用。`git-hooks` 用来定义一个钩子，这些钩子方法会在 `git` 工作流程中比如 `pre-commit`，`commit-msg`时触发，可以把 `lint-staged` 放到这些钩子方法中。
+
+:::

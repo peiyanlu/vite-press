@@ -15,9 +15,6 @@ const formatTitle = computed(() => props.title ? slugify(props.title) : '')
 
 const svg = computed(() => typeof props.icon !== 'string' ? props.icon.svg : '')
 
-const imgLoad = ref<boolean>(false)
-const handlerImgLoad = ()=> imgLoad.value = true
-
 const setDisplayName = (nameValue: string, widthValue: number) => {
   const nameDisplay = ref<string>('')
   if (nameValue.length < 2) {
@@ -57,8 +54,8 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
       <div class="box-header">
         <div v-if="svg" class="icon" v-html="svg" />
         <div v-else class="icon">
-          <div v-if="!imgLoad && !icon" v-html="setDisplayName(title, 24).value" />
-          <img v-else :src="icon" :alt="title" @load="handlerImgLoad" />
+          <div v-if="!icon" v-html="setDisplayName(title, 24).value" />
+          <img v-else :src="icon" alt="" />
         </div>
 
         <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
@@ -75,11 +72,27 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
   border-radius: 8px;
   height: 100%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+
   &:hover {
     background-color: var(--vp-c-bg-soft);
     transform: scale(1.05);
     text-decoration: unset;
+
+    .title {
+      &::after {
+        animation: show .8s steps(100);
+      }
+    }
+
+    @keyframes show {
+      from {
+        transform: scaleX(1.15);
+      }
+      to {
+        transform: scaleX(0);
+      }
+    }
   }
 
   .box {
@@ -88,84 +101,100 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
     padding: 16px;
     height: 100%;
     color: var(--vp-c-text-1);
+
     &-header {
       display: flex;
       align-items: center;
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 12px;
+        border-radius: 6px;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        background-color: var(--vp-c-mute);
+        transition: background-color 0.25s;
+
+        :deep(svg) {
+          width: 24px;
+          fill: currentColor;
+        }
+
+        :deep(img) {
+          border-radius: 4px;
+          width: 24px;
+        }
+
+        :deep(div) {
+          border-radius: 4px;
+          width: 24px;
+          height: 24px;
+          font-size: 18px;
+          font-weight: 800;
+          line-height: 24px;
+          text-align: center;
+          background: linear-gradient(120deg, rgb(189 52 253 / 50%) 30%, rgb(65 209 255));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: var(--vp-home-hero-name-color);
+        }
+      }
+
+      .title {
+        overflow: hidden;
+        flex-grow: 1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 48px;
+        font-size: 16px;
+        font-weight: 600;
+
+        &::after {
+          content: "";
+          position: absolute;
+          background-color: var(--vp-c-bg-soft);
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transform: scaleX(0);
+          transform-origin: center right;
+          z-index: 999;
+        }
+      }
     }
-  }
-
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 12px;
-    border-radius: 6px;
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
-    background-color: var(--vp-c-mute);
-    transition: background-color 0.25s;
-
-    :deep(svg) {
-      width: 24px;
-      fill: currentColor;
+    .desc {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+      margin: 10px 0 0;
+      line-height: 20px;
+      font-size: 12px;
+      color: var(--vp-c-text-2);
     }
-
-    :deep(img) {
-      border-radius: 4px;
-      width: 24px;
-    }
-
-    :deep(div) {
-      border-radius: 4px;
-      width: 24px;
-      height: 24px;
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 24px;
-      text-align: center;
-      background: linear-gradient(120deg, rgb(189 52 253 / 50%) 30%, rgb(65 209 255));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: var(--vp-home-hero-name-color);
-    }
-  }
-
-  .title {
-    overflow: hidden;
-    flex-grow: 1;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    line-height: 48px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-    margin: 10px 0 0;
-    line-height: 20px;
-    font-size: 12px;
-    color: var(--vp-c-text-2);
   }
 }
+
 
 @media (max-width: 960px) {
   .site-nav-link {
     .box {
       padding: 8px;
-    }
-    .icon {
-      width: 40px;
-      height: 40px;
-    }
-    .title {
-      line-height: 40px;
-      font-size: 14px;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .title {
+        line-height: 40px;
+        font-size: 14px;
+      }
     }
   }
 }

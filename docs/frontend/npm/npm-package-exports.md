@@ -31,8 +31,8 @@
 
 ```js
 import { Test } from '@pyl/core-test';
-import { TestUtil } from '@pyl/core-test/util'; // [!code  error]
-import '@pyl/core-test/dist/styles.css'; // [!code  error]
+import { TestUtil } from '@pyl/core-test/util'; // [!code error:2]
+import '@pyl/core-test/dist/styles.css';
 ```
 
 ## 问题
@@ -42,12 +42,12 @@ import '@pyl/core-test/dist/styles.css'; // [!code  error]
 报错：
 
 ```markdown
-Module not found: Error: Package path ./dist/styles.css is not exported from package...
+Module not found: Error: Package path ./dist/styles.css is not exported from package... // [!code error]
 ```
 
 解决方案：
 
-```json
+```json lines
 {
   "name": "@pyl/core-test",
   "exports": {
@@ -61,7 +61,7 @@ Module not found: Error: Package path ./dist/styles.css is not exported from pac
       "import": "./dist/util.mjs",
       "require": "./dist/util.js"
     },
-    "./*": [
+    "./*": [ // [!code ++:4]
       "./*",
       "./*.d.ts"
     ]
@@ -74,15 +74,15 @@ Module not found: Error: Package path ./dist/styles.css is not exported from pac
 报错：
 
 ```markdown
-TS2307: Cannot find module '@cbe/core-editor/backend' or its corresponding type declarations. // [!code  error]
+TS2307: Cannot find module '@cbe/core-editor/backend' or its corresponding type declarations. // [!code error]
 ```
 
 解决方案：
 
-> dist 目录下需要保证 util.d.ts 存在，并且需要和 exports 中子路径名称一致，否则依然无法找到路径
+> `dist` 目录下需要保证 `util.d.ts` 存在，并且需要和 `exports` 中子路径名称一致，否则依然无法找到路径
 > > 子路径对应的声明文件必须放到根目录，资源文件可以单独文件夹放置
 
-```json
+```json lines
 {
   "name": "@pyl/core-test",
   "exports": {
@@ -96,7 +96,7 @@ TS2307: Cannot find module '@cbe/core-editor/backend' or its corresponding type 
       "import": "./dist/util.mjs",
       "require": "./dist/util.js"
     },
-    "./*": [
+    "./*": [ // [!code ++:12]
       "./*",
       "./*.d.ts"
     ],

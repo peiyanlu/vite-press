@@ -201,6 +201,13 @@ slash(string);
 
 > 非常快的唯一哈希生成器
 
+```js
+const sum = require('hash-sum');
+
+console.log(sum([ 0, 1, 2, 3 ])) // 00a34759
+console.log(sum('1988-06-09T03:00:00.000Z')) // dff5ee3c
+```
+
 [hash-sum](https://www.npmjs.com/package/hash-sum)
 
 ## address
@@ -388,4 +395,38 @@ console.log(colors.trap('Run the trap')); // Drops the bass
 
 [colors](https://www.npmjs.com/package/colors)
 
+## globby
 
+> 路径匹配工具
+
+```markdown
+├── unicorn
+├── cake
+└── rainbow
+```
+
+```js
+import { globby } from 'globby';
+
+const paths = await globby([ '*', '!cake' ]);
+
+console.log(paths);
+//=> ['unicorn', 'rainbow']
+```
+
+[globby](https://www.npmjs.com/package/globby)
+
+## chokidar
+
+> 最小且高效的跨平台文件监视库
+
+```js
+const chokidar = require('chokidar');
+
+// One-liner for current directory
+chokidar.watch('.').on('all', (event, path) => {
+  console.log(event, path);
+});
+```
+
+[chokidar](https://www.npmjs.com/package/chokidar)
