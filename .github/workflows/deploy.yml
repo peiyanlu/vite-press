@@ -41,6 +41,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Use node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
       - name: Enable pages and extract various metadata
         uses: actions/configure-pages@v2
 
