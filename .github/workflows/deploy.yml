@@ -41,8 +41,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-#      - name: Enable pages and extract various metadata
-#        uses: actions/configure-pages@v2
+      - name: Enable pages and extract various metadata
+        uses: actions/configure-pages@v2
 
       - name: Packaging and uploading
         uses: actions/upload-pages-artifact@v1
