@@ -6,14 +6,8 @@ on:
       - docs-deploy
 
 jobs:
-  gh-pages-deploy:
+  gh-pages-build:
     runs-on: ubuntu-22.04
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -37,8 +31,18 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Enable pages and extract various metadata
-        uses: actions/configure-pages@v2
+  gh-pages-deploy:
+    needs: [ "gh-pages-build" ]
+    runs-on: ubuntu-22.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+#      - name: Enable pages and extract various metadata
+#        uses: actions/configure-pages@v2
 
       - name: Packaging and uploading
         uses: actions/upload-pages-artifact@v1
