@@ -6,8 +6,15 @@ on:
       - docs-deploy
 
 jobs:
-  gh-pages-build:
-    runs-on: ubuntu-22.04
+  gh-pages-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      administration: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -31,24 +38,8 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-  gh-pages-deploy:
-    needs: [ "gh-pages-build" ]
-    runs-on: ubuntu-22.04
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Use node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: pnpm
-
-      - name: Enable pages and extract various metadata
-        uses: actions/configure-pages@v2
+#      - name: Enable pages and extract various metadata
+#        uses: actions/configure-pages@v2
 
       - name: Packaging and uploading
         uses: actions/upload-pages-artifact@v1
@@ -61,7 +52,7 @@ jobs:
 
   gitee-branch-sync:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Sync branches to GitHube
         uses: peiyanlu/git-sync-action@v1
@@ -74,7 +65,7 @@ jobs:
 
   gitee-pages-sync:
     needs: [ "gitee-branch-sync" ]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
@@ -86,7 +77,7 @@ jobs:
 
   search-algolia:
     needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
