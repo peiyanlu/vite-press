@@ -8,8 +8,14 @@ on:
 jobs:
   gh-pages-deploy:
     runs-on: ubuntu-22.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out the repository
+      - name: Checkout the repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -31,11 +37,17 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Enable pages and extract various metadata
+        uses: actions/configure-pages@v2
+
+      - name: Packaging and uploading
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          path: docs/.vitepress/dist
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
 
   gitee-branch-sync:
     needs: [ "gh-pages-deploy" ]
