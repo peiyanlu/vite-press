@@ -9,7 +9,6 @@ jobs:
   gh-pages-deploy:
     runs-on: ubuntu-latest
     permissions:
-      administration: write
       pages: write
       id-token: write
     environment:
