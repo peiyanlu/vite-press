@@ -8,12 +8,15 @@ on:
 jobs:
   gh-pages-deploy:
     runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write
-      id-token: write
+      id-token: write # to verify the deployment originates from an appropriate source
+    # Deploy to the github-pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # Specify runner + deployment step
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -37,8 +40,8 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-#      - name: Enable pages and extract various metadata
-#        uses: actions/configure-pages@v2
+      - name: Enable pages and extract various metadata
+        uses: actions/configure-pages@v2
 
       - name: Packaging and uploading
         uses: actions/upload-pages-artifact@v1
@@ -50,7 +53,7 @@ jobs:
         uses: actions/deploy-pages@v1
 
   gitee-branch-sync:
-    needs: [ "gh-pages-deploy" ]
+    needs: [ gh-pages-deploy ]
     runs-on: ubuntu-latest
     steps:
       - name: Sync branches to GitHube
@@ -63,7 +66,7 @@ jobs:
           destination-branch: gh-pages
 
   gitee-pages-sync:
-    needs: [ "gitee-branch-sync" ]
+    needs: [ gitee-branch-sync ]
     runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
@@ -75,7 +78,7 @@ jobs:
           branch: gh-pages
 
   search-algolia:
-    needs: [ "gh-pages-deploy" ]
+    needs: [ gh-pages-deploy ]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository

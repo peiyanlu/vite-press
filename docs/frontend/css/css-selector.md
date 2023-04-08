@@ -4,16 +4,17 @@ import NthChild from './components/NthChild.vue'
 
 # CSS 选择器
 
-## :nth-child 选择器
+## :nth-child
 
-1、选择列表中的偶数标签
+* 选择列表中的偶数标签
 
 ```css
 :nth-child(2n)
 ```
+
 <NthChild class='aa'></NthChild>
 
-2、选择列表中的奇数标签
+* 选择列表中的奇数标签
 
 ```css
 :nth-child(2n-1)
@@ -21,7 +22,7 @@ import NthChild from './components/NthChild.vue'
 
 <NthChild class='bb'></NthChild>
 
-3、选择从第6个开始的，直到最后
+* 选择从第6个开始的，直到最后
 
 ```css
 :nth-child(n+6)
@@ -29,7 +30,7 @@ import NthChild from './components/NthChild.vue'
 
 <NthChild class='cc'></NthChild>
 
-4、选择第1个到第6个
+* 选择第1个到第6个
 
 ```css
 :nth-child(-n+6)
@@ -37,7 +38,7 @@ import NthChild from './components/NthChild.vue'
 
 <NthChild class='dd'></NthChild>
 
-5、选择第6个到第9个
+* 选择第6个到第9个
 
 ```css
 :nth-child(n+6):nth-child(-n+9)

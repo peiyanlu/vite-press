@@ -1,4 +1,4 @@
-# 浏览器监听 BOMObserver
+# 浏览器监听
 
 浏览器提供了 `5` 种 Observers：`MutationObserver`、`IntersectionObserver`、`PerformanceObserver`、`ResizeObserver`、`ReportingObserver`。
 

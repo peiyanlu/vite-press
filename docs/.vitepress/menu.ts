@@ -53,6 +53,14 @@ export const getNav = (): DefaultTheme.NavItem[] => [
 export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.FRONTEND]: [
     {
+      text: '计算机网络',
+      link: joinPath(MENU.FRONTEND, 'network/')
+    },
+    {
+      text: '浏览器',
+      link: joinPath(MENU.FRONTEND, 'browser/')
+    },
+    {
       text: 'rollup',
       collapsed: false, // 折叠
       items: [
@@ -108,6 +116,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: '调用栈', link: joinPath(MENU.FRONTEND, 'javascript/js-CallStack') },
         { text: '元素位置', link: joinPath(MENU.FRONTEND, 'javascript/js-ElementPosition') },
         { text: '浏览器监听', link: joinPath(MENU.FRONTEND, 'javascript/js-BOMObserver') },
+        { text: '原型链', link: joinPath(MENU.FRONTEND, 'javascript/js-prototype') },
       ],
     },
     {
