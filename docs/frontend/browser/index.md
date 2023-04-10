@@ -26,14 +26,14 @@
    - 构建render树：Web浏览器将DOM和CSSOM结合，并构建出渲染树（render tree）
    - 布局（Layout）：计算出每个节点在屏幕中的位置
    - 绘制（Painting）：即遍历render树，并使用UI后端层绘制每个节点。
-
-       ![浏览器渲染流程图](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a90660027f0d4c559732519bad4c6323~tplv-k3u1fbpfcp-zoom-1.image)
-
+   
 9. JS引擎解析过程：调用JS引擎执行JS代码（JS的解释阶段，预处理阶段，执行阶段生成执行上下文，VO，作用域链、回收机制等等）
    - 创建window对象：window对象也叫全局执行环境，当页面产生时就被创建，所有的全局变量和函数都属于window的属性和方法，而DOM Tree也会映射在window的doucment对象上。当关闭网页或者关闭浏览器时，全局执行环境会被销毁。
    - 加载文件：完成js引擎分析它的语法与词法是否合法，如果合法进入预编译
    - 预编译：在预编译的过程中，浏览器会寻找全局变量声明，把它作为window的属性加入到window对象中，并给变量赋值为 'undefined'；寻找全局函数声明，把它作为window的方法加入到window对象中，并将函数体赋值给他（匿名函数是不参与预编译的，因为它是变量）。而变量提升作为不合理的地方在ES6中已经解决了，函数提升还存在。
    - 解释执行：执行到变量就赋值，如果变量没有被定义，也就没有被预编译直接赋值，在ES5非严格模式下这个变量会成为window的一个属性，也就是成为全局变量。string、int这样的值就是直接把值放在变量的存储空间里，object对象就是把指针指向变量的存储空间。函数执行，就将函数的环境推入一个环境的栈中，执行完成后再弹出，控制权交还给之前的环境。JS作用域其实就是这样的执行流机制实现的。
+
+![img.png](img.png)
 
 ## 在浏览器中输入URL到显示页面经历哪些过程，涉及到哪些协议？
 
@@ -74,7 +74,7 @@
 
 然后进行如下所示的基本流程：
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9ef6cb226b374e89914a2315e4ca9ba9~tplv-k3u1fbpfcp-zoom-1.image)
+![img.png](img_1.png)
 
 图：渲染引擎的基本流程。
 
@@ -162,11 +162,11 @@
 
     提升合成层的最好方式是使用 CSS 的 will-change 属性：
 
-    ```
-    #target {
-      will-change: transform;
-    }
-    ```
+```css
+#target {
+  will-change: transform;
+}
+```
 
 ## 说下进程、线程和协程
 
