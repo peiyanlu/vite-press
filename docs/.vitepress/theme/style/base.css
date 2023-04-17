@@ -26,3 +26,7 @@
 }
 /*轨道背景色优先级*/
 /*-webkit-scrollbar-track-piece > -webkit-scrollbar-track > -webkit-scrollbar*/
+
+::selection {
+  background: var(--vp-c-green-dimm-2);
+}

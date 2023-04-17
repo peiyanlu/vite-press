@@ -30,7 +30,10 @@ export default defineConfig({
     nav: getNav(),
     sidebar: getSidebar(),
     editLink: {
-      pattern: `https://${ isGithub() ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/:path`,
+      pattern: ({ relativePath }) => {
+        const isGithub = /github/.test(globalThis.location?.origin)
+        return `https://${ isGithub ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/:path`
+      },
       text: `在 ${ isGithub() ? 'github' : 'gitee' } 编辑此页`,
     },
     docFooter: {

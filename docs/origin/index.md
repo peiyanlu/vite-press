@@ -1,112 +1,39 @@
 # VitePress 搭建静态网站
 
-## 创建新项目
+## 快速开始
 
 ```shell
-mkdir vitepress-starter && cd vitepress-starter
+# 创建一个新目录并进入
+mkdir vite-press && cd vite-press
+
+# 安装依赖（默认）
+pnpm add -D vitepress
+# or（自定义主题）
+pnpm add -D vitepress vue
+
+# 初始化项目
+pnpm exec vitepress init
+
+# 运行
+pnpm run docs:dev
 ```
+::: tip
 
-> 初始化项目
+执行 `pnpm exec vitepress init` 会出现一些交互式问答，帮助我们快速初始化配置：
 
-```shell
-yarn init
-```
+![img.png](img/img.png)
 
-## 安装 VitePress
+1. `VitePress` 初始化配置目录，可以是根目录 `./` 也可以是二级目录 `./docs`
+2. `Theme` 配置：
+   * `Default Theme (Out of the box, good-looking docs)`：默认配置，开箱即用；推荐不需要改布局和主题色的人员使用。后期需要也可以手动添加。
+   * `Default Theme + Customization (Add custom CSS and layout slots)`：默认配置 + 自定义配置，会增加 `docs/.vitepress/theme` 目录，展示 `CSS` 和 `slot`
+     的使用；推荐希望使用 `vitepress` 的布局，但是希望自定义主题色和部分布局的人员使用。
+   * `Custom Theme (Build your own or use external)`：完全自定义，布局和样式完全自定义；推荐希望完全自定义页面内容的人员使用。
+:::
 
-```shell
-yarn add --dev vitepress
-```
-
-> 创建第一篇文档
-
-```shell
-mkdir docs && echo '# Hello VitePress' > docs/index.md
-```
-
-## 启动开发环境
-
-> 添加脚本到 package.json
-
-```json{4}
-{
-   ...
-  "scripts": { // [!code focus:5] 
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
-  },
-  ...
-}
-```
-
-> 执行 `yarn docs:dev` ，然后就可以看到最简单的页面效果
-
-## 添加更多页面
-
-```markdown{3}
-.
-├─ docs
-│  ├─ getting-started.md // [!code focus:2]
-│  └─ index.md
-└─ package.json
-```
-
-> 配置首页 ->`index.md`
-
-```markdown
----
-layout: home
-
-title: VitePress
-titleTemplate: Vite & Vue powered static site generator
-
-hero:
-name: 我的博客
-text: </dev>
-tagline: coding
-image:
-src: /logo.svg
-alt: logo
-actions:
-- theme: brand
-text: 快速开始
-link: /guide/
-- theme: alt
-text: 在 Gitee 上查看
-link: https://gitee.com/
-
-features:
-
-- icon: ⚡️
-  title: vite + vue3
-  details: 两岸猿声啼不住，轻舟已过万重山
-- icon: 🖖
-  title: 知新
-  details: 好记性不如烂笔头
-- icon: 🛠️
-  title: 温故
-  details: 书读百遍其义自见
-
----
-```
-
-[参考链接](https://vitepress.vuejs.org/guide/theme-home-page)
-
-> 现在，已经有了一个基本的 VitePress 文档站点。但我们无法在网站上导航，因为它缺少了导航栏和侧边栏菜单。要启用这些导航，我们必须向站点添加一些配置
+> 现在，已经有了一个基本的 VitePress 文档站点。后续操作是：增加新的文档，配置其路由
 
 ## 添加网站配置
-
-> docs 文件下创建 .vitepress 文件夹放置页面配置
-
-```markdown{3-4}
-.
-├─ docs
-│  ├─ .vitepress // [!code focus:2] 
-│  │  └─ config.ts
-│  └─ index.md
-└─ package.json
-```
 
 > docs 文件下创建 public 文件夹放置公共文件
 
@@ -116,21 +43,6 @@ features:
 │  ├─ .vitepress
 │  ├─ public // [!code focus:2] 
 │  │  └─ logo.svg
-│  └─ index.md
-└─ package.json
-```
-
-> .vitepress 文件下创建 theme 文件夹放置样式文件
-
-```markdown{4-6}
-.
-├─ docs
-│  ├─ .vitepress
-│  │  ├─ theme // [!code focus:3] 
-│  │  │  ├─ index.css 
-│  │  │  └─ index.ts
-│  │  └─ config.ts
-│  ├─ public
 │  └─ index.md
 └─ package.json
 ```
@@ -197,8 +109,11 @@ export default {
       { text: 'Guide', link: '/guide' },
     ], // 导航菜单
     sidebar: { ... }, // 侧边栏菜单
-    outline: 'deep', // 在大纲中显示的标题级别
-    outlineTitle: '快速导航', // 大纲的标题
+     outline: {
+        level: 'deep', // 在大纲中显示的标题级别
+        label: '快速导航', // 大纲的标题
+     },
+    outlineTitle: '快速导航',
     editLink: { // 提供编辑页面的连接
       pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
@@ -247,7 +162,6 @@ const getSildBar = () => ({
     },
     {
       text: 'Config',
-      collapsible: true, // 可折叠
       collapsed: false, // 折叠
       items: [
         { text: 'Item1', link: '/guid/item1' },
@@ -257,10 +171,6 @@ const getSildBar = () => ({
   ]
 })
 ```
-
-## 网站创建完成
-
-> 现在，一个完整的 VitePress 站点已经搭建完成，只需要逐步完善博客内容即可
 
 ## 网站部署
 
@@ -351,13 +261,22 @@ name: Deploy
 on:
   push:
     branches:
-      - docs-deploy # 监听的分支
+      - docs-deploy
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+  gh-pages-deploy:
+    runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write
+      id-token: write # to verify the deployment originates from an appropriate source
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Specify runner + deployment step
     steps:
-      - name: Check out the repository
+      - name: Checkout the repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -373,18 +292,23 @@ jobs:
           node-version: 16
           cache: pnpm
 
-      - name: Install
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Enable pages and extract various metadata
+        uses: actions/configure-pages@v2
+
+      - name: Packaging and uploading
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub 私人令牌
-          publish_dir: docs/.vitepress/dist # 部署的文件目录
-          # cname: example.com # if wanna deploy to custom domain
+          path: docs/.vitepress/dist
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
 ```
 
 [获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
@@ -402,7 +326,7 @@ jobs:
 ```yaml{2-12}
 jobs:
   gitee-branch-sync: // [!code focus:11]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Sync branches to GitHube
         uses: peiyanlu/git-sync-action@v1
@@ -463,13 +387,13 @@ jobs:
       // ...
 
   gitee-branch-sync:
-    needs: ["gh-pages-deploy"] // [!code focus]
+    needs: gh-pages-deploy // [!code focus]
     runs-on: ubuntu-latest
     steps:
       // ...
 
   gitee-pages-sync:
-    needs: ["gitee-branch-sync"] // [!code focus]
+    needs: gitee-branch-sync // [!code focus]
     runs-on: ubuntu-latest
     steps:
       // ...
@@ -495,7 +419,7 @@ jobs:
 ```yaml{2-17}
 jobs:
   search-algolia: // [!code focus:16]
-    needs: [ "gh-pages-deploy" ]
+    needs: gh-pages-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -587,9 +511,18 @@ on:
 
 jobs:
   gh-pages-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write
+      id-token: write # to verify the deployment originates from an appropriate source
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # Specify runner + deployment step
     steps:
-      - name: Check out the repository
+      - name: Checkout the repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -605,21 +538,27 @@ jobs:
           node-version: 16
           cache: pnpm
 
-      - name: Install
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Enable pages and extract various metadata
+        uses: actions/configure-pages@v2
+
+      - name: Packaging and uploading
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          path: docs/.vitepress/dist
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
 
   gitee-branch-sync:
-    needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-22.04
+    needs: [ gh-pages-deploy ]
+    runs-on: ubuntu-latest
     steps:
       - name: Sync branches to GitHube
         uses: peiyanlu/git-sync-action@v1
@@ -631,8 +570,8 @@ jobs:
           destination-branch: gh-pages
 
   gitee-pages-sync:
-    needs: [ "gitee-branch-sync" ]
-    runs-on: ubuntu-22.04
+    needs: [ gitee-branch-sync ]
+    runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
@@ -643,8 +582,8 @@ jobs:
           branch: gh-pages
 
   search-algolia:
-    needs: [ "gh-pages-deploy" ]
-    runs-on: ubuntu-22.04
+    needs: [ gh-pages-deploy ]
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
@@ -656,7 +595,6 @@ jobs:
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           algolia_config_file: algolia.config.json
 ```
-
 :::
 
 ## 结束
