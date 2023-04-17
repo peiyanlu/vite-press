@@ -33,7 +33,7 @@ pnpm run docs:dev
 
 > 现在，已经有了一个基本的 VitePress 文档站点。后续操作是：增加新的文档，配置其路由
 
-## 添加网站配置
+## 网站配置
 
 > docs 文件下创建 public 文件夹放置公共文件
 
@@ -52,11 +52,11 @@ pnpm run docs:dev
 ```ts
 export default {
   // 应用层面的配置
-  lang: 'en-US',
-  // 渲染为： <html lang="en-US">
-  title: 'VitePress', // 网站标题
-  titleTemplate: 'Blog', // 网站标题后缀- “VitePress | Blog”
-  description: 'Vite & Vue powered static site generator.', // 网站描述 
+  lang: 'zh-CN',
+  // 渲染为： <html lang="zh-CN">
+  title: '笔记', // 网站标题
+  titleTemplate: '开发笔记', // 网站标题后缀- “笔记 | 开发笔记”
+  description: '小路的开发笔记', // 网站描述 
   // 渲染为：<meta name="description" content="Vite & Vue powered static site generator.">
   base: '/', // base url
   head: [
@@ -66,10 +66,10 @@ export default {
     // 渲染为: <link rel="icon" href="/logo.svg" />
   ],
   appearance: true, // 外观切换 - 深色浅色
-  ignoreDeadLinks: false, // 当设置为 true 时，VitePress 不会因为死链接而导致构建失败。
+  ignoreDeadLinks: true, // 当设置为 true 时，VitePress 不会因为死链接而导致构建失败。
   lastUpdated: true, // 显示页面最后更新时间
-  cleanUrls: 'without-subfolders', // 删除路径中的.html后缀
-  themeConfig: {}, // 主题配置，详见 5.2
+  cleanUrls: true, // 删除路径中的.html后缀
+  themeConfig: {}, // 主题配置
   markdown: { // markdown 解析配置
     // theme: 'material-palenight', // 主体配色
     lineNumbers: true // 显示行号
@@ -104,7 +104,7 @@ export default {
   // 主题相关配置
   themeConfig: {
     logo: '/logo.svg', // 左侧导航栏图标
-    siteTitle: 'Hello World', // 左侧导航栏标题
+    siteTitle: '开发笔记', // 左侧导航栏标题
     nav: [
       { text: 'Guide', link: '/guide' },
     ], // 导航菜单
@@ -113,7 +113,6 @@ export default {
         level: 'deep', // 在大纲中显示的标题级别
         label: '快速导航', // 大纲的标题
      },
-    outlineTitle: '快速导航',
     editLink: { // 提供编辑页面的连接
       pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
       text: 'Edit this page on GitHub'

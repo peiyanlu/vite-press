@@ -195,21 +195,25 @@ info[getAddress() + 'Desc'] = 'HangZhou YuHang'
 
 #### 新增方法
 
-* Object.is()
+* Object.is
 
 > 方法判断两个值是否为同一个值
 
 ```ts
+// Object.is(value1, value2);
+
 Object.is(25, 25);                // true
 Object.is('foo', 'foo');          // true
 Object.is('foo', 'bar');          // false
 ```
 
-* Object.setPrototypeOf(obj, prototype)
+* Object.setPrototypeOf
 
 > 设置一个指定的对象的原型（即，内部 [[Prototype]] 属性）到另一个对象或 null。
 
 ```ts
+// Object.setPrototypeOf(obj, prototype)
+
 function Human(name, level) {
   this.name = name
   this.level = level
@@ -222,31 +226,27 @@ function SuperHero(name, level) {
 Object.setPrototypeOf(SuperHero.prototype, Human.prototype)
 ```
 
-* Object.assign()
+* Object.assign
 
 > 将所有可枚举（Object.propertyIsEnumerable() 返回 true）的自有（Object.hasOwnProperty() 返回
 > true）属性从一个或多个源对象复制到目标对象，返回修改后的对象。
 > > 浅拷贝
 
 ```ts
+// Object.assign(target, ...sources)
+
 let obj1 = { a: 0, b: { c: 0 } };
 let obj2 = Object.assign({}, obj1);
 console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
 ```
 
-### Object.getOwnPropertySymbols
+* Object.getOwnPropertySymbols
 
 > 返回一个给定对象自身的所有 Symbol 属性的数组。
 
-* 语法
-
-```markdown
-Object.getOwnPropertySymbols(obj)
-```
-
-* 示例
-
 ```ts
+// Object.getOwnPropertySymbols(obj)
+
 let obj = {};
 let a = Symbol("a");
 let b = Symbol.for("b");
@@ -272,8 +272,10 @@ console.log(objectSymbols[0])      // Symbol(a)
 > 从数组类对象或可迭代对象创建一个新的 `Array` 实例
 
 ```ts
-Array.from(arrayLike, (element) => { /* … */ })
-Array.from(arrayLike, (element, index) => { /* … */ }, thisArg)
+// Array.from(arrayLike, (element, index) => { /* … */ }, thisArg)
+
+Array.from("foo");
+// [ "f", "o", "o" ]
 ```
 
 * Array.of
@@ -281,6 +283,8 @@ Array.from(arrayLike, (element, index) => { /* … */ }, thisArg)
 > 通过可变数量的参数创建一个新的 `Array` 实例，而不考虑参数的数量或类型
 
 ```ts
+// Array.of(element0, element1, /* … ,*/ elementN)
+
 Array.of(1);         // [1]
 Array.of(1, 2, 3);   // [1, 2, 3]
 Array.of(undefined); // [undefined]
@@ -296,12 +300,12 @@ Array.of(undefined); // [undefined]
 // arr.copyWithin(target[, start[, end]])
 
 [ 1, 2, 3, 4, 5 ].copyWithin(-2)
-  // [1, 2, 3, 1, 2]
+// [1, 2, 3, 1, 2]
   
-  [1, 2, 3, 4, 5].copyWithin(0, 3)
-  // [4, 5, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(0, 3)
+// [4, 5, 3, 4, 5]
   
-  [1, 2, 3, 4, 5].copyWithin(0, 3, 4)
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4)
 // [4, 2, 3, 4, 5]
 ```
 
@@ -643,11 +647,11 @@ Promise.resolve('Success')
 
 #### Iteration
 
-***迭代协议***并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。具体分为:
+**迭代协议**并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。具体分为:
 
-* ***可迭代协议*** 允许 `JavaScript` 对象定义或定制它们的迭代行为，例如，在一个 `for..of`
+* **可迭代协议** 允许 `JavaScript` 对象定义或定制它们的迭代行为，例如，在一个 `for..of`
   结构中，哪些值可以被遍历到。一些内置类型同时是内置的可迭代对象，并且有默认的迭代行为，比如`Array` 或者 `Map`，而其他内置类型则不是（比如 `Object`）
-* ***迭代器协议*** 定义了产生一系列值（无论是有限个还是无限个）的标准方式，当值为有限个时，所有的值都被迭代完毕后，则会返回一个默认返回值。
+* **迭代器协议** 定义了产生一系列值（无论是有限个还是无限个）的标准方式，当值为有限个时，所有的值都被迭代完毕后，则会返回一个默认返回值。
 
 #### Generator
 
