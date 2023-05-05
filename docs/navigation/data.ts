@@ -199,6 +199,12 @@ export const NAV_DATA: NavData[] = [
         desc: '一个现代的 JavaScript 工具库',
         link: 'http://lodash.think2011.net/',
       },
+      {
+        icon: 'https://naver.github.io/egjs-flicking/img/favicon.ico',
+        title: 'Flicking',
+        desc: '一个可靠的、灵活的、可扩展的转盘',
+        link: 'https://naver.github.io/egjs-flicking/',
+      },
     ],
   },
   {
@@ -290,13 +296,13 @@ export const NAV_DATA: NavData[] = [
         icon: 'https://cn.vitejs.dev/logo.svg',
         title: 'Vite 中文文档',
         desc: '下一代前端工具链',
-        link: 'https://cn.vitejs.dev',
+        link: 'https://cn.vitejs.dev/',
       },
       {
-        icon: 'https://www.rollupjs.com/img/favicon.png',
+        icon: 'https://cn.rollupjs.org/favicon.png',
         title: 'Rollup',
         desc: 'Rollup 是一个 JavaScript 模块打包器',
-        link: 'https://www.rollupjs.com',
+        link: 'https://cn.rollupjs.org/',
       },
       {
         icon: 'https://turbo.build/images/favicon-light/favicon.ico',
@@ -707,6 +713,18 @@ export const NAV_DATA: NavData[] = [
         title: '极简插件',
         desc: '简介的插件网站',
         link: 'https://chrome.zzzmh.cn/#/index',
+      },
+      {
+        icon: 'https://chat.openai.com/favicon-32x32.png',
+        title: 'ChatGPT',
+        desc: '基于GPT的聊天机器人',
+        link: 'https://chat.openai.com/',
+      },
+      {
+        icon: 'https://uploads-ssl.webflow.com/628193922a4d18e69ba81f14/628193922a4d180bf1a81f46_Favicon.png',
+        title: 'forefront',
+        desc: '基于GPT的拥有角色系统的聊天机器人',
+        link: 'https://chat.forefront.ai/',
       },
     ],
   },

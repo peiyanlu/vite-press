@@ -117,6 +117,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: '元素位置', link: joinPath(MENU.FRONTEND, 'javascript/js-ElementPosition') },
         { text: '浏览器监听', link: joinPath(MENU.FRONTEND, 'javascript/js-BOMObserver') },
         { text: '原型链', link: joinPath(MENU.FRONTEND, 'javascript/js-prototype') },
+        { text: '辞海', link: joinPath(MENU.FRONTEND, 'javascript/js-dictionary') },
       ],
     },
     {

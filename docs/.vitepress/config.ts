@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { BASE_URL, isGithub, withBase } from './common'
+import { BASE_URL, withBase } from './common'
 import { MONOCHROME } from './icon'
 import { getNav, getSidebar } from './menu'
 
@@ -28,13 +28,14 @@ export default defineConfig({
       label: '快速导航',
     },
     nav: getNav(),
+    aside: true,
     sidebar: getSidebar(),
     editLink: {
       pattern: ({ relativePath }) => {
         const isGithub = /github/.test(globalThis.location?.origin)
-        return `https://${ isGithub ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/:path`
+        return `https://${ isGithub ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/${ relativePath}`
       },
-      text: `在 ${ isGithub() ? 'github' : 'gitee' } 编辑此页`,
+      text: `编辑此页`,
     },
     docFooter: {
       prev: '上一节',
@@ -58,11 +59,17 @@ export default defineConfig({
       },
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
-    algolia: {
-      appId: '02WXO09HIV',
-      apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
-      indexName: 'vite-press',
-    },
+    search: {
+      provider: 'algolia',
+      options: {
+        // appId: '02WXO09HIV',
+        // apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
+        // indexName: 'vite-press',
+        appId: 'LYHDYEDZR7',
+        apiKey: 'a7de6a75d69fb8405716c4334ab56a55',
+        indexName: 'vite-press',
+      },
+    }
   },
   locales: {
     root: {
