@@ -8,14 +8,6 @@ on:
 jobs:
   gh-pages-deploy:
     runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write
-      id-token: write # to verify the deployment originates from an appropriate source
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     # Specify runner + deployment step
     steps:
       - name: Checkout the repository
@@ -40,17 +32,11 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Enable pages and extract various metadata
-        uses: actions/configure-pages@v2
-
-      - name: Packaging and uploading
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: docs/.vitepress/dist
-
       - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: docs/.vitepress/dist
 
   gitee-branch-sync:
     needs: [ gh-pages-deploy ]
