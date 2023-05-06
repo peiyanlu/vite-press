@@ -55,6 +55,8 @@ jobs:
   gitee-branch-sync:
     needs: [ gh-pages-deploy ]
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - name: Sync branches to GitHube
         uses: peiyanlu/git-sync-action@v1

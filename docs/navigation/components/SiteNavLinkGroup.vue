@@ -16,7 +16,11 @@ const formatTitle = computed(() => (slugify(props.title)))
 <template>
   <h2 v-if="title" :id="formatTitle" tabindex="-1">
     {{ title }}
-    <a class="header-anchor" :href="`#${formatTitle}`" aria-hidden="true" />
+    <a
+      class="header-anchor"
+      :href="`#${formatTitle}`"
+      :aria-label='`Permalink to "${formatTitle}"`'
+    />
   </h2>
   <div class="site-nav-links">
     <SiteNavLink
