@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as e,Q as n}from"./chunks/framework.bf331dd6.js";const g=JSON.parse('{"title":"Git","description":"","frontmatter":{},"headers":[],"relativePath":"vcs/index.md","lastUpdated":1677914328000}'),l={name:"vcs/index.md"},t=n("",15),o=[t];function p(i,r,c,d,h,u){return a(),e("div",null,o)}const b=s(l,[["render",p]]);export{g as __pageData,b as default};
