@@ -263,17 +263,8 @@ on:
       - docs-deploy
 
 jobs:
-  gh-pages-deploy:
+  github-branch-update:
     runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write
-      id-token: write # to verify the deployment originates from an appropriate source
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Specify runner + deployment step
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -297,17 +288,11 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Enable pages and extract various metadata
-        uses: actions/configure-pages@v2
-
-      - name: Packaging and uploading
-        uses: actions/upload-pages-artifact@v1
+      - name: Update the gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: docs/.vitepress/dist
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v1
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: docs/.vitepress/dist
 ```
 
 [获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
@@ -349,7 +334,7 @@ job ：
 
 ```yaml{2-11}
 jobs:
-  gitee-pages-sync: // [!code focus:10]
+  gitee-pages-deploy: // [!code focus:10]
     runs-on: ubuntu-latest
     steps:
       - name: Build Gitee Pages
@@ -380,18 +365,18 @@ jobs:
 
 ```yaml{8,14}
 jobs:
-  gh-pages-deploy:
+  github-branch-update:
     runs-on: ubuntu-latest
     steps:
       // ...
 
   gitee-branch-sync:
-    needs: gh-pages-deploy // [!code focus]
+    needs: github-branch-update // [!code focus]
     runs-on: ubuntu-latest
     steps:
       // ...
 
-  gitee-pages-sync:
+  gitee-pages-deploy:
     needs: gitee-branch-sync // [!code focus]
     runs-on: ubuntu-latest
     steps:
@@ -418,7 +403,7 @@ jobs:
 ```yaml{2-17}
 jobs:
   search-algolia: // [!code focus:16]
-    needs: gh-pages-deploy
+    needs: github-branch-update
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -509,17 +494,8 @@ on:
       - docs-deploy
 
 jobs:
-  gh-pages-deploy:
+  github-branch-update:
     runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write
-      id-token: write # to verify the deployment originates from an appropriate source
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Specify runner + deployment step
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -543,21 +519,17 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Enable pages and extract various metadata
-        uses: actions/configure-pages@v2
-
-      - name: Packaging and uploading
-        uses: actions/upload-pages-artifact@v1
+      - name: Update the gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: docs/.vitepress/dist
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v1
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: docs/.vitepress/dist
 
   gitee-branch-sync:
-    needs: [ gh-pages-deploy ]
+    needs: [ github-branch-update ]
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - name: Sync branches to GitHube
         uses: peiyanlu/git-sync-action@v1
@@ -568,7 +540,7 @@ jobs:
           destination-repo: git@gitee.com:peiyanlu/vite-press.git
           destination-branch: gh-pages
 
-  gitee-pages-sync:
+  gitee-pages-deploy:
     needs: [ gitee-branch-sync ]
     runs-on: ubuntu-latest
     steps:

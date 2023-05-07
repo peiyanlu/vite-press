@@ -62,7 +62,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'rollup',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-lib') },
         { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-ts') },
@@ -70,14 +70,14 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'webpack',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack/webpack-icon') },
       ],
     },
     {
       text: '依赖包',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         { text: '常用推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
         { text: '版本规范', link: joinPath(MENU.FRONTEND, 'npm/npm-SemVer') },
@@ -89,14 +89,14 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'HTML',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         // { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
       ],
     },
     {
       text: 'CSS',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         { text: '选择器', link: joinPath(MENU.FRONTEND, 'css/css-selector') },
       ],
@@ -122,10 +122,18 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: '正则',
-      collapsed: false, // 折叠
+      collapsed: true, // 折叠
       items: [
         { text: '基础', link: joinPath(MENU.FRONTEND, 'regex/regex-basics') },
         { text: '使用', link: joinPath(MENU.FRONTEND, 'regex/regex-use') },
+      ],
+    },
+    {
+      text: '代码',
+      collapsed: true, // 折叠
+      items: [
+        { text: '图片懒加载', link: joinPath(MENU.FRONTEND, 'code/code-image-lazy') },
+        { text: '防抖与节流', link: joinPath(MENU.FRONTEND, 'code/code-debounce-throttle') }
       ],
     },
   ],

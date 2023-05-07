@@ -6,11 +6,8 @@ on:
       - docs-deploy
 
 jobs:
-  gh-pages-deploy:
+  github-branch-update:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-    # Specify runner + deployment step
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
@@ -34,14 +31,14 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy
+      - name: Update the gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: docs/.vitepress/dist
 
   gitee-branch-sync:
-    needs: [ gh-pages-deploy ]
+    needs: [ github-branch-update ]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -55,7 +52,7 @@ jobs:
           destination-repo: git@gitee.com:peiyanlu/vite-press.git
           destination-branch: gh-pages
 
-  gitee-pages-sync:
+  gitee-pages-deploy:
     needs: [ gitee-branch-sync ]
     runs-on: ubuntu-latest
     steps:
