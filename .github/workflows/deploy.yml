@@ -8,6 +8,8 @@ on:
 jobs:
   gh-pages-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     # Specify runner + deployment step
     steps:
       - name: Checkout the repository
