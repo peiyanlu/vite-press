@@ -553,7 +553,7 @@ jobs:
           branch: gh-pages
 
   search-algolia:
-    needs: [ gh-pages-deploy ]
+    needs: [ github-branch-update ]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
