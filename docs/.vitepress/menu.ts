@@ -4,12 +4,11 @@ import { joinPath } from './common'
 
 export const enum MENU {
   HOME = '/',
-  NAVIGATION = '/navigation/',
   ORIGIN = '/origin/',
+  NAVIGATION = '/navigation/',
   FRONTEND = '/frontend/',
-  VCS = '/vcs/',
   BACKEND = '/backend/',
-  WINDOWS = '/windows/'
+  CLI = '/cli/',
 }
 
 export const getNav = (): DefaultTheme.NavItem[] => [
@@ -39,45 +38,67 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     activeMatch: MENU.BACKEND,
   },
   {
-    text: 'VSC',
-    link: MENU.VCS,
-    activeMatch: MENU.VCS,
-  },
-  {
-    text: 'Windows',
-    link: MENU.WINDOWS,
-    activeMatch: MENU.WINDOWS,
+    text: 'CLI',
+    link: MENU.CLI,
+    activeMatch: MENU.CLI,
   },
 ]
 
 export const getSidebar = (): DefaultTheme.Sidebar => ({
   [MENU.FRONTEND]: [
     {
-      text: '计算机网络',
-      link: joinPath(MENU.FRONTEND, 'network/')
-    },
-    {
-      text: '浏览器',
-      link: joinPath(MENU.FRONTEND, 'browser/')
-    },
-    {
-      text: 'rollup',
-      collapsed: true, // 折叠
+      text: '浏览器与网络',
+      collapsed: true,
       items: [
-        { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-lib') },
-        { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-ts') },
+        {
+          text: '计算机网络',
+          items: [
+            {
+              text: '基础知识',
+              link: joinPath(MENU.FRONTEND, 'network/'),
+            },
+          ],
+        },
+        {
+          text: '浏览器',
+          collapsed: true,
+          items: [
+            {
+              text: '基础知识',
+              link: joinPath(MENU.FRONTEND, 'browser/'),
+            },
+            {
+              text: '浏览器缓存',
+              link: joinPath(MENU.FRONTEND, 'browser/browser-cache'),
+            },
+          ],
+        },
       ],
     },
     {
-      text: 'webpack',
-      collapsed: true, // 折叠
+      text: '编译构建',
+      collapsed: true,
       items: [
-        { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack/webpack-icon') },
+        {
+          text: 'rollup',
+          collapsed: true,
+          items: [
+            { text: '构建JS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-lib') },
+            { text: '构建TS库', link: joinPath(MENU.FRONTEND, 'rollup/rollup-ts') },
+          ],
+        },
+        {
+          text: 'webpack',
+          collapsed: true,
+          items: [
+            { text: '构建ICON库', link: joinPath(MENU.FRONTEND, 'webpack/webpack-icon') },
+          ],
+        },
       ],
     },
     {
       text: '依赖包',
-      collapsed: true, // 折叠
+      collapsed: true,
       items: [
         { text: '常用推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
         { text: '版本规范', link: joinPath(MENU.FRONTEND, 'npm/npm-SemVer') },
@@ -89,21 +110,21 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'HTML',
-      collapsed: true, // 折叠
+      collapsed: true,
       items: [
         // { text: '选择器', link: joinPath(MENU.FRONTEND, 'css-selector') }
       ],
     },
     {
       text: 'CSS',
-      collapsed: true, // 折叠
+      collapsed: true,
       items: [
         { text: '选择器', link: joinPath(MENU.FRONTEND, 'css/css-selector') },
       ],
     },
     {
       text: 'JavaScript',
-      collapsed: false, // 折叠
+      collapsed: false,
       items: [
         { text: 'ES6+', link: joinPath(MENU.FRONTEND, 'javascript/js-ES6+') },
         { text: '数组', link: joinPath(MENU.FRONTEND, 'javascript/js-array') },
@@ -122,7 +143,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: '正则',
-      collapsed: true, // 折叠
+      collapsed: true,
       items: [
         { text: '基础', link: joinPath(MENU.FRONTEND, 'regex/regex-basics') },
         { text: '使用', link: joinPath(MENU.FRONTEND, 'regex/regex-use') },
@@ -130,17 +151,20 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: '代码',
-      collapsed: true, // 折叠
+      collapsed: true,
       items: [
         { text: '图片懒加载', link: joinPath(MENU.FRONTEND, 'code/code-image-lazy') },
-        { text: '防抖与节流', link: joinPath(MENU.FRONTEND, 'code/code-debounce-throttle') }
+        { text: '防抖与节流', link: joinPath(MENU.FRONTEND, 'code/code-debounce-throttle') },
+        { text: '列表与树', link: joinPath(MENU.FRONTEND, 'code/code-list-tree') },
+        { text: 'Excel与TreeData', link: joinPath(MENU.FRONTEND, 'code/code-excel-json') },
+        { text: '其他应用', link: joinPath(MENU.FRONTEND, 'code/code-others') },
       ],
     },
   ],
   [MENU.BACKEND]: [
     {
       text: 'Koa',
-      collapsed: false, // 折叠
+      collapsed: false,
       items: [
         { text: '开始', link: joinPath(MENU.BACKEND, 'koa/koa-start') },
         { text: '实战', link: joinPath(MENU.BACKEND, 'koa/koa-use') },
@@ -148,34 +172,43 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
     },
     {
       text: 'MySQL',
-      collapsed: false, // 折叠
+      collapsed: false,
       items: [
         { text: '安装', link: joinPath(MENU.BACKEND, 'mysql/mysql-install') },
       ],
     },
     {
       text: 'Redis',
-      collapsed: false, // 折叠
+      collapsed: false,
       items: [
         { text: '安装', link: joinPath(MENU.BACKEND, 'redis/redis-install') },
       ],
     },
   ],
-  [MENU.VCS]: [
+  [MENU.CLI]: [
     {
       text: 'Git',
-      collapsed: false, // 折叠
+      collapsed: true,
       items: [
-        { text: '基础', link: joinPath(MENU.VCS, 'git-basics') },
-        { text: '集成', link: joinPath(MENU.VCS, 'git-hub') },
-        { text: '使用', link: joinPath(MENU.VCS, 'git-use') },
+        { text: 'CLI', link: joinPath(MENU.CLI, 'git/git-cli') },
+        { text: '集成', link: joinPath(MENU.CLI, 'git/git-hub') },
+        { text: '使用', link: joinPath(MENU.CLI, 'git/git-use') },
       ],
     },
     {
-      text: 'Shell',
-      collapsed: false, // 折叠
+      text: 'Linux',
+      collapsed: true,
       items: [
-        { text: '基础', link: joinPath(MENU.VCS, 'shell-basics') },
+        { text: 'CLI', link: joinPath(MENU.CLI, 'linux/linux-cli') },
+        { text: '其他', link: joinPath(MENU.CLI, 'linux/') },
+      ],
+    },
+    {
+      text: 'Windows',
+      collapsed: true,
+      items: [
+        { text: 'CLI', link: joinPath(MENU.CLI, 'windows/windows-cli') },
+        { text: '其他', link: joinPath(MENU.CLI, 'windows/') },
       ],
     },
   ],

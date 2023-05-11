@@ -482,6 +482,12 @@ export const NAV_DATA: NavData[] = [
         desc: '产品设计协作一体化工具',
         link: 'https://pixso.cn/',
       },
+      {
+        icon: 'https://www.bing.com/sa/simg/favicon-trans-bg-blue-mg.ico',
+        title: 'PDF24',
+        desc: '免费且易于使用的在线PDF工具',
+        link: 'https://tools.pdf24.org/zh/all-tools',
+      },
     ],
   },
   {
@@ -725,6 +731,12 @@ export const NAV_DATA: NavData[] = [
         title: 'forefront',
         desc: '基于GPT的拥有角色系统的聊天机器人',
         link: 'https://chat.forefront.ai/',
+      },
+      {
+        icon: 'https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg',
+        title: 'Bard',
+        desc: '谷歌的AI聊天机器人',
+        link: 'https://bard.google.com/',
       },
     ],
   },

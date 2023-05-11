@@ -1,9 +1,6 @@
 # 浏览器监听
 
-浏览器提供了 `5` 种 Observers：`MutationObserver`、`IntersectionObserver`、`PerformanceObserver`、`ResizeObserver`、`ReportingObserver`。
-
----
-监听用户的交互行为时我们会用 `addEventListener` 来监听 `click、mousedown、keydown、input` 等事件，但对于 `元素的变化、performance的记录、浏览器干预行为` 这些不是用户交互的事件就要用 `XxxObserver` 的 `api` 了
+监听用户的交互行为时我们会用 `addEventListener` 来监听 `click、mousedown、keydown、input` 等事件，但对于元素的变化、`performance` 的记录、浏览器干预行为这些不是用户交互的事件就要用 `XxxObserver` 的 `api` 了
 
 ## IntersectionObserver
 
@@ -42,7 +39,7 @@ mutationObserver.observe(dom, {
 
 ## ResizeObserver
 
-`ResizeObserver` 监听**元素大小的改变**，当 width、height 被修改时会触发回调。
+`ResizeObserver` 监听**元素大小的改变**，当 `width`、`height` 被修改时会触发回调。
 
 ```ts
 const resizeObserver = new ResizeObserver(entries => {
@@ -74,10 +71,12 @@ const measureClick = () => {
 
 ## ReportingObserver
 
-`ReportingObserver` 监听过时的 api、浏览器的一些干预行为的报告，在回调里上报，这些是错误监听无法监听到但对了解网页运行情况很有用的数据。
+`ReportingObserver` 监听过时的 `api`、浏览器的一些干预行为的报告，在回调里上报，这些是错误监听无法监听到但对了解网页运行情况很有用的数据。
 
-* 当浏览器运行到过时（deprecation）的 api 的时候，会在控制台打印一个过时的报告
-* 浏览器还会在一些情况下对网页行为做一些干预（intervention），比如会把占用 cpu 太多的广告的 iframe 删掉
+* 当浏览器运行到过时（`deprecation`）的 `api` 的时候，会在控制台打印一个过时的报告
+
+* 浏览器还会在一些情况下对网页行为做一些干预（`intervention`），比如会把占用 `cpu` 太多的广告的 `iframe` 删掉
+
 * 会在网络比较慢的时候把图片替换为占位图片，点击才会加载
 
 这些干预都是浏览器做的，会在控制台打印一个报告

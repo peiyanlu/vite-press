@@ -10,21 +10,23 @@
 
 ### 声明和变量声明
 
-包括使用 `let、const` 声明变量和对 `对象、数组` 解构绑定
+包括使用 `let`、`const` 声明变量和对**对象**、**数组**解构绑定
 
 #### 变量声明
 
 `let` 和 `const`，用于解决使用 `var` 声明常量时存在的问题：不能定义常量，可以重复声明变量、存在声明提升、不支持块级作用域的问题
 
-> 使用const可以定义常量，不能给常量重新赋值，但是如果是引用类型的话可以修改；
+> 使用 `const` 可以定义常量，不能给常量重新赋值，但是如果是引用类型的话可以修改；
 
-剖析暂时性死区的原理，其实let/const同样也有提升的作用，但是和var的区别在于
+剖析暂时性死区的原理，其实 `let/const` 同样也有提升的作用，但是和 `var` 的区别在于
 
 * `var` 在创建时就被初始化，并且赋值为 `undefined`
-* `let/const`
-  在进入块级作用域后，会因为提升的原因先创建，但不会被初始化，直到声明语句执行的时候才被初始化，初始化的时候如果使用let声明的变量没有赋值，则会默认赋值为undefined，而const必须在初始化的时候赋值。而创建到初始化之间的代码片段就形成了暂时性死区
 
-> > 由let/const声明的变量，当它们包含的词法环境(Lexical Environment)被实例化时会被创建，但只有在变量的词法绑定(
+* `let/const`
+  在进入块级作用域后，会因为提升的原因先创建，但不会被初始化，直到声明语句执行的时候才被初始化，初始化的时候如果使用 `let` 声明的变量没有赋值，则会默认赋值为 `undefined`，而 `const`
+  必须在初始化的时候赋值。而创建到初始化之间的代码片段就形成了暂时性死区
+
+> > 由 `let/const` 声明的变量，当它们包含的词法环境(Lexical Environment)被实例化时会被创建，但只有在变量的词法绑定(
 > > LexicalBinding)已经被求值运算后，才能够被访问
 
 ```ts
@@ -34,7 +36,7 @@ const b = 'const' // 常量
 
 #### 解构绑定
 
-解构赋值语法是JavaScript的一种表达式，可以方便的从数组或者对象中快速提取值赋给定义的变量。
+解构赋值语法是 `JavaScript` 的一种表达式，可以方便的从数组或者对象中快速提取值赋给定义的变量。
 
 > ObjectBindingPattern 和 ArrayBindingPattern
 
@@ -56,7 +58,7 @@ const [ a = 2, b = 4, c = 6 ] = []
 
 * 对象解构
 
-> 按 key 解构
+> 按 `key` 解构
 
 ```ts
 const info = {
@@ -72,16 +74,20 @@ const { name: myName, age: myAge = 18 } = info
 
 ### 函数扩展
 
-新增了箭头函数、新的方法定义方式、支持默认参数，新增 class
+新增了箭头函数、新的方法定义方式、支持默认参数，新增 `Class`
 
 #### 箭头函数
 
 箭头函数是使用 `=>` 语法的函数简写。与一般函数不同的是
 
 * 函数体内的 `this` 对象，就是定义时所在的对象，而不是使用时所在的对象。
+
 * `this` 对象的指向是可变的，但是在箭头函数中，它是固定的。
+
 * 不可以当作构造函数，也就是说，不可以使用 `new` 命令，否则会抛出一个错误。
+
 * 不可以使用 `arguments` 对象，该对象在函数体内不存在。如果要用，可以用 `rest` 参数代替。
+
 * 不可以使用 `yield` 命令，因此箭头函数不能用作 `Generator` 函数。
 
 ```ts
@@ -90,7 +96,7 @@ const date = () => Date.now()
 
 #### 方法定义
 
-> 省略 function 关键字
+> 省略 `function` 关键字
 
 ```ts
 // object 中
@@ -110,8 +116,8 @@ class Person {
 
 #### 类(Class)
 
-> 构造函数语法糖，增强 ES5 构造函数
-> > extends，constructor，super，static
+> 构造函数语法糖，增强 `ES5` 构造函数
+> > `extends`，`constructor`，`super`，`static`
 
 ```ts
 class Persion {
@@ -141,7 +147,7 @@ const fn = (a = 1) => a * 2
 
 ### 对象扩展
 
-增强了字面量定义对象，更加便捷；扩展了对象的 `静态方法`
+增强了字面量定义对象，更加便捷；扩展了对象的**静态方法**
 
 #### 字面量增强
 
@@ -209,7 +215,7 @@ Object.is('foo', 'bar');          // false
 
 * Object.setPrototypeOf
 
-> 设置一个指定的对象的原型（即，内部 [[Prototype]] 属性）到另一个对象或 null。
+> 设置一个指定的对象的原型（即，内部 [[Prototype]] 属性）到另一个对象或 `null`。
 
 ```ts
 // Object.setPrototypeOf(obj, prototype)
@@ -228,8 +234,8 @@ Object.setPrototypeOf(SuperHero.prototype, Human.prototype)
 
 * Object.assign
 
-> 将所有可枚举（Object.propertyIsEnumerable() 返回 true）的自有（Object.hasOwnProperty() 返回
-> true）属性从一个或多个源对象复制到目标对象，返回修改后的对象。
+> 将所有可枚举（`Object.propertyIsEnumerable()` 返回 `true`）的自有（`Object.hasOwnProperty()` 返回
+> `true`）属性从一个或多个源对象复制到目标对象，返回修改后的对象。
 > > 浅拷贝
 
 ```ts
@@ -242,7 +248,7 @@ console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
 
 * Object.getOwnPropertySymbols
 
-> 返回一个给定对象自身的所有 Symbol 属性的数组。
+> 返回一个给定对象自身的所有 `Symbol` 属性的数组。
 
 ```ts
 // Object.getOwnPropertySymbols(obj)
@@ -263,7 +269,7 @@ console.log(objectSymbols[0])      // Symbol(a)
 
 ### 数组扩展
 
-扩展了数组的 `静态方法` 和 `实例方法`
+扩展了数组的 **静态方法** 和 **实例方法**
 
 #### 静态方法
 
@@ -300,12 +306,12 @@ Array.of(undefined); // [undefined]
 // arr.copyWithin(target[, start[, end]])
 
 [ 1, 2, 3, 4, 5 ].copyWithin(-2)
-// [1, 2, 3, 1, 2]
+  // [1, 2, 3, 1, 2]
   
-[1, 2, 3, 4, 5].copyWithin(0, 3)
-// [4, 5, 3, 4, 5]
+  [1, 2, 3, 4, 5].copyWithin(0, 3)
+  // [4, 5, 3, 4, 5]
   
-[1, 2, 3, 4, 5].copyWithin(0, 3, 4)
+  [1, 2, 3, 4, 5].copyWithin(0, 3, 4)
 // [4, 2, 3, 4, 5]
 ```
 
@@ -342,7 +348,7 @@ for (const element of arrayEntries) {
 
 * Array.prototype.find
 
-> 返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+> 返回数组中满足提供的测试函数的第一个元素的值。否则返回 `undefined`。
 
 ```ts
 // arr.find((element, index, array) => { /* … */ }, thisArg)
@@ -359,7 +365,7 @@ console.log(result) // { name: 'cherries', quantity: 5 }
 
 * Array.prototype.findIndex
 
-> 返回数组中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回 -1
+> 返回数组中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回 `-1`
 
 ```ts
 // arr.findIndex((element, index, array) => { /* … */ }, thisArg)
@@ -398,7 +404,7 @@ for (const letter of iterator) {
 
 ### 字符串扩展
 
-新增了 `模板字符串`；扩展了字符串的 `实例方法`
+新增了模板字符串；扩展了字符串的实例方法
 
 #### 模板字符串
 
@@ -524,7 +530,9 @@ const [ one, two, ...other ] = arr
 和 `ES3` 中的 `for...in` 的区别如下
 
 * `for...of` 只能用在可迭代对象上，获取的是迭代器返回的 `value值`，`for...in` 可以获取所有对象的 `键名`
+
 * `for...in` 会遍历对象的整个原型链，性能非常差不推荐使用,而 `for...of` 只遍历当前对象不会遍历它的原型链
+
 * 对于数组的遍历，`for...in` 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，`for...of` 只返回数组的下标对应的属性值
 
 ```ts
@@ -542,17 +550,13 @@ for ({ a: aa } of arr) {
 #### Promise
 
 [`Promise`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-是异步编程的一种解决方案，其实是一个构造函数，有 all、race、reject、resolve 静态方法，原型上有 then、catch 方法
+是异步编程的一种解决方案，其实是一个构造函数，有 `all`、`race`、`reject`、`resolve` 静态方法，原型上有 `then`、`catch` 方法
 
-Promise对象有两个特点：
+`Promise` 对象有两个特点：
 
-*
+* 对象的状态不受外界影响：`promise` 对象代表一个异步操作看，有 `pending`（进行中），`fulfilled`（已成功）和 `rejected`（已失败），对象的状态只能由异步操作结果决定，其他的操作不会产生影响，这也是 `promise`（承诺）名字的由来，表示其他手段不能改变
 
-对象的状态不受外界影响：promise对象代表一个异步操作看，有pending（进行中），fulfilled（已成功）和rejected（已失败），对象的状态只能由异步操作结果决定，其他的操作不会产生影响，这也是promise（承诺）名字的由来，表示其他手段不能改变
-
-*
-
-一旦状态改变，就不会再发生改变：promise对象状态的改变只有两种可能，由pending到fulfilled或者由pending到rejected，只要这两种情况发生了，状态就凝固了，不会再改变了，会一直保持这个结果，这时处于resolved（已定型），状态发生来改变，给promise对象添加回调函数也会立即得到这个值，，这与事件（event）的错过了就再也得不到了有着很大的区别。
+* 一旦状态改变，就不会再发生改变：`promise` 对象状态的改变只有两种可能，由 `pending` 到 `fulfilled` 或者由 `pending` 到 `rejected`，只要这两种情况发生了，状态就凝固了，不会再改变了，会一直保持这个结果，这时处于 `resolved`（已定型），状态发生来改变，给 `promise` 对象添加回调函数也会立即得到这个值，这与事件（`event`）的错过了就再也得不到了有着很大的区别。
 
 ##### 静态方法
 
@@ -574,7 +578,7 @@ Promise.all([ p1, p2, p3 ]).then(values => {
 
 * Promise.race
 
-> 只要给定的迭代中的第一个 promise 解决或拒绝
+> 只要给定的迭代中的第一个 `Promise` 解决或拒绝
 
 ```ts
 const p1 = new Promise((resolve, reject) => {
@@ -592,7 +596,7 @@ Promise.race([ p1, p2 ]).then((value) => {
 
 * Promise.reject
 
-> 返回一个被拒绝的 Promise 对象
+> 返回一个被拒绝的 `Promise` 对象
 
 ```ts
 Promise.reject(new Error('fail'))
@@ -614,7 +618,7 @@ Promise.reject(new Error('fail'))
 
 * Promise.resolve
 
-> 返回一个以给定值解析后的 Promise 对象
+> 返回一个以给定值解析后的 `Promise` 对象
 
 ```ts
 Promise.resolve('Success')
@@ -642,16 +646,17 @@ Promise.resolve('Success')
 
 * Promise.prototype.catch
 
-> promise 被拒绝状态的回调函数
-> > catch 的另一个作用是如果 resolve 的执行过程中出现异常，将会进入 catch 方法，不会报错卡死js
+> `Promise` 被拒绝状态的回调函数
+> > `catch` 的另一个作用是如果 `resolve` 的执行过程中出现异常，将会进入 `catch` 方法，不会报错卡死 `js`
 
 #### Iteration
 
-**迭代协议**并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。具体分为:
+迭代协议并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。具体分为:
 
-* **可迭代协议** 允许 `JavaScript` 对象定义或定制它们的迭代行为，例如，在一个 `for..of`
-  结构中，哪些值可以被遍历到。一些内置类型同时是内置的可迭代对象，并且有默认的迭代行为，比如`Array` 或者 `Map`，而其他内置类型则不是（比如 `Object`）
-* **迭代器协议** 定义了产生一系列值（无论是有限个还是无限个）的标准方式，当值为有限个时，所有的值都被迭代完毕后，则会返回一个默认返回值。
+* 可迭代协议允许 `JavaScript` 对象定义或定制它们的迭代行为，例如，在一个 `for..of`
+  结构中，哪些值可以被遍历到。一些内置类型同时是内置的可迭代对象，并且有默认的迭代行为，比如 `Array` 或者 `Map`，而其他内置类型则不是（比如 `Object`）
+
+* 迭代器协议定义了产生一系列值（无论是有限个还是无限个）的标准方式，当值为有限个时，所有的值都被迭代完毕后，则会返回一个默认返回值。
 
 #### Generator
 
@@ -661,7 +666,7 @@ Promise.resolve('Success')
 `Generator` 的声明与一般函数类似，只是多了一个 `*`，内部有 `yield` 关键字，迭代器有一个 `next` 方法，每次执行会返回一个对象，对象有两个属性，一个是 `value`
 表示返回的值，另一个是布尔值 `done`，表示迭代是否完成
 
-> Generator 构造函数并不是全局可用。Generator 的实例必须从生成器函数返回：
+> `Generator` 构造函数并不是全局可用。`Generator` 的实例必须从生成器函数返回：
 
 * 生成器函数：`function* () {}`
 
@@ -681,7 +686,7 @@ console.log(gen.next().value); // 3
 
 #### GeneratorFunction
 
-`生成器函数` 实际上都是 `GeneratorFunction` 对象
+生成器函数实际上都是 `GeneratorFunction` 对象
 
 ```ts
 const GeneratorFunction = function* () {}.constructor;
@@ -694,11 +699,15 @@ console.log(iterator.next().value); // 20
 
 一个独立文件就是一个模块，该文件内部的所有变量，外部无法获取。
 
-* ES6模块自动开启严格模式，不管你有没有在模块头部加上 `use strict;`
+* `ES6` 模块自动开启严格模式，不管你有没有在模块头部加上 `use strict;`
+
 * 模块中可以导入（`import`）和导出（`export`、`export default`）各种类型的变量，如函数，对象，字符串，数字，布尔值，类等。
+
 * 每个模块都有自己的上下文，每一个模块内声明的变量都是局部变量，不会污染全局作用域。
+
 * 每一个模块只加载一次（是单例的），若再去加载同目录下同文件，直接从内存中读取。
-* `import` 导入的变量都是只读的，import命令具有提升效果，会提升到整个模块的头部，首先执行
+
+* `import` 导入的变量都是只读的，`import` 命令具有提升效果，会提升到整个模块的头部，首先执行
 
 > 一个模块中，`export` 支持导出多个但是导入时使用导出时的名字而且要使用 `{}`，`export default` 只能有一个但是导入时不一定使用导入时的名字
 > > `as` 关键字可实现对模块内变量名的改写，但不能用于 `export default` 导出的变量
@@ -722,7 +731,7 @@ import * as aModule from 'a.js'
 
 ### Proxy、Reflect
 
-Proxy、Reflect 通常一起使用
+`Proxy`、`Reflect` 通常一起使用
 
 #### Proxy
 
@@ -747,7 +756,7 @@ console.log('c' in p, p.c) // false, 37
 #### Reflect
 
 [`Reflect`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
-是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法与 proxy handler 的方法相同。Reflect 不是一个函数对象，因此它是不可构造的。
+是一个内置的对象，它提供拦截 `JavaScript` 操作的方法。这些方法与 `proxy handler` 的方法相同。`Reflect` 不是一个函数对象，因此它是不可构造的。
 
 ```ts
 const duck = {
@@ -801,7 +810,7 @@ console.log(myMap.get(function () {})); // undefined，因为 keyFunc !== functi
 对象允许你存储任何类型的唯一值，无论是原始值或者是对象引用。
 
 > `Set` 对象是值的集合，你可以按照插入的顺序迭代它的元素。`Set` 中的元素只会***出现一次***，即 `Set` 中的元素是唯一的
-> > `NaN` 和 `undefined` 都可以被存储在 Set 中，NaN 之间被视为相同的值（NaN 被认为是相同的，尽管 NaN !== NaN）
+> > `NaN` 和 `undefined` 都可以被存储在 `Set` 中，`NaN` 之间被视为相同的值（`NaN` 被认为是相同的，尽管 `NaN !== NaN`）
 
 ```ts
 let mySet = new Set();
@@ -829,7 +838,7 @@ mySet.add("some text"); // Set [ 1, 5, "some text" ]
 ### Symbol
 
 [`symbol`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
-是一种基本数据类型，`Symbol()` 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符；这是该数据类型仅有的目的。
+是一种基本数据类型，`Symbol()` 返回的 `symbol` 值都是唯一的。一个 `symbol` 值能作为对象属性的标识符；这是该数据类型仅有的目的。
 
 ## ES2016(ES7)
 
@@ -837,7 +846,7 @@ mySet.add("some text"); // Set [ 1, 5, "some text" ]
 
 * Array.prototype.includes
 
-> 用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回 false
+> 用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 `true`，否则返回 `false`
 
 ```ts
 // arr.includes(searchElement[, fromIndex])
@@ -864,7 +873,7 @@ console.log(2 ** 10); // 1024
 
 * Object.values
 
-> 返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用 for...in 循环的顺序相同（区别在于 for-in 循环枚举原型链中的属性）。
+> 返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用 `for...in` 循环的顺序相同（区别在于 `for-in` 循环枚举原型链中的属性）。
 
 ```ts
 // Object.values(obj)
@@ -892,7 +901,7 @@ console.log(Object.values('foo')); // ['f', 'o', 'o']
 
 * Object.entries
 
-> 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环还会枚举原型链中的属性）
+> 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 `for...in` 循环遍历该对象时返回的顺序一致（区别在于 `for-in` 循环还会枚举原型链中的属性）
 
 ```ts
 // Object.entries(obj)
@@ -1002,10 +1011,10 @@ const { name, ...other } = info
 
 ### 字符串扩展
 
-放松对标签模板里字符串转义的限制, 遇到不合法的字符串转义会返回undefined，并且从raw上可获取原字符串
+放松对标签模板里字符串转义的限制, 遇到不合法的字符串转义会返回 `undefined`，并且从 `raw` 上可获取原字符串
 
 ::: warning
-在模板字符串中，如果输入无效的unicode字符，还是会报错
+在模板字符串中，如果输入无效的 `unicode` 字符，还是会报错
 :::
 
 ### `for await...of`
@@ -1029,7 +1038,7 @@ for await (variable of iterable) {
 
 * Promise.prototype.finally
 
-> 无论结果是 fulfilled 或者是 rejected，都会执行指定的回调函数。避免了同样的语句需要在 then() 和 catch() 中各写一次的情况
+> 无论结果是 `fulfilled` 或者是 `rejected`，都会执行指定的回调函数。避免了同样的语句需要在 `then()` 和 `catch() `中各写一次的情况
 
 ```ts
 let isLoading = true;
@@ -1061,7 +1070,6 @@ fetch(myRequest)
 const map = new Map([ [ 'foo', 'bar' ], [ 'baz', 42 ] ]);
 const obj = Object.fromEntries(map);
 console.log(obj); // { foo: "bar", baz: 42 }
-
 
 const arr = [ [ '0', 'a' ], [ '1', 'b' ], [ '2', 'c' ] ];
 const objA = Object.fromEntries(arr);
@@ -1097,7 +1105,7 @@ arr4.flat(Infinity);
 
 * Array.prototype.flatMap
 
-> 首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 连着深度值为 1 的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些
+> 首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 `map` 连着深度值为 `1` 的 `flat` 几乎相同，但 `flatMap` 通常在合并成一种方法的效率稍微高一些
 
 ```ts
 // arr.flatMap(callbackFn[, thisArg])
@@ -1127,7 +1135,7 @@ arr2.flatMap(x => x.split(" "));
 
 * String.prototype.trimStart
 
-> 删除字符串开头的空白字符。trimLeft() 是此方法的别名
+> 删除字符串开头的空白字符。`trimLeft()` 是此方法的别名
 
 ```ts
 // str.trimStart()
@@ -1143,7 +1151,7 @@ console.log(str); // 'foo  '
 
 * String.prototype.trimEnd
 
-> 删除字符串末尾的空白字符。trimRight() 是这个方法的别名
+> 删除字符串末尾的空白字符。`trimRight()` 是这个方法的别名
 
 ```ts
 // str.trimEnd()
@@ -1159,7 +1167,7 @@ console.log(str); // '   foo'
 
 ### try...catch扩展
 
-可选的 Catch Binding
+可选的 `Catch Binding`
 
 ```ts
 // 之前
@@ -1198,13 +1206,13 @@ console.log(Symbol.for('foo').description);
 
 * JSON.stringify
 
-> 修复了对于一些超出范围的 Unicode 展示错误的问题，用转义字符的方式来处理这部分字符（0xD800–0xDFFF）而非编码的方式
+> 修复了对于一些超出范围的 `Unicode` 展示错误的问题，用转义字符的方式来处理这部分字符（`0xD800–0xDFFF`）而非编码的方式
 
 ### 函数增强
 
 * Function.prototype.toString
 
-> 以前函数的toString方法来自Object.prototype.toString()，现在的 Function.prototype.toString() 方法返回一个表示当前函数源代码的字符串。以前只会返回这个函数，不包含注释、空格等
+> 以前函数的 `toString` 方法来自 `Object.prototype.toString()`，现在的 `Function.prototype.toString()` 方法返回一个表示当前函数源代码的字符串。以前只会返回这个函数，不包含注释、空格等
 
 ## ES2020(ES11)
 
@@ -1212,7 +1220,7 @@ console.log(Symbol.for('foo').description);
 
 * `??` 空值合并操作符
 
-> `??` 是一个逻辑操作符，当左侧的操作数为 null或者undefined时，返回其右侧操作数，否则返回左侧操作数
+> `??` 是一个逻辑操作符，当左侧的操作数为 `null` 或者 `undefined` 时，返回其右侧操作数，否则返回左侧操作数
 
 ```ts
 const foo = undefined ?? "foo"
@@ -1245,7 +1253,7 @@ console.log(obj?.say?.())
 
 * BigInt
 
-> `BigInt` 是一种内置对象，它提供了一种方法来表示大于 `2的53次方 \- 1` 的整数，这原本是 Javascript中可以用 Number 表示的最大数字。BigInt 可以表示任意大的整数。
+> `BigInt` 是一种内置对象，它提供了一种方法来表示大于 `2的53次方 \- 1` 的整数，这原本是 `Javascript` 中可以用 `Number` 表示的最大数字。`BigInt` 可以表示任意大的整数。
 
 ```ts
 const bigIntNum = BigInt(9007199254740993) // 9007199254740992n
@@ -1270,7 +1278,7 @@ console.log(1n === 1) // false
 > 返回一个包含所有匹配正则表达式的结果及分组捕获组的迭代器。
 
 :::warning
-RegExp 必须是设置了全局模式 `g` 的形式，否则会抛出异常 TypeError
+RegExp 必须是设置了全局模式 `g` 的形式，否则会抛出异常 `TypeError`
 :::
 
 ```ts
@@ -1295,8 +1303,8 @@ Array.from(str.matchAll(regexp), m => m[0]);
 
 * Promise.allSettled
 
-> Promise.allSettled() 方法以 promise 组成的可迭代对象作为输入，并且返回一个 Promise 实例。当输入的所有 promise 都已敲定时（包括传递空的可迭代类型），返回的 promise 将兑现，并带有描述每个
-> promsie 结果的对象数组。
+> Promise.allSettled() 方法以 `promise` 组成的可迭代对象作为输入，并且返回一个 `Promise` 实例。当输入的所有 `promise` 都已敲定时（包括传递空的可迭代类型），返回的 `promise` 将兑现，并带有描述每个
+> `promise` 结果的对象数组。
 
 ```ts
 // Promise.allSettled(iterable)
@@ -1403,10 +1411,13 @@ console.log(a.speed); // 25
 
 * 数字分隔符
 
-1. 不能放在数值的最前面（leading）或最后面（trailing）。
+1. 不能放在数值的最前面（`leading`）或最后面（`trailing`）。
+
 2. 不能两个或两个以上的分隔符连在一起。
+
 3. 小数点的前后不能有分隔符。
-4. 科学计数法里面，表示指数的e或E前后不能有分隔符。
+
+4. 科学计数法里面，表示指数的 `e` 或 `E` 前后不能有分隔符。
 
 ```ts
 let budget = 1_000_000_000_000;
@@ -1417,13 +1428,15 @@ budget === 10 ** 12 // true
 
 * Promise.any
 
-> `Promise.any()` 接收一个由 `Promise` 所组成的可迭代对象，该方法会返回一个新的 promise，一旦可迭代对象内的任意一个 `promise` 变成了兑现状态，那么由该方法所返回的 promise
-> 就会变成兑现状态，并且它的兑现值就是可迭代对象内的首先兑现的 promise 的兑现值。如果可迭代对象内的 promise 最终都没有兑现（即所有 promise 都被拒绝了），那么该方法所返回的 promise
-> 就会变成拒绝状态，并且它的拒因会是一个 AggregateError 实例，这是 Error 的子类，用于把单一的错误集合在一起。
+> `Promise.any()` 接收一个由 `promise` 所组成的可迭代对象，该方法会返回一个新的 `promise`，一旦可迭代对象内的任意一个 `promise` 变成了兑现状态，那么由该方法所返回的 `promise`
+> 就会变成兑现状态，并且它的兑现值就是可迭代对象内的首先兑现的 `promise` 的兑现值。如果可迭代对象内的 `promise` 最终都没有兑现（即所有 `promise` 都被拒绝了），那么该方法所返回的 `promise`
+> 就会变成拒绝状态，并且它的拒因会是一个 `AggregateError` 实例，这是 `Error` 的子类，用于把单一的错误集合在一起。
 
-1. Promise.all() 会返回一组兑现值
-2. Promise.race() 总是返回第一个敲定值（兑现或拒绝）
-3. Promise.any() 第一个兑现的值
+1. `Promise.all()` 会返回一组兑现值
+
+2. `Promise.race()` 总是返回第一个敲定值（兑现或拒绝）
+
+3. `Promise.any()` 第一个兑现的值
 
 ```ts
 // Promise.any(iterable);
@@ -1449,7 +1462,7 @@ Promise.any([ pErr, pSlow, pFast ]).then((value) => {
 
 ### WeakRef
 
-WeakRef 对象允许您保留对另一个对象的弱引用，而不会阻止被弱引用对象被 GC 回收
+`WeakRef` 对象允许您保留对另一个对象的弱引用，而不会阻止被弱引用对象被 `GC` 回收
 
 ## ES2022(ES13)
 
@@ -1460,7 +1473,7 @@ WeakRef 对象允许您保留对另一个对象的弱引用，而不会阻止被
 > 类字段可以在类的顶层被定义和初始化。在这之前，类的字段定义和初始化是在类的构造函数中完成的
 
 :::tip
-类公有字段通过 Object.defineProperty 定义
+类公有字段通过 `Object.defineProperty` 定义
 :::
 
 ```ts
@@ -1472,13 +1485,14 @@ class Person {
 
 * 类私有域
 
-> 类属性在默认情况下是公有的，但可以使用增加哈希前缀 # 的方法来定义私有类属性
+> 类属性在默认情况下是公有的，但可以使用增加哈希前缀 `#` 的方法来定义私有类属性
 
-1. 私有字段包括 `私有实例字段` 和 `私有静态字段`
-2. 私有方法包括 `私有实例方法` 和 `私有静态方法`
+1. 私有字段：包括私有**实例字段**和私有**静态字段**
+
+2. 私有方法：包括私有**实例方法**和私有**静态方法**
 
 :::tip
-`in` 操作符，如果指定的`属性/字段`在指定的`对象/类`中，则返回真，并且也能判断`私有字段`
+`in` 操作符，如果指定的属性/字段在指定的对象/类中，则返回真，并且也能判断私有字段
 ::::
 
 ```ts
@@ -1502,7 +1516,7 @@ class Person {
 
 * 类静态域
 
-> 在 `类字段` 和 `私有字段` 基础上，增加了 `静态公共字段`、`静态私有方法` 和 `静态私有字段`
+> 在类字段和私有字段基础上，增加了静态公共字段、静态私有方法和 静态私有字段
 
 ```ts
 class Person {
@@ -1589,7 +1603,7 @@ console.log(s1.slice(...m1.indices[1]));  // 'z'
 
 * Object.hasOwn
 
-> 如果指定的对象自身有指定的属性，则静态方法` Object.hasOwn()` 返回 true。如果属性是继承的或者不存在，该方法返回 false
+> 如果指定的对象自身有指定的属性，则静态方法` Object.hasOwn()` 返回 `true`。如果属性是继承的或者不存在，该方法返回 `false`
 > > `Object.hasOwn()` 旨在取代 `Object.prototype.hasOwnProperty()`
 
 ```ts
@@ -1612,12 +1626,12 @@ Object.hasOwn(example, 'prop');   // true - own property exists with value of un
 
 * Error cause
 
-> Error 实例中的 cause 数据属性指示导致该错误的具体原始原因。
+> `Error` 实例中的 `cause` 数据属性指示导致该错误的具体原始原因。
 
-在捕获错误时，我们可能会使用更具体或更加实用的信息对错误进行包装，再将其重新抛出。cause 属性就用于这一场景，以便仍然可以访问原始的错误。
+在捕获错误时，我们可能会使用更具体或更加实用的信息对错误进行包装，再将其重新抛出。`cause` 属性就用于这一场景，以便仍然可以访问原始的错误。
 
 :::tip
-🎉 Error cause 是第一个由中国公司（阿里巴巴 TC39 代表 `legendecas`）代表主导推动的 JavaScript 达到 stage 4 的新特性提案！
+🎉 `Error cause` 是第一个由中国公司（阿里巴巴 `TC39` 代表 `legendecas`）代表主导推动的 `JavaScript` 达到 `stage 4` 的新特性提案！
 :::
 
 ```ts
@@ -1632,13 +1646,13 @@ try {
 
 * 顶层 await
 
-> 在模块的顶层，可以单独使用关键字 await（异步函数的外面）。也就是说一个模块如果包含用了 await 的子模块，该模块就会等待该子模块，这一过程并不会阻塞其他子模块
+> 在模块的顶层，可以单独使用关键字 `await`（异步函数的外面）。也就是说一个模块如果包含用了 `await` 的子模块，该模块就会等待该子模块，这一过程并不会阻塞其他子模块
 
 :::warning
-在 class 代码块或非 async 函数仍不支持
+在 `Class` 代码块或非 `async` 函数仍不支持
 :::
 
-任何文件只要导入这个模块，后面的代码就会等待，直到 fetch 完成。
+任何文件只要导入这个模块，后面的代码就会等待，直到 `fetch` 完成。
 
 ```ts
 // fetch request

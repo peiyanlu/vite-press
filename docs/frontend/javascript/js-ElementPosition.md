@@ -32,25 +32,25 @@ scrollLeft = dom?.scrollLeft
 
 > clientWidth 和 clientHeight、clientTop 和 clientLeft
 
-* `clientWidth` 的实际宽度：width + 左右padding。 （可视区域宽度）
+* `clientWidth` 的实际宽度：`width` + 左右 `padding`。 （可视区域宽度）
 
 ```js
 clientWidth = dom?.clientWidth
 ```
 
-* `clientHeight` 的实际高度：height + 上下padding。 （可视区域高度）
+* `clientHeight` 的实际高度：`height` + 上下 `padding`。 （可视区域高度）
 
 ```js
 clientHeight = dom?.clientHeight
 ```
 
-* `clientTop`：border.top(上边框的宽度)
+* `clientTop`：`border.top`(上边框的宽度)
 
 ```js
 clientTop = dom?.clientTop
 ```
 
-* `clientLeft`：border.left(左边框的宽度)
+* `clientLeft`：`border.left`(左边框的宽度)
 
 ```js
 clientLeft = dom?.clientLeft
@@ -60,13 +60,13 @@ clientLeft = dom?.clientLeft
 
 > offsetWidth 和 offsetHeight、offsetTop 和 offsetLeft
 
-* `offsetWidth` 的实际宽度：width + 左右padding + 左右border
+* `offsetWidth` 的实际宽度：`width` + 左右 `padding` + 左右 `border`
 
 ```js
 offsetWidth = dom?.offsetWidth
 ```
 
-* `offsetHeight` 的实际高度：height + 上下padding + 上下border
+* `offsetHeight` 的实际高度：`height` + 上下 `padding` + 上下 `border`
 
 ```js
 offsetHeight = dom?.offsetHeight

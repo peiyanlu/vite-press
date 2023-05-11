@@ -71,7 +71,7 @@ d = Object.getOwnPropertyDescriptor(o, "foo");
 
 ### Object.getOwnPropertyNames
 
-> 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 Symbol 值作为名称的属性）组成的数组。
+> 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括 `Symbol` 值作为名称的属性）组成的数组。
 
 * 语法
 
@@ -92,7 +92,7 @@ console.log(Object.getOwnPropertyNames(obj).sort()); // ["0", "1", "2"]
 
 ### Object.create
 
-> 用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）。
+> 用于创建一个新对象，使用现有的对象来作为新创建对象的原型（`prototype`）。
 
 * 语法
 
@@ -251,7 +251,7 @@ Object.defineProperty(obj, 'foo', {
 
 > 冻结一个对象。一个被冻结的对象再也不能被修改；
 
-冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。freeze()
+冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。`freeze()`
 返回和传入的参数相同的对象。
 
 * 语法
@@ -653,7 +653,7 @@ a.propertyIsEnumerable(0);      // 返回 true
 
 ### Object.assign
 
-> 将所有可枚举（Object.propertyIsEnumerable() 返回 true）的自有（Object.hasOwnProperty() 返回 true）属性从一个或多个源对象复制到目标对象，返回修改后的对象
+> 将所有可枚举（`Object.propertyIsEnumerable()` 返回 `true`）的自有（`Object.hasOwnProperty()` 返回 `true`）属性从一个或多个源对象复制到目标对象，返回修改后的对象
 > > 浅拷贝
 
 * 语法
@@ -673,7 +673,7 @@ console.log(copy); // { a: 1 }
 
 ### Object.getOwnPropertySymbols
 
-> 返回一个给定对象自身的所有 Symbol 属性的数组。
+> 返回一个给定对象自身的所有 `Symbol` 属性的数组。
 
 * 语法
 
@@ -723,7 +723,7 @@ Object.is([], []);                // false
 
 ### Object.setPrototypeOf
 
-> 设置一个指定的对象的原型（即，内部 `[[Prototype]]` 属性）到另一个对象或 null。
+> 设置一个指定的对象的原型（即，内部 `[[Prototype]]` 属性）到另一个对象或 `null`。
 
 * 语法
 
@@ -750,7 +750,7 @@ Object.setPrototypeOf(SuperHero.prototype, Human.prototype);
 
 ### Object.values
 
-> 返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用 for...in 循环的顺序相同（区别在于 for-in 循环枚举原型链中的属性）。
+> 返回一个给定对象自身的所有可枚举属性值的数组，值的顺序与使用 `for...in` 循环的顺序相同（区别在于 `for-in` 循环枚举原型链中的属性）。
 
 * 语法
 
@@ -784,7 +784,7 @@ console.log(Object.values('foo')); // ['f', 'o', 'o']
 
 ### Object.entries
 
-> 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in
+> 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 `for...in` 循环遍历该对象时返回的顺序一致（区别在于 `for-in`
 > 循环还会枚举原型链中的属性）。
 
 * 语法

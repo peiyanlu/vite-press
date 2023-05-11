@@ -45,3 +45,44 @@ import NthChild from './components/NthChild.vue'
 ```
 
 <NthChild class='ee'></NthChild>
+
+## 属性选择器
+
+`~=`、 `|=`、 `^=`、 `$=`、 `*=` 的区别：
+
+- `value` 是完整单词：`~=`、 `|=`
+
+- `value` 是拼接字符串：`*=`、 `^=`、 `$=`
+
+---
+1. `attribute` 属性中**包含** `value`
+
+`~=`： 包含独立的单词
+```
+[title~=flower]  -->  <img title="tulip flower" />
+```
+
+`*=`： 包含这个词
+```
+[title*=flower]  -->  <img title="ffffflowerrrrrr" />
+```
+
+2. `attribute` 属性以 `value` **开头**
+
+`|=`： 必须是完整且唯一的单词，或者以 `-` 分隔开
+```
+[lang|=en]  -->  <p lang="en">  <p lang="en-us">
+```
+
+`^=`： 前几个字母匹配就可以
+```
+[lang^=en]  -->  <p lang="ennn">
+```
+
+3. `attribute` 属性以 `value` **结尾**
+
+`$=`： 后几个字母匹配就可以
+```
+[href$=".pdf"]  -->  <a href="/file.pdf" />
+```
+

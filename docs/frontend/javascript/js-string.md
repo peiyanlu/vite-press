@@ -44,7 +44,7 @@ String.fromCharCode(0x2014); // returns "—"
 > 返回一个字符串，表示指定的字符串。
 
 :::tip
-String 对象覆盖了 Object 对象的 toString() 方法；并没有继承 Object.prototype.toString()。对于 String 对象，toString() 方法返回一个字符串来表示这个对象，和 String.prototype.valueOf()
+`String` 对象覆盖了 `Object` 对象的 `toString()` 方法；并没有继承 `Object.prototype.toString()`。对于 `String` 对象，`toString()` 方法返回一个字符串来表示这个对象，和 `String.prototype.valueOf()`
 方法的返回值相同。
 :::
 
@@ -152,10 +152,10 @@ str.indexOf('new') // logs 6
 
 ### lastIndexOf
 
-> 返回调用String 对象的指定值最后一次出现的索引，在一个字符串中的指定位置 fromIndex处从后向前搜索。如果没找到这个特定值则返回 -1。
+> 返回调用 `String` 对象的指定值最后一次出现的索引，在一个字符串中的指定位置 `fromIndex` 处从后向前搜索。如果没找到这个特定值则返回 `-1`。
 
-该方法将从尾到头地检索字符串 str，看它是否含有子串 searchValue。开始检索的位置在字符串的 fromIndex 处或字符串的结尾（没有指定 fromIndex 时）。如果找到一个 searchValue，则返回 searchValue
-的第一个字符在 str 中的位置。str中的字符位置是从 0 开始的。
+该方法将从尾到头地检索字符串 `str`，看它是否含有子串 `searchValue`。开始检索的位置在字符串的 `fromIndex` 处或字符串的结尾（没有指定 `fromIndex` 时）。如果找到一个 `searchValue`，则返回 `searchValue`
+的第一个字符在 `str` 中的位置。str中的字符位置是从 `0` 开始的。
 
 * 语法
 
@@ -176,8 +176,10 @@ anyString.lastIndexOf("w") // 10
 > 返回一个数字来指示一个参考字符串是否在排序顺序之前、之后或与给定字符串相同
 
 1. 当 `referenceStr` 在 `compareString` 前面时返回负数
+
 2. 当 `referenceStr` 在 `compareString` 后面时返回正数
-3. 当两者相等时返回 0
+
+3. 当两者相等时返回 `0`
 
 * 语法
 
@@ -232,8 +234,8 @@ console.log(found);
 
 ### replace
 
-> 返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。*
-*如果pattern是字符串，则仅替换第一个匹配项**。
+> 返回一个由替换值（`replacement`）替换部分或所有的模式（`pattern`）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。*
+*如果 `pattern` 是字符串，则仅替换第一个匹配项**。
 
 * 语法
 
@@ -253,7 +255,7 @@ console.log(newstr);
 
 ### search
 
-> 执行正则表达式和 String 对象之间的一个搜索匹配。
+> 执行正则表达式和 `String` 对象之间的一个搜索匹配。
 
 * 语法
 
@@ -319,11 +321,15 @@ str.split([separator[, limit]])
 
 > 返回一个字符串在开始索引到结束索引之间的一个子集，或从开始索引直到字符串的末尾的一个子集。
 
-1. 如果 indexStart 等于 indexEnd，substring 返回一个空字符串。
-2. 如果省略 indexEnd，substring 提取字符一直到字符串末尾。
-3. 如果任一参数小于 0 或为 NaN，则被当作 0。
-4. 如果任一参数大于 stringName.length，则被当作 stringName.length。
-5. 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。
+1. 如果 `indexStart` 等于 `indexEnd`，`substring` 返回一个空字符串。
+
+2. 如果省略 `indexEnd`，`substring` 提取字符一直到字符串末尾。
+
+3. 如果任一参数小于 `0` 或为 `NaN`，则被当作 `0`。
+
+4. 如果任一参数大于 `stringName.length`，则被当作 `stringName.length`。
+
+5. 如果 `indexStart` 大于 `indexEnd`，则 `substring` 的执行效果就像两个参数调换了一样。
 
 * 语法
 
@@ -422,7 +428,7 @@ str.toLocaleUpperCase([locale, locale, ...])
 
 ### trim
 
-> 从字符串的两端清除空格，返回一个新的字符串，而**不修改原始字符串**。此上下文中的空格是指所有的空白字符（空格、tab、不换行空格等）以及所有行终止符字符（如 LF、CR 等）
+> 从字符串的两端清除空格，返回一个新的字符串，而**不修改原始字符串**。此上下文中的空格是指所有的空白字符（空格、`tab`、不换行空格等）以及所有行终止符字符（如 `LF`、`CR` 等）
 
 * 语法
 
@@ -630,7 +636,7 @@ alert(str.startsWith("not to be", 10)); // true
 
 ### padStart
 
-> 用给定字符串从开头填充当前字符串并返回长度为 targetLength 的新字符串。
+> 用给定字符串从开头填充当前字符串并返回长度为 `targetLength` 的新字符串。
 
 * 语法
 
@@ -650,7 +656,7 @@ str.padStart(targetLength[, padString])
 
 ### padEnd
 
-> 用给定字符串从末尾填充当前字符串并返回长度为 targetLength 的新字符串。
+> 用给定字符串从末尾填充当前字符串并返回长度为 `targetLength` 的新字符串。
 
 * 语法
 
@@ -751,8 +757,8 @@ Array.from(str.matchAll(regexp), m => m[0]);
 
 ### replaceAll
 
-> 返回一个新字符串，新字符串所有满足 pattern 的部分都已被replacement 替换。pattern可以是一个字符串或一个 RegExp，
-> replacement可以是一个字符串或一个在每次匹配被调用的函数。
+> 返回一个新字符串，新字符串所有满足 `pattern` 的部分都已被 `replacement` 替换。`pattern` 可以是一个字符串或一个 `RegExp`，
+> `replacement` 可以是一个字符串或一个在每次匹配被调用的函数。
 > > 使用正则表达式搜索值时，它必须是全局的
 
 * 语法
@@ -775,7 +781,7 @@ str.replaceAll(regexp|substr, newSubstr|function)
 
 ### at
 
-> 接受一个整数值，并返回一个新的 String，该字符串由位于指定偏移量处的单个 UTF-16 码元组成。该方法允许正整数和负整数。负整数从字符串中的最后一个字符开始倒数。
+> 接受一个整数值，并返回一个新的 `String`，该字符串由位于指定偏移量处的单个 `UTF-16` 码元组成。该方法允许正整数和负整数。负整数从字符串中的最后一个字符开始倒数。
 
 * 语法
 
