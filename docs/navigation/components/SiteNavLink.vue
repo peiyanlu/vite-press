@@ -49,7 +49,8 @@ $doc-prefix: VPDoc;
 
     .title {
       &::after {
-        animation: show .8s steps(100);
+        animation: show 1s steps(24, end) forwards;
+        animation-fill-mode: forwards;
       }
     }
 

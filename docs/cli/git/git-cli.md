@@ -10,6 +10,9 @@ git init [project-name]
 
 # 下载一个项目和它的整个代码历史
 git clone [url]
+
+# 使用参数下载一个项目
+git clone [options] <repository> [<directory>]
 ```
 
 ## 配置
@@ -19,6 +22,9 @@ git config --list
 
 # 编辑Git配置文件
 git config -e [--global]
+
+# 查看某个配置选项
+git config user.name
 
 # 设置提交代码时的用户信息
 git config [--global] user.name "[name]"
