@@ -1,5 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ImagePreviewDirective } from '@theme/directives/image-preview'
+
 const vImagePreview = ImagePreviewDirective
 
 const props = defineProps<{
@@ -8,8 +9,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="image-preview" v-image-preview="{scopeSelector: '.VPDoc .main'}">
-    <img :src="src" alt=""  />
+  <div v-image-preview="{scopeSelector: '.VPDoc .main'}" class="image-preview">
+    <img :src="src" alt="" />
   </div>
 </template>
 

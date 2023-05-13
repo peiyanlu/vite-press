@@ -1,24 +1,28 @@
 // 公共组件
 import ImagePreview from '@theme/components/ImagePreview.vue'
+import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { createVNode, h, nextTick, render } from 'vue'
+import { h, nextTick, render } from 'vue'
 
 // 样式文件
 import './style/index'
 
-
 export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
-    const data = useData()
+    const { frontmatter, isDark } = useData()
     
-    nextTick(imagePreviewFn).catch(e => console.error(e))
-
+    nextTick(() => {
+      imagePreviewFn()
+      render(h(Live2dWidget, { isDark: isDark.value }), document.body)
+      console.log(isDark.value)
+    }).catch(e => console.error(e))
+    
     return h(
       DefaultTheme.Layout,
       {
-        class: data.frontmatter.value?.layoutClass,
+        class: frontmatter.value?.layoutClass,
       },
     )
   },
@@ -31,7 +35,7 @@ const imagePreviewFn = () => {
   
   allImg.forEach(img => {
     const p = img.parentElement
-
+    
     if (!p) return
     
     let container
@@ -41,16 +45,16 @@ const imagePreviewFn = () => {
     } else {
       container = p
     }
-
-    const vNode = createVNode(
+    
+    const vNode = h(
       ImagePreview,
       {
         src: img.getAttribute('src'),
       },
     )
-
+    
     img.remove()
-
+    
     render(vNode, container)
   })
 }

@@ -17,6 +17,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@types/node": "^18.16.3"
+    "@types/node": "^18.16.3",
+    "live2d-lib": "^1.0.1"
   }
 }
