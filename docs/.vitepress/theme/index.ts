@@ -3,7 +3,7 @@ import ImagePreview from '@theme/components/ImagePreview.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { h, nextTick, render } from 'vue'
+import { h, nextTick, Ref, render } from 'vue'
 
 // 样式文件
 import './style/index'
@@ -15,8 +15,7 @@ export default <Theme>{
     
     nextTick(() => {
       imagePreviewFn()
-      render(h(Live2dWidget, { isDark: isDark.value }), document.body)
-      console.log(isDark.value)
+      live2dWidgetFn(isDark)
     }).catch(e => console.error(e))
     
     return h(
@@ -57,4 +56,10 @@ const imagePreviewFn = () => {
     
     render(vNode, container)
   })
+}
+
+const live2dWidgetFn = (isDark: Ref<boolean>) => {
+  if (!globalThis.document) return
+  
+  render(h(Live2dWidget, { isDark: isDark.value }), globalThis.document.body)
 }

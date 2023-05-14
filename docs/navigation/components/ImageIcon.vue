@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from 'vue'
 import { NavLink } from './type'
+import useObserver from './useObserver'
 
 const props = defineProps<{
   icon?: NavLink['icon']
@@ -39,20 +40,9 @@ const setDisplayName = (nameValue: string, widthValue: number) => {
 }
 
 const imgRef = ref<HTMLImageElement | null>(null)
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const lazyImg = entry.target as HTMLImageElement
-      const src = lazyImg.dataset.src
-      if (src) {
-        lazyImg.src = src
-        lazyImg.removeAttribute('data-src')
-      }
-      observer.unobserve(lazyImg)
-    }
-  })
-})
+
 watchEffect(() => {
+  const observer = useObserver()
   if (imgRef.value) {
     observer.observe(imgRef.value)
   }

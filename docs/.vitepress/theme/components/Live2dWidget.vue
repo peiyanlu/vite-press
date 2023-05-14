@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Live2dWidget from 'live2d-lib'
 import { computed, ref, watchEffect } from 'vue'
+import { withBase } from 'vitepress'
 
 const props = defineProps<{
   isDark: boolean
@@ -14,7 +15,7 @@ watchEffect(() => {
     Live2dWidget.init({
       target: elRef.value,
       source: {
-        path: '/live2d',
+        path: withBase('/live2d/models'),
         models: com.value ? [ 'hijiki' ] : [ 'tororo' ],
       },
     })
