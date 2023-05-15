@@ -89,13 +89,13 @@ ssh-keygen -t rsa -C "$(git config user.email)"
 
 ## 查看秘钥文件夹位置（路径地址）
 
-1、输入 `cd ~/.ssh` 进入到 .ssh 文件夹
+1、输入 `cd ~/.ssh` 进入到 `.ssh `文件夹
 
 2、输入 `ls` 查看 `.ssh` 文件夹里面有 `id_rsa`，`id_rsa.pub`，`known_hosts` 文件
 
 3、输入 `pwd` 查看 `.ssh` 文件路径位置地址
 
-## GitHub设置 SSH Deploy Key
+## GitHub 设置 SSH Deploy Key
 
 > 在 `个人设置` 中配置了公钥就可以不用设置仓库的 `Deploy Key`
 

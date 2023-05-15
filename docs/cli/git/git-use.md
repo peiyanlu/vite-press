@@ -56,7 +56,7 @@ git remote update --prune origin
 git push -f --prune --all [target_repository]
 ```
 
-4、同步 tag
+4、同步 `tag`
 
 ```shell
 git tag --sort==-createordate | head -n2000 | git push -f [target_repository]

@@ -193,6 +193,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
         { text: 'CLI', link: joinPath(MENU.CLI, 'git/git-cli') },
         { text: '集成', link: joinPath(MENU.CLI, 'git/git-hub') },
         { text: '使用', link: joinPath(MENU.CLI, 'git/git-use') },
+        { text: '问题', link: joinPath(MENU.CLI, 'git/git-FAQ') },
       ],
     },
     {

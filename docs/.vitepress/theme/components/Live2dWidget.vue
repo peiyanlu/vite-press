@@ -1,22 +1,26 @@
 <script lang="ts" setup>
 import Live2dWidget from 'live2d-lib'
-import { computed, ref, watchEffect } from 'vue'
 import { withBase } from 'vitepress'
+import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps<{
   isDark: boolean
 }>()
 
-const com = computed(() => props.isDark)
-const elRef = ref<HTMLDivElement | null>(null)
+const dark = computed(() => localStorage.getItem('vitepress-theme-appearance') === 'dark' || props.isDark)
 
+const elRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
   if (elRef.value) {
     Live2dWidget.init({
+      canvas:{
+        width: 180,
+        height: 180
+      },
       target: elRef.value,
       source: {
         path: withBase('/live2d/models'),
-        models: com.value ? [ 'hijiki' ] : [ 'tororo' ],
+        models: dark.value ? [ 'hijiki' ] : [ 'tororo' ],
       },
     })
   }
@@ -33,6 +37,6 @@ watchEffect(() => {
   position: fixed;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: var(--vp-z-index-footer);
 }
 </style>

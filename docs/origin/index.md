@@ -17,6 +17,7 @@ pnpm exec vitepress init
 # 运行
 pnpm run docs:dev
 ```
+
 ::: tip
 
 执行 `pnpm exec vitepress init` 会出现一些交互式问答，帮助我们快速初始化配置：
@@ -25,17 +26,18 @@ pnpm run docs:dev
 
 1. `VitePress` 初始化配置目录，可以是根目录 `./` 也可以是二级目录 `./docs`
 2. `Theme` 配置：
-   * `Default Theme (Out of the box, good-looking docs)`：默认配置，开箱即用；推荐不需要改布局和主题色的人员使用。后期需要也可以手动添加。
-   * `Default Theme + Customization (Add custom CSS and layout slots)`：默认配置 + 自定义配置，会增加 `docs/.vitepress/theme` 目录，展示 `CSS` 和 `slot`
+
+   * `Default Theme`：默认配置，开箱即用；推荐不需要改布局和主题色的人员使用。后期需要也可以手动添加。
+   * `Default Theme + Customization`：默认配置 + 自定义配置，会增加 `docs/.vitepress/theme` 目录，展示 `CSS` 和 `slot`
      的使用；推荐希望使用 `vitepress` 的布局，但是希望自定义主题色和部分布局的人员使用。
-   * `Custom Theme (Build your own or use external)`：完全自定义，布局和样式完全自定义；推荐希望完全自定义页面内容的人员使用。
+   * `Custom Theme`：完全自定义，布局和样式完全自定义；推荐希望完全自定义页面内容的人员使用。
 :::
 
-> 现在，已经有了一个基本的 VitePress 文档站点。后续操作是：增加新的文档，配置其路由
+> 现在，已经有了一个基本的 `VitePress` 文档站点。后续操作是：增加新的文档，配置其路由
 
 ## 网站配置
 
-> docs 文件下创建 public 文件夹放置公共文件
+> `docs` 文件下创建 `public` 文件夹放置公共文件
 
 ```markdown{4-5}
 .
@@ -109,10 +111,10 @@ export default {
       { text: 'Guide', link: '/guide' },
     ], // 导航菜单
     sidebar: { ... }, // 侧边栏菜单
-     outline: {
-        level: 'deep', // 在大纲中显示的标题级别
-        label: '快速导航', // 大纲的标题
-     },
+    outline: {
+      level: 'deep', // 在大纲中显示的标题级别
+      label: '快速导航', // 大纲的标题
+    },
     editLink: { // 提供编辑页面的连接
       pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
@@ -142,9 +144,9 @@ export default {
 
 **注意事项：**
 
-1. **link**：页面路由，支持外链；`/guid/` 表示加载 `guid/index.md`，`/guid` 表示加载 `guid.md`
+1. `link`：页面路由，支持外链；`/guid/` 表示加载 `guid/index.md`，`/guid` 表示加载 `guid.md`
 
-2. **sidebar**：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 `key` ，该路径需要显示的侧边栏数组作为 `value`，例如：
+2. `sidebar`：默认为数组形式，侧边栏在所有页面会显示；可以使用对象形式，将需要匹配的路径作为 `key` ，该路径需要显示的侧边栏数组作为 `value`，例如：
 
 ```ts
 const getSildBar = () => ({
@@ -206,7 +208,7 @@ rm -rf docs/.vitepress/dist
 exec /bin/bash
 ```
 
-1. 通过路径：项目仓库 -> 服务 -> `Gitee pages`，进入部署页面
+1. 通过路径：`项目仓库 -> 服务 -> Gitee pages`，进入部署页面
 
 2. 按照要求进行实名认证
 
@@ -232,7 +234,7 @@ ___
 
 ### 在 `GitHub` 新建仓库导入 `Gitee` 仓库
 
-> 既然在 GitHub 建了仓库，那么也顺道将站点部署到 `GitHub Pages`
+> 既然在 `GitHub` 建了仓库，那么也顺道将站点部署到 `GitHub Pages`
 
 1、通过路径：`仓库 -> Settings -> Pages`，进入部署页面
 
@@ -246,7 +248,7 @@ ___
 **actions**
 :::
 
-### 同步 Gitee 仓库到 GitHub
+### 同步 `Gitee` 仓库到 `GitHub`
 
 通过路径：`仓库 -> 管理 -> 仓库镜像管理`，添加新的镜像，选择镜像方向为 `push`，将仓库同步到 `GitHub`
 
@@ -297,14 +299,15 @@ jobs:
 
 [获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
 
-### 同步 gh-pages 分支到 Gitee
+### 同步 `gh-pages` 分支到 `Gitee`
 
-> 在 [github.com/marketplace](https://github.com/marketplace) 可以找合适的第三方 actions 来辅助完成操作
+> 在 [github.com/marketplace](https://github.com/marketplace) 可以找合适的第三方 `actions` 来辅助完成操作
 
 由于没有找到仅同步分支的 `action`，自己实现了[git-sync-action](https://github.com/peiyanlu/git-sync-action)
-，在 `deploy.yml` 中添加新的 job ：
+，在 `deploy.yml` 中添加新的 `job`：
+
 ::: warning
-这里如果采用将整个项目镜像到 Gitee 的方式的话会陷入死循环
+这里如果采用将整个项目镜像到 `Gitee` 的方式的话会陷入死循环
 :::
 
 ```yaml{2-12}
@@ -324,13 +327,14 @@ jobs:
 
 配置公钥：
 
-- 在 GitHub 的个人设置页面 `Settings -> SSH and GPG keys` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
-- 在 Gitee 的个人设置页面 `安全设置 -> SSH 公钥` 配置 SSH 公钥（即：id_rsa.pub），命名随意。
+- 在 `GitHub` 的个人设置页面 `Settings -> SSH and GPG keys` 配置 `SSH` 公钥（即：id_rsa.pub），命名随意。
 
-### 更新 Gitee Pages
+- 在 `Gitee` 的个人设置页面 `安全设置 -> SSH 公钥` 配置 `SSH` 公钥（即：id_rsa.pub），命名随意。
+
+### 更新 `Gitee Pages`
 
 这里选择 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，在 `deploy.yml` 中添加新的
-job ：
+`job`：
 
 ```yaml{2-11}
 jobs:
@@ -351,10 +355,10 @@ jobs:
 - `gitee-username`：`Gitee` 用户名，例如：`https://gitee.com/用户名/仓库名` ，那么 `gitee-username` 就填写为 `用户名`
 - `gitee-password`：`Gitee` 密码，通过路径 `Settings -> Secrets -> Actions` 新建 `GITEE_PASSWORD` 存放 `Gitee 帐号的密码`
 - `gitee-repo` ：指定部署的仓库，例如：`https://gitee.com/用户名/仓库名` ，那么 `gitee-repo` 就填写为 `用户名/仓库名`
-- `branch` ：指定部署的分支，默认 master
+- `branch` ：指定部署的分支，默认 `master`
 
 ::: warning 短信验证
-关注 Gitee 官方公众号，并绑定个人 Gitee 账号，用于接收账号登录通知、以及绕过短信验证码校验
+关注 `Gitee` 官方公众号，并绑定个人 `Gitee` 账号，用于接收账号登录通知、以及绕过短信验证码校验
 :::
 
 ### 控制任务执行顺序
@@ -383,7 +387,7 @@ jobs:
       // ...
 ```
 
-## Algolia 搜索
+## `Algolia` 搜索
 
 > [algolia](https://www.algolia.com/) 是一个搜索、推荐服务平台，可以通过简单的配置来为站点添加全文检索功能。
 >> 基本原理：通过爬虫对目标网站的内容创建 `Records`（记录），在用户搜索时调用接口返回相关内容。
@@ -393,12 +397,16 @@ jobs:
 二、增加 `Records`（关键）
 
 - 使用官方的 `Algolia Crawler` 爬虫后台
+
 - 使用 `GitHub Actions` 的 `DocSearch Scraper Action` （个人博客网站 推荐）
 
-1、分别新建 `ALGOLIA_APP_ID` 和 `ALGOLIA_API_KEY` 存放 `Application ID`和 `Admin API Key`
+---
+
+1. 分别新建 `ALGOLIA_APP_ID` 和 `ALGOLIA_API_KEY` 存放 `Application ID`和 `Admin API Key`
+
 > path: Settings -> Secrets and variables -> Actions
 
-2、在 `deploy.yml` 中新增job
+2. 在 `deploy.yml` 中新增 `job`
 
 ```yaml{2-17}
 jobs:
@@ -566,6 +574,7 @@ jobs:
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           algolia_config_file: algolia.config.json
 ```
+
 :::
 
 ## 结束

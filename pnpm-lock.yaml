@@ -14,8 +14,8 @@ devDependencies:
     specifier: ^10.1.2
     version: 10.1.2(vue@3.3.2)
   live2d-lib:
-    specifier: ^1.0.2
-    version: 1.0.2
+    specifier: ^1.0.3
+    version: 1.0.3
   sass:
     specifier: ^1.62.1
     version: 1.62.1
@@ -775,8 +775,8 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /live2d-lib@1.0.2:
-    resolution: {integrity: sha512-QZh4KFlrNmee5p+yLLv3WHNuS2YB4s7eiuIKCpI9diPPvyDFPZyzyC2MD5XNgK+grKZVUBPYS7GBlvwxR2p9qQ==}
+  /live2d-lib@1.0.3:
+    resolution: {integrity: sha512-Tj8vYuJuGUfiD18EfThb1o0/OfUa5JHxQO66hCjXQXxt8+ljPWsw6x4QsLJSef4WvkziGaF3IwPkdGr8DcdVVA==}
     hasBin: true
     requiresBuild: true
     dependencies:

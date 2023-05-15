@@ -31,10 +31,7 @@ export default defineConfig({
     aside: true,
     sidebar: getSidebar(),
     editLink: {
-      pattern: ({ relativePath }) => {
-        const isGithub = /github/.test(globalThis.location?.origin)
-        return `https://${ isGithub ? 'github' : 'gitee' }.com/peiyanlu/vite-press/tree/docs-deploy/docs/${ relativePath}`
-      },
+      pattern: 'https://github.com/peiyanlu/vite-press/edit/main/docs/:path',
       text: `编辑此页`,
     },
     docFooter: {

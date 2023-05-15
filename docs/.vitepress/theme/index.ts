@@ -1,13 +1,20 @@
 // 公共组件
 import ImagePreview from '@theme/components/ImagePreview.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
+// 依赖
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { h, nextTick, Ref, render } from 'vue'
+import { h, nextTick, render } from 'vue'
+import { isMobile } from '../common'
 
-// 样式文件
+/**
+ * 样式文件
+ */
 import './style/index'
 
+/**
+ * 渲染
+ */
 export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
@@ -15,7 +22,7 @@ export default <Theme>{
     
     nextTick(() => {
       imagePreviewFn()
-      live2dWidgetFn(isDark)
+      !isMobile() && live2dWidgetFn(isDark.value)
     }).catch(e => console.error(e))
     
     return h(
@@ -33,16 +40,16 @@ const imagePreviewFn = () => {
   const allImg = document.querySelectorAll('p > img')
   
   allImg.forEach(img => {
-    const p = img.parentElement
+    const parent = img.parentElement
     
-    if (!p) return
+    if (!parent) return
     
-    let container
-    if (p.childNodes.length > 1) {
+    // 如果 p 下面只有一个 img，则 p 作为 container 渲染预览组件
+    // 如果 p 下面有多个 img，则为每个 img 创建 div 作为 container 渲染预览组件，并将 container 添加到 p 中
+    let container= parent
+    if (parent.childNodes.length > 1) {
       container = document.createElement('div')
-      p.appendChild(container)
-    } else {
-      container = p
+      parent.appendChild(container)
     }
     
     const vNode = h(
@@ -58,8 +65,8 @@ const imagePreviewFn = () => {
   })
 }
 
-const live2dWidgetFn = (isDark: Ref<boolean>) => {
+const live2dWidgetFn = (isDark: boolean) => {
   if (!globalThis.document) return
   
-  render(h(Live2dWidget, { isDark: isDark.value }), globalThis.document.body)
+  render(h(Live2dWidget, { isDark }), document.body)
 }
