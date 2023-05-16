@@ -229,7 +229,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://less.bootcss.com/',
       },
       {
-        icon: 'https://www.tailwindcss.cn/apple-touch-icon.png',
+        icon: 'https://www.tailwindcss.cn/favicons/favicon.ico?v=3',
         title: 'TailwindCSS 中文网',
         desc: '一个功能类优先的 CSS 框架',
         link: 'https://www.tailwindcss.cn',

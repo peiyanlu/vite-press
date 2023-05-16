@@ -37,14 +37,13 @@ $doc-prefix: VPDoc;
   border-radius: 8px;
   height: 100%;
   cursor: pointer;
-  transition: transform 0.3s ease;
   flex-direction: column;
   padding: 16px;
   color: var(--vp-c-text-1);
+  user-select: none;
 
   &:hover {
     background-color: var(--vp-c-bg-soft);
-    transform: scale(1.05);
     text-decoration: unset;
 
     .title {
@@ -102,9 +101,6 @@ $doc-prefix: VPDoc;
         font-weight: 800;
         line-height: 24px;
         text-align: center;
-        background: linear-gradient(120deg, rgb(189 52 253 / 50%) 30%, rgb(65 209 255));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: var(--vp-home-hero-name-color);
       }
     }
 

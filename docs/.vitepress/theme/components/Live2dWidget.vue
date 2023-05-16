@@ -22,6 +22,7 @@ watchEffect(() => {
         path: withBase('/live2d/models'),
         models: dark.value ? [ 'hijiki' ] : [ 'tororo' ],
       },
+      cubismCorePath: withBase('/live2d/core/live2dCubismCore.min.js')
     })
   }
 })
