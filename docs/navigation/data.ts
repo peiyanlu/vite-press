@@ -511,6 +511,12 @@ export const NAV_DATA: NavData[] = [
         desc: '可扩展的 Web 单存储库管理器',
         link: 'https://rushjs.io/zh-cn/pages/intro/welcome/',
       },
+      {
+        icon: 'https://npmmirror.com/favicon.png',
+        title: 'npmmirror',
+        desc: 'npm 镜像源',
+        link: 'https://npmmirror.com/',
+      },
     ],
   },
   {

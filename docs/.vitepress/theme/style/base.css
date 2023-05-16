@@ -6,7 +6,7 @@
 /*滑块*/
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: linear-gradient(-45deg, rgba(189, 52, 154, 0.5), rgba(65, 209, 255, 0.5));;
+  background: linear-gradient(-45deg, rgba(189, 52, 154, 0.3), rgba(65, 209, 255, 0.3));;
 }
 /*上下箭头*/
 ::-webkit-scrollbar-button {

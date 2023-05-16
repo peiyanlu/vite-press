@@ -41,7 +41,7 @@
 - `no-store`：禁止缓存，每次请求都要向服务器发送请求。
 
 ::: code-group
-```[缓存请求指令]
+```md [缓存请求指令]
 Cache-Control: max-age=<seconds>
 Cache-Control: max-stale[=<seconds>]
 Cache-Control: min-fresh=<seconds>
@@ -51,7 +51,7 @@ Cache-control: no-transform
 Cache-control: only-if-cached
 ```
 
-```[缓存响应指令]
+```md [缓存响应指令]
 Cache-control: must-revalidate
 Cache-control: no-cache
 Cache-control: no-store

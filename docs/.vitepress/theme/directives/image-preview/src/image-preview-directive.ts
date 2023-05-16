@@ -23,7 +23,7 @@ const getImgByEl = (el: PreviewHTMLElement): Array<string> => {
   
   const target = scope ? scope : el
   
-  return [ ...target.querySelectorAll('img') ].map((item: HTMLImageElement) => item.getAttribute('preview-src') || item.getAttribute('src') || '')
+  return [ ...target.querySelectorAll('img') ].map((item: HTMLImageElement) => item.getAttribute('data-src') || item.getAttribute('src') || '')
 }
 const handleImg = (e: MouseEvent) => {
   e.stopPropagation()

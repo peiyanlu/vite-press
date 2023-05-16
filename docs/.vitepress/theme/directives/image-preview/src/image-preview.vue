@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue'
 import vFileDownload from '@theme/directives/file-download'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { computed, onMounted, onUnmounted, PropType, ref } from 'vue'
@@ -109,7 +110,7 @@ onUnmounted(() => {
 <template>
   <div :class="ns.b()" :style="imageStyle" >
     <!--{/* 预览图 */}-->
-    <img :class="ns.e('main-image')" :src="url" alt="" />
+    <ImageLazyLoad :class="ns.e('main-image')" :src="url" alt="" />
     <!--{/* 按钮区 */}-->
     <div :class="ns.e('toolbar')">
       <div :class="ns.e('toolbar-left')">
@@ -144,7 +145,7 @@ onUnmounted(() => {
             :class="[ns.e('thumbnail-item'),  i === index ?'active' : '']"
             @click="handleSwitch(i)"
           >
-            <img :src="item" alt="">
+            <ImageLazyLoad :src="item" />
             <span>{{ i + 1 }}</span>
           </div>
         </template>
@@ -285,12 +286,12 @@ $v-z-index: 1080;
 
   &__thumbnail {
     width: 100%;
-    min-height: 60px;
-    max-height: 124px;
+    min-height: 120px;
+    max-height: max(33%, 260px);
     overflow-y: overlay;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    grid-template-rows: repeat(auto-fill, 60px);
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 4px;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(3px);
@@ -302,7 +303,7 @@ $v-z-index: 1080;
 
     &-item {
       width: 100%;
-      height: 60px;
+      aspect-ratio: 5 / 4;
       overflow: hidden;
       object-fit: fill;
       display: block;
@@ -311,8 +312,6 @@ $v-z-index: 1080;
       position: relative;
 
       img {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
       }
 
