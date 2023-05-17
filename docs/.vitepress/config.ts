@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { getNav, getSidebar } from './menu'
 
+import algoliaSearchOptions from './algolia'
+
 export const BASE_URL = '/vite-press/' as const
 
 export const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
@@ -62,14 +64,7 @@ export default defineConfig({
     ],
     search: {
       provider: 'algolia',
-      options: {
-        // appId: '02WXO09HIV',
-        // apiKey: '2f7bbd5974b6fe9dc9c946d5d406f334',
-        // indexName: 'vite-press',
-        appId: 'LYHDYEDZR7',
-        apiKey: 'a7de6a75d69fb8405716c4334ab56a55',
-        indexName: 'vite-press',
-      },
+      options: algoliaSearchOptions,
     },
   },
   locales: {

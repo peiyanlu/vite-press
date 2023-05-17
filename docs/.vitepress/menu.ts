@@ -102,6 +102,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => ({
       items: [
         { text: '常用推荐', link: joinPath(MENU.FRONTEND, 'npm/npm-libs') },
         { text: '版本规范', link: joinPath(MENU.FRONTEND, 'npm/npm-SemVer') },
+        { text: 'CLI', link: joinPath(MENU.FRONTEND, 'npm/npm-cli') },
         { text: '打补丁', link: joinPath(MENU.FRONTEND, 'npm/npm-package-patch') },
         { text: 'package.json', link: joinPath(MENU.FRONTEND, 'npm/npm-package-json') },
         { text: 'package-exports', link: joinPath(MENU.FRONTEND, 'npm/npm-package-exports') },
