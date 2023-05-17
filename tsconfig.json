@@ -11,8 +11,17 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@theme/*": ["docs/.vitepress/theme/*"]
+      "@theme/*": [
+        "docs/.vitepress/theme/*"
+      ],
+      "@docs/*": [
+        "docs/*"
+      ]
     }
   },
-  "include": ["env.d.ts", "docs/.vitepress/**/*"]
+  "include": [
+    "env.d.ts",
+    "docs/.vitepress/**/*",
+    "docs/.vitepress/theme/docs.data.ts"
+  ]
 }

@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'vitepress'
 
-import { joinPath } from './config'
+import { joinPath } from '../config'
 
 export const enum MENU {
   HOME = '/',

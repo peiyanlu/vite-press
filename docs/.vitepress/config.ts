@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
-import { getNav, getSidebar } from './menu'
+import { getNav, getSidebar } from './config/menu'
 
-import algoliaSearchOptions from './algolia'
+import algoliaSearchOptions from './config/algolia'
+import { fileURLToPath } from 'url'
 
 export const BASE_URL = '/vite-press/' as const
 
@@ -78,4 +79,16 @@ export default defineConfig({
     //   link: '/zh-CN/'
     // }
   },
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: '@docs',
+          replacement: fileURLToPath(
+            new URL('../', import.meta.url)
+          )
+        }
+      ]
+    }
+  }
 })
