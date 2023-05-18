@@ -14,6 +14,9 @@
       "@theme/*": [
         "docs/.vitepress/theme/*"
       ],
+      "@config/*": [
+        "docs/.vitepress/config/*"
+      ],
       "@docs/*": [
         "docs/*"
       ]
@@ -21,7 +24,6 @@
   },
   "include": [
     "env.d.ts",
-    "docs/.vitepress/**/*",
-    "docs/.vitepress/theme/docs.data.ts"
+    "docs/.vitepress/**/*"
   ]
 }

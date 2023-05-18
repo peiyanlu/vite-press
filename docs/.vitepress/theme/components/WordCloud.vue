@@ -1,13 +1,11 @@
 <template>
-  <div id="wordcloud-container" ref="wordCloudRef"></div>
+  <div ref="wordCloudRef" />
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount, watchEffect, ref, computed } from 'vue'
-import { WordCloud, WordCloudOptions } from '@antv/g2plot'
 import { data, DocData } from '@theme/docs.data'
-
-const wordCloudRef = ref<HTMLDivElement | null>(null)
+import useWordCloud from '@theme/hooks/useWordCloud'
+import { computed, ref, watchEffect } from 'vue'
 
 // 定义属性
 // const props = defineProps({
@@ -17,71 +15,50 @@ const wordCloudRef = ref<HTMLDivElement | null>(null)
 //   },
 // })
 
-const tags = computed(() => initTags(data))
-console.log(tags.value)
-const dataList = computed(() => initWordCloud(tags))
-
 /**
  * 初始化词云数据
  * [{"name": xx, "value": xx}]
  */
-function initWordCloud(tags) {
-  const dataList = []
-  for (let tag in tags.value) {
-    dataList.push({ 'name': tag, 'value': tags.value[tag]?.length })
-  }
-  return dataList
-}
+const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags).map(key => {
+  return {
+    name: key,
+    value: tags[key].length,
+  } as Record<string, string | number>
+})
 
 /**
  * 初始化标签数据
  * {tagTitle1: [article1, article2, ...}
  */
-function initTags(articleData: DocData[]) {
-  console.log(articleData)
-  const tags: any = {}
-  for (let i = 0; i < articleData.length; i++) {
-    const article = articleData[i]
-    const articleTags = article.tags
-    if (Array.isArray(articleTags)) {
-      articleTags.forEach((articleTag) => {
-        if (!tags[articleTag]) {
-          tags[articleTag] = []
-        }
-        tags[articleTag].push(article)
-        // 文章按发布时间降序排序
-        // tags[articleTag].sort((a, b) => b.date.localeCompare(a.date))
-      })
-    }
-  }
-  return tags
-}
+const initTags = (docs: DocData[]) => docs
+  .filter(k => k.tags?.length)
+  .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
+    item.tags?.forEach(tag => {
+      (tagsRecords[tag] ??= []).push(item)
 
-// 渲染 WordCloud
-let wordCloud: WordCloud
+      // obj[tag].sort((a, b) => b.date.localeCompare(a.date))
+    })
+    return tagsRecords
+  }, {})
+
+const tags = computed(() => initTags(data))
+console.log(tags.value)
+const dataList = computed(() => initWordCloud(tags.value))
 console.log(dataList.value)
+
+const wordCloudRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
   if (wordCloudRef.value) {
-    wordCloud = new WordCloud(wordCloudRef.value, {
-      data: dataList.value as any,
-      wordField: 'name',
-      weightField: 'value',
-      colorField: 'name',
-      wordStyle: {
-        fontFamily: 'Verdana',
-        fontSize: [ 14, 35 ],
-        rotation: 0,
-      },
-      // 返回值设置成一个 [0, 1) 区间内的值，
-      // 可以让每次渲染的位置相同（前提是每次的宽高一致）。
-      random: () => Math.random(),
-    } as WordCloudOptions)
-
-    wordCloud.render()
+    useWordCloud(wordCloudRef.value, dataList.value, (data) => {
+      console.log(data)
+      console.log(tags.value[data.name])
+    })
   }
 })
-
-onBeforeUnmount(() => {
-  wordCloud.destroy()
-})
 </script>
+
+<style lang="scss">
+.g2-tooltip-value {
+  margin-left: 6px !important;
+}
+</style>

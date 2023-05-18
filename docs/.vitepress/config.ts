@@ -1,24 +1,22 @@
-import { defineConfig } from 'vitepress'
-import { getNav, getSidebar } from './config/menu'
-
-import algoliaSearchOptions from './config/algolia'
 import { fileURLToPath } from 'url'
+import { defineConfig } from 'vitepress'
 
-export const BASE_URL = '/vite-press/' as const
+import { getNav, getSidebar } from './config/menu'
+import { algolia } from './config/search'
 
-export const joinPath = (base: string, path: string): string => `${ base }${ path }`.replace(/\/+/g, '/')
+const BASE_URL = '/vite-press/' as const
 
-export const withBase = (path: string): string => joinPath(BASE_URL, path)
+const withBase = (path: string): string => `${ BASE_URL }${ path }`.replace(/\/+/g, '/')
 
 export default defineConfig({
-  lang: 'zh-CN',
   title: '笔记',
   titleTemplate: '开发笔记',
   description: '小路的开发笔记',
-  base: BASE_URL,
   head: [
     [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ],
   ],
+  lang: 'zh-CN',
+  base: BASE_URL,
   appearance: true,
   ignoreDeadLinks: true,
   lastUpdated: true,
@@ -63,10 +61,7 @@ export default defineConfig({
       },
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
-    search: {
-      provider: 'algolia',
-      options: algoliaSearchOptions,
-    },
+    search: algolia,
   },
   locales: {
     root: {
@@ -83,12 +78,12 @@ export default defineConfig({
     resolve: {
       alias: [
         {
-          find: '@docs',
+          find: '@config',
           replacement: fileURLToPath(
-            new URL('../', import.meta.url)
-          )
-        }
-      ]
-    }
-  }
+            new URL('./config', import.meta.url),
+          ),
+        },
+      ],
+    },
+  },
 })

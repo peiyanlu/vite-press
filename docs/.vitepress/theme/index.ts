@@ -10,7 +10,7 @@ import { h, nextTick, render } from 'vue'
 // 样式文件
 import './style/index'
 
-const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(globalThis.navigator?.userAgent)
 
 // 渲染
 export default <Theme>{
@@ -18,7 +18,7 @@ export default <Theme>{
   Layout: () => {
     const { frontmatter, isDark, site } = useData()
     const { path } = useRoute()
-    
+    console.log(useData().page.value.lastUpdated)
     nextTick(() => {
       imagePreviewFn()
       
