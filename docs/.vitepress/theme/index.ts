@@ -18,7 +18,7 @@ export default <Theme>{
   Layout: () => {
     const { frontmatter, isDark, site } = useData()
     const { path } = useRoute()
-    console.log(useData().page.value.lastUpdated)
+    
     nextTick(() => {
       imagePreviewFn()
       

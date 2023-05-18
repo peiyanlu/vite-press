@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { slugify } from '@mdit-vue/shared'
 import { computed } from 'vue'
-import { useNamespace } from '../../.vitepress/theme/hooks/useNamespace'
+import { useNamespace } from '@theme/hooks/useNamespace'
 import ImageIcon from './ImageIcon.vue'
 
 import { NavLink } from './type'

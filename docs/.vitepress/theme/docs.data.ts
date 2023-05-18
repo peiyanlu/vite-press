@@ -6,16 +6,29 @@ import path from 'path'
 interface FrontMatterResult {
   title?: string
   tags?: string[]
-  date?: number
 }
 
 interface DocData extends FrontMatterResult {
   path: string
-  lastUpdated?: number
+  createdDate: number
+  updatedDate: number
 }
 
-declare const data: DocData[]
-export { data, DocData }
+export const getGitTimestamp = (file: string) => new Promise<number>((resolve) => {
+  const child = spawn('git', [ 'log', '-1', '--pretty="%ci"', file ])
+  let output = ''
+  child.stdout.on('data', (d) => (output += String(d)))
+  child.on('close', () => resolve(output ?  new Date(output).getTime() : Date.now()))
+  child.on('error', () => resolve(Date.now()))
+})
+
+export const getGitTimestampCreate = (file: string) => new Promise<number>((resolve) => {
+  const child = spawn('git', [ 'log', '-1', '--diff-filter=A', '--follow', '--format="%ci"', file ])
+  let output = ''
+  child.stdout.on('data', (d) => (output += String(d)))
+  child.on('close', () => resolve(output ? new Date(output).getTime() : Date.now()))
+  child.on('error', () => resolve(Date.now()))
+})
 
 const excludedFiles: string[] = []
 
@@ -32,7 +45,7 @@ export default {
       const articleContent = fs.readFileSync(articleFile, 'utf-8')
       const { data } = parseFrontmatter(articleContent)
       
-      const date = await getGitTimestamp(articleFile)
+      const updatedDate = await getGitTimestamp(articleFile)
       const createdDate = await getGitTimestampCreate(articleFile)
       
       return {
@@ -41,33 +54,13 @@ export default {
           .replace(/^docs\//, '')
           .replace(/\.md$/, '')
           .replace(/index$/, ''),
-        date: date,
-        createdDate
+        updatedDate,
+        createdDate,
       }
     }))
   },
 }
 
-export function getGitTimestamp(file: string) {
-  return new Promise<number>((resolve, reject) => {
-    const child = spawn('git', [ 'log', '-1', '--pretty="%ci"', file ])
-    let output = ''
-    child.stdout.on('data', (d) => (output += String(d)))
-    child.on('close', () => {
-      resolve(+new Date(output))
-    })
-    child.on('error', reject)
-  })
-}
+declare const data: DocData[]
+export { data, DocData }
 
-export function getGitTimestampCreate(file: string) {
-  return new Promise<number>((resolve, reject) => {
-    const child = spawn('git', [ 'log', '-1', '--diff-filter=A', '--follow', '--format="%ci"', file ]);
-    let output = ''
-    child.stdout.on('data', (d) => (output += String(d)))
-    child.on('close', () => {
-      resolve(+new Date(output))
-    })
-    child.on('error', reject)
-  })
-}

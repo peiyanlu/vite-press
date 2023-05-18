@@ -8,6 +8,7 @@ export const enum MENU {
   FRONTEND = '/frontend/',
   BACKEND = '/backend/',
   CLI = '/cli/',
+  ARCHIVE = '/archive/',
 }
 
 export const getNav = (): DefaultTheme.NavItem[] => [
@@ -40,6 +41,11 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     text: 'CLI',
     link: MENU.CLI,
     activeMatch: MENU.CLI,
+  },
+  {
+    text: '归档',
+    link: MENU.ARCHIVE,
+    activeMatch: MENU.ARCHIVE,
   },
 ]
 
