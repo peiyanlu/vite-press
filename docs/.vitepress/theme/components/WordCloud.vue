@@ -48,9 +48,7 @@ const initTags = (docs: DocData[]) => docs
   }, {})
 
 const tags = computed(() => initTags(data))
-console.log(tags.value)
 const dataList = computed(() => initWordCloud(tags.value))
-console.log(dataList.value)
 
 const wordCloudRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {

@@ -13,7 +13,7 @@ data.sort((a, b) => b.createdDate - a.createdDate)
 
     ;(list[year][month] ??= []).push(item)
   })
-console.log(data)
+
 const ns = useNamespace('doc-timeline-item')
 </script>
 
