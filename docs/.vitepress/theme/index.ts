@@ -1,6 +1,9 @@
 // 组件/公共组件
 import ImagePreview from '@theme/components/ImagePreview.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
+import SvgIcon from '@theme/components/SvgIcon.vue'
+import 'virtual:svg-icons-names'
+import 'virtual:svg-icons-register'
 
 // 依赖
 import { Theme, useData, useRoute } from 'vitepress'
@@ -31,6 +34,9 @@ export default <Theme>{
         class: frontmatter.value?.layoutClass,
       },
     )
+  },
+  enhanceApp(ctx) {
+    ctx.app.component('svg-icon', SvgIcon)
   },
 }
 

@@ -1,3 +1,10 @@
+---
+title: NPM包重新打包
+tags:
+  - NPM
+  - patch
+---
+
 # 依赖包重新打包
 
 ## 设置package.json

@@ -1,3 +1,9 @@
+---
+title: 应用
+tags:
+  - code
+---
+
 # 应用
 
 ## 对象交换Key和Value

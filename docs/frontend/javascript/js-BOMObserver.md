@@ -1,3 +1,10 @@
+---
+title: 浏览器监听
+tags:
+  - 浏览器
+  - Observer
+---
+
 # 浏览器监听
 
 监听用户的交互行为时我们会用 `addEventListener` 来监听 `click、mousedown、keydown、input` 等事件，但对于元素的变化、`performance` 的记录、浏览器干预行为这些不是用户交互的事件就要用 `XxxObserver` 的 `api` 了

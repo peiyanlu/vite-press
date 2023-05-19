@@ -1,3 +1,10 @@
+---
+title: NPM包版本号规范
+tags:
+  - NPM
+  - SemVer
+---
+
 # NPM 包版本号规范
 
 > SemVer：Semantic Versioning Specification, 语义化版本命名规范

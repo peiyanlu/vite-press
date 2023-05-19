@@ -1,3 +1,11 @@
+---
+title: NPM包 package.json
+tags:
+  - NPM
+  - package.json
+---
+
+
 # NPM包 package.json
 
 [Nodejs 包模块](https://nodejs.cn/api/packages.html#modules-packages)——

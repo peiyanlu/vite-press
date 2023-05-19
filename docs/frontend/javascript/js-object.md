@@ -1,3 +1,9 @@
+---
+title: 对象 Object
+tags:
+  - Object
+---
+
 # 对象 Object
 
 ## ES5.1及更早

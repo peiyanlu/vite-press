@@ -1,3 +1,9 @@
+---
+title: 字符串 String
+tags:
+  - String
+---
+
 # 字符串 String
 
 ## ES5.1及更早

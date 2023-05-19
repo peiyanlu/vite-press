@@ -1,3 +1,11 @@
+---
+title: JS作用域
+tags:
+  - Global
+  - Local
+  - Block
+---
+
 # JS作用域
 
 > 作用域：变量生效的范围；

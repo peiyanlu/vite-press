@@ -1,3 +1,11 @@
+---
+title: NPM包自定义导出
+tags:
+  - NPM
+  - package
+  - exports
+---
+
 # NPM包自定义导出
 
 `exports` 定义了自定义导出规则，可以理解为 **路径映射**

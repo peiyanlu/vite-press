@@ -1,3 +1,10 @@
+---
+title: Windows CLI
+tags:
+  - Windows
+  - CLI
+---
+
 # [Windows CLI](https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/windows-commands)
 
 这些命令在前端开发中常用于文件和目录的操作、进程管理、网络测试以及命令行窗口的控制等。使用这些命令可以提高工作效率并进行必要的调试和测试。

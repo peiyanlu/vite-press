@@ -1,3 +1,9 @@
+---
+title: ES6+
+tags:
+  - ES6
+---
+
 # ES6+
 
 > `ES6` 是 [ECMA](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/) 为 `JavaScript` 制定的第6个标准版本。

@@ -1,3 +1,9 @@
+---
+title: 原型链
+tags:
+  - prototype
+---
+
 # 原型链
 
 ## 原型对象

@@ -1,3 +1,10 @@
+---
+title: Linux命令
+tags:
+  - Linux
+  - CLI
+---
+
 # Shell 命令
 
 ## 打印彩色文本

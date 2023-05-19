@@ -1,3 +1,9 @@
+---
+title: FAQ
+tags:
+  - FAQ
+---
+
 # FAQ
 
 ## .gitignore 添加忽略文件不生效

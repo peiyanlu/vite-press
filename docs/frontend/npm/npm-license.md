@@ -1,3 +1,9 @@
+---
+title: 七种开源许可证
+tags:
+  - license
+---
+
 # 七种开源许可证
 
 ![npm_license_img.png](img/npm_license_img.png)

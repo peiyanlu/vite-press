@@ -1,3 +1,10 @@
+---
+title: CSS选择器
+tags:
+  - CSS
+  - 选择器
+---
+
 <script setup>
 import NthChild from './components/NthChild.vue'
 </script>

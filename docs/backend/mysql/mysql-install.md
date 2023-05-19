@@ -1,3 +1,9 @@
+---
+title: MySQL安装
+tags:
+  - MySQL
+---
+
 # MySQL 安装
 
 ## 下载

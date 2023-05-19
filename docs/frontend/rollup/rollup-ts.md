@@ -1,3 +1,11 @@
+---
+title: 使用 rollup 构建一个 ts 库
+tags:
+  - rollup
+  - lib
+  - ts
+---
+
 # 使用 rollup 构建一个 ts 库
 
 ## 1、初始化 项目

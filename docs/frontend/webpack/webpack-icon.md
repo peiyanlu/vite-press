@@ -1,3 +1,12 @@
+---
+title: 使用 Webpack 打包 svg 图标
+tags:
+  - Webpack
+  - svg
+  - icon
+---
+
+
 # 使用 webpack 打包 svg 图标
 
 ## 1、初始化 项目

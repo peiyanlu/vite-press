@@ -1,3 +1,9 @@
+---
+title: JS二进制
+tags:
+  - Blob
+---
+
 # JS二进制
 
 > Blob、File、FileReader、ArrayBuffer、Base64

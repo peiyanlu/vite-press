@@ -205,6 +205,12 @@ export const NAV_DATA: NavData[] = [
         desc: '一个可靠的、灵活的、可扩展的转盘',
         link: 'https://naver.github.io/egjs-flicking/',
       },
+      {
+        icon: 'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7svFR6wkPMoAAAAAAAAAAAAADmJ7AQ/original',
+        title: 'AntV',
+        desc: '蚂蚁集团全新一代数据可视化解决方案',
+        link: 'https://antv.antgroup.com/',
+      },
     ],
   },
   {

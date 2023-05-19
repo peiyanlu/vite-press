@@ -1,3 +1,9 @@
+---
+title: Fetch
+tags:
+  - Fetch
+---
+
 # Fetch API
 
 > Fetch API 是基于 promise 的异步获取资源接口，支持 promise

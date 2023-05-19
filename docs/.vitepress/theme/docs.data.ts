@@ -18,7 +18,7 @@ export const getGitTimestamp = (file: string) => new Promise<number>((resolve) =
   const child = spawn('git', [ 'log', '-1', '--pretty="%ci"', file ])
   let output = ''
   child.stdout.on('data', (d) => (output += String(d)))
-  child.on('close', () => resolve(output ?  new Date(output).getTime() : Date.now()))
+  child.on('close', () => resolve(output ? new Date(output).getTime() : Date.now()))
   child.on('error', () => resolve(Date.now()))
 })
 
@@ -30,7 +30,7 @@ export const getGitTimestampCreate = (file: string) => new Promise<number>((reso
   child.on('error', () => resolve(Date.now()))
 })
 
-const excludedFiles: string[] = []
+const excludedFiles: string[] = [ 'index.md' ]
 
 export default {
   watch: [ 'docs/**/*.md' ],

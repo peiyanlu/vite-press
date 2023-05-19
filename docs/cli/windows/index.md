@@ -1,3 +1,10 @@
+---
+title: FAQ
+tags:
+  - Windows
+  - FAQ
+---
+
 # Windows Problem
 
 ## 此系统上禁止运行脚本

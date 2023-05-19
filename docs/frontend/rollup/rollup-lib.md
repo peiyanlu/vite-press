@@ -1,3 +1,12 @@
+---
+title: 使用 rollup 构建一个 js 库
+tags:
+  - rollup
+  - js
+  - lib
+---
+
+
 # 使用 rollup 构建一个 js 库
 
 ## 1、全局安装 rollup
