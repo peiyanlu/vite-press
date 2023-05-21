@@ -1,5 +1,7 @@
 ---
-title: NPM包自定义导出
+title: package-exports
+description: package中的expors使用记录
+category: npm
 tags:
   - NPM
   - package

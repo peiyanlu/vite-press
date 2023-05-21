@@ -1,7 +1,17 @@
 ---
-title: 字符串 String
+title: 字符串
+description: 按版本分类的字符串方法
+category: javascript
 tags:
   - String
+  - ES6
+  - ES7
+  - ES8
+  - ES9
+  - ES10
+  - ES11
+  - ES12
+  - ES13
 ---
 
 # 字符串 String

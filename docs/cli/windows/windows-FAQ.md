@@ -1,5 +1,7 @@
 ---
-title: FAQ
+title: 问题
+description: Windows问题记录
+category: windows
 tags:
   - Windows
   - FAQ

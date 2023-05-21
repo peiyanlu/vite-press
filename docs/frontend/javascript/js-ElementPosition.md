@@ -1,5 +1,7 @@
 ---
 title: 元素位置
+description: 获取元素位置和鼠标位置
+category: javascript
 tags:
   - scroll
   - client

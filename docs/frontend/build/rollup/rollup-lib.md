@@ -1,5 +1,7 @@
 ---
-title: 使用 rollup 构建一个 js 库
+title: 构建JS库
+description: 使用rollup构建一个js库
+category: rollup
 tags:
   - rollup
   - js

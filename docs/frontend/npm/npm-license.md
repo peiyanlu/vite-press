@@ -1,5 +1,7 @@
 ---
-title: 七种开源许可证
+title: 开源许可协议
+description: 七中开源许可协议
+category: npm
 tags:
   - license
 ---

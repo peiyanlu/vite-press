@@ -1,4 +1,5 @@
 ---
+title: 归档
 layout: doc
 layoutClass: doc-archive
 aside: false
@@ -7,7 +8,7 @@ editLink: false
 ---
 
 <script setup>
-import DocTimelineItem from './components/DocTimelineItem.vue'
+import DocTimelineItem from './components/DocTimeline.vue'
 
 </script>
 

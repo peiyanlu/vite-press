@@ -1,5 +1,7 @@
 ---
-title: NPM包重新打包
+title: 打补丁
+description: 修改依赖包之后对其打补丁
+category: npm
 tags:
   - NPM
   - patch

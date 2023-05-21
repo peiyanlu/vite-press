@@ -1,5 +1,7 @@
 ---
-title: CSS选择器
+title: 选择器
+description: CSS选择器
+category: css
 tags:
   - CSS
   - 选择器

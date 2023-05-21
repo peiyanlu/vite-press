@@ -1,28 +1,39 @@
 body {
-  line-height: 24px !important;
-  font-family: var(--vp-font-family-base) !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  color: var(--vp-c-text-1) !important;
   overflow: overlay;
 }
 
-.VPDoc:not(.has-sidebar) {
-  .container {
-    max-width: calc(var(--vp-layout-max-width) - 20px) !important;
+:root {
+  --vp-layout-max-width: 1640px;
+}
 
-    .aside {
-      padding-left: 0;
-      max-width: 160px;
-    }
-
-    .content {
-      max-width: 100% !important;
-
+.VPContent {
+  .VPDoc {
+    &.has-aside {
       .content-container {
         max-width: 100% !important;
       }
     }
+
+    &:not(.has-sidebar) {
+      .container {
+        max-width: calc(var(--vp-layout-max-width) - 220px) !important;
+
+        .aside {
+          padding-left: 0;
+          max-width: 160px;
+        }
+
+        .content {
+          max-width: 100% !important;
+          padding-bottom: 32px;
+
+          .content-container {
+            max-width: 100% !important;
+          }
+        }
+      }
+    }
+
   }
 }
 

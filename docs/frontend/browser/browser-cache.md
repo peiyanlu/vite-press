@@ -1,5 +1,7 @@
 ---
 title: 浏览器缓存
+description: 浏览器缓存方式以及区别
+category: browser
 tags:
   - 浏览器
   - 缓存

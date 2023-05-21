@@ -1,31 +1,15 @@
 .site-nav-layout {
   .VPDoc {
-    .container {
-      max-width: calc(var(--vp-layout-max-width) - 20px) !important;
-
-      .aside {
-        padding-left: 0;
-        max-width: 160px;
+    .content-container {
+      .main {
+        .vp-doc h2 {
+          margin: 48px 0 32px;
+          border-top: none;
+        }
       }
 
-      .content {
-        max-width: 100% !important;
-        padding-bottom: 32px;
-
-        .content-container {
-          max-width: 100% !important;
-
-          .main {
-            .vp-doc h2 {
-              margin-top: 24px;
-              border-top: none;
-            }
-          }
-
-          .VPDocFooter {
-            display: none;
-          }
-        }
+      .VPDocFooter {
+        display: none;
       }
     }
   }

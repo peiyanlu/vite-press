@@ -13,20 +13,19 @@ const elRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
   if (elRef.value) {
     Live2dWidget.init({
-      canvas:{
+      canvas: {
         width: 180,
-        height: 180
+        height: 180,
       },
       target: elRef.value,
       source: {
         path: withBase('/live2d/models'),
         models: dark.value ? [ 'hijiki' ] : [ 'tororo' ],
       },
-      cubismCorePath: withBase('/live2d/core/live2dCubismCore.min.js')
+      cubismCorePath: withBase('/live2d/core/live2dCubismCore.min.js'),
     })
   }
 })
-
 </script>
 
 <template>

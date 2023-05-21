@@ -1,5 +1,7 @@
 ---
 title: 调用栈
+description: 掌握函数的调用关系
+category: javascript
 tags:
   - 调用栈
 ---

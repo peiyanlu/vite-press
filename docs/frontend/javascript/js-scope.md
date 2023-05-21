@@ -1,12 +1,12 @@
 ---
-title: JS作用域
+title: 作用域
+description: 代码调试中遇到的作用域
+category: javascript
 tags:
-  - Global
-  - Local
-  - Block
+  - 作用域
 ---
 
-# JS作用域
+# JS 作用域
 
 > 作用域：变量生效的范围；
 
@@ -31,7 +31,7 @@ tags:
 
 * `Eval` 作用域：`eval` 代码声明的变量会保存在 `Eval` 作用域
 
-## Global作用域
+## Global 作用域
 
 浏览器环境下用 `var` 全局声明的变量所在的作用域—— `Global作用域`，也就是全局作用域
 
@@ -48,7 +48,7 @@ tags:
 </script>
 ```
 
-## Local作用域
+## Local 作用域
 
 函数内部的作用域—— `Local作用域`，也就是本地作用域，或者叫函数作用域
 
@@ -78,7 +78,7 @@ tags:
 </script>
 ```
 
-## Block作用域
+## Block 作用域
 
 `ES6` 块语句 `{}` 生成的作用域—— `Block作用域`，也就是块级作用域
 
@@ -119,7 +119,7 @@ tags:
 </script>
 ```
 
-## Script作用域
+## Script 作用域
 
 `浏览器` 环境下用 `let const` 声明全局变量时的特殊作用域—— `Script作用域`。可以直接访问这个全局变量，但是却不能通过 `window.xx` 访问
 
@@ -158,7 +158,7 @@ const c = 'Local作用域 c'
 debugger
 ```
 
-## Catch block作用域
+## Catch block 作用域
 
 `catch` 语句也会生成一个特殊的作用域—— `Catch block作用域`，特点是能访问错误对象
 
@@ -185,9 +185,9 @@ try {
 }
 ```
 
-## With block作用域
+## With block 作用域
 
-`with` 语句也会生成一个特殊的作用域—— `With block作用域`，特点是可以直接访问 with 对象的值
+`with` 语句也会生成一个特殊的作用域—— `With block作用域`，特点是可以直接访问 `with` 对象的值
 
 > 语句里面再声明的变量不属于 `With block作用域`
 
@@ -212,9 +212,9 @@ try {
 </script>
 ```
 
-## Closure作用域
+## Closure 作用域
 
-闭包是 JS 的常见概念，它是一个函数返回另一个函数的形式，返回的函数引用了外层函数的变量，就会以闭包的形式保存下来
+闭包是 `JS` 的常见概念，它是一个函数返回另一个函数的形式，返回的函数引用了外层函数的变量，就会以闭包的形式保存下来
 
 > 通过 `Closure作用域` 保存了使用到的变量的值，这个 `Closure作用域` 就是闭包的核心
 
@@ -312,7 +312,7 @@ function func() {
 func()
 ```
 
-## Eval作用域
+## Eval 作用域
 
 `eval` 的代码里声明的变量都在这个作用域里
 

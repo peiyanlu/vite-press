@@ -1,5 +1,7 @@
 ---
-title: NPM包 package.json
+title: package.json
+description: package.json中的字段详解
+category: npm
 tags:
   - NPM
   - package.json

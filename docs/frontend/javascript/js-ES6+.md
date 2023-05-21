@@ -1,7 +1,16 @@
 ---
 title: ES6+
+description: ES新版本API总结
+category: javascript
 tags:
   - ES6
+  - ES7
+  - ES8
+  - ES9
+  - ES10
+  - ES11
+  - ES12
+  - ES13
 ---
 
 # ES6+

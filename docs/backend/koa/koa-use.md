@@ -1,9 +1,11 @@
 ---
-title: Koa + MySQL + TS
+title: 实战
+description: Koa + MySQL + TS
+category: koa
 tags:
   - Koa
   - MySQL
-  - Ts
+  - ts
 ---
 
 # Koa + MySQL + TS

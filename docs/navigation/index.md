@@ -1,4 +1,5 @@
 ---
+title: 导航
 layoutClass: site-nav-layout
 outline: [2, 3, 4]
 aside: true

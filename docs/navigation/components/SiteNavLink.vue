@@ -123,7 +123,7 @@ $doc-prefix: VPDoc;
         height: 100%;
         transform: scaleX(0);
         transform-origin: center right;
-        z-index: 999;
+        z-index: 1;
       }
     }
   }

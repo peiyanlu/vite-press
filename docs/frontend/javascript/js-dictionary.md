@@ -1,5 +1,7 @@
 ---
-title: Dictionary For WebDeveloper
+title: 辞海
+description: 开发中常用术语
+category: javascript
 tags:
   - Dictionary
   - web

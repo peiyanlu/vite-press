@@ -6,6 +6,8 @@ import path from 'path'
 interface FrontMatterResult {
   title?: string
   tags?: string[]
+  category?: string
+  description?: string
 }
 
 interface DocData extends FrontMatterResult {

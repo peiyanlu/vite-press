@@ -1,5 +1,7 @@
 ---
-title: 使用 rollup 构建一个 ts 库
+title: 构建TS库
+description: 使用rollup构建一个ts库
+category: rollup
 tags:
   - rollup
   - lib

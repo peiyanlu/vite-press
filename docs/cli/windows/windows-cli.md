@@ -1,5 +1,7 @@
 ---
-title: Windows CLI
+title: CLI
+description: Windows常用命令
+category: windows
 tags:
   - Windows
   - CLI

@@ -1,5 +1,7 @@
 ---
 title: 计算机网络
+description: 计算机网络常问的基础知识
+category: browser
 tags:
   - HTTP
   - TCP

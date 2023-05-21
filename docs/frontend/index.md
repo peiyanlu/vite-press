@@ -1,5 +1,5 @@
 ---
-title: FrontEnd
+title: 前端
 tags:
  - HTML
  - JS
@@ -9,10 +9,4 @@ tags:
 ---
 
 # FrontEnd
-
-<script setup>
-import WordCloud from '@theme/components/WordCloud.vue';
-
-</script>  
-<WordCloud></WordCloud>
 

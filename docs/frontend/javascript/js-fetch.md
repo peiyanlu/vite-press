@@ -1,37 +1,39 @@
 ---
-title: Fetch
+title: fetch
+description: 了解支持promise的HTTP请求方法
+category: javascript
 tags:
-  - Fetch
+  - fetch
 ---
 
 # Fetch API
 
-> Fetch API 是基于 promise 的异步获取资源接口，支持 promise
+> `fetch` 是基于 `promise` 的异步获取资源接口，支持 `promise`
 > 的所有方法，[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)
 
 ## 参数
 
-> 第一个参数：获取资源的URL。
+> 第一个参数：获取资源的 `URL`。
 
-> 第二个参数：options对象，包括：
+> 第二个参数：`options` 对象，包括：
 
 - `method`: 请求使用的方法，如 `GET、POST`。
 
 - `headers`: 请求的头信息，形式为 `Headers` 的对象或包含 `ByteString` 值的对象字面量。
 
 - `body`: 请求的 `body` 信息：可能是一个 `Blob`、 `BufferSource`、`FormData`、 `URLSearchParams` 或者 `USVString` 对象。**注意
-  GET 或 HEAD
-  方法的请求不能包含 body 信息。**
+  `GET` 或 `HEAD`
+  方法的请求不能包含 `body` 信息。**
 
 - `mode`: 请求的模式，如 `cors`、 `no-cors` 或者 `same-origin`。
 
 - `credentials`: 请求的 `credentials`，如 `omit`、 `same-origin` 或者 `include`。为了在当前域名内自动发送 `cookie` ， 必须提供这个选项，
-  从 `Chrome` 50 开始， 这个属性也可以接受 `FederatedCredential` 实例或是一个 `PasswordCredential` 实例。
+  从 `Chrome 50` 开始， 这个属性也可以接受 `FederatedCredential` 实例或是一个 `PasswordCredential` 实例。
 
 - `cache`: 请求的 `cache` 模式: `default`、 `no-store` 、 `reload` 、 `no-cache` 、 `force-cache` 或者 `only-if-cached`。
 
 - `redirect`: 可用的 `redirect` 模式: `follow` (自动重定向)， `error` (如果产生重定向将自动终止并且抛出一个错误)，
-  或者 `manual` (手动处理重定向). 在 `Chrome` 中，`Chrome` 47之前的默认值是 `follow`，从 `Chrome` 47开始是 `manual`。
+  或者 `manual` (手动处理重定向). 在 `Chrome` 中，`Chrome 47` 之前的默认值是 `follow`，从 `Chrome` 47开始是 `manual`。
 
 - `referrer`: 一个 `USVString` ，可以是 `no-referrer` 、 `client` 或一个 `URL`。默认是 `client`。
 

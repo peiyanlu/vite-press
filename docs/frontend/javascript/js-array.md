@@ -1,11 +1,17 @@
 ---
-title: 数组 Array
+title: 数组
+description: 按版本分类的数组方法
+category: javascript
 tags:
   - Array
   - ES6
   - ES7
   - ES8
   - ES9
+  - ES10
+  - ES11
+  - ES12
+  - ES13
 ---
 
 

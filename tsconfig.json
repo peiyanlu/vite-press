@@ -13,12 +13,6 @@
     "paths": {
       "@theme/*": [
         "docs/.vitepress/theme/*"
-      ],
-      "@config/*": [
-        "docs/.vitepress/config/*"
-      ],
-      "@docs/*": [
-        "docs/*"
       ]
     }
   },

@@ -1,5 +1,7 @@
 ---
-title: Redis
+title: 安装
+description: Redis安装
+category: redis
 tags:
   - Redis
 ---

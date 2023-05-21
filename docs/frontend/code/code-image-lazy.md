@@ -1,5 +1,7 @@
 ---
 title: 图片懒加载
+description: 新版本浏览器图片懒加载实现
+category: code
 tags:
   - 懒加载
 ---

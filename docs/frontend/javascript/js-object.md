@@ -1,7 +1,17 @@
 ---
-title: 对象 Object
+title: 对象
+description: 按版本分类的对象方法
+category: javascript
 tags:
   - Object
+  - ES6
+  - ES7
+  - ES8
+  - ES9
+  - ES10
+  - ES11
+  - ES12
+  - ES13
 ---
 
 # 对象 Object

@@ -1,5 +1,7 @@
 ---
 title: 原型链
+description: 百问不厌的原型链
+category: javascript
 tags:
   - prototype
 ---

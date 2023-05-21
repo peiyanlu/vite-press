@@ -1,30 +1,17 @@
 <template>
-  <div ref="wordCloudRef" />
-
-  <div v-for="item of selectedTag">
-    {{ item.title }}
-  </div>
+  <div class="word-cloud" ref="wordCloudRef" />
 </template>
 
 <script lang="ts" setup>
-import { data, DocData } from '@theme/docs.data'
+import type { DocData } from '@theme/docs.data'
 import useWordCloud from '@theme/hooks/useWordCloud'
-import { computed, ref, watchEffect } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { tags } from './archive'
 
-// 定义属性
-// const props = defineProps({
-//   dataList: {
-//     type: Array,
-//     default: () => [],
-//   },
-// })
+const emit = defineEmits<{
+  getSelected: [ tag: string | number, data: DocData[] ]
+}>()
 
-const selectedTag = ref<DocData[]>([])
-
-/**
- * 初始化词云数据
- * [{"name": xx, "value": xx}]
- */
 const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags).map(key => {
   return {
     name: key,
@@ -32,38 +19,38 @@ const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags).map
   } as Record<string, string | number>
 })
 
-/**
- * 初始化标签数据
- * {tagTitle1: [article1, article2, ...}
- */
-const initTags = (docs: DocData[]) => docs
-  .filter(k => k.tags?.length)
-  .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
-    item.tags?.forEach(tag => {
-      (tagsRecords[tag] ??= []).push(item)
-
-      tagsRecords[tag].sort((a, b) => b.createdDate - a.createdDate)
-    })
-    return tagsRecords
-  }, {})
-
-const tags = computed(() => initTags(data))
-console.log(tags.value)
-const dataList = computed(() => initWordCloud(tags.value))
-console.log(dataList.value)
-
 const wordCloudRef = ref<HTMLDivElement | null>(null)
-watchEffect(() => {
-  if (wordCloudRef.value) {
-    useWordCloud(wordCloudRef.value, dataList.value, (data) => {
-      selectedTag.value = tags.value[data.name]
-    })
-  }
+
+onMounted(() => {
+  const { destory } = useWordCloud(
+    wordCloudRef.value,
+    initWordCloud(tags),
+    (data) => {
+      emit('getSelected', data.name, tags[data.name])
+    },
+  )
+  onBeforeUnmount(() => destory())
 })
 </script>
 
 <style lang="scss">
-.g2-tooltip-value {
-  margin-left: 6px !important;
+.word-cloud {
+  canvas {
+    cursor: inherit !important;
+  }
+
+  .g2-tooltip-value {
+    margin-left: 6px !important;
+  }
+}
+
+html.dark {
+  .word-cloud {
+    .g2-tooltip {
+      background-color: rgb(31, 31, 31) !important;
+      box-shadow: rgba(0, 0, 0, 0.5) 0 2px 4px !important;
+      color: rgb(166, 166, 166) !important;
+    }
+  }
 }
 </style>

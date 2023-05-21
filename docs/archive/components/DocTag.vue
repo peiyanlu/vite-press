@@ -5,10 +5,10 @@ const props = defineProps<{
   text: string
 }>()
 
-function color() {
-  const r = () => Math.floor(Math.random() * 136) + 120
+const color = () => {
+  const r = () => Math.floor(Math.random() * 116) + 140
   return `rgba(${ r() }, ${ r() }, ${ r() }, ${ Math.random() * 0.75 + 0.25 })`
-}
+};
 </script>
 
 <template>
@@ -17,9 +17,11 @@ function color() {
 
 <style lang="scss" scoped>
 .doc-tag {
-  padding: 4px 6px;
-  border-radius: 2px;
+  padding: 6px 8px;
+  border-radius: 4px;
   white-space: nowrap;
+  line-height: 1;
+  letter-spacing: 0.02em;
   background: v-bind(color());
 }
 </style>

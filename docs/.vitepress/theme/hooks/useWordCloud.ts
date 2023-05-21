@@ -1,5 +1,7 @@
 import { Datum, WordCloud } from '@antv/g2plot'
-import { onBeforeUnmount } from 'vue'
+import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const smAndSmaller = breakpoints.smaller('sm')
 
 export default function useWordCloud<T extends Record<string, string | number>>(
   dom: HTMLElement,
@@ -7,18 +9,19 @@ export default function useWordCloud<T extends Record<string, string | number>>(
   onClickCallback?: (data: T) => void,
 ) {
   const wordCloud = new WordCloud(dom, {
+    height: smAndSmaller.value ? 200 : 420,
     data: data,
     wordField: 'name',
     weightField: 'value',
     colorField: 'name',
     wordStyle: {
-      fontFamily: 'Verdana',
-      fontSize: [ 14, 35 ],
-      rotation: 0,
+      rotation: [ -Math.PI / 2, Math.PI / 2 ],
+      rotationSteps: 4,
+      fontFamily: 'Inter var',
+      fontSize: smAndSmaller.value ? [12, 18]: [ 18, 28 ],
+      padding: 8,
     },
-    // 返回值设置成一个 [0, 1) 区间内的值，
-    // 可以让每次渲染的位置相同（前提是每次的宽高一致）。
-    random: () => Math.random(),
+    spiral: 'rectangular',
     tooltip: {
       formatter: (datum: Datum) => {
         return { name: datum.text + ' ', value: datum.value + ' 篇' }
@@ -32,5 +35,19 @@ export default function useWordCloud<T extends Record<string, string | number>>(
   }
   wordCloud.on('element:click', onClick)
   
-  onBeforeUnmount(() => wordCloud.destroy())
+  // 给 tooltip 添加点击事件
+  wordCloud.on('tooltip:show', () => {
+    dom?.setAttribute('style', 'cursor: pointer !important')
+  })
+  
+  wordCloud.on('tooltip:hide', () => {
+    dom?.setAttribute('style', 'cursor: default')
+  })
+  
+  const destory = () => wordCloud.destroy()
+  
+  const darkTheme = () => wordCloud.update({ theme: 'dark' })
+  const lightTheme = () => wordCloud.update({ theme: 'default' })
+  
+  return { destory, darkTheme, lightTheme }
 }

@@ -1,11 +1,13 @@
 ---
 title: JSON导出EXCEL
+description: json转出Excel以及解析Excel为json
+category: code
 tags:
   - JSON
   - EXCEL
 ---
 
-# Tree JSON 导出 EXCEL
+# JSON 导出 EXCEL
 
 ```ts
 // 安装依赖：pnpm add xlsx file-saver @types/file-saver -D

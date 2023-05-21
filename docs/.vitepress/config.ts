@@ -1,5 +1,4 @@
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
 
@@ -77,16 +76,6 @@ export default defineConfig({
     // }
   },
   vite: {
-    resolve: {
-      alias: [
-        {
-          find: '@config',
-          replacement: fileURLToPath(
-            new URL('./config', import.meta.url),
-          ),
-        },
-      ],
-    },
     plugins: [
       createSvgIconsPlugin({
         // 指定需要缓存的图标文件夹

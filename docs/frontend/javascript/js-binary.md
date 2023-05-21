@@ -1,5 +1,7 @@
 ---
-title: JS二进制
+title: 二进制
+description: js中的二进制使用方法
+category: javascript
 tags:
   - Blob
 ---
@@ -183,10 +185,6 @@ reader.onload = () => {
 
 * **TypedArray**：用来生成内存的视图，通过 `9` 个构造函数，可以生成9种数据格式的视图。是用来向网卡、声卡之类的本机设备传送数据，所以使用本机的字节序就可以了
 * **DataViews**：用来生成内存的视图，可以自定义格式和字节序。是用来处理网络设备传来的数据，所以大端字节序或小端字节序是可以自行设定的
-
-![img_1.png](img/binary/img_1.png)
-
-![img_2.png](img/binary/img_2.png)
 
 `TypedArray` 视图和 `DataView` 视图的区别主要是**字节序**，前者的数组成员都是同一个数据类型，后者的数组成员可以是不同的数据类型。
 
