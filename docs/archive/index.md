@@ -9,7 +9,6 @@ editLink: false
 
 <script setup>
 import DocTimelineItem from './components/DocTimeline.vue'
-
 </script>
 
 <style lang="sass" src="./index.scss"></style>

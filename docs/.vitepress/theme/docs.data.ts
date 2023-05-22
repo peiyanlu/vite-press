@@ -18,17 +18,17 @@ interface DocData extends FrontMatterResult {
 
 export const getGitTimestamp = (file: string) => new Promise<number>((resolve) => {
   const child = spawn('git', [ 'log', '-1', '--pretty="%ci"', file ])
-  let output = ''
-  child.stdout.on('data', (d) => (output += String(d)))
-  child.on('close', () => resolve(output ? new Date(output).getTime() : Date.now()))
+  let out = ''
+  child.stdout.on('data', (d) => (out += String(d)))
+  child.on('close', () => resolve(out ? new Date(out).getTime() : Date.now()))
   child.on('error', () => resolve(Date.now()))
 })
 
 export const getGitTimestampCreate = (file: string) => new Promise<number>((resolve) => {
-  const child = spawn('git', [ 'log', '-1', '--diff-filter=A', '--follow', '--format="%ci"', file ])
-  let output = ''
-  child.stdout.on('data', (d) => (output += String(d)))
-  child.on('close', () => resolve(output ? new Date(output).getTime() : Date.now()))
+  const child = spawn('git', [ 'log', '-1', '--pretty="%ci"', '--diff-filter=A', '--follow', file ])
+  let out = ''
+  child.stdout.on('data', (d) => (out += String(d)))
+  child.on('close', () => resolve(out ? new Date(out).getTime() : Date.now()))
   child.on('error', () => resolve(Date.now()))
 })
 
@@ -36,7 +36,7 @@ const excludedFiles: string[] = [ 'index.md' ]
 
 export default {
   watch: [ 'docs/**/*.md' ],
-  async load(watchedFiles: string[]): Promise<Promise<DocData[]>> {
+  async load(watchedFiles: string[]): Promise<DocData[]> {
     // 排除不必要文件
     const articleFiles = watchedFiles.filter((file: string) => {
       const filename = path.basename(file)
@@ -51,11 +51,12 @@ export default {
       const createdDate = await getGitTimestampCreate(articleFile)
       
       return {
-        ...(data as FrontMatterResult),
+        ...data,
         path: articleFile
           .replace(/^docs\//, '')
           .replace(/\.md$/, '')
-          .replace(/index$/, ''),
+          .replace(/index$/, '')
+          .replace(/\/+/g, '/'),
         updatedDate,
         createdDate,
       }

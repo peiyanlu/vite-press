@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-
 const props = defineProps<{
   text: string
 }>()
@@ -12,16 +10,16 @@ const color = () => {
 </script>
 
 <template>
-<div class="doc-tag">{{ text }}</div>
+  <div class="doc-tag">{{ text }}</div>
 </template>
 
 <style lang="scss" scoped>
 .doc-tag {
-  padding: 6px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
   line-height: 1;
+  padding: 6px 8px;
+  white-space: nowrap;
   letter-spacing: 0.02em;
+  border-radius: 4px;
   background: v-bind(color());
 }
 </style>

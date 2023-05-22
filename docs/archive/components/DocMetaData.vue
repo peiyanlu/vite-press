@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import { DocData } from '@theme/docs.data'
-import { useDateFormat, useTimeAgo } from '@vueuse/core'
-import { defineProps } from 'vue'
+import { breakpointsTailwind, useBreakpoints, useDateFormat, useTimeAgo } from '@vueuse/core'
 import { tags } from './archive'
 import DocTag from './DocTag.vue'
-import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
@@ -32,28 +30,22 @@ const handleClick = (tag: string) => {
 <template>
   <div class="doc-metadata">
     <div class="group">
-      <div class="item">
-        <svg-icon name="create"/>
-        <div
-          :title="getTimeAgo(doc.createdDate)"
-          v-html="getDate(doc.createdDate)"
-        />
+      <div class="item" :title="`创建于：${getTimeAgo(doc.createdDate)}`">
+        <svg-icon name="create" />
+        <div v-html="getDate(doc.createdDate)" />
       </div>
-      <div class="item">
-        <svg-icon name="update" title="gengxin"/>
-        <div
-          :title="getTimeAgo(doc.updatedDate)"
-          v-html="getDate(doc.updatedDate)"
-        />
+      <div class="item" :title="`更新于：${getTimeAgo(doc.updatedDate)}`">
+        <svg-icon name="update" />
+        <div v-html="getDate(doc.updatedDate)" />
       </div>
     </div>
-    <div class="item" v-if="doc.tags?.length">
+    <div v-if="doc.tags?.length" class="item">
       <svg-icon name="tags" />
       <div class="tag-list">
         <doc-tag
           v-for="tag of doc.tags"
-          :text="tag"
           :key="tag"
+          :text="tag"
           @click="handleClick(tag)"
         />
       </div>
@@ -63,44 +55,44 @@ const handleClick = (tag: string) => {
 
 <style lang="scss" scoped>
 .doc-metadata {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
   font-size: 12px;
   line-height: 1;
+  display: flex;
   overflow: hidden;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: 8px;
 
   .group {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    flex-flow: row nowrap;
     flex-shrink: 0;
+    justify-content: flex-start;
+    gap: 20px;
   }
 
   .item {
-    flex-shrink: 0;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
     align-items: center;
+    flex-flow: row wrap;
+    flex-shrink: 0;
+    justify-content: flex-start;
     gap: 8px;
 
     :deep(.svg-icon) {
+      flex-shrink: 0;
       width: 16px;
       height: 16px;
-      flex-shrink: 0;
     }
 
     .tag-list {
-      flex: 1;
       display: flex;
+      align-items: center;
+      flex: 1;
       flex-flow: row wrap;
       justify-content: flex-start;
-      align-items: center;
       gap: 6px;
 
       .doc-tag {

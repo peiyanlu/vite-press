@@ -1,5 +1,5 @@
 <template>
-  <div class="word-cloud" ref="wordCloudRef" />
+  <div ref="wordCloudRef" class="word-cloud" />
 </template>
 
 <script lang="ts" setup>
@@ -22,14 +22,14 @@ const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags).map
 const wordCloudRef = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-  const { destory } = useWordCloud(
+  const { destroy } = useWordCloud(
     wordCloudRef.value,
     initWordCloud(tags),
     (data) => {
       emit('getSelected', data.name, tags[data.name])
     },
   )
-  onBeforeUnmount(() => destory())
+  onBeforeUnmount(() => destroy())
 })
 </script>
 
@@ -47,9 +47,9 @@ onMounted(() => {
 html.dark {
   .word-cloud {
     .g2-tooltip {
+      color: rgb(166, 166, 166) !important;
       background-color: rgb(31, 31, 31) !important;
       box-shadow: rgba(0, 0, 0, 0.5) 0 2px 4px !important;
-      color: rgb(166, 166, 166) !important;
     }
   }
 }

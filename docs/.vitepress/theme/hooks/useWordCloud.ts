@@ -1,5 +1,6 @@
 import { Datum, WordCloud } from '@antv/g2plot'
-import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
@@ -18,7 +19,7 @@ export default function useWordCloud<T extends Record<string, string | number>>(
       rotation: [ -Math.PI / 2, Math.PI / 2 ],
       rotationSteps: 4,
       fontFamily: 'Inter var',
-      fontSize: smAndSmaller.value ? [12, 18]: [ 18, 28 ],
+      fontSize: smAndSmaller.value ? [ 12, 18 ] : [ 18, 28 ],
       padding: 8,
     },
     spiral: 'rectangular',
@@ -44,10 +45,10 @@ export default function useWordCloud<T extends Record<string, string | number>>(
     dom?.setAttribute('style', 'cursor: default')
   })
   
-  const destory = () => wordCloud.destroy()
+  const destroy = () => wordCloud.destroy()
   
   const darkTheme = () => wordCloud.update({ theme: 'dark' })
   const lightTheme = () => wordCloud.update({ theme: 'default' })
   
-  return { destory, darkTheme, lightTheme }
+  return { destroy: destroy, darkTheme, lightTheme }
 }

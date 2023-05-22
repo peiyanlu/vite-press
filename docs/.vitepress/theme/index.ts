@@ -20,12 +20,11 @@ export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
     const { frontmatter, isDark, site } = useData()
-    const { path } = useRoute()
     
     nextTick(() => {
       imagePreviewFn()
       
-      if (!isMobile() && path !== site.value.base) live2dWidgetFn(isDark.value)
+      if (!isMobile()) live2dWidgetFn(isDark.value)
     }).catch(e => console.error(e))
     
     return h(

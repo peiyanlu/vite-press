@@ -1,6 +1,14 @@
 <template>
-  <svg aria-hidden="true" class="svg-icon" :width="props.size" :height="props.size">
-    <use :xlink:href="symbolId" :fill="props.color" />
+  <svg
+    :height="size"
+    :width="size"
+    aria-hidden="true"
+    class="svg-icon"
+  >
+    <use
+      :fill="color"
+      :href="symbolId"
+    />
   </svg>
 </template>
 
@@ -10,27 +18,27 @@ import { computed } from 'vue'
 const props = defineProps({
   prefix: {
     type: String,
-    default: 'icon'
+    default: 'icon',
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   color: {
     type: String,
-    default: 'currentColor'
+    default: 'currentColor',
   },
   size: {
     type: String,
-    default: '1em'
-  }
+    default: '1em',
+  },
 })
 
 const symbolId = computed(() => `#${ props.prefix }-${ props.name }`)
 </script>
 
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .svg-icon {
   display: block;
   fill: currentColor;

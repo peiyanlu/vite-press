@@ -1,12 +1,13 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { withBase } from 'vitepress'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { data, DocData } from '@theme/docs.data'
-import DocMetaData from './DocMetaData.vue'
-import { onBeforeMount, reactive, ref, watch, defineAsyncComponent } from 'vue'
-import DocTag from './DocTag.vue'
+import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
 import { useMagicKeys } from '@vueuse/core'
+import DocMetaData from './DocMetaData.vue'
+import DocTag from './DocTag.vue'
 import { getTimeline, getZodiac, getZodiacAlias } from './archive'
+import Comment from '@theme/components/Comment.vue'
 
 const AsyncWordCloud = defineAsyncComponent({
   // 加载函数
@@ -73,31 +74,31 @@ const ns = useNamespace('doc-timeline-item')
   </div>
   <div class="doc-timeline">
     <div
-      :class="[ns.b(), { current: isCurrentYear(parseInt(year as string))}]"
       v-for="(item, year) in list"
       :key="year"
+      :class="[ns.b(), { current: isCurrentYear(parseInt(year as string))}]"
     >
       <div :class="ns.e('line')">
-        <div class="icon" :title="getZodiacAlias(parseInt(year as string))">
-          <svg-icon :name="'zodiac-'+getZodiac(parseInt(year as string))" />
+        <div :title="getZodiacAlias(parseInt(year as string))" class="icon">
+          <svg-icon :name="`zodiac-${getZodiac(parseInt(year as string))}`" />
         </div>
         <div class="line" />
       </div>
       <div :class="ns.e('wrapper')">
         <div class="group-header">{{ year }}</div>
         <div
-          class="group-content"
           v-for="(subItem, month) in item"
           :key="month"
+          class="group-content"
         >
           <div class="subgroup-header">{{ month }}</div>
           <div
-            class="subgroup-content"
             v-for="doc of subItem"
             :key="doc.path"
+            class="subgroup-content"
           >
             <div class="title">
-              <a :href="withBase(doc.path)">{{doc.category}}{{ doc.category ? ' / ' : '' }}{{ doc.title }}</a>
+              <a :href="withBase(doc.path)">{{ doc.category ? `${ doc.category } / ` : '' }}{{ doc.title }}</a>
               <div v-if="doc.description">-- {{ doc.description }}</div>
             </div>
             <DocMetaData :doc="doc" @get-selected="handleSelectedTag" />
@@ -106,27 +107,28 @@ const ns = useNamespace('doc-timeline-item')
       </div>
     </div>
   </div>
+  <Comment />
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .doc-archive-title {
-  letter-spacing: -0.02em;
-  line-height: 40px;
   font-size: 32px;
   font-weight: 600;
-  white-space: nowrap;
-  margin: 48px 0;
+  line-height: 40px;
   display: flex;
+  align-items: center;
   flex-flow: row nowrap;
   justify-content: flex-start;
-  align-items: center;
+  margin: 48px 0;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
   gap: 12px;
 
   .tag {
     display: flex;
+    align-items: center;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    align-items: center;
     gap: 12px;
 
     .doc-tag {
@@ -136,22 +138,22 @@ const ns = useNamespace('doc-timeline-item')
 
   &:not(.tag) {
     &:after {
-      white-space: nowrap;
       position: relative;
       left: -10px;
-      content: '...';
+      content: "...";
       animation: dot 2s steps(3) infinite;
+      white-space: nowrap;
     }
 
     @keyframes dot {
       33% {
-        content: '.';
+        content: ".";
       }
       66% {
-        content: '..';
+        content: "..";
       }
       100% {
-        content: '...';
+        content: "...";
       }
     }
   }
@@ -161,8 +163,9 @@ const ns = useNamespace('doc-timeline-item')
   display: flex;
   flex-flow: column nowrap;
 
-  --size: 30px;
   --gap: 20px;
+  --size: 30px;
+
   .VPDoc-doc-timeline-item {
     position: relative;
     display: flex;
@@ -171,24 +174,24 @@ const ns = useNamespace('doc-timeline-item')
     gap: var(--gap);
 
     &__line {
-      width: var(--size);
       display: flex;
+      align-items: center;
       flex-flow: column nowrap;
       justify-content: flex-end;
-      align-items: center;
+      width: var(--size);
 
       .icon {
         width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        border: 2px solid var(--vp-c-brand);
         padding: 2px;
+        border: 2px solid var(--vp-c-brand);
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
 
         :deep(.svg-icon) {
           width: 100%;
           height: 100%;
-          aspect-ratio: 1 / 1;
           border-radius: 50%;
+          aspect-ratio: 1 / 1;
           object-fit: contain;
         }
       }
@@ -200,61 +203,61 @@ const ns = useNamespace('doc-timeline-item')
     }
 
     &__wrapper {
-      width: 0;
       flex: 1;
+      width: 0;
       padding-bottom: 48px;
 
       .group-header {
-        letter-spacing: -0.02em;
-        line-height: var(--size);
         font-size: 24px;
+        line-height: var(--size);
+        letter-spacing: -0.02em;
       }
 
       .group-content {
         padding-left: var(--gap);
 
         .subgroup-header {
+          font-size: 20px;
+          line-height: 28px;
           padding-top: 32px;
           padding-bottom: 16px;
           letter-spacing: -0.01em;
-          line-height: 28px;
-          font-size: 20px;
         }
 
         .subgroup-content {
-          border-radius: 4px;
-          overflow: hidden;
-          transition: .3s;
-          padding: 18px 18px;
           display: flex;
+          overflow: hidden;
           flex-flow: column nowrap;
           justify-content: flex-start;
+          padding: 18px 18px;
+          transition: .3s;
+          border-radius: 4px;
           gap: 18px;
 
           .title {
-            line-height: 1.2;
             font-size: 14px;
+            line-height: 1.2;
             display: flex;
-            justify-content: flex-start;
             align-items: flex-end;
-            gap: 20px;
-            letter-spacing: 0.02em;
+            justify-content: flex-start;
             transition: all 0.3s ease-in-out;
             white-space: nowrap;
+            letter-spacing: 0.02em;
+            gap: 20px;
 
             a {
               flex-shrink: 0;
             }
 
             div {
-              flex: 1;
-              opacity: 0;
               font-size: 12px;
               line-height: 1;
+              overflow: hidden;
+              flex: 1;
               transition: all 0.3s ease-in-out;
               white-space: nowrap;
-              overflow: hidden;
               text-overflow: ellipsis;
+              opacity: 0;
             }
           }
 
@@ -263,7 +266,7 @@ const ns = useNamespace('doc-timeline-item')
 
             .title {
               div {
-                opacity: 0.33;
+                opacity: 0.4;
               }
             }
           }
@@ -284,21 +287,21 @@ const ns = useNamespace('doc-timeline-item')
     &:last-child {
       .line {
         border-image: linear-gradient(
-                to top,
-                var(--vp-c-green-light) 0,
-                var(--vp-c-green-light) 5px,
-                transparent 5px,
-                transparent 10px,
-                var(--vp-c-green-light) 10px,
-                var(--vp-c-green-light) 15px,
-                transparent 15px,
-                transparent 20px,
-                var(--vp-c-green-light) 20px,
-                var(--vp-c-green-light) 25px,
-                transparent 25px,
-                transparent 30px,
-                var(--vp-c-green-light) 30px,
-                var(--vp-c-green-light) 100%
+            to top,
+            var(--vp-c-green-light) 0,
+            var(--vp-c-green-light) 5px,
+            transparent 5px,
+            transparent 10px,
+            var(--vp-c-green-light) 10px,
+            var(--vp-c-green-light) 15px,
+            transparent 15px,
+            transparent 20px,
+            var(--vp-c-green-light) 20px,
+            var(--vp-c-green-light) 25px,
+            transparent 25px,
+            transparent 30px,
+            var(--vp-c-green-light) 30px,
+            var(--vp-c-green-light) 100%
         ) 1;
       }
     }
@@ -307,13 +310,13 @@ const ns = useNamespace('doc-timeline-item')
 
 @media (max-width: 960px) {
   .doc-archive-title {
-    margin: 32px 0;
     font-size: 22px !important;
+    margin: 32px 0;
   }
 
   .doc-timeline {
-    --size: 24px;
     --gap: 14px;
+    --size: 24px;
 
     .VPDoc-doc-timeline-item {
       &__wrapper {
@@ -325,10 +328,10 @@ const ns = useNamespace('doc-timeline-item')
 
         .group-content {
           .subgroup-header {
+            font-size: 18px;
+            line-height: 26px;
             padding-top: 24px;
             padding-bottom: 8px;
-            line-height: 26px;
-            font-size: 18px;
           }
         }
       }
