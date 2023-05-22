@@ -3,7 +3,7 @@ const props = defineProps<{
   text: string
 }>()
 
-const color = () => {
+const getColor = () => {
   const r = () => Math.floor(Math.random() * 116) + 140
   return `rgba(${ r() }, ${ r() }, ${ r() }, ${ Math.random() * 0.75 + 0.25 })`
 };
@@ -13,13 +13,13 @@ const color = () => {
   <div class="doc-tag">{{ text }}</div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .doc-tag {
   line-height: 1;
   padding: 6px 8px;
   white-space: nowrap;
   letter-spacing: 0.02em;
   border-radius: 4px;
-  background: v-bind(color());
+  background: v-bind(getColor());
 }
 </style>

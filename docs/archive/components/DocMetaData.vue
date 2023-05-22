@@ -53,7 +53,7 @@ const handleClick = (tag: string) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .doc-metadata {
   font-size: 12px;
   line-height: 1;

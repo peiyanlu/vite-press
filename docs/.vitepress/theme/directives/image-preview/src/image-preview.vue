@@ -155,17 +155,17 @@ onUnmounted(() => {
   <div :class="ns.e('bg')" :style="bgStyle" />
 </template>
 
-<style lang="scss" scoped>
-$doc-prefix: VPDoc;
-$v-z-index: 1080;
+<style lang="less" scoped>
+@doc-prefix: VPDoc;
+@v-z-index: 1080;
 
-.#{$doc-prefix}-image-preview {
+.@{doc-prefix}-image-preview {
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: $v-z-index;
+  z-index: @v-z-index;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,13 +367,13 @@ $v-z-index: 1080;
   }
 }
 
-.#{$doc-prefix}-image-preview__bg {
+.@{doc-prefix}-image-preview__bg {
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: calc($v-z-index - 1);
+  z-index: calc(@v-z-index - 1);
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   animation: bg 0.15s ease-in-out;
@@ -395,7 +395,7 @@ $v-z-index: 1080;
 }
 
 @media (max-width: 750px) {
-  .#{$doc-prefix}-image-preview {
+  .@{doc-prefix}-image-preview {
     --toolbar-height: 36px;
     &__toolbar {
       padding: 0 4px;
@@ -404,7 +404,7 @@ $v-z-index: 1080;
 
       &-left,
       &-middle,
-      &-right, {
+      &-right {
         gap: 4px;
 
         --size: 26px;

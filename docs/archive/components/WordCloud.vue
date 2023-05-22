@@ -33,7 +33,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="less">
 .word-cloud {
   canvas {
     cursor: inherit !important;

@@ -15,7 +15,7 @@ const props = defineProps<{
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .image-preview {
   display: contents;
   position: relative;

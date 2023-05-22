@@ -12,7 +12,7 @@ import SiteNavLinks from './components/SiteNavLinkGroup.vue';
 import { NAV_DATA } from './data';
 </script>
 
-<style lang="sass" src="./index.scss"></style>
+<style lang="scss" src="./index.scss"></style>
 
 <SiteNavLinks 
   v-for="{title, items} in NAV_DATA" 

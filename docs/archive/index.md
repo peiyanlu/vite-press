@@ -11,6 +11,6 @@ editLink: false
 import DocTimelineItem from './components/DocTimeline.vue'
 </script>
 
-<style lang="sass" src="./index.scss"></style>
+<style lang="less" src="./index.less"></style>
 
 <DocTimelineItem></DocTimelineItem>

@@ -13,7 +13,7 @@ const ns = useNamespace('nth-child')
 </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .VPDoc-nth-child {
   width: 100%;
   height: 30px;

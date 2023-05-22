@@ -38,7 +38,7 @@ const symbolId = computed(() => `#${ props.prefix }-${ props.name }`)
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .svg-icon {
   display: block;
   fill: currentColor;

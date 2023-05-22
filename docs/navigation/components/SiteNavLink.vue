@@ -28,10 +28,10 @@ const ns = useNamespace('site-nav-link')
   </a>
 </template>
 
-<style lang="scss" scoped>
-$doc-prefix: VPDoc;
+<style lang="less" scoped>
+@doc-prefix: VPDoc;
 
-.#{$doc-prefix}-site-nav-link {
+.@{doc-prefix}-site-nav-link {
   display: flex;
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 8px;
@@ -144,7 +144,7 @@ $doc-prefix: VPDoc;
 
 
 @media (max-width: 960px) {
-  .#{$doc-prefix}-site-nav-link {
+  .@{doc-prefix}-site-nav-link {
     &__box {
       padding: 8px;
 

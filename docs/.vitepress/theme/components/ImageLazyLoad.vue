@@ -27,6 +27,6 @@ const def = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lP
   />
 </template>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>

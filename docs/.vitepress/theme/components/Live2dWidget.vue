@@ -32,7 +32,7 @@ watchEffect(() => {
   <div id="models" ref="elRef" />
 </template>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 #models {
   position: fixed;
   right: 0;
