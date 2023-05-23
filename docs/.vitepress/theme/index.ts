@@ -4,14 +4,16 @@ import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SvgIcon from '@theme/components/SvgIcon.vue'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
+import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue';
 
 // 依赖
-import { Theme, useData, useRoute } from 'vitepress'
+import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { h, nextTick, render } from 'vue'
 
 // 样式文件
 import './style/index'
+
 
 const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(globalThis.navigator?.userAgent)
 
@@ -36,6 +38,7 @@ export default <Theme>{
   },
   enhanceApp(ctx) {
     ctx.app.component('svg-icon', SvgIcon)
+    ctx.app.component('image-lazy-load', ImageLazyLoad)
   },
 }
 

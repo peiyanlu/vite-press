@@ -2,6 +2,7 @@
 import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue'
 import { ImagePreviewDirective } from '@theme/directives/image-preview'
 
+
 const vImagePreview = ImagePreviewDirective
 
 const props = defineProps<{
@@ -11,14 +12,14 @@ const props = defineProps<{
 
 <template>
   <div v-image-preview="{scopeSelector: '.VPDoc .main'}" class="image-preview">
-    <ImageLazyLoad :src="src" />
+    <image-lazy-load :src="src" />
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .image-preview {
-  display: contents;
   position: relative;
+  display: contents;
 
   img {
     cursor: pointer;

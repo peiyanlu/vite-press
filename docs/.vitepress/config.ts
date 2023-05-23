@@ -5,6 +5,7 @@ import { defineConfig } from 'vitepress'
 import { getNav, getSidebar } from './config/menu'
 import { algolia } from './config/search'
 
+
 const BASE_URL = '/vite-press/' as const
 
 const withBase = (path: string): string => `${ BASE_URL }${ path }`.replace(/\/+/g, '/')

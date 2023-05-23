@@ -1,6 +1,7 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import useObserver from '@theme/hooks/useObserver'
 import { ref, watchEffect } from 'vue'
+
 
 const props = defineProps<{
   src: string
@@ -24,9 +25,10 @@ const def = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lP
     :data-src="src"
     :src="def"
     alt=""
+    @error="(e) => e.target.src = '/logo.svg'"
   />
 </template>
 
-<style scoped lang="less">
+<style lang="scss" scoped>
 
 </style>

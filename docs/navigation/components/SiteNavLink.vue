@@ -6,6 +6,7 @@ import ImageIcon from './ImageIcon.vue'
 
 import { NavLink } from './type'
 
+
 const props = defineProps<{
   icon?: NavLink['icon']
   title?: NavLink['title']
@@ -19,7 +20,7 @@ const ns = useNamespace('site-nav-link')
 </script>
 
 <template>
-  <a v-if="link" :href="link" :class="ns.b()" rel="noreferrer" target="_blank">
+  <a v-if="link" :class="ns.b()" :href="link" rel="noreferrer" target="_blank">
     <div :class="ns.e('header')">
       <ImageIcon :icon="icon" :title="title" />
       <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
@@ -28,23 +29,21 @@ const ns = useNamespace('site-nav-link')
   </a>
 </template>
 
-<style lang="less" scoped>
-@doc-prefix: VPDoc;
-
-.@{doc-prefix}-site-nav-link {
+<style lang="scss" scoped>
+.VPDoc-site-nav-link {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--vp-c-text-1);
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 8px;
-  height: 100%;
-  cursor: pointer;
-  flex-direction: column;
-  padding: 16px;
-  color: var(--vp-c-text-1);
-  user-select: none;
 
   &:hover {
-    background-color: var(--vp-c-bg-soft);
     text-decoration: unset;
+    background-color: var(--vp-c-bg-soft);
 
     .title {
       &::after {
@@ -68,17 +67,17 @@ const ns = useNamespace('site-nav-link')
     align-items: center;
 
     .icon {
+      font-size: 24px;
       display: flex;
-      justify-content: center;
       align-items: center;
       flex-shrink: 0;
-      margin-right: 12px;
-      border-radius: 6px;
+      justify-content: center;
       width: 48px;
       height: 48px;
-      font-size: 24px;
-      background-color: var(--vp-c-mute);
+      margin-right: 12px;
       transition: background-color 0.25s;
+      border-radius: 6px;
+      background-color: var(--vp-c-mute);
 
       :deep(svg) {
         width: 24px;
@@ -87,64 +86,63 @@ const ns = useNamespace('site-nav-link')
       }
 
       :deep(img) {
-        border-radius: 4px;
         width: 24px;
+        border-radius: 4px;
         aspect-ratio: 1 / 1;
         object-fit: fill;
       }
 
       :deep(div) {
-        border-radius: 4px;
-        width: 24px;
-        aspect-ratio: 1 / 1;
         font-size: 18px;
         font-weight: 800;
         line-height: 24px;
+        width: 24px;
         text-align: center;
+        border-radius: 4px;
+        aspect-ratio: 1 / 1;
       }
     }
 
     .title {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 48px;
       overflow: hidden;
       flex-grow: 1;
       white-space: nowrap;
       text-overflow: ellipsis;
-      line-height: 48px;
-      font-size: 16px;
-      font-weight: 600;
 
       &::after {
-        content: "";
         position: absolute;
-        background-color: var(--vp-c-bg-soft);
+        z-index: 1;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        content: "";
         transform: scaleX(0);
         transform-origin: center right;
-        z-index: 1;
+        background-color: var(--vp-c-bg-soft);
       }
     }
   }
 
   &__footer {
+    font-size: 12px;
+    line-height: 20px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
     flex-grow: 1;
     margin: 10px 0 0;
-    line-height: 20px;
-    font-size: 12px;
+    text-overflow: ellipsis;
     color: var(--vp-c-text-2);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 }
 
-
 @media (max-width: 960px) {
-  .@{doc-prefix}-site-nav-link {
+  .VPDoc-site-nav-link {
     &__box {
       padding: 8px;
 
@@ -154,8 +152,8 @@ const ns = useNamespace('site-nav-link')
       }
 
       .title {
-        line-height: 40px;
         font-size: 14px;
+        line-height: 40px;
       }
     }
   }

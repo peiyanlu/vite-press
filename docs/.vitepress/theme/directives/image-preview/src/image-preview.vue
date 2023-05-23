@@ -7,6 +7,7 @@ import icons from './image-preview-icons'
 import ImagePreviewService from './image-preview-service'
 import Transform from './transform'
 
+
 const props = defineProps({
   url: {
     type: String,
@@ -108,9 +109,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="ns.b()" :style="imageStyle" >
+  <div :class="ns.b()" :style="imageStyle">
     <!--{/* 预览图 */}-->
-    <ImageLazyLoad :class="ns.e('main-image')" :src="url" alt="" />
+    <img :class="ns.e('main-image')" :src="url" alt="" />
     <!--{/* 按钮区 */}-->
     <div :class="ns.e('toolbar')">
       <div :class="ns.e('toolbar-left')">
@@ -145,7 +146,7 @@ onUnmounted(() => {
             :class="[ns.e('thumbnail-item'),  i === index ?'active' : '']"
             @click="handleSwitch(i)"
           >
-            <ImageLazyLoad :src="item" />
+            <image-lazy-load :src="item" />
             <span>{{ i + 1 }}</span>
           </div>
         </template>
@@ -155,34 +156,32 @@ onUnmounted(() => {
   <div :class="ns.e('bg')" :style="bgStyle" />
 </template>
 
-<style lang="less" scoped>
-@doc-prefix: VPDoc;
-@v-z-index: 1080;
-
-.@{doc-prefix}-image-preview {
+<style lang="scss" scoped>
+.VPDoc-image-preview {
   position: fixed;
-  left: 0;
+  z-index: 1080;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: @v-z-index;
+  left: 0;
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   user-select: none;
 
   &__main-image {
     width: auto;
-    height: auto;
     max-width: 90%;
+    height: auto;
     max-height: 90%;
     cursor: grab;
-    background: #ffffff;
-    border-radius: 4px;
     transform: translate3d(0, 0, 0);
     animation: img 0.1s steps(120);
+    border-radius: 4px;
+    background: #ffffff;
   }
+
   @keyframes img {
     0% {
       opacity: 0;
@@ -202,64 +201,66 @@ onUnmounted(() => {
   //@include fixed-button();
 
   --toolbar-height: 42px;
+
   &__toolbar {
-    height: var(--toolbar-height);
     position: fixed;
+    z-index: 2;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
-    padding: 0 8px;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    background: rgba(0, 0, 0, 0.8);
+    height: var(--toolbar-height);
+    padding: 0 8px;
+    transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+    gap: 24px;
     backdrop-filter: blur(5px);
-    z-index: 2;
 
     &-left,
     &-middle,
     &-right {
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 100%;
       gap: 8px;
 
       --size: 32px;
+
       button {
-        min-width: var(--size);
-        height: var(--size);
+        font-size: 12px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: none;
-        background-color: transparent;
+        min-width: var(--size);
+        height: var(--size);
         cursor: pointer;
+        border: none;
         outline: 0;
-        font-size: 12px;
+        background-color: transparent;
 
         &:has(svg) {
-          border-radius: 30%;
           overflow: hidden;
           transition: all 0.15s ease;
+          border-radius: 30%;
 
           &:hover:not(:disabled) {
-            background: rgba(66, 66, 66, 1);
             color: rgba(255, 255, 255, 1);
+            background: rgba(66, 66, 66, 1);
           }
         }
 
         &:has(span) {
           display: inline-flex;
           min-width: 48px;
-          margin-left: -8px;
           margin-right: -8px;
-          white-space: nowrap;
+          margin-left: -8px;
           cursor: auto;
+          white-space: nowrap;
         }
 
         &:has(i > svg) {
@@ -272,8 +273,8 @@ onUnmounted(() => {
           width: var(--size);
           height: var(--size);
           padding: 6px;
-          aspect-ratio: 1 / 1;
           border-radius: 30%;
+          aspect-ratio: 1 / 1;
         }
 
         &:disabled {
@@ -285,62 +286,62 @@ onUnmounted(() => {
   }
 
   &__thumbnail {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    overflow-y: overlay;
     width: 100%;
     min-height: 120px;
     max-height: max(33%, 260px);
-    overflow-y: overlay;
-    display: grid;
+    transform: translate3d(0, 0, 0);
+    background: rgba(0, 0, 0, 0.8);
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 4px;
-    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(3px);
-    transform: translate3d(0, 0, 0);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
 
     &-item {
-      width: 100%;
-      aspect-ratio: 5 / 4;
-      overflow: hidden;
-      object-fit: fill;
+      position: relative;
       display: block;
+      overflow: hidden;
+      width: 100%;
       cursor: pointer;
       background: white;
-      position: relative;
+      aspect-ratio: 5 / 4;
+      object-fit: fill;
 
       img {
         object-fit: cover;
       }
 
       span {
-        min-width: 20px;
-        display: block;
-        padding: 4px 4px;
         font-size: 12px;
         line-height: 1;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
         position: absolute;
         bottom: 0;
         left: 0;
+        display: block;
+        min-width: 20px;
+        padding: 4px 4px;
         text-align: center;
-        text-shadow: 0 0 white;
+        color: white;
         border-radius: 0 10px 0 0;
+        background: rgba(0, 0, 0, 0.6);
+        text-shadow: 0 0 white;
       }
 
       &.active {
         &:before {
-          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
-          position: absolute;
-          left: 0;
-          top: 0;
-          background: var(--vp-c-green-dimm-2);
+          content: "";
           border: 3px solid var(--vp-c-green);
+          background: var(--vp-c-green-dimm-2);
         }
       }
     }
@@ -367,18 +368,19 @@ onUnmounted(() => {
   }
 }
 
-.@{doc-prefix}-image-preview__bg {
+.VPDoc-image-preview__bg {
   position: fixed;
-  left: 0;
+  z-index: calc(1080 - 1);
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: calc(@v-z-index - 1);
+  left: 0;
+  transform: translate3d(0, 0, 0);
+  animation: bg 0.15s ease-in-out;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
-  animation: bg 0.15s ease-in-out;
-  transform: translate3d(0, 0, 0);
 }
+
 @keyframes bg {
   0% {
     backdrop-filter: blur(0px);
@@ -395,8 +397,9 @@ onUnmounted(() => {
 }
 
 @media (max-width: 750px) {
-  .@{doc-prefix}-image-preview {
+  .VPDoc-image-preview {
     --toolbar-height: 36px;
+
     &__toolbar {
       padding: 0 4px;
       border-radius: 4px;
@@ -408,11 +411,12 @@ onUnmounted(() => {
         gap: 4px;
 
         --size: 26px;
+
         button {
           &:has(span) {
             min-width: 38px;
-            margin-left: -6px;
             margin-right: -6px;
+            margin-left: -6px;
           }
 
           &:has(i > svg) {

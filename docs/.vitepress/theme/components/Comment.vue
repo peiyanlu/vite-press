@@ -30,6 +30,6 @@ watchEffect(() => {
   <div id="" ref="commentRef" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

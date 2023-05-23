@@ -4,6 +4,7 @@ import { breakpointsTailwind, useBreakpoints, useDateFormat, useTimeAgo } from '
 import { tags } from './archive'
 import DocTag from './DocTag.vue'
 
+
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
@@ -30,11 +31,11 @@ const handleClick = (tag: string) => {
 <template>
   <div class="doc-metadata">
     <div class="group">
-      <div class="item" :title="`创建于：${getTimeAgo(doc.createdDate)}`">
+      <div :title="`创建于：${getTimeAgo(doc.createdDate)}`" class="item">
         <svg-icon name="create" />
         <div v-html="getDate(doc.createdDate)" />
       </div>
-      <div class="item" :title="`更新于：${getTimeAgo(doc.updatedDate)}`">
+      <div :title="`更新于：${getTimeAgo(doc.updatedDate)}`" class="item">
         <svg-icon name="update" />
         <div v-html="getDate(doc.updatedDate)" />
       </div>
@@ -53,7 +54,7 @@ const handleClick = (tag: string) => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .doc-metadata {
   font-size: 12px;
   line-height: 1;

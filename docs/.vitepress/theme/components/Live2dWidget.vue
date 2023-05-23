@@ -3,6 +3,7 @@ import Live2dWidget from 'live2d-lib'
 import { withBase } from 'vitepress'
 import { computed, ref, watchEffect } from 'vue'
 
+
 const props = defineProps<{
   isDark: boolean
 }>()
@@ -32,11 +33,11 @@ watchEffect(() => {
   <div id="models" ref="elRef" />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 #models {
   position: fixed;
+  z-index: var(--vp-z-index-footer);
   right: 0;
   bottom: 0;
-  z-index: var(--vp-z-index-footer);
 }
 </style>

@@ -8,16 +8,18 @@ import useWordCloud from '@theme/hooks/useWordCloud'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { tags } from './archive'
 
+
 const emit = defineEmits<{
   getSelected: [ tag: string | number, data: DocData[] ]
 }>()
 
-const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags).map(key => {
-  return {
-    name: key,
-    value: tags[key].length,
-  } as Record<string, string | number>
-})
+const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags)
+  .map<Record<string, string | number>>(key => {
+    return {
+      name: key,
+      value: tags[key].length,
+    }
+  })
 
 const wordCloudRef = ref<HTMLDivElement | null>(null)
 
@@ -33,7 +35,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="less">
+<style lang="scss">
 .word-cloud {
   canvas {
     cursor: inherit !important;

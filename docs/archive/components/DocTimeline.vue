@@ -110,7 +110,7 @@ const ns = useNamespace('doc-timeline-item')
   <Comment />
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .doc-archive-title {
   font-size: 32px;
   font-weight: 600;

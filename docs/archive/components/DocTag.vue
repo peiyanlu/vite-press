@@ -13,7 +13,7 @@ const getColor = () => {
   <div class="doc-tag">{{ text }}</div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .doc-tag {
   line-height: 1;
   padding: 6px 8px;
