@@ -5,6 +5,7 @@ import { onMounted, ref, watchEffect } from 'vue'
 import { useData } from 'vitepress'
 import md5 from 'md5'
 
+
 const commentRef = ref<HTMLHtmlElement | null>(null)
 
 const { page } = useData()
@@ -19,9 +20,9 @@ watchEffect(() => {
     admin: [ 'peiyanlu' ],
     id: md5(page.value.relativePath),
     language: 'zh-CN',
-    distractionFreeMode: false
+    distractionFreeMode: false,
   })
-
+  
   gitalk.render(commentRef.value)
 })
 </script>

@@ -9,11 +9,166 @@ tags:
 
 <script setup>
 import NthChild from './components/NthChild.vue'
+import TypeChild from './components/TypeChild.vue'
 </script>
 
 # CSS 选择器
 
-## :nth-child
+## `id` 选择器
+
+```css
+#app {}
+```
+
+## `class` 选择器
+
+```css
+.app {}
+```
+
+## 标签选择器
+
+```css
+div {}
+```
+
+## 属性选择器
+
+```css
+div[title='app'] {}
+```
+
+`~=`、 `|=`、 `^=`、 `$=`、 `*=` 的区别：
+
+- `value` 是完整单词：`~=`、 `|=`
+
+- `value` 是拼接字符串：`*=`、 `^=`、 `$=`
+
+---
+
+1. `attribute` 属性中**包含** `value`
+
+`~=`： 包含独立的单词
+
+```
+[title~=flower]  -->  <img title="tulip flower" />
+```
+
+`*=`： 包含这个词
+
+```
+[title*=flower]  -->  <img title="ffffflowerrrrrr" />
+```
+
+2. `attribute` 属性以 `value` **开头**
+
+`|=`： 必须是完整且唯一的单词，或者以 `-` 分隔开
+
+```
+[lang|=en]  -->  <p lang="en">  <p lang="en-us">
+```
+
+`^=`： 前几个字母匹配就可以
+
+```
+[lang^=en]  -->  <p lang="ennn">
+```
+
+3. `attribute` 属性以 `value` **结尾**
+
+`$=`： 后几个字母匹配就可以
+
+```
+[href$=".pdf"]  -->  <a href="/file.pdf" />
+```
+
+## 后代选择器
+
+```css
+.app p {}
+```
+
+## 子代选择器
+
+```css
+.app > div {}
+```
+
+## 相邻选择器
+
+```css
+div + p {}
+```
+
+## 兄弟选择器
+
+```css
+div ~ p {}
+```
+
+## 伪类选择器
+
+```css
+div:hover {}
+
+div:active {}
+
+div:disabled {}
+
+div:first-child {}
+
+div:first-letter {}
+
+div:first-line {}
+
+div:first-of-type {}
+
+div:last-child {}
+
+div:last-of-type {}
+
+div:nth-child(2n) {}
+
+div:nth-last-child(2n) {}
+
+div:nth-last-of-type(2n) {}
+
+div:nth-of-type(2n) {}
+
+div:only-of-type {}
+
+div:before {}
+
+div:after {}
+```
+
+- span:first-of-type
+<TypeChild class='aa'></TypeChild>
+
+- div:first-child
+<TypeChild class='bb'></TypeChild>
+
+- div:nth-child(n)
+<TypeChild class='cc'></TypeChild>
+
+- a:nth-of-type(2n)
+<TypeChild class='dd'></TypeChild>
+
+- p:only-of-type
+<TypeChild class='ee'></TypeChild>
+
+- span:nth-last-of-type(2n)
+<TypeChild class='ff'></TypeChild>
+
+- a:nth-last-child(2n)
+<TypeChild class='gg'></TypeChild>
+
+- p:last-of-type
+<TypeChild class='hh'></TypeChild>
+
+
+
+### `:nth-child`
 
 * 选择列表中的偶数标签
 
@@ -54,44 +209,3 @@ import NthChild from './components/NthChild.vue'
 ```
 
 <NthChild class='ee'></NthChild>
-
-## 属性选择器
-
-`~=`、 `|=`、 `^=`、 `$=`、 `*=` 的区别：
-
-- `value` 是完整单词：`~=`、 `|=`
-
-- `value` 是拼接字符串：`*=`、 `^=`、 `$=`
-
----
-1. `attribute` 属性中**包含** `value`
-
-`~=`： 包含独立的单词
-```
-[title~=flower]  -->  <img title="tulip flower" />
-```
-
-`*=`： 包含这个词
-```
-[title*=flower]  -->  <img title="ffffflowerrrrrr" />
-```
-
-2. `attribute` 属性以 `value` **开头**
-
-`|=`： 必须是完整且唯一的单词，或者以 `-` 分隔开
-```
-[lang|=en]  -->  <p lang="en">  <p lang="en-us">
-```
-
-`^=`： 前几个字母匹配就可以
-```
-[lang^=en]  -->  <p lang="ennn">
-```
-
-3. `attribute` 属性以 `value` **结尾**
-
-`$=`： 后几个字母匹配就可以
-```
-[href$=".pdf"]  -->  <a href="/file.pdf" />
-```
-

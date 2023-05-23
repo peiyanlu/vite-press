@@ -26,7 +26,6 @@ const ns = useNamespace('nth-child')
   gap: 20.5px;
 
   &__item {
-    display: inline-flex;
     width: 30px;
     height: 30px;
     background: var(--vp-c-green);
