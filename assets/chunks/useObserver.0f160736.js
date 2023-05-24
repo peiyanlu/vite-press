@@ -1,1 +1,0 @@
-function o(){if(!globalThis.IntersectionObserver)return;const r=new IntersectionObserver(n=>{n.forEach(s=>{if(s.isIntersecting){const e=s.target,t=e.dataset.src;t&&(e.src=t,e.removeAttribute("data-src")),r.unobserve(e)}})});return r}export{o as u};
