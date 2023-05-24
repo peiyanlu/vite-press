@@ -1,5 +1,5 @@
 export default function useObserver() {
-  if (!globalThis.IntersectionObserver) return  undefined
+  if (!globalThis.IntersectionObserver) return undefined
   
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

@@ -1,38 +1,38 @@
 // 组件/公共组件
-import ImagePreview from '@theme/components/ImagePreview.vue'
+import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue';
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SvgIcon from '@theme/components/SvgIcon.vue'
+import imagePreviewService from '@theme/directives/image-preview/src/image-preview-service';
+import { useEventListener } from '@vueuse/core';
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue';
 
 // 依赖
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { h, nextTick, render } from 'vue'
+import { h, nextTick } from 'vue'
 
 // 样式文件
 import './style/index'
 
 
-const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(globalThis.navigator?.userAgent)
-
 // 渲染
 export default <Theme>{
   ...DefaultTheme,
   Layout: () => {
-    const { frontmatter, isDark, site } = useData()
+    const { frontmatter } = useData()
     
     nextTick(() => {
       imagePreviewFn()
-      
-      if (!isMobile()) live2dWidgetFn(isDark.value)
     }).catch(e => console.error(e))
     
     return h(
       DefaultTheme.Layout,
       {
         class: frontmatter.value?.layoutClass,
+      },
+      {
+        'layout-bottom': () => h(Live2dWidget),
       },
     )
   },
@@ -45,36 +45,21 @@ export default <Theme>{
 const imagePreviewFn = () => {
   if (!globalThis.document) return
   
-  const allImg = document.querySelectorAll('p > img')
+  const scope = document.querySelector('.VPDoc .main')
+  if (!scope) return
   
-  allImg.forEach(img => {
-    const parent = img.parentElement
-    
-    if (!parent) return
-    
-    // 如果 p 下面只有一个 img，则 p 作为 container 渲染预览组件
-    // 如果 p 下面有多个 img，则为每个 img 创建 div 作为 container 渲染预览组件，并将 container 添加到 p 中
-    let container = parent
-    if (parent.childNodes.length > 1) {
-      container = document.createElement('div')
-      parent.appendChild(container)
-    }
-    
-    const vNode = h(
-      ImagePreview,
-      {
-        src: img.getAttribute('src'),
-      },
-    )
-    
-    img.remove()
-    
-    render(vNode, container)
-  })
+  const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || '';
+  const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
+  
+  document.querySelectorAll<HTMLImageElement>('p > img')
+    .forEach((img) => {
+      img.setAttribute('style', 'cursor: pointer;')
+      useEventListener(img, 'click', () => {
+        imagePreviewService.open({
+          url: getUrl(img),
+          previewUrlList: list,
+        })
+      })
+    })
 }
 
-const live2dWidgetFn = (isDark: boolean) => {
-  if (!globalThis.document) return
-  
-  render(h(Live2dWidget, { isDark }), document.body)
-}

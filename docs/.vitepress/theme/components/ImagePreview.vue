@@ -11,8 +11,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div v-image-preview="{scopeSelector: '.VPDoc .main'}" class="image-preview">
-    <image-lazy-load :src="src" />
+  <div
+    v-image-preview="{scopeSelector: '.VPDoc .main'}"
+    class="image-preview"
+  >
+    <image-lazy-load :src="src" alt="" />
   </div>
 </template>
 
@@ -20,7 +23,7 @@ const props = defineProps<{
 .image-preview {
   position: relative;
   display: contents;
-
+  
   img {
     cursor: pointer;
   }

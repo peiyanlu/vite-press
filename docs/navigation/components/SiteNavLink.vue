@@ -40,32 +40,31 @@ const ns = useNamespace('site-nav-link')
   color: var(--vp-c-text-1);
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 8px;
-
+  
   &:hover {
     text-decoration: unset;
     background-color: var(--vp-c-bg-soft);
-
+    
     .title {
       &::after {
         animation: show 1s steps(24, end) forwards;
-        animation-fill-mode: forwards;
-      }
-    }
-
-    @keyframes show {
-      from {
-        transform: scaleX(1.15);
-      }
-      to {
-        transform: scaleX(0);
       }
     }
   }
-
+  
+  @keyframes show {
+    from {
+      transform: scaleX(1.15);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  
   &__header {
     display: flex;
     align-items: center;
-
+    
     .icon {
       font-size: 24px;
       display: flex;
@@ -78,20 +77,20 @@ const ns = useNamespace('site-nav-link')
       transition: background-color 0.25s;
       border-radius: 6px;
       background-color: var(--vp-c-mute);
-
+      
       :deep(svg) {
         width: 24px;
         aspect-ratio: 1 / 1;
         fill: currentColor;
       }
-
+      
       :deep(img) {
         width: 24px;
         border-radius: 4px;
         aspect-ratio: 1 / 1;
         object-fit: fill;
       }
-
+      
       :deep(div) {
         font-size: 18px;
         font-weight: 800;
@@ -102,7 +101,7 @@ const ns = useNamespace('site-nav-link')
         aspect-ratio: 1 / 1;
       }
     }
-
+    
     .title {
       font-size: 16px;
       font-weight: 600;
@@ -111,7 +110,7 @@ const ns = useNamespace('site-nav-link')
       flex-grow: 1;
       white-space: nowrap;
       text-overflow: ellipsis;
-
+      
       &::after {
         position: absolute;
         z-index: 1;
@@ -126,7 +125,7 @@ const ns = useNamespace('site-nav-link')
       }
     }
   }
-
+  
   &__footer {
     font-size: 12px;
     line-height: 20px;
@@ -145,12 +144,12 @@ const ns = useNamespace('site-nav-link')
   .VPDoc-site-nav-link {
     &__box {
       padding: 8px;
-
+      
       .icon {
         width: 40px;
         height: 40px;
       }
-
+      
       .title {
         font-size: 14px;
         line-height: 40px;

@@ -19,8 +19,8 @@ body {
         max-width: calc(var(--vp-layout-max-width) - 220px) !important;
         
         .aside {
-          padding-left: 0;
           max-width: 160px;
+          padding-left: 0;
         }
         
         .content {
@@ -48,16 +48,16 @@ body {
     }
     
     &::before {
-      content: "";
+      position: absolute;
+      top: 50%;
+      left: -8px;
       width: 6px;
       height: 6px;
+      content: "";
+      transition: transform 0.3s ease-in-out;
+      transform: scale(0) translateY(-50%);
       border-radius: 50%;
       background: var(--vp-c-green-dimm-3);
-      position: absolute;
-      left: -8px;
-      top: 50%;
-      transform: scale(0) translateY(-50%);
-      transition: transform 0.3s ease-in-out;
     }
     
     &.is-active {
@@ -89,13 +89,19 @@ body {
 
 .vp-doc {
   blockquote {
+    margin: 1rem 0;
+    padding: 0.2rem 1rem;
     border-left: 4px solid var(--vp-c-green-dimm-3);
     background-color: var(--vp-c-green-dimm-1);
-    padding: 0.2rem 1rem;
-    margin: 1rem 0;
     
     p {
       font-size: 14px;
+    }
+  }
+  
+  p {
+    img:nth-of-type(n) {
+      background: #454ce1;
     }
   }
 }

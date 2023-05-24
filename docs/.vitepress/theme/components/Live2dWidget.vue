@@ -1,18 +1,15 @@
 <script lang="ts" setup>
 import Live2dWidget from 'live2d-lib'
-import { withBase } from 'vitepress'
-import { computed, ref, watchEffect } from 'vue'
+import { useData, withBase } from 'vitepress'
+import { ref, watchEffect } from 'vue'
 
 
-const props = defineProps<{
-  isDark: boolean
-}>()
+const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
-const dark = computed(() => localStorage.getItem('vitepress-theme-appearance') === 'dark' || props.isDark)
-
+const { isDark } = useData()
 const elRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
-  if (elRef.value) {
+  if (elRef.value && !isMobile()) {
     Live2dWidget.init({
       canvas: {
         width: 180,
@@ -21,7 +18,7 @@ watchEffect(() => {
       target: elRef.value,
       source: {
         path: withBase('/live2d/models'),
-        models: dark.value ? [ 'hijiki' ] : [ 'tororo' ],
+        models: isDark.value ? [ 'hijiki' ] : [ 'tororo' ],
       },
       cubismCorePath: withBase('/live2d/core/live2dCubismCore.min.js'),
     })
