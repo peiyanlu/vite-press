@@ -38,7 +38,7 @@ export default defineConfig({
     aside: true,
     sidebar: getSidebar(),
     editLink: {
-      pattern: 'https://github.com/peiyanlu/vite-press/edit/main/docs/:path',
+      pattern: 'https://github.com/peiyanlu/vite-press/edit/docs-deploy/docs/:path',
       text: `编辑此页`,
     },
     docFooter: {

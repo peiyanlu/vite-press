@@ -8,8 +8,6 @@ export { ImagePreviewDirective, ImagePreviewService };
 
 export default {
   title: 'ImagePreview 图片预览',
-  category: '数据展示',
-  status: '100%',
   install(app: App): void {
     app.directive('image-preview', ImagePreviewDirective);
     app.config.globalProperties.$imagePreviewService = ImagePreviewService;

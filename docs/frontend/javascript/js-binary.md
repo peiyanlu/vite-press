@@ -290,11 +290,11 @@ view.byteLength;  // 16
 
 #### TypedArray.prototype.buffer
 
-返回内存中对应的 ArrayBuffer对象，只读属性
+返回内存中对应的 `ArrayBuffer` 对象，只读属性
 
 #### TypedArray.prototype.slice()
 
-返回一个指定位置的新的 TypedArray实例
+返回一个指定位置的新的 `TypedArray` 实例
 
 ### DataView
 

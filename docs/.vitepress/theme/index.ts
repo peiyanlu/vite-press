@@ -2,7 +2,7 @@
 import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue';
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SvgIcon from '@theme/components/SvgIcon.vue'
-import imagePreviewService from '@theme/directives/image-preview/src/image-preview-service';
+import { ImagePreviewService } from '@theme/directives/image-preview';
 import { useEventListener } from '@vueuse/core';
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
@@ -55,7 +55,7 @@ const imagePreviewFn = () => {
     .forEach((img) => {
       img.setAttribute('style', 'cursor: pointer;')
       useEventListener(img, 'click', () => {
-        imagePreviewService.open({
+        ImagePreviewService.open({
           url: getUrl(img),
           previewUrlList: list,
         })

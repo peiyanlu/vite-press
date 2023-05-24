@@ -14,13 +14,13 @@ import TypeChild from './components/TypeChild.vue'
 
 # CSS 选择器
 
-## `id` 选择器
+## id选择器
 
 ```css
 #app {}
 ```
 
-## `class` 选择器
+## class选择器
 
 ```css
 .app {}
@@ -115,27 +115,9 @@ div:active {}
 
 div:disabled {}
 
-div:first-child {}
-
 div:first-letter {}
 
 div:first-line {}
-
-div:first-of-type {}
-
-div:last-child {}
-
-div:last-of-type {}
-
-div:nth-child(2n) {}
-
-div:nth-last-child(2n) {}
-
-div:nth-last-of-type(2n) {}
-
-div:nth-of-type(2n) {}
-
-div:only-of-type {}
 
 div:before {}
 
@@ -166,9 +148,12 @@ div:after {}
 - p:last-of-type
 <TypeChild class='hh'></TypeChild>
 
+- span:last-child
+<TypeChild class='ii'></TypeChild>
 
 
-### `:nth-child`
+
+### :nth-child
 
 * 选择列表中的偶数标签
 

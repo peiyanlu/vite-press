@@ -107,5 +107,12 @@ const ns = useNamespace('type-child')
   }
   
   
+  &.ii {
+    span:last-child {
+      background: var(--vp-c-red);
+    }
+  }
+  
+  
 }
 </style>
