@@ -8,14 +8,9 @@ editLink: false
 ---
 
 <script setup>
-import SiteNavLinks from './components/SiteNavLinkGroup.vue';
-import { NAV_DATA } from './data';
+import SiteNavLinkGroup from './components/SiteNavLinkGroup.vue';
 </script>
 
 <style lang="scss" src="./index.scss"></style>
 
-<SiteNavLinks 
-  v-for="{title, items} in NAV_DATA" 
-  :title="title" 
-  :items="items"
-/>
+<SiteNavLinkGroup></SiteNavLinkGroup>

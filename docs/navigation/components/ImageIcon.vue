@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { NavLink } from './type'
+import { NavLink } from './navigation'
 
 
 const props = defineProps<{

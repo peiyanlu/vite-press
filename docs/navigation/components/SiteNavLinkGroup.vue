@@ -1,37 +1,30 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { slugify } from '@mdit-vue/shared'
+import { NAV_DATA } from './navigation'
 
 import SiteNavLink from './SiteNavLink.vue'
-import type { NavLink } from './type'
-
-
-const props = defineProps<{
-  title: string
-  items: NavLink[]
-}>()
-
-const formatTitle = computed(() => (slugify(props.title)))
 </script>
 
 <template>
-  <h2 v-if="title" :id="formatTitle" tabindex="-1">
-    {{ title }}
-    <a
-      :aria-label='`Permalink to "${formatTitle}"`'
-      :href="`#${formatTitle}`"
-      class="header-anchor"
-    />
-  </h2>
-  <div class="site-nav-links">
-    <SiteNavLink
-      v-for="{ icon, title, desc, link } in items"
-      :key="link"
-      :desc="desc"
-      :icon="icon"
-      :link="link"
-      :title="title"
-    />
+  <div v-for="group of NAV_DATA" class="site-nav-group">
+    <h2 v-if="group.title" :id="slugify(group.title)" tabindex="-1">
+      {{ group.title }}
+      <a
+        :aria-label='`Permalink to "${slugify(group.title)}"`'
+        :href="`#${slugify(group.title)}`"
+        class="header-anchor"
+      />
+    </h2>
+    <div class="site-nav-links">
+      <SiteNavLink
+        v-for="{ icon, title, desc, link } in group.items"
+        :key="link"
+        :desc="desc"
+        :icon="icon"
+        :link="link"
+        :title="title"
+      />
+    </div>
   </div>
 </template>
 

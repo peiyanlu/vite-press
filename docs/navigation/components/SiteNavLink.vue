@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import ImageIcon from './ImageIcon.vue'
 
-import { NavLink } from './type'
+import { NavLink } from './navigation'
 
 
 const props = defineProps<{

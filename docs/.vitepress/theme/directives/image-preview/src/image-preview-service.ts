@@ -7,14 +7,14 @@ const createComponent = (props: ImagePreviewProps) => createApp(imagePreview, pr
 
 class ImagePreviewService {
   static $body: HTMLElement | null = null;
-  static $div: HTMLDivElement | null = null;
+  static $div: HTMLElement | null = null;
   static $id: string = 'vite-press__image-preview'
   // 禁止滚动穿透
   static $overflow = '';
   
   static open(props: ImagePreviewProps): void {
     this.$body = document.body;
-    this.$div = document.createElement('div');
+    this.$div = document.getElementById(this.$id) ?? document.createElement('div');
     this.$div.setAttribute('id', this.$id)
     this.$overflow = this.$body.style.overflow;
     this.$body.appendChild(this.$div);

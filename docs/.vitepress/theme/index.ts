@@ -6,6 +6,7 @@ import { ImagePreviewService } from '@theme/directives/image-preview';
 import { useEventListener } from '@vueuse/core';
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
+import GiscusComment from '@theme/components/GiscusComment.vue'
 
 // 依赖
 import { Theme, useData } from 'vitepress'
@@ -33,6 +34,7 @@ export default <Theme>{
       },
       {
         'layout-bottom': () => h(Live2dWidget),
+        'doc-after': () => h(GiscusComment),
       },
     )
   },
@@ -51,7 +53,8 @@ const imagePreviewFn = () => {
   const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || '';
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
   
-  document.querySelectorAll<HTMLImageElement>('p > img')
+  document
+    .querySelectorAll<HTMLImageElement>('p > img')
     .forEach((img) => {
       img.setAttribute('style', 'cursor: pointer;')
       useEventListener(img, 'click', () => {

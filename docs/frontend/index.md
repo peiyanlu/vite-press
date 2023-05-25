@@ -10,6 +10,19 @@ tags:
 
 # FrontEnd
 
-## 获取图片链接
+## 获取 src
 
-`img.getAttribute('src')` 获取的是 `src` 的值本身；而 `img.src `获取的是完整服务地址，使用绝对路径的资源会拼接上服务地址
+```html
+<img src="a.png" alt="">
+
+<script>
+  console.log(img.getAttribute('src')) // a.png
+  console.log(img.src) // http://xxx/a.png
+</script>
+```
+
+- `dom.attribute('src')` 获取到的永远是 `HTML` 中的元素 `src`
+
+- `dom.src` 获取解析之后的绝对 `URL`，即使 `HTML` 中的内容是相对 `URL`
+
+- 该规则同样适用于 `script`、`link` 等带有 `src`、`href` 的元素

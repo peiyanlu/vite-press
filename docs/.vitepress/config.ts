@@ -1,6 +1,8 @@
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 import { getNav, getSidebar } from './config/menu'
 import { algolia } from './config/search'
@@ -77,23 +79,28 @@ export default defineConfig({
     // }
   },
   vite: {
+    resolve: {
+      alias: [
+        {
+          find: '@theme',
+          replacement: fileURLToPath(
+            new URL('./theme', import.meta.url),
+          ),
+        },
+      ],
+    },
     plugins: [
       createSvgIconsPlugin({
         // 指定需要缓存的图标文件夹
         iconDirs: [ path.resolve(process.cwd(), 'docs/public/icons') ],
         // 指定symbolId格式
         symbolId: 'icon-[dir]-[name]',
-        /**
-         * 自定义插入位置
-         * @default: body-last
-         */
-        // inject?: 'body-last' | 'body-first'
-        /**
-         * custom dom id
-         * @default: __svg__icons__dom__
-         */
-        // customDomId: '__svg__icons__dom__',
+        // 自定义插入位置
+        inject: 'body-last',
+        // 自定义元素id
+        customDomId: '__svg__icons__dom__',
       }),
+      visualizer(),
     ],
   },
 })

@@ -1,5 +1,13 @@
-import type { NavLink } from './components/type'
-
+export interface NavLink {
+  /** 站点图标 */
+  icon?: string | { svg: string }
+  /** 站点名称 */
+  title: string
+  /** 站点名称 */
+  desc?: string
+  /** 站点链接 */
+  link: string
+}
 
 type NavData = {
   title: string
@@ -369,6 +377,12 @@ export const NAV_DATA: NavData[] = [
         title: 'Algolia Crawler',
         desc: 'Algolia 配套的爬虫工具',
         link: 'https://crawler.algolia.com/admin/crawlers/',
+      },
+      {
+        icon: 'https://giscus.app/favicon.ico',
+        title: 'giscus',
+        desc: '利用 GitHub Discussions 实现的评论系统',
+        link: 'https://giscus.app/zh-CN',
       },
     ],
   },
