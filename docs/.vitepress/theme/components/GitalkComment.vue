@@ -80,7 +80,7 @@ watchEffect(() => {
   .gt-header {
     .gt-avatar-github {
       svg {
-        fill: var(--vp-c-brand);
+        fill: var(--vp-c-text-1);
       }
     }
     
@@ -139,7 +139,6 @@ watchEffect(() => {
   }
   
   .gt-spinner::before {
-    // border-color: $gt-color-btn;
     border-top-color: var(--vp-c-brand);
   }
   

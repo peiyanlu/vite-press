@@ -7,7 +7,6 @@ import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
 import { getTimeline, getZodiac, getZodiacAlias } from './archive'
 import DocMetaData from './DocMetaData.vue'
 import DocTag from './DocTag.vue'
-import GitalkComment from '../../.vitepress/theme/components/GitalkComment.vue'
 
 
 const AsyncWordCloud = defineAsyncComponent({
@@ -111,7 +110,6 @@ const ns = useNamespace('doc-timeline-item')
       </div>
     </div>
   </div>
-  <GitalkComment />
 </template>
 
 <style lang="scss" scoped>

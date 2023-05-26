@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
+import { computed } from 'vue';
 
 
-const { title, isDark } = useData()
+const { title, isDark, site } = useData()
+
+const baseUrl = location.origin + site.value.base
+const theme = computed(() => `${ baseUrl }${ isDark.value ? 'giscus/theme_dark.css' : 'giscus/theme_light.css' }`)
 </script>
 
 <template>
   <div class="giscus-comment">
     <component
       is="script"
-      :key="title"
-      :data-theme="isDark ? 'dark_dimmed' : 'light'"
+      :key="title+Date.now()"
+      :data-theme="theme"
       async
       crossorigin="anonymous"
       data-category="Announcements"
@@ -25,7 +29,12 @@ const { title, isDark } = useData()
       data-repo-id="R_kgDOIahnTQ"
       data-strict="1"
       src="https://giscus.app/client.js"
-    >
-    </component>
+    />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.giscus-comment {
+  padding-top: 32px;
+}
+</style>

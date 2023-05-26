@@ -5,7 +5,7 @@ import { defineConfig } from 'vitepress'
 import { visualizer } from 'rollup-plugin-visualizer';
 
 import { getNav, getSidebar } from './config/menu'
-import { algolia } from './config/search'
+import { algolia, local } from './config/search'
 
 
 const BASE_URL = '/vite-press/' as const
@@ -84,7 +84,7 @@ export default defineConfig({
         {
           find: '@theme',
           replacement: fileURLToPath(
-            new URL('./theme', import.meta.url),
+              new URL('./theme', import.meta.url),
           ),
         },
       ],

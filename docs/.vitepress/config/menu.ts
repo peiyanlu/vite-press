@@ -1,24 +1,25 @@
-import { DefaultTheme } from 'vitepress'
 import { sync } from "fast-glob";
 import * as matter from "gray-matter";
+import { extname } from "path";
+import { DefaultTheme } from 'vitepress'
 
 
 const getNavItem = (path: string): DefaultTheme.NavItem[] => sync(
-  `${ path }/**/**.md`,
-  {
-    onlyFiles: false,
-    objectMode: true,
-    ignore: [ '**/img/**', '**/.vitepress/**', `${ path }/index.md` ],
-    deep: 2,
-  },
+    `${ path }/**/**.md`,
+    {
+      onlyFiles: false,
+      objectMode: true,
+      ignore: [ '**/img/**', '**/.vitepress/**', `${ path }/index.md` ],
+      deep: 2,
+    },
 ).reduce<DefaultTheme.NavItem[]>((groups, entry) => {
   const { path } = entry
   const { data } = matter.read(path)
   
   const link = path
-    .replace(/^docs/, '')
-    .replace('index.md', '')
-    .replace(/\/+/g, '/')
+      .replace(/^docs/, '')
+      .replace('index.md', '')
+      .replace(/\/+/g, '/')
   groups.push({
     text: data.title,
     link: link,
@@ -32,27 +33,29 @@ const getNavItem = (path: string): DefaultTheme.NavItem[] => sync(
 const getSidebarItem = (path: string): DefaultTheme.SidebarItem[] => {
   const getItems = (path: string) => {
     return sync(
-      `${ path }/**`,
-      {
-        onlyFiles: false,
-        objectMode: true,
-        ignore: [ '**/img/**', '**/components/**', '**/index.md' ],
-        deep: 1,
-      },
+        `${ path }/**`,
+        {
+          onlyFiles: false,
+          objectMode: true,
+          ignore: [ '**/img/**', '**/components/**', '**/index.md' ],
+          deep: 1,
+        },
     ).reduce<DefaultTheme.SidebarItem[]>((groups, article) => {
       const { path, dirent, name } = article
       const isFile = dirent.isFile()
       
       if (isFile) {
-        const { data } = matter.read(path)
-        // 向前追加标题
-        groups.push({
-          text: data.title,
-          link: path
-            .replace(/^docs/, '')
-            .replace('.md', '')
-            .replace(/\/+/g, '/'),
-        })
+        if ([ '.md' ].includes(extname(path))) {
+          const { data } = matter.read(path)
+          // 向前追加标题
+          groups.push({
+            text: data.title,
+            link: path
+                .replace(/^docs/, '')
+                .replace('.md', '')
+                .replace(/\/+/g, '/'),
+          })
+        }
       } else {
         const arr = getItems(path)
         groups.push({
@@ -84,10 +87,10 @@ export const getNav = (): DefaultTheme.NavItem[] => [
     link: MENU.HOME,
   },
   ...getNavItem('docs')
-    .sort((
-      a,
-      b,
-    ) => navOrder.indexOf((a as DefaultTheme.NavItemWithLink).link) - navOrder.indexOf((b as DefaultTheme.NavItemWithLink).link)),
+      .sort((
+          a,
+          b,
+      ) => navOrder.indexOf((a as DefaultTheme.NavItemWithLink).link) - navOrder.indexOf((b as DefaultTheme.NavItemWithLink).link)),
 ]
 
 export const getSidebar = (): DefaultTheme.Sidebar => ({

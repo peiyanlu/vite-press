@@ -17,8 +17,8 @@ export default class Transform {
   private rotate: number
   
   private STEP = 0.25
-  private MIN_SCALE = 0.2
-  private MAX_SCALE = 2.5
+  private MIN_SCALE = 0.25
+  private MAX_SCALE = 10
   private TRANSFORM_X = 0
   private TRANSFORM_Y = 0
   private ZOOM = 1

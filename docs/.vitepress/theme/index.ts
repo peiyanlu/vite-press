@@ -6,7 +6,7 @@ import { ImagePreviewService } from '@theme/directives/image-preview';
 import { useEventListener } from '@vueuse/core';
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import GiscusComment from '@theme/components/GiscusComment.vue'
+import GiscusComment from './components/GiscusComment.vue'
 
 // 依赖
 import { Theme, useData } from 'vitepress'
