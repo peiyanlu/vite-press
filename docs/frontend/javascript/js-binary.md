@@ -12,7 +12,7 @@ tags:
 
 ![img.png](img/binary/img.png)
 
-## 1、Blob
+## Blob
 
 `Blob` 全称为 `binary large object` ，即二进制大对象，它是 `JavaScript` 中的一个对象，表示原始的类似文件的数据。下面是 `MDN`
 中对 `Blob` 的解释：
@@ -74,7 +74,7 @@ const blob = instanceOfBlob.slice(0, 5, "text/plain");
 const url = URL.createObjectURL(blob);
 ```
 
-## 2、File
+## File
 
 文件（`File`）接口提供有关文件的信息，并允许网页中的 `JavaScript` 访问其内容。实际上，`File` 对象是特殊类型的 `Blob`，且可以用在任意的
 `Blob` 类型的 `context` 中。`Blob` 的属性和方法都可以用于 `File` 对象。
@@ -119,7 +119,7 @@ const file = new File([ str ], fileName, options)
 
 包含 `File` 文件集合的 `list`，通常来自的 `files` 属性
 
-## 3、FileReader
+## FileReader
 
 `FileReader` 是一个异步 `API`，用于读取文件并提取其内容以供进一步使用。`FileReader` 可以将 `Blob` 读取为不同的格式。
 
@@ -177,7 +177,7 @@ reader.onload = () => {
 
 可以使用 `on` 监听这些事件，由于 `FileReader` 对象继承自 `EventTarget`，因此还可以使用 `addEventListener()` 监听上述事件
 
-## 4、ArrayBuffer
+## ArrayBuffer
 
 `ArrayBuffer` 对象用来表示通用的、固定长度的**原始二进制数据缓冲区**。`ArrayBuffer` 的内容不能直接操作，只能通过 `DataView` 对象或 `TypedArray` 对象来访问，这些对象用于读取和写入缓冲区内容。
 
@@ -347,7 +347,7 @@ const view = new DataView(buffer);
 * `setFloat32`：写入 `4` 个字节的 `32` 位浮点数。
 * `setFloat64`：写入 `8` 个字节的 `64` 位浮点数。
 
-## 5、Object URL
+## Object URL
 
 `Object URL`（`MDN` 定义名称）又称 `Blob URL`（`W3C` 定义名称），是 `HTML5` 中的新标准。它是一个用来表示 `File Object` 或 `Blob Object` 的 `URL`
 
@@ -362,7 +362,7 @@ console.log(objUrl);
 URL.revokeObjectURL(objUrl);
 ```
 
-## 6、Base64
+## Base64
 
 `Base64` 是一种基于 `64` 个可打印字符来表示二进制数据的表示方法。`Base64`
 编码普遍应用于需要通过被设计为处理文本数据的媒介上储存和传输二进制数据而需要编码该二进制数据的场景。这样是为了保证数据的完整并且不用在传输过程中修改这些数据
@@ -386,7 +386,7 @@ atob('SmF2YVNjcmlwdA==') // 'JavaScript'
 
 * `DataURL` 的格式是 `data:[mediatype[;base64,]]` // data:text/plain;base64,77bas8ux==
 
-## 7、格式转换
+## 格式转换
 
 ### ArrayBuffer → blob
 
@@ -435,7 +435,7 @@ const blobToArrayBuffer = blob => new Promise((resolve, reject) => {
 })
 ```
 
-### const objectUrl = URL.createObjectURL(blob);
+### blob → ObjectURL
 
 ```ts
 const objectUrl = URL.createObjectURL(blob);

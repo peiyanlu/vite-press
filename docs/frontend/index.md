@@ -10,7 +10,7 @@ tags:
 
 # FrontEnd
 
-## 获取 src
+## 获取src属性
 
 ```html
 <img src="a.png" alt="">

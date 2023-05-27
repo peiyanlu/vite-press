@@ -6,7 +6,7 @@ import { ImagePreviewService } from '@theme/directives/image-preview';
 import { useEventListener } from '@vueuse/core';
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import GiscusComment from './components/GiscusComment.vue'
+import GiscusComment from '@theme/components/GiscusComment.vue'
 
 // 依赖
 import { Theme, useData } from 'vitepress'
@@ -28,14 +28,14 @@ export default <Theme>{
     }).catch(e => console.error(e))
     
     return h(
-      DefaultTheme.Layout,
-      {
-        class: frontmatter.value?.layoutClass,
-      },
-      {
-        'layout-bottom': () => h(Live2dWidget),
-        'doc-after': () => h(GiscusComment),
-      },
+        DefaultTheme.Layout,
+        {
+          class: frontmatter.value?.layoutClass,
+        },
+        {
+          'layout-bottom': () => h(Live2dWidget),
+          'doc-after': () => h(GiscusComment),
+        },
     )
   },
   enhanceApp(ctx) {
@@ -54,15 +54,15 @@ const imagePreviewFn = () => {
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
   
   document
-    .querySelectorAll<HTMLImageElement>('p > img')
-    .forEach((img) => {
-      img.setAttribute('style', 'cursor: pointer;')
-      useEventListener(img, 'click', () => {
-        ImagePreviewService.open({
-          url: getUrl(img),
-          previewUrlList: list,
+      .querySelectorAll<HTMLImageElement>('p > img')
+      .forEach((img) => {
+        img.setAttribute('style', 'cursor: pointer;')
+        useEventListener(img, 'click', () => {
+          ImagePreviewService.open({
+            url: getUrl(img),
+            previewUrlList: list,
+          })
         })
       })
-    })
 }
 

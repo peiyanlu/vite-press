@@ -4,10 +4,9 @@ description: 按版本分类的字符串方法
 category: javascript
 tags:
   - String
+  - ES5
   - ES6
-  - ES7
   - ES8
-  - ES9
   - ES10
   - ES11
   - ES12

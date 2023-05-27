@@ -8,11 +8,17 @@ tags:
 ---
 
 <script setup>
-import NthChild from './components/NthChild.vue'
-import TypeChild from './components/TypeChild.vue'
+import NthChild from './components/NthChild.vue';
+import TypeChild from './components/TypeChild.vue';
 </script>
 
 # CSS 选择器
+
+## 通配符
+
+```css
+* {}
+```
 
 ## id选择器
 
@@ -124,6 +130,8 @@ div:before {}
 div:after {}
 ```
 
+### 图例展示 
+
 - span:first-of-type
 <TypeChild class='aa'></TypeChild>
 
@@ -153,7 +161,7 @@ div:after {}
 
 
 
-### :nth-child
+### nth用法技巧
 
 * 选择列表中的偶数标签
 

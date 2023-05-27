@@ -249,6 +249,24 @@ export const NAV_DATA: NavData[] = [
         desc: '一个功能类优先的 CSS 框架',
         link: 'https://www.tailwindcss.cn',
       },
+      {
+        icon: 'https://cssfx.netlify.app/favicon-32x32.png',
+        title: 'CSSFX',
+        desc: 'Beautifully simple click-to-copy CSS effects',
+        link: 'https://cssfx.netlify.app/',
+      },
+      {
+        icon: 'https://loading.io/favicon.ico',
+        title: 'loading.io',
+        desc: '超棒的svg实现loading动画效果',
+        link: 'https://loading.io/',
+      },
+      {
+        icon: 'https://tobiasahlin.com/images/favicon.ico',
+        title: 'SpinKit',
+        desc: 'CSS3加载动画集合',
+        link: 'https://tobiasahlin.com/spinkit/',
+      },
     ],
   },
   {

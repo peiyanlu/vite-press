@@ -1,6 +1,6 @@
 import fs from 'fs';
-import path from 'path';
 import { mkdirp } from 'mkdirp'
+import path from 'path';
 
 
 // const filePath = 'C:\\Users\\hdec\\Documents\\WeChat Files\\wxid_yxj0hb5cljh522\\FileStorage\\MsgAttach'
@@ -20,44 +20,53 @@ export function dat2img(filePath: string, outPath: string) {
     }, [])
   }
   
+  const extract = (content: Buffer) => {
+    const [ firstV, nextV ] = content
+    const base = 0xFF
+    const next = 0xD8
+    const gifA = 0x47
+    const gifB = 0x49
+    const pngA = 0x89
+    const pngB = 0x50
+    
+    const jT = firstV ^ base
+    const jB = nextV ^ next
+    const gT = firstV ^ gifA
+    const gB = nextV ^ gifB
+    const pT = firstV ^ pngA
+    const pB = nextV ^ pngB
+    
+    let v = jT
+    let type = '.jpg'
+    if (jT === jB) {
+      v = jT
+      type = '.jpg'
+    } else if (gT === gB) {
+      v = gT
+      type = '.gif'
+    } else if (pT === pB) {
+      v = pT
+      type = '.png'
+    }
+    
+    const buffer = content.map(br => br ^ v)
+    return { buffer, type };
+  };
+  
   //.dat转化为.jpg图片
   const convert = (item: string) => {
     const { dir, base } = path.parse(item)
     const lastDir = dir.split(path.sep).at(-1)
-    const writeDir = path.join(outPath, lastDir)
+    const writeDir = lastDir ? path.join(outPath, lastDir) : outPath
     if (!fs.existsSync(writeDir)) {
       mkdirp.sync(writeDir)
     }
     
-    let imgPath = path.join(writeDir, `${ base }.jpg`);
     fs.readFile(item, (_err, content) => {
       if (content?.length) {
-        const [ firstV, nextV ] = content
-        const base = 0xFF
-        const next = 0xD8
-        const gifA = 0x47
-        const gifB = 0x49
-        const pngA = 0x89
-        const pngB = 0x50
-        
-        const jT = firstV ^ base
-        const jB = nextV ^ next
-        const gT = firstV ^ gifA
-        const gB = nextV ^ gifB
-        const pT = firstV ^ pngA
-        const pB = nextV ^ pngB
-        
-        let v = jT
-        if (jT === jB) {
-          v = jT
-        } else if (gT === gB) {
-          v = gT
-        } else if (pT === pB) {
-          v = pT
-        }
-        
-        const bb = content.map(br => br ^ v)
-        fs.writeFileSync(imgPath, bb)
+        const { buffer, type } = extract(content);
+        let imgPath = path.join(writeDir, `${ base + type }`);
+        fs.writeFileSync(imgPath, buffer)
       }
     })
   };
@@ -65,6 +74,6 @@ export function dat2img(filePath: string, outPath: string) {
   const list = getDat(filePath)
   list.forEach((item, index) => {
     convert(item)
-    process.stdout.write(`${ index + 1 }/${ list.length } \r`)
+    process.stdout.write(`正在转换：${ index + 1 }/${ list.length } 张\r`)
   })
 }

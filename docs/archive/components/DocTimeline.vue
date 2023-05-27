@@ -7,6 +7,7 @@ import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
 import { getTimeline, getZodiac, getZodiacAlias } from './archive'
 import DocMetaData from './DocMetaData.vue'
 import DocTag from './DocTag.vue'
+import EmptyBlock from './LoadingBlock.vue';
 
 
 const AsyncWordCloud = defineAsyncComponent({
@@ -14,6 +15,7 @@ const AsyncWordCloud = defineAsyncComponent({
   loader: () => import('./WordCloud.vue'),
   // 展示加载组件前的延迟时间，默认为 200ms
   delay: 0,
+  loadingComponent: EmptyBlock,
 })
 
 const { escape } = useMagicKeys()

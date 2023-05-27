@@ -61,8 +61,8 @@ $ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
 const { program } = require('commander');
 
 program
-  .option('--first')
-  .option('-s, --separator <char>');
+    .option('--first')
+    .option('-s, --separator <char>');
 
 program.parse();
 
@@ -110,6 +110,7 @@ semver.valid('1.2.3') // '1.2.3'
 ```javascript
 import { execa } from 'execa';
 
+
 const { stdout } = await execa('echo', [ 'unicorns' ]);
 
 console.log(stdout);
@@ -137,6 +138,7 @@ console.log(chalk.blue('Hello world!'));
 
 ```ts
 import { processenv } from 'processenv';
+
 
 const port = processenv('PORT');
 
@@ -193,6 +195,7 @@ console.log(process.env)
 ```js
 import path from 'node:path';
 import slash from 'slash';
+
 
 const string = path.join('foo', 'bar');
 // Unix    => foo/bar
@@ -274,28 +277,28 @@ const LRU = require('lru-cache')
 
 const options = {
   max: 500,
-
+  
   // for use with tracking overall storage size
   maxSize: 5000,
   sizeCalculation: (value, key) => {
     return 1
   },
-
+  
   // for use when you need to clean up something when objects
   // are evicted from the cache
   dispose: (value, key) => {
     freeFromMemoryOrWhatever(value)
   },
-
+  
   // how long to live in ms
   ttl: 1000 * 60 * 5,
-
+  
   // return stale items before removing from cache?
   allowStale: false,
-
+  
   updateAgeOnGet: false,
   updateAgeOnHas: false,
-
+  
   // async method to use for cache.fetch(), for
   // stale-while-revalidate type of behavior
   fetchMethod: async (key, staleValue, { options, signal }) => {
@@ -318,12 +321,12 @@ cache.get('key') // "value"
 const { DOMParser } = require('xmldom')
 
 const doc = new DOMParser().parseFromString(
-  '<xml xmlns="a" xmlns:c="./lite">\n' +
-  '\t<child>test</child>\n' +
-  '\t<child></child>\n' +
-  '\t<child/>\n' +
-  '</xml>',
-  'text/xml'
+    '<xml xmlns="a" xmlns:c="./lite">\n' +
+    '\t<child>test</child>\n' +
+    '\t<child></child>\n' +
+    '\t<child/>\n' +
+    '</xml>',
+    'text/xml'
 )
 doc.documentElement.setAttribute('x', 'y')
 doc.documentElement.setAttributeNS('./lite', 'c:x', 'y2')
@@ -416,6 +419,7 @@ console.log(colors.trap('Run the trap')); // Drops the bass
 ```js
 import { globby } from 'globby';
 
+
 const paths = await globby([ '*', '!cake' ]);
 
 console.log(paths);
@@ -423,6 +427,20 @@ console.log(paths);
 ```
 
 [globby](https://www.npmjs.com/package/globby)
+
+## fast-glob
+
+> 一个非常快速和高效的 Node.js glob 库
+
+```js
+const fg = require('fast-glob');
+
+const entries = fg.sync([ '.editorconfig', '**/index.js' ], { dot: true });
+
+// ['.editorconfig', 'services/index.js']
+```
+
+[fast-glob](https://www.npmjs.com/package/fast-glob)
 
 ## chokidar
 
@@ -438,3 +456,22 @@ chokidar.watch('.').on('all', (event, path) => {
 ```
 
 [chokidar](https://www.npmjs.com/package/chokidar)
+
+
+## gray-matter
+
+> 从字符串或文件中解析 front-matter，也支持 YAML、JSON、TOML 或 Coffee Front-Matte
+
+```js
+import * as matter from 'gray-matter';
+
+console.log(matter('---\ntitle: Front Matter\n---\nThis is content.'));
+const output = {
+  content: '\nThis is content.',
+  data: {
+    title: 'Front Matter'
+  }
+}
+```
+
+[gray-matter](https://www.npmjs.com/package/gray-matter)

@@ -4,13 +4,10 @@ description: 按版本分类的对象方法
 category: javascript
 tags:
   - Object
+  - ES5
   - ES6
-  - ES7
   - ES8
-  - ES9
   - ES10
-  - ES11
-  - ES12
   - ES13
 ---
 
