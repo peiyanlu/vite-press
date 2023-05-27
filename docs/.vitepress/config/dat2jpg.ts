@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { mkdirp } from 'mkdirp'
 
 
 // const filePath = 'C:\\Users\\hdec\\Documents\\WeChat Files\\wxid_yxj0hb5cljh522\\FileStorage\\MsgAttach'
@@ -7,12 +8,12 @@ export function dat2img(filePath: string, outPath: string) {
   //读取目录下所有.dat文件
   const getDat = (filePath: string): string[] => {
     return fs.readdirSync(filePath).reduce<string[]>((list, file) => {
-      const aa = filePath + '\\' + file
-      if (fs.statSync(aa).isDirectory()) {
-        return list.concat(getDat(aa))
+      const fullPath = path.join(filePath, file)
+      if (fs.statSync(fullPath).isDirectory()) {
+        return list.concat(getDat(fullPath))
       } else {
-        if (path.extname(aa) === '.dat') {
-          list.push(aa)
+        if (path.extname(fullPath) === '.dat') {
+          list.push(fullPath)
         }
       }
       return list
@@ -21,7 +22,14 @@ export function dat2img(filePath: string, outPath: string) {
   
   //.dat转化为.jpg图片
   const convert = (item: string) => {
-    let imgPath = outPath + item.split('\\').pop() + '.jpg';
+    const { dir, base } = path.parse(item)
+    const lastDir = dir.split(path.sep).at(-1)
+    const writeDir = path.join(outPath, lastDir)
+    if (!fs.existsSync(writeDir)) {
+      mkdirp.sync(writeDir)
+    }
+    
+    let imgPath = path.join(writeDir, `${ base }.jpg`);
     fs.readFile(item, (_err, content) => {
       if (content?.length) {
         const [ firstV, nextV ] = content

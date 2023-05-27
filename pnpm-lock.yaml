@@ -39,6 +39,9 @@ devDependencies:
   md5:
     specifier: ^2.3.0
     version: 2.3.0
+  mkdirp:
+    specifier: ^3.0.1
+    version: 3.0.1
   rollup-plugin-visualizer:
     specifier: ^5.9.0
     version: 5.9.0

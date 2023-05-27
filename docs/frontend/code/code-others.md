@@ -51,3 +51,20 @@ const list = [
 const order = [ 9087, 36, 907, 45 ];
 list.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 ```
+
+## 递归创建多级目录
+
+```ts
+const mkdirsSync = (dirname: string) => {
+  if (fs.existsSync(dirname)) {
+    return true;
+  } else {
+    if (mkdirsSync(path.dirname(dirname))) {
+      fs.mkdirSync(dirname);
+      return true;
+    }
+  }
+};
+
+mkdirsSync('aa/bb/cc')
+```
