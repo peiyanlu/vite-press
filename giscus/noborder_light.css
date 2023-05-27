@@ -75,7 +75,7 @@ main {
   --color-danger-muted: rgba(255, 129, 130, .4);
   --color-danger-subtle: #ffebe9;
   --color-primer-shadow-inset: 0 1px 0 rgba(var(--bg-defaut), 1), inset 0 1px 0 rgba(var(--bg-defaut), 1);
-  --color-primer-shadow-focus: 0 0 0 3px rgba(9, 105, 218, .3);
+  --color-primer-shadow-focus: 0 0 0 3px rgba(175, 184, 193, .3);
   --color-scale-gray-1: rgba(234, 238, 242, 1);
   --color-scale-blue-1: rgba(16, 185, 129, 0.15);
   
@@ -94,4 +94,8 @@ main .gsc-loading-image {
 
 main button:disabled {
   cursor: not-allowed;
+}
+
+.gsc-comment:not(.gsc-reply-box) .gsc-replies {
+  border-radius: unset;
 }
