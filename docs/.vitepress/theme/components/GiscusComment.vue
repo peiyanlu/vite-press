@@ -8,14 +8,14 @@ const { title, isDark, site } = useData()
 const baseUrl = location.origin + site.value.base
 const theme = computed(() => `${ baseUrl }${ isDark.value ? 'giscus/noborder_dark.css' : 'giscus/noborder_light.css' }`)
 
-const isGitHub = location.host !== 'gitee.com'
+const isGitee = location.host.includes('gitee')
 </script>
 
 <template>
   <div class="giscus-comment">
     <component
       is="script"
-      v-if="isGitHub"
+      v-if="!isGitee"
       :key="title+Date.now()"
       :data-theme="theme"
       async

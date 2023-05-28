@@ -9,14 +9,13 @@ tags:
 
 # Ajax
 
-`Ajax`（Asynchronous JavaScript And XML）异步 `JavaScript` 和 `XML`，或 `Ajax` 本身不是一种技术，而是一种将一些现有技术结合起来使用的方法，包括：HTML
+`Ajax`（`Asynchronous JavaScript And XML`）异步 `JavaScript` 和 `XML`，`Ajax` 本身不是一种技术，而是一种将一些现有技术结合起来使用的方法，包括：`HTML`
 或 `XHTML`、`CSS`、`JavaScript`、`DOM`、`XML`、`XSLT`、以及最重要的 `XMLHttpRequest` 对象。当使用结合了这些技术的 `Ajax`
 模型以后，网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面。
 
-:::warning
+:::tip
 尽管 `Ajax` 中的 `X` 代表 `XML`，但是 `JSON` 才是首选，因为它更加轻量，而且是用 `JavaScript` 编写的。在 `Ajax` 模型中，`JSON`
-和 `XML`
-都被用来包装信息。
+和 `XML` 都被用来包装信息。
 :::
 
 **优点**
@@ -53,7 +52,7 @@ const xhr = new XMLHttpRequest()
 
 - 第二个参数：请求的 `URL`
 
-- 第三个参数：是否异步发送请求（默认为 true）
+- 第三个参数：是否异步发送请求（默认为 `true`）
 
 ```js
 xhr.open('get', 'example.php', 'true')
@@ -81,7 +80,7 @@ xhr.send()
 | statusText   | HTTP状态码说明       |
 | readyState   | xhr对象的请求响应阶段    |
 
-既然我们要获取服务端返回的数据，我们就要知道服务端是何时返回数据的，这就可以通过上面表格中的 `readyState` 属性来判断了
+既然我们要获取服务端返回的数据，我们就要知道服务端是何时返回数据的，可以通过 `readyState` 属性来判断。
 
 `readyState` 属性一共有 `5` 个值，分别表示不同的请求响应阶段：
 

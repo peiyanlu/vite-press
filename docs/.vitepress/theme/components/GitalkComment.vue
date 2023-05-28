@@ -10,9 +10,9 @@ const commentRef = ref<HTMLHtmlElement | null>(null)
 
 const { page } = useData()
 
-const isGitHub = location.host !== 'gitee.com'
+const isGitee = location.host.includes('gitee')
 watchEffect(() => {
-  if (commentRef.value && isGitHub) {
+  if (commentRef.value && !isGitee) {
     const gitalk = new Gitalk({
       clientID: 'd043e806d74ff3ecfa64',
       clientSecret: '66f2fa78f067e27de59b28156a4be87c79e1eb94',
