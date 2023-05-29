@@ -5,17 +5,17 @@ import { computed } from 'vue'
 
 const { title, isDark, site } = useData()
 
-const baseUrl = location.origin + site.value.base
+const baseUrl = globalThis.location?.origin + site.value.base
 const theme = computed(() => `${ baseUrl }${ isDark.value ? 'giscus/noborder_dark.css' : 'giscus/noborder_light.css' }`)
 
-const isGitee = location.host.includes('gitee')
+const isGitee = globalThis.location?.host.includes('gitee')
 </script>
 
 <template>
   <div v-if="!isGitee" class="giscus-comment">
     <component
       is="script"
-      :key="title+Date.now()"
+      :key="title+isDark"
       :data-theme="theme"
       async
       crossorigin="anonymous"

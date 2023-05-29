@@ -1,4 +1,3 @@
-import chokidar from 'chokidar'
 import path from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
@@ -8,12 +7,6 @@ import { defineConfig } from 'vitepress'
 import { nav, sidebar } from './config/menu'
 import { algolia } from './config/search'
 
-
-const watcher = chokidar.watch('docs/**/*.md')
-watcher.on('add', (path, stats) => {
-  // console.log(path)
-})
-console.log(555, watcher.getWatched())
 
 const BASE_URL: string = '/vite-press/' as const
 

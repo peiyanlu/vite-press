@@ -8,7 +8,7 @@ const commentRef = ref<HTMLHtmlElement | null>(null)
 
 const { page, title } = useData()
 
-const isGitee = location.host.includes('gitee')
+const isGitee = globalThis.location?.host.includes('gitee')
 
 
 const handleLoad = () => {
@@ -33,14 +33,14 @@ const handleLoad = () => {
     <teleport to="head">
       <component
         is="link"
-        :key="title+Date.now()"
+        :key="title"
         href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.css"
         rel="stylesheet"
       />
     </teleport>
     <component
       is="script"
-      :key="title+Date.now()"
+      :key="title"
       async
       src="https://cdn.jsdelivr.net/npm/gitalk@latest"
       @load="handleLoad"

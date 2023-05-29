@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
-import { ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 
 
 interface ShiciResult {
@@ -11,28 +11,50 @@ interface ShiciResult {
 }
 
 const { title } = useData()
-const content = ref<string>('')
-const handleLoad = () => {
-  console.log(title.value)
-  globalThis.jinrishici.load((result: ShiciResult) => {
-    const { data } = result
-    content.value = data.content
-    console.log(data)
+
+const content = ref('')
+const loaded = ref(false)
+
+const getResult = (): Promise<ShiciResult> => {
+  return new Promise((resolve) => {
+    globalThis.jinrishici?.load((result: ShiciResult) => resolve(result))
   })
 }
+
+const getContent = async () => {
+  const { data } = await getResult()
+  return data.content
+}
+
+const handleLoad = () => {
+  loaded.value = true
+}
+
+const handleContent = async () => {
+  content.value = await getContent()
+}
+
+watchEffect(async () => {
+  if (loaded.value) {
+    await handleContent()
+  }
+})
 </script>
 
 <template>
-  <div id="jinrishici">{{ content }}</div>
-  <component
-    is="script"
-    :key="title+Date.now()"
-    async
-    src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"
-    @load="handleLoad"
-  />
+  <teleport to="body">
+    <component
+      is="script"
+      :key="title"
+      src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"
+      @load="handleLoad"
+    />
+  </teleport>
+  <div class="jinrishici" @click="handleContent">{{ content }}</div>
 </template>
 
 <style lang="scss" scoped>
-
+.jinrishici {
+  text-align: center;
+}
 </style>

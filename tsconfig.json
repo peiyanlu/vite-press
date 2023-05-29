@@ -18,6 +18,7 @@
   },
   "include": [
     "env.d.ts",
+    "global.d.ts",
     "docs/.vitepress/**/*"
   ]
 }

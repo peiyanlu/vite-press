@@ -9,20 +9,18 @@ tags:
 
 # 浏览器存储
 
-浏览器的本地存储主要分为 `Cookie`、`WebStorage` 和 `IndexedDB`，其中 `WebStorage` 又分为 `localStorage`
-（本地存储）和 `sessionStorage`（会话存储）
+浏览器的本地存储主要分为 `Cookie`、`WebStorage` 和 `IndexedDB`，其中 `WebStorage` 又分为 `localStorage`（本地存储）和 `sessionStorage`（会话存储）
 
 ## cookie
 
 `cookie` 最开始并不是用于本地存储的，而是为了弥补 `HTTP` 在状态管理上的不足：
-`HTTP`
-是一个无状态的协议，客户端向服务器发送请求，服务器返回响应，但是下一次发送请求时服务端就无法识别客户端的身份信息，故而产生了 `cookie`。
+`HTTP` 是一个无状态的协议，客户端向服务器发送请求，服务器返回响应，但是下一次发送请求时服务端就无法识别客户端的身份信息，故而产生了 `cookie`。
 
 `cookie` 本质上是浏览器里面存储的一个很小的文本文件，内部以键值对的方式存储。向同一个域名下发送请求都会携带相同的 `cookie`
 ，服务器拿到 `cookie` 进行解析，就能拿到客户端的状态。也就是说，`cookie`
 的作用就是用来做状态存储的。
 
-`cookie` 的具体实现过程：
+**`cookie` 的具体实现过程：**
 
 1. 当用户访问 `web` 服务器后，`web` 服务器会获取用户的状态并且返回一些数据（`cookie`）给浏览器，浏览器会自动储存这些数据（`cookie`)。
 
@@ -31,7 +29,7 @@ tags:
 3. 基于这次用户的状态方便用户进行其他业务的访问，并且 `web` 服务器可以设置浏览器保存 `cookie` 的时间，`cookie`
    是有域名的概念，只有访问同一个域名的时候才会把之前相同域名返回的 `cookie` 携带给该 `web` 服务器。
 
-缺陷：
+**缺陷：**
 
 - 容量缺陷：`cookie` 的体积上限只有 `4KB`，只能用来存储少量的信息。
 
@@ -42,7 +40,7 @@ tags:
   的有效期内重新发送给服务器。另外，在 `HTTPOnly` 为 `false`
   的情况下，`cookie` 信息能直接通过 `JS` 脚本读取。
 
-cookie属性
+**`cookie` 属性：**
 
 | 属性       | 说明                                           |
 |----------|----------------------------------------------|
@@ -55,7 +53,7 @@ cookie属性
 | secure   | 如果设为True，只有通过HTTPS才可以用                       |
 | httponly | 如果设为True，禁止客户端JavaScript获取cookie             |
 
-## session
+### session（后端）
 
 `cookie` 和 `session` 都是用来跟踪浏览器用户的身份的方式，有以下区别：
 
@@ -98,7 +96,7 @@ cookie属性
 
 6. 应用场景
 
-- cookie：
+- **`cookie`：**
   
   - 判断用户是否登陆过网站，以便下次登录时能够实现自动登录（或者记住密码）。如果我们删除 `cookie`，则每次登录必须重新填写登录的相关信息。
   
@@ -108,7 +106,7 @@ cookie属性
   
   - 浏览计数
 
-- session：`Session` 用于保存每个用户的专用信息，变量的值保存在服务器端，通过 `SessionID` 来区分不同的客户。
+- **`session`：**`session` 用于保存每个用户的专用信息，变量的值保存在服务器端，通过 `session id` 来区分不同的客户。
   
   - 网上商城中的购物车
   
@@ -120,7 +118,7 @@ cookie属性
 
 7. 缺点
 
-- cookie：
+- **`cookie`：**
   
   - 大小受限，不能超过 `4kb`；
   
@@ -134,13 +132,43 @@ cookie属性
   
   - `cookie` 数据有路径（`path`）的概念，可以限制 `cookie` 只属于某个路径下。
 
-- session：
+- **`session`：**
   
-  - `Session` 保存的东西越多，就越占用服务器内存，对于用户在线人数较多的网站，服务器的内存压力会比较大。
+  - `session` 保存的东西越多，就越占用服务器内存，对于用户在线人数较多的网站，服务器的内存压力会比较大。
   
-  - 依赖于 `cookie`（`session id` 保存在 `cookie`），如果禁用 `cookie`，则要使用 `URL` 重写，不安全
+  - 依赖于 `cookie`（`session id` 保存在 `cookie`），如果禁用 `cookie`，则要使用 `URL` 重写，不安全。
   
   - 创建 `session` 变量有很大的随意性，可随时调用，不需要开发者做精确地处理，所以，过度使用 `session` 变量将会导致代码不可读而且不好维护。
+
+### 用法
+
+`cookie` 本身没有封装 `API`，需要手动封装或者使用已有的库 [js-cookie](https://www.npmjs.com/package/js-cookie)
+
+```ts
+// 设置cookie
+const setCookie = (name: string, value: string, day: number) => {
+  const date = new Date()
+  date.setDate(date.getDate() + day)
+  document.cookie = `${ name }=${ value };expires=${ date }`
+}
+
+// 获取cookie
+const getCookie = (name: string) => {
+  const entries = document.cookie.split('; ')
+  for (const item of entries) {
+    const [ key, value ] = item.split('=')
+    if (key === name) {
+      return value
+    }
+  }
+}
+
+// 移除cookie
+const removeCookie = (name: string) => {
+  setCookie(name, '1', -1)
+}
+```
+
 
 ## Web storage API
 
@@ -155,10 +183,11 @@ cookie属性
 `localStorage` 的存储都是字符串，如果是存储对象，那么在存储时就需要调用 `JSON.stringify` 方法，并且在取值时用 `JSON.parse`
 来解析成对象。
 
-与cookie的异同：
-同： 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
+与 `cookie` 的异同：
 
-异：
+**同：** 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
+
+**异：**
 
 - 容量：`localStorage` 的容量上线为 `5MB`。
 
@@ -172,13 +201,19 @@ cookie属性
 
 ### sessionStorage
 
-将数据保存在 `session` 对象中。所谓 `session`
-，是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间。`session`
-对象可以用来保存在这段时间内所要求保存的任何数据。
+将数据保存在 `session Storage` 对象中。
 
-与localStorage的异同：
+- 页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。
 
-同：
+- 在新标签或窗口打开一个页面时会复制顶级浏览会话的上下文作为新会话的上下文，这点和 `session cookie` 的运行方式不同。
+
+- 打开多个相同的 `URL` 的 `Tabs` 页面，会创建各自的 `sessionStorage`。
+
+- 关闭对应浏览器标签或窗口，会清除对应的 `sessionStorage`。
+
+与 `localStorage` 的异同：
+
+**同：**
 
 - 容量：`sessionStorage` 的容量上线也为 `5MB`。
 
@@ -188,27 +223,37 @@ cookie属性
 
 - `localStorage` 和 `sessionStorage` 只能存储字符串类型。
 
-异：
+**异：**
 
 - `sessionStorage` 将数据保存在 `Session` 对象中。而 `localStorage` 将数据保存在客户端本地的硬件设备，即使浏览器被关闭了该数据依然存在，下次打开浏览器访问网站时可以继续使用。
 
 - `localStorage` 的生命周期是永久的，`sessionStorage` 的生命周期是在仅在当前会话下有效。
 
-应用场景：
+**应用场景：**
 
 - 可以使用 `sessionStorage` 对表单进行维护，将表单信息存储在里面，即使刷新表单也能保证不会让之前的表单信息丢失。
 
 - 可以使用 `sessionStorage` 来存储本次浏览记录，即那种关闭页面就不需要的浏览记录。
 
-```js
-Storage.setItem(name, key) ：设置值
-Storage.getItem(name)：获取
-Storage.removeItem(name)：删除
-Storage.clear()：删除所有值
-Storage.key()：获取键值
+### 用法
+
+```ts
+// 新增数据
+localStorage.setItem('myCat', 'Tom');
+
+// 获取数据
+let cat = localStorage.getItem('myCat');
+
+// 移除数据
+localStorage.removeItem('myCat');
+
+// 移除所有
+localStorage.clear();
 ```
 
 ## indexedDB
+
+`IndexedDB` 是一个基于 `JavaScript` 的面向对象数据库。是一个事务型数据库系统。
 
 当数据量不大时，我们可以通过 `sessionStorage` 或者 `localStorage`
 来进行存储，但是当数据量较大，或符合一定的规范时，我们可以使用 `indexedDB` 数据库来进行数据的存储，`indexedDB`
@@ -216,18 +261,151 @@ Storage.key()：获取键值
 
 `IndexedDB` 鼓励使用的基本模式如下所示：
 
-- 打开数据库。
+1. 创建数据仓库( `db.createObjectStore()` )
 
-- 在数据库中创建一个对象仓库（`object store`）。
+2. 创建一个事务，链接数据仓库( `db.transaction([storeName]).objectStore(storeName)` )
 
-- 启动一个事务，并发送一个请求来执行一些数据库操作，像增加或提取数据等。
+3. 对数据增删改查( `stroe.add()`、`store.put()`、`store.delete()`、`store.get()` )
 
-- 通过监听正确类型的 `DOM` 事件以等待操作完成。
+4. 关闭数据库( `db.close()` )
 
-- 在操作结果上进行一些操作（可以在 `request` 对象中找到）
+**缺点：** `indexedDB` 属于非关系型数据库，操作繁琐，对新手不友好
 
-缺点：`indexedDB` 属于非关系型数据库，操作繁琐，对新手不友好
+### 用法
 
+```ts
+interface MsgProps {
+  type: string,
+  message: string | object
+}
 
+export default class DB {
+  dbName: string
+  db: any
+  
+  constructor(name: string) {
+    this.dbName = name
+  }
+  
+  open(storeName: string, keyPath: string, indexs?: Array<string>) {
+    if (!window.indexedDB) {
+      return alert('您的浏览器不支持该app，为了更好的体验，请使用新版chrome浏览器')
+    }
+    const request = window.indexedDB.open(this.dbName, new Date().getTime())
+    return new Promise((resolve, rej) => {
+      request.onerror = (e: any) => {
+        this.onmessage({ type: '数据库连接失败', message: e })
+        rej()
+      }
+      request.onsuccess = (e: any) => {
+        this.db = e.target.result
+        this.onmessage({ type: '数据库连接成功', message: '' })
+        resolve()
+      }
+      request.onupgradeneeded = (e: any) => {
+        const db = e.target.result
+        if (!db.objectStoreNames.contains(storeName)) {
+          const store = db.createObjectStore(storeName, { autoIncrement: true, keyPath })
+          if (indexs && indexs.length) {
+            indexs.map((v) => {
+              store.createIndex(v, v, { unique: false })
+            })
+          }
+          store.transaction.oncomplete = (ev: any) => {
+            this.onmessage({ type: '创建对象仓库成功', message: '' })
+          }
+        }
+      }
+    })
+  
+  }
+  
+  onmessage(msg: MsgProps) {
+    console.log(msg.type, msg.message)
+  }
+  
+  update(storeName: string, data: object) {
+    const store = this.db.transaction([ storeName ], 'readwrite').objectStore(storeName)
+    return new Promise((resolve, rej) => {
+      const request = store.put({
+        ...data,
+        lastModify: new Date().getTime(),
+      })
+      request.onsuccess = (e: any) => {
+        this.onmessage({
+          type: '更新成功',
+          message: data,
+        })
+        resolve()
+      }
+      request.onerror = (e: any) => {
+        this.onmessage({
+          type: '更新失败',
+          message: data,
+        })
+        rej()
+      }
+    })
+  }
+  
+  getList(storeName: string) {
+    const store = this.db.transaction([ storeName ]).objectStore(storeName)
+    return new Promise((resolve, rej) => {
+      store.getAll().onsuccess = (e: any) => {
+        const res = e.target.result
+        this.onmessage({
+          type: '获取列表成功',
+          message: res,
+        })
+        resolve(res)
+      }
+    })
+  }
+  
+  getItem(storeName: string, key: string) {
+    const store = this.db.transaction(storeName).objectStore(storeName)
+    return new Promise((resolve, rej) => {
+      const request = store.get(key)
+      request.onsuccess = (e: any) => {
+        resolve(e.target.result)
+      }
+      request.onerror = (e: any) => {
+        rej()
+      }
+    })
+  }
+  
+  delete(storeName: string, key: string) {
+    const store = this.db.transaction([ storeName ], 'readwrite').objectStore(storeName)
+    const request = store.delete(key)
+    return new Promise((resolve, rej) => {
+      request.onsuccess = (e: any) => {
+        this.onmessage({
+          type: '删除成功',
+          message: key,
+        })
+        resolve()
+      }
+      request.onerror = (e: any) => {
+        this.onmessage({
+          type: '删除失败',
+          message: data,
+        })
+        rej()
+      }
+    })
+  
+  }
+  
+  closeDB() {
+    this.db.close()
+  }
+  
+  deleteDB() {
+    indexedDB.deleteDatabase(this.dbName)
+  }
+
+}
+```
 
 

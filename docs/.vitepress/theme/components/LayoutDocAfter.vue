@@ -12,11 +12,13 @@ const { frontmatter } = useData()
 
 <template>
   <div class="doc-after">
-    <!--<DocShici />-->
+    <DocShici />
     <GiscusComment />
   </div>
 </template>
 
 <style lang="scss" scoped>
-
+.doc-after {
+  margin-bottom: 32px;
+}
 </style>
