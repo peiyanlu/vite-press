@@ -1,6 +1,7 @@
 import { ObjectDirective } from 'vue'
 import { ImgOptions, TextOptions, WaterMaskOptions } from './water-mask-types'
 
+
 const insertToDocument = (el: HTMLElement, imgData: string, settings: WaterMaskOptions) => {
   const id = 'vite-press__water-mask'
   
@@ -43,7 +44,7 @@ const observerWaterMaskDom = (el: HTMLElement, dom: HTMLElement) => {
         case 'childList':
           // 删除节点，直接从删除的节点数组中添加回来
           Array.from(mutation.removedNodes)
-            .filter(node=> node.isSameNode(dom))
+            .filter(node => node.isSameNode(dom))
             .forEach(node => mutation.target?.appendChild(node))
           break
         case 'attributes':
@@ -57,7 +58,7 @@ const observerWaterMaskDom = (el: HTMLElement, dom: HTMLElement) => {
               }
             }
           }
-          if (mutation.target.isSameNode(dom)){
+          if (mutation.target.isSameNode(dom)) {
             if (getStyle(target) !== style) {
               target.setAttribute('style', style ?? '')
             }
@@ -284,7 +285,7 @@ const defaultSetting: WaterMaskOptions = {
   src: 'http://localhost:5174/vite-press/logo.text.svg',
 }
 
-const WaterMask: ObjectDirective<HTMLElement, WaterMaskOptions> = {
+const vWaterMask: ObjectDirective<HTMLElement, WaterMaskOptions> = {
   async beforeMount(el: HTMLElement, { value }) {
     const settings: WaterMaskOptions = { ...defaultSettings, ...value }
     // const settings: WaterMaskOptions = { ...defaultSetting, ...value }
@@ -295,4 +296,4 @@ const WaterMask: ObjectDirective<HTMLElement, WaterMaskOptions> = {
     observerWaterMaskDom(el, dom)
   },
 }
-export default WaterMask
+export default vWaterMask

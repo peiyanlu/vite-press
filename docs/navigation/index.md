@@ -5,6 +5,7 @@ outline: [2, 3, 4]
 aside: true
 lastUpdated: false
 editLink: false
+order: 1
 ---
 
 <script setup>

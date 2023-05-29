@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { slugify } from '@mdit-vue/shared'
-import { NAV_DATA } from './navigation'
+import { slugify } from '@mdit-vue/shared';
+import { NAV_DATA } from './navigation';
 
-import SiteNavLink from './SiteNavLink.vue'
+import SiteNavLink from './SiteNavLink.vue';
 </script>
 
 <template>

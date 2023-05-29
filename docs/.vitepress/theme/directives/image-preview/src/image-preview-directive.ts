@@ -2,6 +2,7 @@ import { Directive } from 'vue'
 import ImagePreviewService from './image-preview-service'
 import { PreviewHTMLElement, BindingValue, ImagePreviewProps } from './image-preview-types'
 
+
 const mountedPreviewImages = (props: ImagePreviewProps): void => {
   ImagePreviewService.open({
     url: props.url,
@@ -25,6 +26,7 @@ const getImgByEl = (el: PreviewHTMLElement): Array<string> => {
   
   return [ ...target.querySelectorAll('img') ].map((item: HTMLImageElement) => item.getAttribute('data-src') || item.getAttribute('src') || '')
 }
+
 const handleImg = (e: MouseEvent) => {
   e.stopPropagation()
   const el = e.currentTarget as PreviewHTMLElement
@@ -49,7 +51,7 @@ const removeHandle = (el: PreviewHTMLElement) => {
   el.removeEventListener('click', handleImg)
 }
 
-const ImagePreviewDirective: Directive<PreviewHTMLElement, BindingValue> = {
+const vImagePreviewDirective: Directive<PreviewHTMLElement, BindingValue> = {
   mounted(el, binding): void {
     if (!binding?.value) {
       return handleImgByEl(el)
@@ -100,4 +102,4 @@ const ImagePreviewDirective: Directive<PreviewHTMLElement, BindingValue> = {
   },
 }
 
-export default ImagePreviewDirective
+export default vImagePreviewDirective

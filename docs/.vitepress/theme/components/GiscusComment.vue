@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 
 const { title, isDark, site } = useData()
@@ -12,10 +12,9 @@ const isGitee = location.host.includes('gitee')
 </script>
 
 <template>
-  <div class="giscus-comment">
+  <div v-if="!isGitee" class="giscus-comment">
     <component
       is="script"
-      v-if="!isGitee"
       :key="title+Date.now()"
       :data-theme="theme"
       async

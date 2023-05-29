@@ -1,12 +1,12 @@
 // 组件/公共组件
-import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue';
+import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue'
+import LayoutDocAfter from '@theme/components/LayoutDocAfter.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SvgIcon from '@theme/components/SvgIcon.vue'
-import { ImagePreviewService } from '@theme/directives/image-preview';
-import { useEventListener } from '@vueuse/core';
+import { ImagePreviewService } from '@theme/directives/image-preview'
+import { useEventListener } from '@vueuse/core'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import GiscusComment from '@theme/components/GiscusComment.vue'
 
 // 依赖
 import { Theme, useData } from 'vitepress'
@@ -28,14 +28,14 @@ export default <Theme>{
     }).catch(e => console.error(e))
     
     return h(
-        DefaultTheme.Layout,
-        {
-          class: frontmatter.value?.layoutClass,
-        },
-        {
-          'layout-bottom': () => h(Live2dWidget),
-          'doc-after': () => h(GiscusComment),
-        },
+      DefaultTheme.Layout,
+      {
+        class: frontmatter.value?.layoutClass,
+      },
+      {
+        'layout-bottom': () => h(Live2dWidget),
+        'doc-after': () => h(LayoutDocAfter),
+      },
     )
   },
   enhanceApp(ctx) {
@@ -50,19 +50,19 @@ const imagePreviewFn = () => {
   const scope = document.querySelector('.VPDoc .main')
   if (!scope) return
   
-  const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || '';
+  const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || ''
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
   
   document
-      .querySelectorAll<HTMLImageElement>('p > img')
-      .forEach((img) => {
-        img.setAttribute('style', 'cursor: pointer;')
-        useEventListener(img, 'click', () => {
-          ImagePreviewService.open({
-            url: getUrl(img),
-            previewUrlList: list,
-          })
+    .querySelectorAll<HTMLImageElement>('p > img')
+    .forEach((img) => {
+      img.setAttribute('style', 'cursor: pointer;')
+      useEventListener(img, 'click', () => {
+        ImagePreviewService.open({
+          url: getUrl(img),
+          previewUrlList: list,
         })
       })
+    })
 }
 

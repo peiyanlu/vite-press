@@ -1,16 +1,23 @@
+import chokidar from 'chokidar'
 import path from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
-import { visualizer } from 'rollup-plugin-visualizer';
 
-import { getNav, getSidebar } from './config/menu'
-import { algolia, local } from './config/search'
+import { nav, sidebar } from './config/menu'
+import { algolia } from './config/search'
 
 
-const BASE_URL = '/vite-press/' as const
+const watcher = chokidar.watch('docs/**/*.md')
+watcher.on('add', (path, stats) => {
+  // console.log(path)
+})
+console.log(555, watcher.getWatched())
 
-const withBase = (path: string): string => `${ BASE_URL }${ path }`.replace(/\/+/g, '/')
+const BASE_URL: string = '/vite-press/' as const
+
+const withBase = (path: string): string => `${ BASE_URL + path }`.replace(/\/+/g, '/')
 
 export default defineConfig({
   title: '笔记',
@@ -36,9 +43,9 @@ export default defineConfig({
       level: 'deep',
       label: '快速导航',
     },
-    nav: getNav(),
+    nav: nav,
     aside: true,
-    sidebar: getSidebar(),
+    sidebar: sidebar,
     editLink: {
       pattern: 'https://github.com/peiyanlu/vite-press/edit/docs-deploy/docs/:path',
       text: `编辑此页`,
@@ -84,7 +91,7 @@ export default defineConfig({
         {
           find: '@theme',
           replacement: fileURLToPath(
-              new URL('./theme', import.meta.url),
+            new URL('./theme', import.meta.url),
           ),
         },
       ],

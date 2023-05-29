@@ -6,6 +6,8 @@ tags:
  - CSS
  - ES6
  - NPM
+order: 2
+sidebar: true
 ---
 
 # FrontEnd

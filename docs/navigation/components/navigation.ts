@@ -522,10 +522,16 @@ export const NAV_DATA: NavData[] = [
         link: 'https://pixso.cn/',
       },
       {
-        icon: 'https://www.bing.com/sa/simg/favicon-trans-bg-blue-mg.ico',
+        icon: 'https://tools.pdf24.org/static/img/pdf24.png?v=5cf19973',
         title: 'PDF24',
         desc: '免费且易于使用的在线PDF工具',
         link: 'https://tools.pdf24.org/zh/all-tools',
+      },
+      {
+        icon: 'https://www.jinrishici.com/img/icon-small.png',
+        title: '今日诗词',
+        desc: '根据时间、地点、天气、事件智能推荐诗词',
+        link: 'https://www.jinrishici.com/#',
       },
     ],
   },

@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import 'gitalk/dist/gitalk.css'
-import Gitalk from 'gitalk'
-import { onMounted, ref, watchEffect } from 'vue'
-import { useData } from 'vitepress'
 import md5 from 'md5'
+import { useData } from 'vitepress'
+import { ref } from 'vue'
 
 
 const commentRef = ref<HTMLHtmlElement | null>(null)
 
-const { page } = useData()
+const { page, title } = useData()
 
 const isGitee = location.host.includes('gitee')
-watchEffect(() => {
-  if (commentRef.value && !isGitee) {
-    const gitalk = new Gitalk({
+
+
+const handleLoad = () => {
+  if (commentRef.value) {
+    new globalThis.Gitalk({
       clientID: 'd043e806d74ff3ecfa64',
       clientSecret: '66f2fa78f067e27de59b28156a4be87c79e1eb94',
       repo: 'vite-press',
@@ -22,132 +22,158 @@ watchEffect(() => {
       id: md5(page.value.relativePath),
       language: 'zh-CN',
       distractionFreeMode: false,
-    })
-    
-    gitalk.render(commentRef.value)
+    }).render(commentRef.value)
   }
-})
-
+}
 </script>
 
 <template>
-  <div id="" ref="commentRef" />
+  <div v-if="!isGitee" class="gitalk-comment">
+    <div ref="commentRef" />
+    <teleport to="head">
+      <component
+        is="link"
+        :key="title+Date.now()"
+        href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.css"
+        rel="stylesheet"
+      />
+    </teleport>
+    <component
+      is="script"
+      :key="title+Date.now()"
+      async
+      src="https://cdn.jsdelivr.net/npm/gitalk@latest"
+      @load="handleLoad"
+    />
+  </div>
+  >
 </template>
 
 <style lang="scss">
-.gt-container {
-  .gt-meta {
-    border-color: var(--vp-c-gutter);
-    
-    .gt-counts,
-    .gt-copyright {
-      .gt-link {
-        transition: all 0.3s ease-in-out;
-        color: var(--vp-c-brand);
-        border-bottom-color: var(--vp-c-brand);
-        
-        &:hover {
-          text-decoration: none;
-          opacity: 0.85;
-        }
-      }
-    }
-    
-    .gt-popup {
-      top: 3em;
+.gitalk-comment {
+  .gt-container {
+    a {
       color: var(--vp-c-brand);
+    }
+    
+    .gt-btn {
+      border: 1px solid var(--vp-c-brand);
+      background-color: var(--vp-c-brand);
+    }
+    
+    .gt-meta {
       border-color: var(--vp-c-gutter);
-      background-color: var(--vp-c-bg);
       
-      .gt-action-login {
-        transition: all 0.3s ease-in-out;
-        color: var(--vp-c-brand);
-        
-        &:hover {
-          opacity: 0.85;
-        }
-      }
-      
+      .gt-counts,
       .gt-copyright {
-        border-color: var(--vp-c-gutter);
-      }
-    }
-    
-    .gt-user {
-      .gt-ico svg {
-        fill: var(--vp-c-brand);
-      }
-    }
-  }
-  
-  .gt-header {
-    .gt-avatar-github {
-      svg {
-        fill: var(--vp-c-text-1);
-      }
-    }
-    
-    .gt-header-comment {
-      .gt-header-textarea {
-        background-color: var(--vp-c-bg-alt);
-        
-        &:hover {
-          background-color: var(--vp-c-bg-alt);
-        }
-      }
-      
-      .gt-header-controls {
-        .gt-header-controls-tip {
+        .gt-link {
           transition: all 0.3s ease-in-out;
           color: var(--vp-c-brand);
+          border-bottom-color: var(--vp-c-brand);
           
-          svg {
-            fill: var(--vp-c-brand);
+          &:hover {
+            text-decoration: none;
+            opacity: 0.85;
           }
+        }
+      }
+      
+      .gt-popup {
+        top: 3em;
+        color: var(--vp-c-brand);
+        border-color: var(--vp-c-gutter);
+        background-color: var(--vp-c-bg);
+        
+        .gt-action-login {
+          transition: all 0.3s ease-in-out;
+          color: var(--vp-c-brand);
           
           &:hover {
             opacity: 0.85;
           }
         }
         
-        .gt-btn {
-          border-color: var(--vp-c-brand);
-          background-color: var(--vp-c-brand);
+        .gt-copyright {
+          border-color: var(--vp-c-gutter);
+        }
+      }
+      
+      .gt-user {
+        .gt-ico svg {
+          fill: var(--vp-c-brand);
+        }
+      }
+    }
+    
+    .gt-header {
+      .gt-avatar-github {
+        svg {
+          fill: var(--vp-c-text-1);
+        }
+      }
+      
+      .gt-header-comment {
+        .gt-header-textarea {
+          background-color: var(--vp-c-bg-alt);
           
-          &-login {
+          &:hover {
+            background-color: var(--vp-c-bg-alt);
+          }
+        }
+        
+        .gt-header-controls {
+          .gt-header-controls-tip {
             transition: all 0.3s ease-in-out;
+            color: var(--vp-c-brand);
+            
+            svg {
+              fill: var(--vp-c-brand);
+            }
             
             &:hover {
               opacity: 0.85;
-              border-color: var(--vp-c-brand);
-              background-color: var(--vp-c-brand);
             }
           }
           
-          &-preview {
-            transition: all 0.3s ease-in-out;
-            color: var(--vp-c-brand);
-            background-color: var(--vp-c-bg);
+          .gt-btn {
+            border-color: var(--vp-c-brand);
+            background-color: var(--vp-c-brand);
             
-            &:hover {
-              opacity: 0.85;
+            &-login {
+              transition: all 0.3s ease-in-out;
+              
+              &:hover {
+                opacity: 0.85;
+                border-color: var(--vp-c-brand);
+                background-color: var(--vp-c-brand);
+              }
+            }
+            
+            &-preview {
+              transition: all 0.3s ease-in-out;
               color: var(--vp-c-brand);
-              border-color: var(--vp-c-brand);
               background-color: var(--vp-c-bg);
+              
+              &:hover {
+                opacity: 0.85;
+                color: var(--vp-c-brand);
+                border-color: var(--vp-c-brand);
+                background-color: var(--vp-c-bg);
+              }
             }
           }
         }
       }
     }
-  }
-  
-  .gt-spinner::before {
-    border-top-color: var(--vp-c-brand);
-  }
-  
-  
-  .gt-comment-username {
-    color: var(--vp-c-brand);
+    
+    .gt-spinner::before {
+      border-top-color: var(--vp-c-brand);
+    }
+    
+    
+    .gt-comment-username {
+      color: var(--vp-c-brand);
+    }
   }
 }
 </style>

@@ -2,7 +2,7 @@
 import { DocData } from '@theme/docs.data'
 import { breakpointsTailwind, useBreakpoints, useDateFormat, useTimeAgo } from '@vueuse/core'
 import { tags } from './archive'
-import DocTag from './DocTag.vue'
+import DocTag from '../../.vitepress/theme/components/DocTag.vue'
 
 
 const breakpoints = useBreakpoints(breakpointsTailwind)

@@ -6,8 +6,8 @@ import { useData, withBase } from 'vitepress'
 import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
 import { getTimeline, getZodiac, getZodiacAlias } from './archive'
 import DocMetaData from './DocMetaData.vue'
-import DocTag from './DocTag.vue'
-import EmptyBlock from './LoadingBlock.vue';
+import DocTag from '../../.vitepress/theme/components/DocTag.vue'
+import EmptyBlock from './LoadingBlock.vue'
 
 
 const AsyncWordCloud = defineAsyncComponent({
