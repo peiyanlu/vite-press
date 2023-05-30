@@ -92,7 +92,7 @@ Cache-control: s-maxage=<seconds>
 
 在协商缓存机制中，浏览器会在请求头中添加一些条件来告诉服务器它上次请求的资源是否还有效，服务器则会根据这些条件判断资源是否更新，然后返回相应的状态码和资源。如果资源没有更新，则服务器返回 `304` 状态码，告诉浏览器可以使用缓存，否则返回 `200` 状态码和新的资源。
 
-协商缓存主要有两种方式：`Last-Modified/If-Modified-Since` 和 `ETag/If-None-Match`。 
+协商缓存主要有两种方式：`Last-Modified/If-Modified-Since` 和 `ETag/If-None-Match`。
 
 1. `Last-Modified/If-Modified-Since`
 

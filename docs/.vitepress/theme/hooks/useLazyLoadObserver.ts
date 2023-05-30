@@ -1,4 +1,4 @@
-export default function useObserver() {
+export default function useLazyLoadObserver() {
   if (!globalThis.IntersectionObserver) return undefined
   
   const observer = new IntersectionObserver(entries => {

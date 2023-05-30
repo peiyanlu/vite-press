@@ -37,6 +37,6 @@ const isGitee = globalThis.location?.host.includes('gitee')
 
 <style lang="scss" scoped>
 .giscus-comment {
-  padding-top: 32px;
+
 }
 </style>

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import DocShici from '@theme/components/DocShici.vue'
+import DocTag from '@theme/components/DocTag.vue'
 import { data, DocData } from '@theme/docs.data'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { useMagicKeys } from '@vueuse/core'
@@ -6,7 +8,6 @@ import { useData, withBase } from 'vitepress'
 import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
 import { getTimeline, getZodiac, getZodiacAlias } from './archive'
 import DocMetaData from './DocMetaData.vue'
-import DocTag from '../../.vitepress/theme/components/DocTag.vue'
 import EmptyBlock from './LoadingBlock.vue'
 
 
@@ -68,45 +69,51 @@ const ns = useNamespace('doc-timeline-item')
 </script>
 
 <template>
-  <AsyncWordCloud @get-selected="handleSelectedTag" />
-  <div class="doc-archive-title">
-    <div class="tag">
-      <svg-icon name="tags" />
-      <doc-tag :text="selected.type"></doc-tag>
-    </div>
-    <div v-if="isSelected">{{ `共 ${ selected.data.length } 篇，持续更新中` }}</div>
-    <div v-else>{{ `共 ${ data.length } 篇，持续更新中` }}</div>
-  </div>
-  <div class="doc-timeline">
-    <div
-      v-for="(item, year) in list"
-      :key="year"
-      :class="[ns.b(), { current: isCurrentYear(parseInt(year as string))}]"
-    >
-      <div :class="ns.e('line')">
-        <div :title="getZodiacAlias(parseInt(year as string))" class="icon">
-          <svg-icon :name="`zodiac-${getZodiac(parseInt(year as string))}`" />
-        </div>
-        <div class="line" />
+  <div class="doc-archive">
+    <AsyncWordCloud @get-selected="handleSelectedTag" />
+    
+    <div class="doc-archive-title">
+      <div class="tag">
+        <svg-icon name="tags" />
+        <doc-tag :text="selected.type" />
       </div>
-      <div :class="ns.e('wrapper')">
-        <div class="group-header">{{ year }}</div>
-        <div
-          v-for="(subItem, month) in item"
-          :key="month"
-          class="group-content"
-        >
-          <div class="subgroup-header">{{ month }}</div>
+      <div v-if="isSelected">{{ `共 ${ selected.data.length } 篇，持续更新中` }}</div>
+      <div v-else>{{ `共 ${ data.length } 篇，持续更新中` }}</div>
+    </div>
+    
+    <DocShici class="doc-shici" />
+    
+    <div class="doc-timeline">
+      <div
+        v-for="(item, year) in list"
+        :key="year"
+        :class="[ns.b(), { current: isCurrentYear(parseInt(year as string))}]"
+      >
+        <div :class="ns.e('line')">
+          <div :title="getZodiacAlias(parseInt(year as string))" class="icon">
+            <svg-icon :name="`zodiac-${getZodiac(parseInt(year as string))}`" />
+          </div>
+          <div class="line" />
+        </div>
+        <div :class="ns.e('wrapper')">
+          <div class="group-header">{{ year }}</div>
           <div
-            v-for="doc of subItem"
-            :key="doc.path"
-            class="subgroup-content"
+            v-for="(subItem, month) in item"
+            :key="month"
+            class="group-content"
           >
-            <div class="title">
-              <a :href="withBase(doc.path)">{{ doc.category ? `${ doc.category } / ` : '' }}{{ doc.title }}</a>
-              <div v-if="doc.description">-- {{ doc.description }}</div>
+            <div class="subgroup-header">{{ month }}</div>
+            <div
+              v-for="doc of subItem"
+              :key="doc.path"
+              class="subgroup-content"
+            >
+              <div class="title">
+                <a :href="withBase(doc.path)">{{ doc.category ? `${ doc.category } / ` : '' }}{{ doc.title }}</a>
+                <div v-if="doc.description">-- {{ doc.description }}</div>
+              </div>
+              <DocMetaData :doc="doc" @get-selected="handleSelectedTag" />
             </div>
-            <DocMetaData :doc="doc" @get-selected="handleSelectedTag" />
           </div>
         </div>
       </div>
@@ -115,198 +122,208 @@ const ns = useNamespace('doc-timeline-item')
 </template>
 
 <style lang="scss" scoped>
-.doc-archive-title {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 40px;
+.doc-archive {
   display: flex;
-  align-items: center;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: flex-start;
-  margin: 48px 0;
-  white-space: nowrap;
-  letter-spacing: -0.02em;
-  gap: 12px;
+  gap: 32px;
   
-  .tag {
+  .doc-archive-title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
     justify-content: flex-start;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
     gap: 12px;
     
-    .doc-tag {
-      font-size: 16px;
-    }
-  }
-  
-  &:not(.tag) {
-    &:after {
-      position: relative;
-      left: -10px;
-      content: "...";
-      animation: dot 2s steps(3) infinite;
-      white-space: nowrap;
-    }
-    
-    @keyframes dot {
-      33% {
-        content: ".";
-      }
-      66% {
-        content: "..";
-      }
-      100% {
-        content: "...";
-      }
-    }
-  }
-}
-
-.doc-timeline {
-  display: flex;
-  flex-flow: column nowrap;
-  
-  --gap: 20px;
-  --size: 30px;
-  
-  .VPDoc-doc-timeline-item {
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    gap: var(--gap);
-    
-    &__line {
+    .tag {
       display: flex;
       align-items: center;
-      flex-flow: column nowrap;
-      justify-content: flex-end;
-      width: var(--size);
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      gap: 12px;
       
-      .icon {
-        width: 100%;
-        padding: 2px;
-        border: 2px solid var(--vp-c-brand);
-        border-radius: 50%;
-        aspect-ratio: 1 / 1;
-        
-        :deep(.svg-icon) {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          aspect-ratio: 1 / 1;
-          object-fit: contain;
-        }
-      }
-      
-      .line {
-        height: 100%;
-        border-left: 2px solid var(--vp-c-green-light);
+      .doc-tag {
+        font-size: 16px;
       }
     }
     
-    &__wrapper {
-      flex: 1;
-      width: 0;
-      padding-bottom: 48px;
-      
-      .group-header {
-        font-size: 24px;
-        line-height: var(--size);
-        letter-spacing: -0.02em;
+    &:not(.tag) {
+      &:after {
+        position: relative;
+        left: -10px;
+        content: "...";
+        animation: dot 2s steps(3) infinite;
+        white-space: nowrap;
       }
       
-      .group-content {
-        padding-left: var(--gap);
+      @keyframes dot {
+        33% {
+          content: ".";
+        }
+        66% {
+          content: "..";
+        }
+        100% {
+          content: "...";
+        }
+      }
+    }
+  }
+  
+  .doc-shici {
+  
+  }
+  
+  .doc-timeline {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    --gap: 20px;
+    --size: 30px;
+    
+    .VPDoc-doc-timeline-item {
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      gap: var(--gap);
+      
+      &__line {
+        display: flex;
+        align-items: center;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        width: var(--size);
         
-        .subgroup-header {
-          font-size: 20px;
-          line-height: 28px;
-          padding-top: 32px;
-          padding-bottom: 16px;
-          letter-spacing: -0.01em;
+        .icon {
+          width: 100%;
+          padding: 2px;
+          border: 2px solid var(--vp-c-brand);
+          border-radius: 50%;
+          aspect-ratio: 1 / 1;
+          
+          :deep(.svg-icon) {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+          }
         }
         
-        .subgroup-content {
-          display: flex;
-          overflow: hidden;
-          flex-flow: column nowrap;
-          justify-content: flex-start;
-          padding: 18px 18px;
-          transition: .3s;
-          border-radius: 4px;
-          gap: 18px;
+        .line {
+          height: 100%;
+          border-left: 2px solid var(--vp-c-green-light);
+        }
+      }
+      
+      &__wrapper {
+        flex: 1;
+        width: 0;
+        padding-bottom: 48px;
+        
+        .group-header {
+          font-size: 24px;
+          line-height: var(--size);
+          letter-spacing: -0.02em;
+        }
+        
+        .group-content {
+          padding-left: var(--gap);
           
-          .title {
-            font-size: 14px;
-            line-height: 1.2;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            transition: all 0.3s ease-in-out;
-            white-space: nowrap;
-            letter-spacing: 0.02em;
-            gap: 20px;
-            
-            a {
-              flex-shrink: 0;
-            }
-            
-            div {
-              font-size: 12px;
-              line-height: 1;
-              overflow: hidden;
-              flex: 1;
-              transition: all 0.3s ease-in-out;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              opacity: 0;
-            }
+          .subgroup-header {
+            font-size: 20px;
+            line-height: 28px;
+            padding-top: 32px;
+            padding-bottom: 16px;
+            letter-spacing: -0.01em;
           }
           
-          &:hover {
-            box-shadow: 0 2px 12px 0 v-bind(shadow);
+          .subgroup-content {
+            display: flex;
+            overflow: hidden;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            padding: 18px 18px;
+            transition: .3s;
+            border-radius: 4px;
+            gap: 18px;
             
             .title {
+              font-size: 14px;
+              line-height: 1.2;
+              display: flex;
+              align-items: flex-end;
+              justify-content: flex-start;
+              transition: all 0.3s ease-in-out;
+              white-space: nowrap;
+              letter-spacing: 0.02em;
+              gap: 20px;
+              
+              a {
+                flex-shrink: 0;
+              }
+              
               div {
-                opacity: 0.4;
+                font-size: 12px;
+                line-height: 1;
+                overflow: hidden;
+                flex: 1;
+                transition: all 0.3s ease-in-out;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                opacity: 0;
+              }
+            }
+            
+            &:hover {
+              box-shadow: 0 2px 12px 0 v-bind(shadow);
+              
+              .title {
+                div {
+                  opacity: 0.4;
+                }
               }
             }
           }
         }
       }
-    }
-    
-    &.current {
-      .icon {
-        border: 2px dashed var(--vp-c-brand);
+      
+      &.current {
+        .icon {
+          border: 2px dashed var(--vp-c-brand);
+        }
+        
+        .line {
+          border-left: 2px dashed var(--vp-c-green-light);
+        }
       }
       
-      .line {
-        border-left: 2px dashed var(--vp-c-green-light);
-      }
-    }
-    
-    &:last-child {
-      .line {
-        border-image: linear-gradient(
-                to top,
-                var(--vp-c-green-light) 0,
-                var(--vp-c-green-light) 5px,
-                transparent 5px,
-                transparent 10px,
-                var(--vp-c-green-light) 10px,
-                var(--vp-c-green-light) 15px,
-                transparent 15px,
-                transparent 20px,
-                var(--vp-c-green-light) 20px,
-                var(--vp-c-green-light) 25px,
-                transparent 25px,
-                transparent 30px,
-                var(--vp-c-green-light) 30px,
-                var(--vp-c-green-light) 100%
-        ) 1;
+      &:last-child {
+        .line {
+          border-image: linear-gradient(
+              to top,
+              var(--vp-c-green-light) 0,
+              var(--vp-c-green-light) 5px,
+              transparent 5px,
+              transparent 10px,
+              var(--vp-c-green-light) 10px,
+              var(--vp-c-green-light) 15px,
+              transparent 15px,
+              transparent 20px,
+              var(--vp-c-green-light) 20px,
+              var(--vp-c-green-light) 25px,
+              transparent 25px,
+              transparent 30px,
+              var(--vp-c-green-light) 30px,
+              var(--vp-c-green-light) 100%
+          ) 1;
+        }
       }
     }
   }
@@ -315,7 +332,6 @@ const ns = useNamespace('doc-timeline-item')
 @media (max-width: 960px) {
   .doc-archive-title {
     font-size: 22px !important;
-    margin: 32px 0;
   }
   
   .doc-timeline {

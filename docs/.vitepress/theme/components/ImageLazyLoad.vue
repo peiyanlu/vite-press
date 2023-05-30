@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import useObserver from '@theme/hooks/useObserver'
+import useLazyLoadObserver from '@theme/hooks/useLazyLoadObserver'
+import { withBase } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
 
@@ -9,7 +10,7 @@ const props = defineProps<{
 
 const imgRef = ref<HTMLImageElement | null>(null)
 watchEffect(() => {
-  const observer = useObserver()
+  const observer = useLazyLoadObserver()
   if (imgRef.value) {
     observer?.observe(imgRef.value)
   }
@@ -25,7 +26,7 @@ const def = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lP
     :data-src="src"
     :src="def"
     alt=""
-    @error="(e) => e.target.src = '/logo.svg'"
+    @error="(e) => e.target.src = withBase('/logo.svg')"
   />
 </template>
 

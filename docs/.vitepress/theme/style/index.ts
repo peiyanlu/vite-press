@@ -1,5 +1,7 @@
 import './base.css'
 
-import './home.css'
-
 import './cover.scss'
+
+import './font.css'
+
+import './home.css'

@@ -1,6 +1,7 @@
 import { Datum, WordCloud } from '@antv/g2plot'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
+
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
@@ -10,7 +11,7 @@ export default function useWordCloud<T extends Record<string, string | number>>(
   onClickCallback?: (data: T) => void,
 ) {
   const wordCloud = new WordCloud(dom, {
-    height: smAndSmaller.value ? 200 : 420,
+    height: smAndSmaller.value ? 200 : 320,
     data: data,
     wordField: 'name',
     weightField: 'value',

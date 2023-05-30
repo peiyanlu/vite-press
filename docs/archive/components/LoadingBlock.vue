@@ -5,15 +5,15 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
-const height = smAndSmaller.value ? '420px' : '200px'
+const height = smAndSmaller.value ? '200px' : '320px'
 </script>
 
 <template>
   <div class="empty-block">
     <div class="loader">
-      <div class="outer"></div>
-      <div class="middle"></div>
-      <div class="inner"></div>
+      <div class="outer" />
+      <div class="middle" />
+      <div class="inner" />
     </div>
   </div>
 </template>

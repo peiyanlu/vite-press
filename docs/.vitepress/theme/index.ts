@@ -1,7 +1,7 @@
 // 组件/公共组件
 import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue'
-import LayoutDocAfter from '@theme/components/LayoutDocAfter.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
+import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
 import SvgIcon from '@theme/components/SvgIcon.vue'
 import { ImagePreviewService } from '@theme/directives/image-preview'
 import { useEventListener } from '@vueuse/core'
@@ -34,7 +34,7 @@ export default <Theme>{
       },
       {
         'layout-bottom': () => h(Live2dWidget),
-        'doc-after': () => h(LayoutDocAfter),
+        'doc-after': () => h(SlotDocAfter),
       },
     )
   },

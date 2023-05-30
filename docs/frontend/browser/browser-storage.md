@@ -20,7 +20,7 @@ tags:
 ，服务器拿到 `cookie` 进行解析，就能拿到客户端的状态。也就是说，`cookie`
 的作用就是用来做状态存储的。
 
-**`cookie` 的具体实现过程：**
+**`cookie` 的实现过程：**
 
 1. 当用户访问 `web` 服务器后，`web` 服务器会获取用户的状态并且返回一些数据（`cookie`）给浏览器，浏览器会自动储存这些数据（`cookie`)。
 
@@ -169,35 +169,34 @@ const removeCookie = (name: string) => {
 }
 ```
 
-
 ## Web storage API
 
-- `Web Storage` 存储机制是对 `HTML4` 中 `cookie` 存储机制的一个改善。由于 `cookie` 存储机制有很多缺点，`HTML5`
-  不再使用它，转而使用改良后的 `Web Storage` 存储机制。
+`Web Storage` 存储机制是对 `HTML4` 中 `cookie` 存储机制的一个改善。由于 `cookie` 存储机制有很多缺点，`HTML5` 不再使用它，转而使用改良后的 `Web Storage` 存储机制。
 
-- `Web Storage` 提供两种类型的 `API`：`localStorage` 在本地永久性存储数据，除非显式将其删除或清空；`sessionStorage`
-  存储的数据只在会话期间有效，关闭浏览器则自动删除。
+`Web Storage` 提供两种类型的 `API`：`localStorage` 在本地永久性存储数据，除非显式将其删除或清空；`sessionStorage` 存储的数据只在会话期间有效，关闭浏览器则自动删除。
 
 ### localStorage
 
 `localStorage` 的存储都是字符串，如果是存储对象，那么在存储时就需要调用 `JSON.stringify` 方法，并且在取值时用 `JSON.parse`
 来解析成对象。
 
-与 `cookie` 的异同：
+**与 `cookie` 的异同：**
 
-**同：** 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
+- **同：**
+  
+  - 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
 
-**异：**
+- **异：**
+  
+  - 容量：`localStorage` 的容量上线为 `5MB`。
+  
+  - 只存储在客户端，默认不参与与服务器端的通讯，这样就很好的避免了 `cookie` 带来的性能和安全问题。
+  
+  - 接口封装：通过 `localStorage` 暴露在全局，并通过它的 `setItem` 和 `getItem` 等方法进行操作。
 
-- 容量：`localStorage` 的容量上线为 `5MB`。
+**应用场景：**
 
-- 只存储在客户端，默认不参与与服务器端的通讯，这样就很好的避免了 `cookie` 带来的性能和安全问题。
-
-- 接口封装：通过 `localStorage` 暴露在全局，并通过它的 `setItem` 和 `getItem` 等方法进行操作。
-
-应用场景：
-因为 `localStorage` 的较大容量和持久特性，可以利用 `localStorage` 存储一些内容稳定的资源；例如官网的 `logo`，存储 `Base64`
-格式的图片资源。
+- 因为 `localStorage` 的较大容量和持久特性，可以利用 `localStorage` 存储一些内容稳定的资源；例如官网的 `logo`，存储 `Base64` 格式的图片资源。
 
 ### sessionStorage
 
@@ -211,23 +210,23 @@ const removeCookie = (name: string) => {
 
 - 关闭对应浏览器标签或窗口，会清除对应的 `sessionStorage`。
 
-与 `localStorage` 的异同：
+**与 `localStorage` 的异同：**
 
-**同：**
+- **同：**
+  
+  - 容量：`sessionStorage` 的容量上线也为 `5MB`。
+  
+  - 只存储在客户端，默认不参与与服务器端的通讯。
+  
+  - 接口封装：除了名字变化，`sessionStorage` 的存储方式和操作方式均和 `localStorage` 一样。
+  
+  - `localStorage` 和 `sessionStorage` 只能存储字符串类型。
 
-- 容量：`sessionStorage` 的容量上线也为 `5MB`。
-
-- 只存储在客户端，默认不参与与服务器端的通讯。
-
-- 接口封装：除了名字变化，`sessionStorage` 的存储方式和操作方式均和 `localStorage` 一样。
-
-- `localStorage` 和 `sessionStorage` 只能存储字符串类型。
-
-**异：**
-
-- `sessionStorage` 将数据保存在 `Session` 对象中。而 `localStorage` 将数据保存在客户端本地的硬件设备，即使浏览器被关闭了该数据依然存在，下次打开浏览器访问网站时可以继续使用。
-
-- `localStorage` 的生命周期是永久的，`sessionStorage` 的生命周期是在仅在当前会话下有效。
+- **异：**
+  
+  - `sessionStorage` 将数据保存在 `Session` 对象中。而 `localStorage` 将数据保存在客户端本地的硬件设备，即使浏览器被关闭了该数据依然存在，下次打开浏览器访问网站时可以继续使用。
+  
+  - `localStorage` 的生命周期是永久的，`sessionStorage` 的生命周期是在仅在当前会话下有效。
 
 **应用场景：**
 
@@ -259,7 +258,7 @@ localStorage.clear();
 来进行存储，但是当数据量较大，或符合一定的规范时，我们可以使用 `indexedDB` 数据库来进行数据的存储，`indexedDB`
 数据库存储理论上没有大小的限制。
 
-`IndexedDB` 鼓励使用的基本模式如下所示：
+**`IndexedDB` 使用流程：**
 
 1. 创建数据仓库( `db.createObjectStore()` )
 
@@ -269,7 +268,9 @@ localStorage.clear();
 
 4. 关闭数据库( `db.close()` )
 
-**缺点：** `indexedDB` 属于非关系型数据库，操作繁琐，对新手不友好
+**缺点：**
+
+- `indexedDB` 属于非关系型数据库，操作繁琐，对新手不友好
 
 ### 用法
 
