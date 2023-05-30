@@ -9,7 +9,6 @@ import { algolia } from './config/search'
 
 
 const BASE_URL: string = '/vite-press/' as const
-
 const withBase = (path: string): string => `${ BASE_URL + path }`.replace(/\/+/g, '/')
 
 export default defineConfig({
@@ -104,3 +103,4 @@ export default defineConfig({
     ],
   },
 })
+

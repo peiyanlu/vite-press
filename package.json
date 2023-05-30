@@ -17,7 +17,6 @@
     "@types/node": "^18.16.14",
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",
-    "chokidar": "^3.5.3",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "live2d-lib": "^1.0.5",

@@ -5,7 +5,8 @@ import { DefaultTheme } from 'vitepress'
 
 
 export const menuMap: Record<string, string> = {
-  browser: '浏览器与网络',
+  browser: '浏览器',
+  network: '网络',
   build: '编译构建',
   code: '代码',
   css: 'CSS',
@@ -108,3 +109,4 @@ export const sidebar: DefaultTheme.Sidebar = navs
     sidebar[nav.link] = getSidebarItem(`docs${ nav.link }`)
     return sidebar
   }, {})
+
