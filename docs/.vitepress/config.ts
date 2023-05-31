@@ -3,9 +3,9 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
-
 import { nav, sidebar } from './config/menu'
 import { algolia } from './config/search'
+import './helper/restart-trigger'
 
 
 const BASE_URL: string = '/vite-press/' as const

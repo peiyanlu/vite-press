@@ -8,6 +8,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "clean": "npx rimraf node_modules pnpm-lock.yaml",
+    "dev": "run-p docs:dev watch",
+    "watch": "node scripts/watcher.mjs",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
@@ -17,11 +19,13 @@
     "@types/node": "^18.16.14",
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",
+    "chokidar": "^3.5.3",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "live2d-lib": "^1.0.5",
     "md5": "^2.3.0",
     "mkdirp": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.62.1",
     "vite-plugin-svg-icons": "^2.0.1",
