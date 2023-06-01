@@ -1,6 +1,8 @@
-// @ts-ignore
+export {}
 
-declare module globalThis {
-  var Gitalk: any
-  var jinrishici: any
+declare global {
+  interface Window {
+    Gitalk?: any;
+    jinrishici?: any;
+  }
 }

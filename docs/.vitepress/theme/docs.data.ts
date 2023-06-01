@@ -1,6 +1,5 @@
 import { spawn } from 'child_process'
-import fs from 'fs'
-import parseFrontmatter from 'gray-matter'
+import matter from 'gray-matter'
 import path from 'path'
 
 
@@ -45,8 +44,7 @@ export default {
     })
     // 解析文章 Frontmatter
     return await Promise.all(articleFiles.map(async (articleFile: string) => {
-      const articleContent = fs.readFileSync(articleFile, 'utf-8')
-      const { data } = parseFrontmatter(articleContent)
+      const { data } = matter.read(articleFile)
       
       const updatedDate = await getGitTimestamp(articleFile)
       const createdDate = await getGitTimestampCreate(articleFile)

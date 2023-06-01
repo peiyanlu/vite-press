@@ -1,5 +1,5 @@
 import { sync } from 'fast-glob'
-import * as matter from 'gray-matter'
+import matter from 'gray-matter'
 import { extname } from 'path'
 import { DefaultTheme } from 'vitepress'
 
@@ -24,12 +24,14 @@ export const menuMap: Record<string, string> = {
   windows: 'Windows',
 }
 
-interface NavItem extends DefaultTheme.NavItemWithLink {
-  order: number
-  sidebar: boolean
+interface CustomFrontMatter {
+  title: string;
+  order: number;
+  sidebar: boolean;
+  group: string;
 }
 
-const getNavItem = (path: string): NavItem[] => sync(
+const getNavItem = (path: string): DefaultTheme.NavItem[] => sync(
   `${ path }/**/**.md`.replace(/\/+/g, '/'),
   {
     onlyFiles: false,
@@ -37,36 +39,36 @@ const getNavItem = (path: string): NavItem[] => sync(
     ignore: [ `${ path }/index.md` ],
     deep: 2,
   },
-).reduce<NavItem[]>((groups, entry) => {
+).reduce<DefaultTheme.NavItem[]>((groups, entry) => {
   const { path } = entry
-  const { data } = matter.read(path)
+  const data = matter.read(path).data as CustomFrontMatter
   
   const link = path
     .replace(/^docs/, '')
     .replace('index.md', '')
     .replace(/\/+/g, '/')
   
-  groups.push({
+  const item: DefaultTheme.NavItemWithLink = {
     text: data.title,
     link: link,
     activeMatch: link,
     order: data.order ?? 0,
     sidebar: data.sidebar ?? false,
-  })
+  }
   
-  // if (data.group) {
-  //   const index = groups.findIndex(k => k.text === data.group)
-  //   if (index !== -1) {
-  //     (groups[index] as DefaultTheme.NavItemWithChildren).items.push(item)
-  //   } else {
-  //     groups.push({
-  //       text: data.title,
-  //       items: [ item ],
-  //     })
-  //   }
-  // } else {
-  //   groups.push(item)
-  // }
+  if (data.group) {
+    const index = groups.findIndex(k => k.text === data.group)
+    if (index !== -1) {
+      (groups[index] as DefaultTheme.NavItemWithChildren).items.push(item)
+    } else {
+      groups.push({
+        text: data.title as string,
+        items: [ item ],
+      })
+    }
+  } else {
+    groups.push(item)
+  }
   
   return groups.sort((a, b) => a.order - b.order)
 }, [])

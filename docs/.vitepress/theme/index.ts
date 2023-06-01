@@ -48,16 +48,14 @@ export default <Theme>{
 }
 
 const imagePreviewFn = () => {
-  if (!globalThis.document) return
-  
-  const scope = document.querySelector('.VPDoc .main')
+  const scope = globalThis.document?.querySelector('.VPDoc .main')
   if (!scope) return
   
   const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || ''
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
   
-  document
-    .querySelectorAll<HTMLImageElement>('p > img')
+  globalThis.document
+    ?.querySelectorAll<HTMLImageElement>('p > img')
     .forEach((img) => {
       img.setAttribute('style', 'cursor: pointer;')
       useEventListener(img, 'click', () => {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 
 const { title, isDark, site } = useData()
@@ -8,7 +8,12 @@ const { title, isDark, site } = useData()
 const baseUrl = globalThis.location?.origin + site.value.base
 const theme = computed(() => `${ baseUrl }giscus/noborder_${ isDark.value ? 'dark' : 'light' }.css`)
 
-const isGitee = globalThis.location?.host.includes('gitee')
+
+const isGitee = ref(false)
+
+onMounted(() => {
+  isGitee.value = location?.host.includes('gitee')
+})
 </script>
 
 <template>

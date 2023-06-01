@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import md5 from 'md5'
 import { useData } from 'vitepress'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-
-const commentRef = ref<HTMLHtmlElement | null>(null)
 
 const { page, title } = useData()
 
-const isGitee = globalThis.location?.host.includes('gitee')
+const commentRef = ref<HTMLHtmlElement | null>(null)
+const isGitee = ref(false)
+
+onMounted(()=>{
+  isGitee.value = location?.host.includes('gitee')
+})
 
 
 const handleLoad = () => {

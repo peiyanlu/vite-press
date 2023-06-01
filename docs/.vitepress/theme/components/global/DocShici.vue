@@ -34,7 +34,7 @@ const loaded = ref(false)
 
 const getResult = (): Promise<ShiciResult> => {
   return new Promise((resolve) => {
-    globalThis.jinrishici?.load((result: ShiciResult) => resolve(result))
+    global.jinrishici?.load((result: ShiciResult) => resolve(result))
   })
 }
 
