@@ -37,7 +37,7 @@ const getNavItem = (path: string): NavItem[] => sync(
     ignore: [ `${ path }/index.md` ],
     deep: 2,
   },
-).reduce<NavItem[]>((groups, entry, index) => {
+).reduce<NavItem[]>((groups, entry) => {
   const { path } = entry
   const { data } = matter.read(path)
   
@@ -53,6 +53,20 @@ const getNavItem = (path: string): NavItem[] => sync(
     order: data.order ?? 0,
     sidebar: data.sidebar ?? false,
   })
+  
+  // if (data.group) {
+  //   const index = groups.findIndex(k => k.text === data.group)
+  //   if (index !== -1) {
+  //     (groups[index] as DefaultTheme.NavItemWithChildren).items.push(item)
+  //   } else {
+  //     groups.push({
+  //       text: data.title,
+  //       items: [ item ],
+  //     })
+  //   }
+  // } else {
+  //   groups.push(item)
+  // }
   
   return groups.sort((a, b) => a.order - b.order)
 }, [])

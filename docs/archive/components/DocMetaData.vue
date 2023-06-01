@@ -2,7 +2,6 @@
 import { DocData } from '@theme/docs.data'
 import { breakpointsTailwind, useBreakpoints, useDateFormat, useTimeAgo } from '@vueuse/core'
 import { tags } from './archive'
-import DocTag from '../../.vitepress/theme/components/DocTag.vue'
 
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
@@ -64,7 +63,7 @@ const handleClick = (tag: string) => {
   flex-flow: column nowrap;
   justify-content: flex-start;
   gap: 8px;
-  
+
   .group {
     display: flex;
     align-items: center;
@@ -73,7 +72,7 @@ const handleClick = (tag: string) => {
     justify-content: flex-start;
     gap: 20px;
   }
-  
+
   .item {
     display: flex;
     align-items: center;
@@ -81,13 +80,13 @@ const handleClick = (tag: string) => {
     flex-shrink: 0;
     justify-content: flex-start;
     gap: 8px;
-    
+
     :deep(.svg-icon) {
       flex-shrink: 0;
       width: 16px;
       height: 16px;
     }
-    
+
     .tag-list {
       display: flex;
       align-items: center;
@@ -95,7 +94,7 @@ const handleClick = (tag: string) => {
       flex-flow: row wrap;
       justify-content: flex-start;
       gap: 6px;
-      
+
       .doc-tag {
         cursor: pointer;
       }

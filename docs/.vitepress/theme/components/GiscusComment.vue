@@ -6,7 +6,7 @@ import { computed } from 'vue'
 const { title, isDark, site } = useData()
 
 const baseUrl = globalThis.location?.origin + site.value.base
-const theme = computed(() => `${ baseUrl }${ isDark.value ? 'giscus/noborder_dark.css' : 'giscus/noborder_light.css' }`)
+const theme = computed(() => `${ baseUrl }giscus/noborder_${ isDark.value ? 'dark' : 'light' }.css`)
 
 const isGitee = globalThis.location?.host.includes('gitee')
 </script>

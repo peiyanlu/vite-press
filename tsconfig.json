@@ -14,11 +14,13 @@
       "@theme/*": [
         "docs/.vitepress/theme/*"
       ]
-    }
+    },
+    "types": [
+      "vite/client"
+    ]
   },
   "include": [
-    "env.d.ts",
-    "global.d.ts",
-    "docs/.vitepress/**/*"
+    "*.d.ts",
+    "docs/**/*"
   ]
 }

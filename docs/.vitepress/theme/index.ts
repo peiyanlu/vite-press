@@ -1,8 +1,6 @@
 // 组件/公共组件
-import ImageLazyLoad from '@theme/components/ImageLazyLoad.vue'
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
-import SvgIcon from '@theme/components/SvgIcon.vue'
 import { ImagePreviewService } from '@theme/directives/image-preview'
 import { useEventListener } from '@vueuse/core'
 import 'virtual:svg-icons-names'
@@ -11,7 +9,7 @@ import 'virtual:svg-icons-register'
 // 依赖
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { h, nextTick } from 'vue'
+import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
 
 // 样式文件
 import './style/index'
@@ -39,8 +37,13 @@ export default <Theme>{
     )
   },
   enhanceApp(ctx) {
-    ctx.app.component('svg-icon', SvgIcon)
-    ctx.app.component('image-lazy-load', ImageLazyLoad)
+    const components: Record<string, AsyncComponentLoader> = import.meta.glob('./components/global/*.vue')
+    Object
+      .entries(components)
+      .forEach(([ key, value ]) => {
+        const name = key.split('/').at(-1)?.split('.').at(0) as string
+        ctx.app.component(name, defineAsyncComponent(value))
+      })
   },
 }
 

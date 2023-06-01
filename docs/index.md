@@ -2,7 +2,7 @@
 layout: home
 
 title: 首页
-titleTemplate: Vite & Vue 驱动的静态站点生成器
+titleTemplate: 小路的开发笔记
 
 hero:
   name: 小路的开发笔记

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import DocShici from '@theme/components/DocShici.vue'
-import DocTag from '@theme/components/DocTag.vue'
 import { data, DocData } from '@theme/docs.data'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { useMagicKeys } from '@vueuse/core'
@@ -127,7 +125,7 @@ const ns = useNamespace('doc-timeline-item')
   flex-flow: column nowrap;
   justify-content: flex-start;
   gap: 32px;
-  
+
   .doc-archive-title {
     font-size: 32px;
     font-weight: 600;
@@ -139,28 +137,28 @@ const ns = useNamespace('doc-timeline-item')
     white-space: nowrap;
     letter-spacing: -0.02em;
     gap: 12px;
-    
+
     .tag {
       display: flex;
       align-items: center;
       flex-flow: row nowrap;
       justify-content: flex-start;
       gap: 12px;
-      
+
       .doc-tag {
         font-size: 16px;
       }
     }
-    
+
     &:not(.tag) {
       &:after {
         position: relative;
         left: -10px;
         content: "...";
-        animation: dot 2s steps(3) infinite;
+        animation: dot 3s steps(3) infinite;
         white-space: nowrap;
       }
-      
+
       @keyframes dot {
         33% {
           content: ".";
@@ -174,39 +172,39 @@ const ns = useNamespace('doc-timeline-item')
       }
     }
   }
-  
+
   .doc-shici {
-  
+
   }
-  
+
   .doc-timeline {
     display: flex;
     flex-flow: column nowrap;
-    
+
     --gap: 20px;
     --size: 30px;
-    
+
     .VPDoc-doc-timeline-item {
       position: relative;
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-start;
       gap: var(--gap);
-      
+
       &__line {
         display: flex;
         align-items: center;
         flex-flow: column nowrap;
         justify-content: flex-end;
         width: var(--size);
-        
+
         .icon {
           width: 100%;
           padding: 2px;
           border: 2px solid var(--vp-c-brand);
           border-radius: 50%;
           aspect-ratio: 1 / 1;
-          
+
           :deep(.svg-icon) {
             width: 100%;
             height: 100%;
@@ -215,27 +213,27 @@ const ns = useNamespace('doc-timeline-item')
             object-fit: contain;
           }
         }
-        
+
         .line {
           height: 100%;
           border-left: 2px solid var(--vp-c-green-light);
         }
       }
-      
+
       &__wrapper {
         flex: 1;
         width: 0;
         padding-bottom: 48px;
-        
+
         .group-header {
           font-size: 24px;
           line-height: var(--size);
           letter-spacing: -0.02em;
         }
-        
+
         .group-content {
           padding-left: var(--gap);
-          
+
           .subgroup-header {
             font-size: 20px;
             line-height: 28px;
@@ -243,7 +241,7 @@ const ns = useNamespace('doc-timeline-item')
             padding-bottom: 16px;
             letter-spacing: -0.01em;
           }
-          
+
           .subgroup-content {
             display: flex;
             overflow: hidden;
@@ -253,7 +251,7 @@ const ns = useNamespace('doc-timeline-item')
             transition: .3s;
             border-radius: 4px;
             gap: 18px;
-            
+
             .title {
               font-size: 14px;
               line-height: 1.2;
@@ -264,11 +262,11 @@ const ns = useNamespace('doc-timeline-item')
               white-space: nowrap;
               letter-spacing: 0.02em;
               gap: 20px;
-              
+
               a {
                 flex-shrink: 0;
               }
-              
+
               div {
                 font-size: 12px;
                 line-height: 1;
@@ -280,10 +278,10 @@ const ns = useNamespace('doc-timeline-item')
                 opacity: 0;
               }
             }
-            
+
             &:hover {
               box-shadow: 0 2px 12px 0 v-bind(shadow);
-              
+
               .title {
                 div {
                   opacity: 0.4;
@@ -293,35 +291,35 @@ const ns = useNamespace('doc-timeline-item')
           }
         }
       }
-      
+
       &.current {
         .icon {
           border: 2px dashed var(--vp-c-brand);
         }
-        
+
         .line {
           border-left: 2px dashed var(--vp-c-green-light);
         }
       }
-      
+
       &:last-child {
         .line {
           border-image: linear-gradient(
-              to top,
-              var(--vp-c-green-light) 0,
-              var(--vp-c-green-light) 5px,
-              transparent 5px,
-              transparent 10px,
-              var(--vp-c-green-light) 10px,
-              var(--vp-c-green-light) 15px,
-              transparent 15px,
-              transparent 20px,
-              var(--vp-c-green-light) 20px,
-              var(--vp-c-green-light) 25px,
-              transparent 25px,
-              transparent 30px,
-              var(--vp-c-green-light) 30px,
-              var(--vp-c-green-light) 100%
+                          to top,
+                          var(--vp-c-green-light) 0,
+                          var(--vp-c-green-light) 5px,
+                          transparent 5px,
+                          transparent 10px,
+                          var(--vp-c-green-light) 10px,
+                          var(--vp-c-green-light) 15px,
+                          transparent 15px,
+                          transparent 20px,
+                          var(--vp-c-green-light) 20px,
+                          var(--vp-c-green-light) 25px,
+                          transparent 25px,
+                          transparent 30px,
+                          var(--vp-c-green-light) 30px,
+                          var(--vp-c-green-light) 100%
           ) 1;
         }
       }
@@ -333,19 +331,19 @@ const ns = useNamespace('doc-timeline-item')
   .doc-archive-title {
     font-size: 22px !important;
   }
-  
+
   .doc-timeline {
     --gap: 14px;
     --size: 24px;
-    
+
     .VPDoc-doc-timeline-item {
       &__wrapper {
         padding-bottom: 32px;
-        
+
         .group-header {
           font-size: 22px;
         }
-        
+
         .group-content {
           .subgroup-header {
             font-size: 18px;

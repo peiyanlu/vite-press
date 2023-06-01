@@ -16,7 +16,7 @@ watcher
       const file = path.join(process.cwd(), 'docs/.vitepress/helper/restart-trigger.ts')
       fs.writeFileSync(
         file,
-        '// Trigger Restart',
+        `// ${ new Date() }`,
       )
     }
   })
