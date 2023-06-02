@@ -1,7 +1,5 @@
-import { sync } from 'fast-glob'
-import matter from 'gray-matter'
-import { extname } from 'path'
 import { DefaultTheme } from 'vitepress'
+import { flatNavs, getNavItem, getSidebarItem, NavItem } from '../helper/menu-helper'
 
 
 export const menuMap: Record<string, string> = {
@@ -24,105 +22,16 @@ export const menuMap: Record<string, string> = {
   windows: 'Windows',
 }
 
-interface CustomFrontMatter {
-  title: string;
-  order: number;
-  sidebar: boolean;
-  group: string;
-}
-
-const getNavItem = (path: string): DefaultTheme.NavItem[] => sync(
-  `${ path }/**/**.md`.replace(/\/+/g, '/'),
-  {
-    onlyFiles: false,
-    objectMode: true,
-    ignore: [ `${ path }/index.md` ],
-    deep: 2,
-  },
-).reduce<DefaultTheme.NavItem[]>((groups, entry) => {
-  const { path } = entry
-  const data = matter.read(path).data as CustomFrontMatter
-  
-  const link = path
-    .replace(/^docs/, '')
-    .replace('index.md', '')
-    .replace(/\/+/g, '/')
-  
-  const item: DefaultTheme.NavItemWithLink = {
-    text: data.title,
-    link: link,
-    activeMatch: link,
-    order: data.order ?? 0,
-    sidebar: data.sidebar ?? false,
-  }
-  
-  if (data.group) {
-    const index = groups.findIndex(k => k.text === data.group)
-    if (index !== -1) {
-      (groups[index] as DefaultTheme.NavItemWithChildren).items.push(item)
-    } else {
-      groups.push({
-        text: data.title as string,
-        items: [ item ],
-      })
-    }
-  } else {
-    groups.push(item)
-  }
-  
-  return groups.sort((a, b) => a.order - b.order)
-}, [])
-
-
-const getSidebarItem = (path: string): DefaultTheme.SidebarItem[] => {
-  const getItems = (path: string) => {
-    return sync(
-      `${ path }/**`.replace(/\/+/g, '/'),
-      {
-        onlyFiles: false,
-        objectMode: true,
-        ignore: [ '**/img/**', '**/components/**', '**/index.md' ],
-        deep: 1,
-      },
-    ).reduce<DefaultTheme.SidebarItem[]>((groups, article) => {
-      const { path, dirent, name } = article
-      const isFile = dirent.isFile()
-      
-      if (isFile) {
-        if ([ '.md' ].includes(extname(path))) {
-          const { data } = matter.read(path)
-          // 向前追加标题
-          groups.push({
-            text: data.title,
-            link: path
-              .replace(/^docs/, '')
-              .replace('.md', '')
-              .replace(/\/+/g, '/'),
-          })
-        }
-      } else {
-        const arr = getItems(path)
-        groups.push({
-          text: `[${ arr.length }] ${ menuMap[name] ?? name }`,
-          items: arr,
-          collapsed: arr.length < 10,
-        })
-      }
-      return groups
-    }, [])
-  }
-  
-  return getItems(path)
-}
-
 const navs = getNavItem('docs')
 
-export const nav: DefaultTheme.NavItem[] = navs.map(({ order, sidebar, ...other }) => other)
+export const nav: NavItem[] = navs.slice()
 
-export const sidebar: DefaultTheme.Sidebar = navs
+export const sidebar: DefaultTheme.Sidebar = flatNavs(nav)
   .filter(nav => nav.sidebar)
   .reduce<DefaultTheme.SidebarMulti>((sidebar, nav) => {
-    sidebar[nav.link] = getSidebarItem(`docs${ nav.link }`)
+    if ('activeMatch' in nav && nav.activeMatch) {
+      sidebar[nav.activeMatch] = getSidebarItem(`docs${ nav.activeMatch }`, { sidebarMapping: menuMap })
+    }
     return sidebar
   }, {})
 

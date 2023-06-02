@@ -34,7 +34,7 @@ const loaded = ref(false)
 
 const getResult = (): Promise<ShiciResult> => {
   return new Promise((resolve) => {
-    global.jinrishici?.load((result: ShiciResult) => resolve(result))
+    globalThis.jinrishici?.load((result: ShiciResult) => resolve(result))
   })
 }
 
@@ -80,7 +80,7 @@ watchEffect(async () => {
   justify-content: center;
   height: 16px;
   text-align: center;
-  
+
   &-content {
     line-height: 1;
     display: flex;
