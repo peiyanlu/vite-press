@@ -1,6 +1,6 @@
 import { sync } from 'fast-glob'
 import matter from 'gray-matter'
-import { dirname, extname } from 'path'
+import { dirname, extname, parse } from 'path'
 import { DefaultTheme } from 'vitepress'
 
 
@@ -106,7 +106,7 @@ export const getSidebarItem = (path: string, options?: BuildSidebarOptions): Def
     ).reduce<DefaultTheme.SidebarItem[]>((groups, article) => {
       const { path, dirent, name } = article
       const isFile = dirent.isFile()
-      
+      console.log(parse(path))
       if (isFile) {
         if ([ '.md' ].includes(extname(path))) {
           const { data } = matter.read(path)

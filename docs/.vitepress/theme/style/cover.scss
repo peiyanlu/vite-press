@@ -1,5 +1,6 @@
 body {
   overflow: overlay;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 :root {
@@ -41,16 +42,18 @@ body {
   .VPSidebarItem {
     position: relative;
     
-    .items {
-      .link {
-        padding-left: 8px !important;
+    @for $i from 1 through 3 {
+      &:has(.level-#{$i}) {
+        .items {
+          padding-left: calc($i * 8px);
+        }
       }
     }
     
     &::before {
       position: absolute;
       top: 50%;
-      left: -8px;
+      left: -12px;
       width: 6px;
       height: 6px;
       content: "";
@@ -61,7 +64,12 @@ body {
     }
     
     &.is-active {
-      background: linear-gradient(to right, transparent 0%, var(--vp-c-green-dimm-2) 35%, transparent 100%);
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--vp-c-green-dimm-2) 35%,
+        transparent 100%
+      );
       
       &::before {
         transform: scale(1) translateY(-50%);

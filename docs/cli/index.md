@@ -1,8 +1,8 @@
 ---
 title: CLI
 order: 3
-sidebar: false
-group: true
+sidebar: true
+group: false
 ---
 
 # CLI 

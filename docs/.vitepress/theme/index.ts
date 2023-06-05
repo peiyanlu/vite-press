@@ -1,18 +1,24 @@
 // 组件/公共组件
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
+// 依赖
 import { ImagePreviewService } from '@theme/directives/image-preview'
 import { useEventListener } from '@vueuse/core'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-
-// 依赖
 import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
-
 // 样式文件
 import './style/index'
+
+
+try {
+  useRegisterSW()
+} catch ( e ) {
+
+}
 
 
 // 渲染
@@ -41,7 +47,7 @@ export default <Theme>{
     Object
       .entries(components)
       .forEach(([ key, value ]) => {
-        const name = key.split('/').at(-1)?.split('.').at(0) as string
+        const name = key.split('/').pop()?.split('.').shift() as string
         ctx.app.component(name, defineAsyncComponent(value))
       })
   },

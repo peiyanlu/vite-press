@@ -4,7 +4,7 @@ import { useData, useRoute, withBase } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
 
-const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(globalThis?.navigator?.userAgent)
 
 const { isDark, site } = useData()
 const { path } = useRoute()
