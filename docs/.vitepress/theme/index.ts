@@ -4,7 +4,6 @@ import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
 // 依赖
 import { ImagePreviewService } from '@theme/directives/image-preview'
 import { useEventListener } from '@vueuse/core'
-import { useRegisterSW } from 'virtual:pwa-register/vue'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
 import { Theme, useData, inBrowser } from 'vitepress'
@@ -14,10 +13,8 @@ import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
 import './style/index'
 
 
-inBrowser && useRegisterSW()
-
 // 渲染
-export default <Theme>{
+export default {
   ...DefaultTheme,
   Layout: () => {
     const { frontmatter } = useData()
@@ -47,7 +44,7 @@ export default <Theme>{
         ctx.app.component(name, defineAsyncComponent(value))
       })
   },
-}
+} as Theme
 
 const imagePreviewFn = () => {
   if (!inBrowser) return

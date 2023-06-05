@@ -1,7 +1,7 @@
 import path from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
-import { VitePWA } from 'vite-plugin-pwa'
+import { withPwa } from '@vite-pwa/vitepress'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
 import { nav, sidebar } from './config/menu'
@@ -12,7 +12,7 @@ import './helper/restart-trigger'
 const BASE_URL: string = '/vite-press/' as const
 const withBase = (path: string): string => `${ BASE_URL + path }`.replace(/\/+/g, '/')
 
-export default defineConfig({
+export default withPwa(defineConfig({
   title: '笔记',
   titleTemplate: '开发笔记',
   description: '小路的开发笔记',
@@ -90,54 +90,6 @@ export default defineConfig({
       ],
     },
     plugins: [
-      VitePWA({
-        base: BASE_URL,
-        outDir: 'dist',
-        manifest: {
-          name: 'vite-press',
-          short_name: 'vite-press',
-          theme_color: '#FFFFFF',
-          icons: [
-            {
-              src: '/logo.svg',
-              sizes: '192x192',
-              type: 'image/svg',
-            },
-            {
-              src: '/logo.svg',
-              sizes: '512x512',
-              type: 'image/svg',
-            },
-          ],
-        },
-        includeAssets: [ 'logo.svg' ],
-        registerType: 'autoUpdate',
-        workbox: {
-          runtimeCaching: [
-            {
-              urlPattern: /someInterface/i, // 接口缓存 此处填你想缓存的接口正则匹配
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'interface-cache',
-              },
-            },
-            {
-              urlPattern: /(.*?)\.(js|css|ts)/, // js /css /ts静态资源缓存
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'js-css-cache',
-              },
-            },
-            {
-              urlPattern: /(.*?)\.(png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/, // 图片缓存
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'image-cache',
-              },
-            },
-          ],
-        },
-      }),
       createSvgIconsPlugin({
         // 指定需要缓存的图标文件夹
         iconDirs: [ path.resolve(process.cwd(), 'docs/public/icons') ],
@@ -154,5 +106,51 @@ export default defineConfig({
       chunkSizeWarningLimit: 1000,
     }
   },
-})
+  pwa: {
+    manifest: {
+      name: 'vite-press',
+      short_name: 'vite-press',
+      theme_color: '#FFFFFF',
+      icons: [
+        {
+          src: '/logo.svg',
+          sizes: '192x192',
+          type: 'image/svg',
+        },
+        {
+          src: '/logo.svg',
+          sizes: '512x512',
+          type: 'image/svg',
+        },
+      ],
+    },
+    includeAssets: [ 'logo.svg' ],
+    registerType: 'autoUpdate',
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: /someInterface/i, // 接口缓存 此处填你想缓存的接口正则匹配
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'interface-cache',
+          },
+        },
+        {
+          urlPattern: /(.*?)\.(js|css|ts)/, // js /css /ts静态资源缓存
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'js-css-cache',
+          },
+        },
+        {
+          urlPattern: /(.*?)\.(png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/, // 图片缓存
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'image-cache',
+          },
+        },
+      ],
+    },
+  }
+}))
 
