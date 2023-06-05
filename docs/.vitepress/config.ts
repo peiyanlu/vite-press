@@ -92,7 +92,7 @@ export default defineConfig({
     plugins: [
       VitePWA({
         base: BASE_URL,
-        outDir: 'docs/.vitepress/dist',
+        outDir: 'dist',
         manifest: {
           name: 'vite-press',
           short_name: 'vite-press',
