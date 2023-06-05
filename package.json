@@ -44,9 +44,7 @@
     },
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@algolia/client-search",
-        "@docsearch/js",
-        "@docsearch/react"
+        "@algolia/client-search"
       ]
     }
   }

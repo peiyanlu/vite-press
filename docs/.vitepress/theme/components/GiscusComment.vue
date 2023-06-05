@@ -1,18 +1,16 @@
 <script lang="ts" setup>
-import { useData } from 'vitepress'
-import { computed, onMounted, ref } from 'vue'
+import { inBrowser, useData } from 'vitepress'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 
 
 const { title, isDark, site } = useData()
 
-const baseUrl = globalThis.location?.origin + site.value.base
-const theme = computed(() => `${ baseUrl }giscus/noborder_${ isDark.value ? 'dark' : 'light' }.css`)
 
-
+const theme = computed(() => `https://peiyanlu.github.io${ site.value.base }giscus/noborder_${ isDark.value ? 'dark' : 'light' }.css`)
 const isGitee = ref(false)
 
 onMounted(() => {
-  isGitee.value = location?.host.includes('gitee')
+  isGitee.value = inBrowser && location.host.includes('gitee')
 })
 </script>
 

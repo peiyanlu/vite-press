@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { withBase } from 'vitepress'
+import { withBase, inBrowser } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
 
@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 function useLazyLoadObserver() {
-  if (!globalThis.IntersectionObserver) return undefined
+  if (!inBrowser) return undefined
   
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

@@ -149,6 +149,9 @@ export default defineConfig({
       }),
       visualizer(),
     ],
+    build: {
+      chunkSizeWarningLimit: 1000,
+    }
   },
 })
 

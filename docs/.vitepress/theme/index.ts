@@ -7,19 +7,14 @@ import { useEventListener } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import { Theme, useData } from 'vitepress'
+import { Theme, useData, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
 // 样式文件
 import './style/index'
 
 
-try {
-  useRegisterSW()
-} catch ( e ) {
-
-}
-
+inBrowser && useRegisterSW()
 
 // 渲染
 export default <Theme>{
@@ -47,21 +42,24 @@ export default <Theme>{
     Object
       .entries(components)
       .forEach(([ key, value ]) => {
-        const name = key.split('/').pop()?.split('.').shift() as string
+        // const name = key.split('/').pop()?.split('.').shift() as string
+        const name = key.split('/').at(-1)?.split('.').at(0) as string
         ctx.app.component(name, defineAsyncComponent(value))
       })
   },
 }
 
 const imagePreviewFn = () => {
-  const scope = globalThis.document?.querySelector('.VPDoc .main')
+  if (!inBrowser) return
+  
+  const scope = document.querySelector('.VPDoc .main')
   if (!scope) return
   
   const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || ''
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
   
-  globalThis.document
-    ?.querySelectorAll<HTMLImageElement>('p > img')
+  document
+    .querySelectorAll<HTMLImageElement>('p > img')
     .forEach((img) => {
       img.setAttribute('style', 'cursor: pointer;')
       useEventListener(img, 'click', () => {

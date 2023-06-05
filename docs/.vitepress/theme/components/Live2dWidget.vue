@@ -4,13 +4,12 @@ import { useData, useRoute, withBase } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
 
-const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(globalThis?.navigator?.userAgent)
-
 const { isDark, site } = useData()
 const { path } = useRoute()
 
 const elRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
+  const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   if (elRef.value && !isMobile() && !path.endsWith(site.value.base)) {
     Live2dWidget.init({
       canvas: {

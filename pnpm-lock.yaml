@@ -213,18 +213,18 @@ packages:
       '@antv/color-util': 2.0.6
       '@antv/scale': 0.3.18
       '@antv/util': 2.0.17
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/color-util@2.0.6:
     resolution: {integrity: sha512-KnPEaAH+XNJMjax9U35W67nzPI+QQ2x27pYlzmSIWrbj4/k8PGrARXfzDTjwoozHJY8qG62Z+Ww6Alhu2FctXQ==}
     dependencies:
       '@antv/util': 2.0.17
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
-  /@antv/component@0.8.34:
-    resolution: {integrity: sha512-dCQ6mGDNEE8eGcXCN8n0kZcx/k+xnOzkGJg9UNDfxawPP1wZ+4zVFXSaHpaqIFAamS4Rz8YHsSFXAj8HuBCbIQ==}
+  /@antv/component@0.8.35:
+    resolution: {integrity: sha512-VnRa5X77nBPI952o2xePEEMSNZ6g2mcUDrQY8mVL2kino/8TFhqDq5fTRmDXZyWyIYd4ulJTz5zgeSwAnX/INQ==}
     dependencies:
       '@antv/color-util': 2.0.6
       '@antv/dom-util': 2.0.4
@@ -234,7 +234,7 @@ packages:
       '@antv/scale': 0.3.18
       '@antv/util': 2.0.17
       fecha: 4.2.3
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/coord@0.3.1:
@@ -242,13 +242,13 @@ packages:
     dependencies:
       '@antv/matrix-util': 3.1.0-beta.3
       '@antv/util': 2.0.17
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/dom-util@2.0.4:
     resolution: {integrity: sha512-2shXUl504fKwt82T3GkuT4Uoc6p9qjCKnJ8gXGLSW4T1W37dqf9AV28aCfoVPHp2BUXpSsB+PAJX2rG/jLHsLQ==}
     dependencies:
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/event-emitter@0.1.3:
@@ -268,7 +268,7 @@ packages:
       d3-interpolate: 1.4.0
       d3-timer: 1.0.10
       detect-browser: 5.3.0
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/g-canvas@0.5.14:
@@ -280,7 +280,7 @@ packages:
       '@antv/path-util': 2.0.15
       '@antv/util': 2.0.17
       gl-matrix: 3.4.3
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/g-math@0.1.9:
@@ -297,7 +297,7 @@ packages:
       '@antv/g-math': 0.1.9
       '@antv/util': 2.0.17
       detect-browser: 5.3.0
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/g2@4.2.10:
@@ -306,7 +306,7 @@ packages:
       '@antv/adjust': 0.2.5
       '@antv/attr': 0.3.5
       '@antv/color-util': 2.0.6
-      '@antv/component': 0.8.34
+      '@antv/component': 0.8.35
       '@antv/coord': 0.3.1
       '@antv/dom-util': 2.0.4
       '@antv/event-emitter': 0.1.3
@@ -317,7 +317,7 @@ packages:
       '@antv/path-util': 2.0.15
       '@antv/scale': 0.3.18
       '@antv/util': 2.0.17
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/g2plot@2.4.31:
@@ -336,7 +336,7 @@ packages:
       fmin: 0.0.2
       pdfast: 0.2.0
       size-sensor: 1.0.1
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/matrix-util@3.0.4:
@@ -344,7 +344,7 @@ packages:
     dependencies:
       '@antv/util': 2.0.17
       gl-matrix: 3.4.3
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/matrix-util@3.1.0-beta.3:
@@ -352,7 +352,7 @@ packages:
     dependencies:
       '@antv/util': 2.0.17
       gl-matrix: 3.4.3
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/path-util@2.0.15:
@@ -360,7 +360,7 @@ packages:
     dependencies:
       '@antv/matrix-util': 3.0.4
       '@antv/util': 2.0.17
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/scale@0.3.18:
@@ -368,14 +368,14 @@ packages:
     dependencies:
       '@antv/util': 2.0.17
       fecha: 4.2.3
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@antv/util@2.0.17:
     resolution: {integrity: sha512-o6I9hi5CIUvLGDhth0RxNSFDRwXeywmt6ExR4+RmVAzIi48ps6HUy+svxOCayvrPBN37uE6TAc2KDofRo0nK9Q==}
     dependencies:
       csstype: 3.1.2
-      tslib: 2.5.2
+      tslib: 2.5.3
     dev: true
 
   /@apideck/better-ajv-errors@0.3.6(ajv@8.12.0):
@@ -700,8 +700,8 @@ packages:
       '@babel/plugin-transform-optional-chaining': 7.22.3(@babel/core@7.22.1)
     dev: true
 
-  /@babel/plugin-proposal-private-property-in-object@7.21.0(@babel/core@7.22.1):
-    resolution: {integrity: sha512-ha4zfehbJjc5MmXBlHec1igel5TJXXLDDRbuJ4+XT2TJcyD9/V1919BA8gMvsdHcNMBy4WBUBiRb3nw/EQUtBw==}
+  /@babel/plugin-proposal-private-property-in-object@7.21.10(@babel/core@7.22.1):
+    resolution: {integrity: sha512-3YybmT8FN4sZFXp0kTr9Gbu90wAIhC3feNung+qcRQ1wALGoSHgOz1c+fR3ZLGZ0LXqIpYmtE6Faua6tMDarUg==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1464,7 +1464,7 @@ packages:
       '@babel/helper-validator-option': 7.21.0
       '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.18.6(@babel/core@7.22.1)
       '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.22.3(@babel/core@7.22.1)
-      '@babel/plugin-proposal-private-property-in-object': 7.21.0(@babel/core@7.22.1)
+      '@babel/plugin-proposal-private-property-in-object': 7.21.10(@babel/core@7.22.1)
       '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.22.1)
       '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.22.1)
       '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.22.1)
@@ -4611,8 +4611,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /rollup@3.23.0:
-    resolution: {integrity: sha512-h31UlwEi7FHihLe1zbk+3Q7z1k/84rb9BSwmBSr/XjOCEaBJ2YyedQDuM0t/kfOS0IxM+vk1/zI9XxYj9V+NJQ==}
+  /rollup@3.23.1:
+    resolution: {integrity: sha512-ybRdFVHOoljGEFILHLd2g/qateqUdjE6YS41WXq4p3C/WwD3xtWxV4FYWETA1u9TeXQc5K8L8zHE5d/scOvrOQ==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -5150,8 +5150,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib@2.5.2:
-    resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
+  /tslib@2.5.3:
+    resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
 
   /type-fest@0.16.0:
@@ -5362,7 +5362,7 @@ packages:
       '@types/node': 18.16.14
       esbuild: 0.17.19
       postcss: 8.4.24
-      rollup: 3.23.0
+      rollup: 3.23.1
       sass: 1.62.1
     optionalDependencies:
       fsevents: 2.3.2
