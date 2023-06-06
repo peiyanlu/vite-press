@@ -44,6 +44,5 @@ watchEffect(() => {
   z-index: var(--vp-z-index-footer);
   right: 0;
   bottom: 0;
-  opacity: 0.85;
 }
 </style>

@@ -1,9 +1,5 @@
 <script lang="ts" setup>
 import GiscusComment from '@theme/components/GiscusComment.vue'
-import { useData } from 'vitepress'
-
-
-const { frontmatter } = useData()
 
 
 </script>

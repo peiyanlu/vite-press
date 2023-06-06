@@ -1,6 +1,7 @@
 // 组件/公共组件
 import Live2dWidget from '@theme/components/Live2dWidget.vue'
 import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
+import SlotDocFooterBefore from "@theme/components/SlotDocFooterBefore.vue";
 // 依赖
 import { ImagePreviewService } from '@theme/directives/image-preview'
 import { useEventListener } from '@vueuse/core'
@@ -18,11 +19,11 @@ export default {
   ...DefaultTheme,
   Layout: () => {
     const { frontmatter } = useData()
-    
+
     nextTick(() => {
       imagePreviewFn()
     }).catch(e => console.error(e))
-    
+
     return h(
       DefaultTheme.Layout,
       {
@@ -31,6 +32,7 @@ export default {
       {
         'layout-bottom': () => h(Live2dWidget),
         'doc-after': () => h(SlotDocAfter),
+        'doc-footer-before': ()=>h(SlotDocFooterBefore)
       },
     )
   },
@@ -48,13 +50,13 @@ export default {
 
 const imagePreviewFn = () => {
   if (!inBrowser) return
-  
+
   const scope = document.querySelector('.VPDoc .main')
   if (!scope) return
-  
+
   const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || ''
   const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
-  
+
   document
     .querySelectorAll<HTMLImageElement>('p > img')
     .forEach((img) => {
