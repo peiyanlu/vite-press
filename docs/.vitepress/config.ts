@@ -1,11 +1,9 @@
-import path from 'path'
-import { visualizer } from 'rollup-plugin-visualizer'
-import { fileURLToPath } from 'url'
 import { withPwa } from '@vite-pwa/vitepress'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from 'vitepress'
 import { nav, sidebar } from './config/menu'
+import { pwa } from './config/pwa'
 import { algolia } from './config/search'
+import { vite } from './config/vite'
 import './helper/restart-trigger'
 
 
@@ -72,85 +70,8 @@ export default withPwa(defineConfig({
       label: '中文',
       lang: 'zh-CN',
     },
-    // zh: {
-    //   label: '中文d',
-    //   lang: 'zh-CN',
-    //   link: '/zh-CN/'
-    // }
   },
-  vite: {
-    resolve: {
-      alias: [
-        {
-          find: '@theme',
-          replacement: fileURLToPath(
-            new URL('./theme', import.meta.url),
-          ),
-        },
-      ],
-    },
-    plugins: [
-      createSvgIconsPlugin({
-        // 指定需要缓存的图标文件夹
-        iconDirs: [ path.resolve(process.cwd(), 'docs/public/icons') ],
-        // 指定symbolId格式
-        symbolId: 'icon-[dir]-[name]',
-        // 自定义插入位置
-        inject: 'body-last',
-        // 自定义元素id
-        customDomId: '__svg__icons__dom__',
-      }),
-      visualizer(),
-    ],
-    build: {
-      chunkSizeWarningLimit: 1000,
-    }
-  },
-  pwa: {
-    manifest: {
-      name: 'vite-press',
-      short_name: 'vite-press',
-      theme_color: '#FFFFFF',
-      icons: [
-        {
-          src: '/logo.svg',
-          sizes: '192x192',
-          type: 'image/svg',
-        },
-        {
-          src: '/logo.svg',
-          sizes: '512x512',
-          type: 'image/svg',
-        },
-      ],
-    },
-    includeAssets: [ 'logo.svg' ],
-    registerType: 'autoUpdate',
-    workbox: {
-      runtimeCaching: [
-        {
-          urlPattern: /someInterface/i, // 接口缓存 此处填你想缓存的接口正则匹配
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'interface-cache',
-          },
-        },
-        {
-          urlPattern: /(.*?)\.(js|css|ts)/, // js /css /ts静态资源缓存
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'js-css-cache',
-          },
-        },
-        {
-          urlPattern: /(.*?)\.(png|jpe?g|svg|gif|bmp|psd|tiff|tga|eps)/, // 图片缓存
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'image-cache',
-          },
-        },
-      ],
-    },
-  }
+  vite: vite,
+  pwa: pwa,
 }))
 

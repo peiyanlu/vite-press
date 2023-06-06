@@ -361,6 +361,12 @@ export const NAV_DATA: NavData[] = [
         desc: 'Rust-based platform for the Web',
         link: 'https://swc.rs',
       },
+      {
+        icon: 'https://vite-pwa-org.netlify.app/favicon.svg',
+        title: 'Vite PWA',
+        desc: 'Vite 的零配置和与框架无关的 PWA 插件',
+        link: 'https://vite-pwa-org.netlify.app/',
+      },
     ],
   },
   {

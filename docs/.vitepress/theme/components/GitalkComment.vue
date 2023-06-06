@@ -9,13 +9,13 @@ const { page, title } = useData()
 const commentRef = ref<HTMLHtmlElement | null>(null)
 const isGitee = ref(false)
 
-onMounted(()=>{
+onMounted(() => {
   isGitee.value = inBrowser && location.host.includes('gitee')
 })
 
 const handleLoad = () => {
   if (commentRef.value && inBrowser) {
-    new global.Gitalk({
+    new (window as any).Gitalk({
       clientID: 'd043e806d74ff3ecfa64',
       clientSecret: '66f2fa78f067e27de59b28156a4be87c79e1eb94',
       repo: 'vite-press',
