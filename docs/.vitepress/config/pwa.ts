@@ -31,7 +31,6 @@ export const pwa: PwaOptions = {
     cleanupOutdatedCaches: true,
     clientsClaim: true,
     skipWaiting: true,
-    globDirectory: '.vitepress/dist',
     globPatterns: [ '**/*.{css,js,html,svg,png,ico,txt,woff2,xml,txt}' ],
     globIgnores: [ 'assets/images/**', 'assets/icons/**', 'assets/svg/**' ],
     runtimeCaching: [

@@ -1,8 +1,12 @@
 <script lang="ts" setup>
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import Live2dWidget from 'live2d-lib'
 import { useData, useRoute, withBase } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const xlAndSmaller = breakpoints.smaller('xl')
 
 const { isDark, site } = useData()
 const { path } = useRoute()
@@ -10,7 +14,8 @@ const { path } = useRoute()
 const elRef = ref<HTMLDivElement | null>(null)
 watchEffect(() => {
   const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  if (elRef.value && !isMobile() && !path.endsWith(site.value.base)) {
+  
+  if (elRef.value && !isMobile() && !path.endsWith(site.value.base) && !xlAndSmaller.value) {
     Live2dWidget.init({
       canvas: {
         width: 180,
@@ -23,6 +28,8 @@ watchEffect(() => {
       },
       cubismCorePath: withBase('/live2d/core/live2dCubismCore.min.js'),
     })
+  } else {
+    Live2dWidget.release()
   }
 })
 </script>

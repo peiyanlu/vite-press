@@ -1,7 +1,7 @@
 .git
 .idea
 node_modules
-docs/.vitepress/dist
-docs/.vitepress/cache
+**/.vitepress/dist
+**/.vitepress/cache
 /public
-docs/dev-dist
+**/dev-dist
