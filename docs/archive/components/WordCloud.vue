@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { Datum, WordCloud } from '@antv/g2plot'
-import type { DocData } from '@theme/docs.data'
+import type { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { tags } from './archive'
@@ -91,7 +91,7 @@ onMounted(() => {
   canvas {
     cursor: inherit !important;
   }
-
+  
   .g2-tooltip-value {
     margin-left: 6px !important;
   }

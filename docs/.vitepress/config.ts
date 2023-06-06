@@ -1,14 +1,12 @@
 import { withPwa } from '@vite-pwa/vitepress'
 import { defineConfig } from 'vitepress'
+import { BASE_URL, withBase } from './config/common'
 import { nav, sidebar } from './config/menu'
 import { pwa } from './config/pwa'
 import { algolia } from './config/search'
 import { vite } from './config/vite'
 import './helper/restart-trigger'
 
-
-const BASE_URL: string = '/vite-press/' as const
-const withBase = (path: string): string => `${ BASE_URL + path }`.replace(/\/+/g, '/')
 
 export default withPwa(defineConfig({
   title: '笔记',

@@ -1,32 +1,32 @@
-import { data, DocData } from '@theme/docs.data'
+import { data, DocData } from '@theme/data/docs.data'
 
 
 type TimelineData = Record<string, Record<string, DocData[]>>
 
 export const tags = data
-    .filter(k => k.tags?.length)
-    .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
-      item.tags?.forEach(tag => {
-        (tagsRecords[tag] ??= []).push(item)
-        
-        tagsRecords[tag].sort((a, b) => b.createdDate - a.createdDate)
-      })
-      return tagsRecords
-    }, {})
+  .filter(k => k.tags?.length)
+  .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
+    item.tags?.forEach(tag => {
+      (tagsRecords[tag] ??= []).push(item)
+      
+      tagsRecords[tag].sort((a, b) => b.createdDate - a.createdDate)
+    })
+    return tagsRecords
+  }, {})
 
 export const getTimeline = (list: DocData[] = data) => {
   return list
-      .sort((a, b) => b.createdDate - a.createdDate)
-      .reduce<TimelineData>((list, item) => {
-        const year: string = `${ new Date(item.createdDate).getFullYear() }年`
-        const month: string = `${ new Date(item.createdDate).getMonth() + 1 }月`
-        
-        list[year] ??= {}
-        
-        ;(list[year][month] ??= []).push(item)
-        
-        return list
-      }, {})
+    .sort((a, b) => b.createdDate - a.createdDate)
+    .reduce<TimelineData>((list, item) => {
+      const year: string = `${ new Date(item.createdDate).getFullYear() }年`
+      const month: string = `${ new Date(item.createdDate).getMonth() + 1 }月`
+      
+      list[year] ??= {}
+      
+      ;(list[year][month] ??= []).push(item)
+      
+      return list
+    }, {})
 }
 
 /**

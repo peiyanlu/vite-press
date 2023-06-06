@@ -1,8 +1,8 @@
 import { PwaOptions } from '@vite-pwa/vitepress'
+import { withBase } from './common'
 
 
 export const pwa: PwaOptions = {
-  outDir: '.vitepress/dist',
   strategies: 'generateSW',
   registerType: 'autoUpdate',
   includeManifestIcons: false,
@@ -15,12 +15,12 @@ export const pwa: PwaOptions = {
     theme_color: '#FFFFFF',
     icons: [
       {
-        src: '/pwa-192x192.svg',
+        src: withBase('/pwa-192x192.svg'),
         sizes: '192x192',
         type: 'image/svg+xml',
       },
       {
-        src: '/pwa-512x512.svg',
+        src: withBase('/pwa-512x512.svg'),
         sizes: '512x512',
         type: 'image/svg+xml',
       },
@@ -31,6 +31,7 @@ export const pwa: PwaOptions = {
     cleanupOutdatedCaches: true,
     clientsClaim: true,
     skipWaiting: true,
+    globDirectory: '.vitepress/dist',
     globPatterns: [ '**/*.{css,js,html,svg,png,ico,txt,woff2,xml,txt}' ],
     globIgnores: [ 'assets/images/**', 'assets/icons/**', 'assets/svg/**' ],
     runtimeCaching: [
