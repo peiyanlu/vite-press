@@ -1,22 +1,29 @@
 <script lang="ts" setup>
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 
 const { frontmatter } = useData()
 
+const handleRouter = () => {
 
+}
 </script>
 
 <template>
   <div class="doc-footer-before">
     <div v-if="frontmatter.tags?.length" class="doc-tags">
-      <svg-icon name="tags"/>
+      <svg-icon name="tags" />
       <div class="tag-list">
-        <doc-tag
+        <a
           v-for="tag of frontmatter.tags"
           :key="tag"
-          :text="tag"
-        />
+          :href="withBase(`/archive/?tag=${encodeURIComponent(tag)}`)"
+        >
+          <doc-tag
+            :text="tag"
+            @click="handleRouter"
+          />
+        </a>
       </div>
     </div>
   </div>
@@ -25,22 +32,22 @@ const { frontmatter } = useData()
 <style lang="scss" scoped>
 .doc-footer-before {
   margin: 32px 0;
-
+  
   .doc-tags {
     display: flex;
     align-items: center;
     flex-flow: row wrap;
     flex-shrink: 0;
     justify-content: flex-start;
-    gap: 12px;
     margin: 12px 0;
-
+    gap: 12px;
+    
     :deep(.svg-icon) {
       flex-shrink: 0;
       width: 22px;
       height: 22px;
     }
-
+    
     .tag-list {
       display: flex;
       align-items: center;
@@ -48,7 +55,7 @@ const { frontmatter } = useData()
       flex-flow: row wrap;
       justify-content: flex-start;
       gap: 6px;
-
+      
       .doc-tag {
         font-size: 12px;
       }

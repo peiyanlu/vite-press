@@ -6,7 +6,9 @@ tags:
   - code
 ---
 
+
 # 应用
+
 
 ## 交换对象的Key和Value
 
@@ -67,4 +69,27 @@ const mkdirsSync = (dirname: string) => {
 };
 
 mkdirsSync('aa/bb/cc')
+```
+
+## 获取URL参数
+
+```ts
+// 将url中的查询条件转为对象
+export const getUrlSearchToObject = (urlSearch = location.search) => Object.fromEntries(new URLSearchParams(urlSearch))
+```
+
+## 对象转URL字符串
+
+```ts
+Object.keys(param).map(key => `${ key }=${ param[key] }`).join('&')
+
+
+const queryString = Object.entries(params).reduce((acc, [ key, value ]) => `${ acc }${ key }=${ value }&`, "?").slice(0, -1);
+```
+
+## 修改URL参数不刷新
+
+```ts
+const newUrl = location.href.split(location.search).shift()
+history.replaceState('', '', nerUrl)
 ```

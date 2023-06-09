@@ -1,6 +1,5 @@
 import { spawn } from 'child_process'
 import matter from 'gray-matter'
-import path from 'path'
 
 
 interface FrontMatterResult {
@@ -32,18 +31,14 @@ export const getGitTimestampCreate = (file: string) => new Promise<number>((reso
   child.on('error', () => resolve(Date.now()))
 })
 
-const excludedFiles: string[] = [ 'index.md' ]
+// 排除不必要文件
+const ignoredIndex: string[] = [ 'archive' ].map(name => `!**/${ name }/index.md`)
 
 export default {
-  watch: [ 'docs/**/*.md' ],
+  watch: [ 'docs/**/*.md', ...ignoredIndex ],
   async load(watchedFiles: string[]): Promise<DocData[]> {
-    // 排除不必要文件
-    const articleFiles = watchedFiles.filter((file: string) => {
-      const filename = path.basename(file)
-      return !excludedFiles.includes(filename)
-    })
     // 解析文章 Frontmatter
-    return await Promise.all(articleFiles.map(async (articleFile: string) => {
+    return await Promise.all(watchedFiles.map(async (articleFile: string) => {
       const { data } = matter.read(articleFile)
       
       const updatedDate = await getGitTimestamp(articleFile)

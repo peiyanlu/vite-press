@@ -24,7 +24,7 @@ function useWordCloud<T extends Record<string, string | number>>(
   onClickCallback?: (data: T) => void,
 ) {
   const wordCloud = new WordCloud(dom, {
-    height: smAndSmaller.value ? 200 : 320,
+    height: smAndSmaller.value ? 200 : 300,
     data: data,
     wordField: 'name',
     weightField: 'value',
@@ -75,14 +75,16 @@ const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags)
 
 const wordCloudRef = ref<HTMLDivElement | null>(null)
 onMounted(() => {
-  const { destroy } = useWordCloud(
-    wordCloudRef.value,
-    initWordCloud(tags),
-    (data) => {
-      emit('getSelected', data.name, tags[data.name])
-    },
-  )
-  onBeforeUnmount(() => destroy())
+  if (wordCloudRef.value) {
+    const { destroy } = useWordCloud(
+      wordCloudRef.value,
+      initWordCloud(tags),
+      (data) => {
+        emit('getSelected', data.name, tags[data.name])
+      },
+    )
+    onBeforeUnmount(() => destroy())
+  }
 })
 </script>
 

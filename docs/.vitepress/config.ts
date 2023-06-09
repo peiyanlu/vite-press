@@ -1,4 +1,5 @@
 import { withPwa } from '@vite-pwa/vitepress'
+import fs from 'fs'
 import { defineConfig } from 'vitepress'
 import { BASE_URL, withBase } from './config/common'
 import { nav, sidebar } from './config/menu'
@@ -7,6 +8,8 @@ import { algolia } from './config/search'
 import { vite } from './config/vite'
 import './helper/restart-trigger'
 
+
+fs.writeFileSync('sidebar.json', JSON.stringify(sidebar))
 
 export default withPwa(defineConfig({
   title: '笔记',

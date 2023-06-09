@@ -5,7 +5,7 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
-const height = smAndSmaller.value ? '200px' : '320px'
+const height = smAndSmaller.value ? '200px' : '300px'
 </script>
 
 <template>

@@ -4,7 +4,7 @@ import { useNamespace } from '@theme/hooks/useNamespace'
 import { useMagicKeys } from '@vueuse/core'
 import { useData, withBase } from 'vitepress'
 import { defineAsyncComponent, onBeforeMount, reactive, ref, watch } from 'vue'
-import { getTimeline, getZodiac, getZodiacAlias } from './archive'
+import { getTimeline, getZodiac, getZodiacAlias, tags } from './archive'
 import DocMetaData from './DocMetaData.vue'
 import EmptyBlock from './LoadingBlock.vue'
 
@@ -13,7 +13,7 @@ const AsyncWordCloud = defineAsyncComponent({
   // 加载函数
   loader: () => import('./WordCloud.vue'),
   // 展示加载组件前的延迟时间，默认为 200ms
-  delay: 0,
+  delay: 200,
   loadingComponent: EmptyBlock,
 })
 
@@ -29,33 +29,48 @@ const selected = reactive({
   data: [] as DocData[],
 })
 
+const getUrlParams = (urlSearch = location.search) => Object.fromEntries(new URLSearchParams(urlSearch))
+
+const resetUrl = (search: string = '') => {
+  const baseUrl = () => location.href.split(location.search || '?').shift()
+  history.replaceState('', '', baseUrl() + search)
+}
+
 const resetList = (data: DocData[]) => {
   list.value = getTimeline(data)
 }
 
-watch(() => escape.value, (v) => {
-  if (isSelected.value && v) {
-    isSelected.value = false
-    
-    selected.type = ''
-    selected.data = []
-    
-    resetList(data)
-  }
-})
-
-onBeforeMount(() => {
-  resetList(data)
-})
-
-const handleSelectedTag = (tag, data) => {
-  isSelected.value = true
-  
+const resetPageData = (tag: string, data: DocData[]): void => {
   selected.type = tag
   selected.data = data
   
   resetList(data)
+  resetUrl(tag ? `?tag=${ encodeURIComponent(tag) }` : '')
 }
+
+
+watch(() => escape.value, (v) => {
+  if (isSelected.value && v) {
+    isSelected.value = false
+    resetPageData('', data)
+  }
+})
+
+onBeforeMount(() => {
+  const { tag } = getUrlParams()
+  let decode: string = decodeURIComponent(tag)
+  if (tag && tags[decode]) {
+    handleSelectedTag(tag, tags[decode])
+  } else {
+    resetList(data)
+  }
+})
+
+const handleSelectedTag = (tag: string, data: DocData[]) => {
+  isSelected.value = true
+  resetPageData(tag, data)
+}
+
 
 const isCurrentYear = (year: number) => {
   return new Date().getFullYear() === year

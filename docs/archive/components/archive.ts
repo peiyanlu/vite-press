@@ -8,7 +8,6 @@ export const tags = data
   .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
     item.tags?.forEach(tag => {
       (tagsRecords[tag] ??= []).push(item)
-      
       tagsRecords[tag].sort((a, b) => b.createdDate - a.createdDate)
     })
     return tagsRecords
