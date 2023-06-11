@@ -79,4 +79,9 @@ export const menuMapping: SidebarMapping = {
     order: 2,
     collapsed: true,
   },
+  node: {
+    text: 'Node',
+    order: 3,
+    collapsed: true,
+  },
 }
