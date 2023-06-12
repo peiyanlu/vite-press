@@ -50,7 +50,7 @@ jobs:
         with:
           source-repo: git@github.com:peiyanlu/vite-press.git
           destination-repo: git@gitee.com:peiyanlu/vite-press.git
-          destination-branch: gh-pages
+          # destination-branch: gh-pages
 
   gitee-pages-deploy:
     needs: [ gitee-branch-sync ]
