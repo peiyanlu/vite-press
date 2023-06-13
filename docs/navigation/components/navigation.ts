@@ -363,8 +363,8 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: 'https://vite-pwa-org.netlify.app/favicon.svg',
-        title: 'Vite \P\W\A',
-        desc: 'Vite 的零配置和与框架无关的 \P\W\A 插件',
+        title: 'Vite P.W.A',
+        desc: 'Vite 的零配置和与框架无关的 P.W.A 插件',
         link: 'https://vite-pwa-org.netlify.app/',
       },
     ],

@@ -43,7 +43,7 @@ jobs:
     environment:
       name: github-pages
     steps:
-      - name: Sync branches to GitHube
+      - name: Sync branches to Gitee
         uses: peiyanlu/git-sync-action@master
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
