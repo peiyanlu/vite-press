@@ -44,7 +44,7 @@ jobs:
       name: github-pages
     steps:
       - name: Sync branches to GitHube
-        uses: peiyanlu/git-sync-action@v1
+        uses: peiyanlu/git-sync-action@master
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         with:
