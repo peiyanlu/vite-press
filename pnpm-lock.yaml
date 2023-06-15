@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -68,8 +68,8 @@ devDependencies:
     specifier: 1.0.0-beta.1
     version: 1.0.0-beta.1(@types/node@18.16.14)(sass@1.62.1)(search-insights@2.6.0)
   vitepress-plugin-helper:
-    specifier: '*'
-    version: 0.0.1
+    specifier: 0.0.5
+    version: 0.0.5
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -5440,8 +5440,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress-plugin-helper@0.0.1:
-    resolution: {integrity: sha512-+U1XF+nwnWeCf+TsIQBqoaRpMFn5Dl0xqnsVhMvjAxFLoMaYcltWAYYIbo6+NKN55/QiSRsVl96cf8ScOhiIug==}
+  /vitepress-plugin-helper@0.0.5:
+    resolution: {integrity: sha512-3L3uz/0/XnAeQDF5ULPvChpgHgm/FZyGmgEuDCTLunMFYqDEdZBp0a59HD5YPs+rRv/DcNEd9TUsWW83aXIqzg==}
     hasBin: true
     dependencies:
       chalk: 5.2.0
