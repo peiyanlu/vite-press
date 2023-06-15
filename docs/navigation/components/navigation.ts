@@ -1,6 +1,8 @@
 export interface NavLink {
   /** 站点图标 */
-  icon?: string | { svg: string }
+  icon?: string | {
+    svg: string
+  }
   /** 站点名称 */
   title: string
   /** 站点名称 */
@@ -551,6 +553,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.pnpm.cn/installation',
       },
       {
+        icon: 'https://npm.nodejs.cn/favicon-32x32.png',
+        title: 'npm',
+        desc: '软件包管理器',
+        link: 'https://npm.nodejs.cn/',
+      },
+      {
         icon: 'https://turbo.build/images/favicon-light/favicon.ico',
         title: 'Turboropo',
         desc: 'JavaScript 和 TypeScript 代码库的高性能构建系统',
@@ -741,7 +749,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://segmentfault.com',
       },
       {
-        icon: '',
+        icon: 'https://common.cnblogs.com/favicon.svg',
         title: '博客园',
         desc: '博客园是一个面向开发者的知识分享社区',
         link: 'https://www.cnblogs.com',
@@ -751,6 +759,12 @@ export const NAV_DATA: NavData[] = [
         title: '腾讯云 开发者社区',
         desc: '开发者的技术分享型社区',
         link: 'https://cloud.tencent.com/developer/doc/1121',
+      },
+      {
+        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
+        title: 'Reddit',
+        desc: '国外最热门的社交新闻网站',
+        link: 'https://www.reddit.com/',
       },
     ],
   },
