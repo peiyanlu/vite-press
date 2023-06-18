@@ -8,92 +8,147 @@ tags:
   - ts
 ---
 
-# 使用 rollup 构建一个 ts 库
 
-## 1、初始化 项目
+# {{ $frontmatter.title }}
 
-> 创建文件夹，初始化项目
+
+## 快速开始
 
 ```shell
 mkdir "dirname" && cd "dirname"
 
 pnpm init
-```
 
-## 2、初始化 ts
+pnpm add rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @rollup/plugin-json -D
 
-> 安装typescript，并且初始化 tsconfig.json
-
-```shell
-pnpm add typescript -D
+pnpm add typescript rollup-plugin-esbuild rollup-plugin-dts -D
 
 tsc --init
-
 ```
 
-> 生成声明文件的方法
+:::tip
+`rollup-plugin-esbuild`: 可以替代 `rollup-plugin-typescript2`、`@rollup/plugin-typescript`、`rollup-plugin-terser`
+:::
 
-* `tsc --emitDeclarationOnly`：不会捆绑 `.d.ts`
-* `rollup-plugin-dts`：捆绑 `.d.ts`
+生成声明文件的方法：
+
+- `tsc --emitDeclarationOnly`：不会捆绑 `.d.ts`
+
+- `rollup-plugin-dts`：捆绑 `.d.ts`
 
 ::: warning
 
-使用 `插件` 配合 `tsconfig.json` 生成声明文件时，声明文件输出文件夹要在 `rollup` 输出文件夹内
+使用 `插件` 配合 `tsconfig.json` 生成声明文件时，声明文件输出位置要在 `rollup` 输出文件夹内
 
 :::
 
 
-## 3、初始化 rollup
-
-> 安装 rollup，以及支持 TS、路径处理和 commonjs 的插件
-
-```shell
-pnpm add rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs -D
-pnpm add esbuild rollup-plugin-esbuild rollup-plugin-dts -D
-```
-* `rollup-plugin-esbuild`: 可以替代 `rollup-plugin-typescript2`、`@rollup/plugin-typescript`、`rollup-plugin-terser`
-
-
-> 配置 rollup.config.js
+## 配置rollup
 
 ```javascript
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
-import commonjs from '@rollup/plugin-commonjs';
-// 用于生成类型声名文件
-import dts from 'rollup-plugin-dts';
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { builtinModules, createRequire } from 'module'
+import { resolve } from 'path'
+import { defineConfig, type RollupOptions } from 'rollup'
+import dts from 'rollup-plugin-dts'
+import esbuild from 'rollup-plugin-esbuild'
+import { fileURLToPath } from 'url'
 
-export default [
-  {
-    input: 'source/index.ts', // 入口文件
-    output: {
-      // file: 'bundle.js', // 输出单个文件时使用
-      dir: 'lib', // 输出多个文件时使用
-      format: 'es', // 输出模式
-      exports: 'named' // 入口文件有多个导出时，取消警告
-    },
-    plugins: [
-      nodeResolve(),
-      commonjs(),
-      typescript()
-    ],
-    external: []
-  },
-  {
-    input: 'source/index.ts', // 入口文件
-    output: {
-      dir: 'types',
-      format: 'es'
-    },
-    plugins: [
-      dts()
-    ]
-  }
+
+const ROOT = fileURLToPath(import.meta.url)
+const r = (p: string) => resolve(ROOT, '..', p)
+
+
+const req = createRequire(import.meta.url)
+const pkg = req('./package.json')
+
+
+const createReg = (deps: string[]) => new RegExp(`^(?:${ deps.join('|') })(?:/.+)?$`)
+const externalDeps = (deps: string[]) => createReg(deps.flatMap(dep => Object.keys(pkg[dep])))
+const external = [
+  externalDeps([ 'dependencies' ]),
+  createReg(builtinModules.flatMap(m => m.includes('punycode') ? [] : [ m, `node:${ m }` ])),
 ]
 
+
+const plugins = [
+  commonjs(),
+  nodeResolve({ preferBuiltins: false }),
+  esbuild(),
+  json(),
+]
+
+const esmBuild: RollupOptions = {
+  input: [ r('src/index.ts') ],
+  output: {
+    format: 'esm',
+    dir: r('lib'),
+    entryFileNames: `[name].js`,
+    chunkFileNames: 'chunk-[hash].js',
+  },
+  external,
+  plugins,
+  onwarn(warning, warn) {
+    if (warning.code !== 'EVAL') warn(warning)
+  },
+}
+
+const cjsBuild: RollupOptions = {
+  input: [ r('src/index.ts') ],
+  output: {
+    format: 'cjs',
+    dir: r('lib'),
+    entryFileNames: `[name].cjs`,
+    chunkFileNames: 'chunk-[hash].cjs',
+    // manualChunks:(id, { getModuleIds, getModuleInfo})=>{
+    //   console.log(id, getModuleIds(), getModuleInfo(id))
+    // }
+  },
+  external,
+  plugins,
+  onwarn(warning, warn) {
+    if (warning.code !== 'EVAL') warn(warning)
+  },
+}
+
+const nodeTypes: RollupOptions = {
+  input: r('src/index.ts'),
+  output: {
+    format: 'esm',
+    file: 'lib/index.d.ts',
+  },
+  external,
+  plugins: [ dts() ],
+}
+
+const config = defineConfig([])
+
+config.push(esmBuild)
+
+config.push(cjsBuild)
+
+config.push(nodeTypes)
+
+export default config
+
+process.on('exit', () => {
+  console.log(`\nbuild:lib complete: ${ pkg.name }`)
+})
 ```
 
-## 4、初始化 eslint
+
+## 配置package.json
+
+```json
+{
+  "scripts": {
+  }
+}
+```
+
+## 初始化Eslint
 
 ```shell
 pnpm add eslint -D
@@ -126,7 +181,7 @@ module.exports = {
 }
 ```
 
-## 5、Prettier (可选)
+## Prettier(可选)
 
 ```shell
 pnpm add prettier -D
@@ -154,7 +209,8 @@ pnpm add prettier -D
 [Prettier配置参考](https://prettier.io/docs/en/options.html)
 
 
-## 6、Git 提交约束 (可选)
+## Git提交约束 (可选)
+
 
 > 引入 Husky 作为 Git commit 提交前做一个自动格式化暂存区内的文件，以及校验是否符合 Eslint 规则，引入 commitlint 工具，用于校验提交的 message 格式是否符合规范
 
@@ -191,7 +247,8 @@ pnpm add @commitlint/cli @commitlint/config-conventional -D
 > git commit 时，会首先调用 lint-staged 字段中命令，首先是 prettier 格式化，然后是 ESlint 校验并修复，然后将修改后的文件存入暂存区。 然后是校验 commit message 是否符合规范，符合规范后才会成功
 > commit。
 
-## 7、publish 约束
+
+## publish约束
 
 ```json lines
 {
@@ -201,7 +258,7 @@ pnpm add @commitlint/cli @commitlint/config-conventional -D
 }
 ```
 
-## 8、提交代码
+## 提交代码
 
 ```shell
 git add -A

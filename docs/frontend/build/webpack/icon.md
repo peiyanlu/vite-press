@@ -9,34 +9,29 @@ tags:
 ---
 
 
-# 使用 webpack 打包 svg 图标
+# {{ $frontmatter.title }}
 
-## 1、初始化 项目
+
+## 快速开始
+
 
 > 创建文件夹，初始化项目
 
 ```shell
-mkdir "dirname"
+mkdir "dirname" && cd "dirname"
 
-cd "dirname"
+pnpm init
 
-yarn init
+pnpm add webpack webpack-cli -D
 ```
 
-## 2、初始化 webpack
+## 处理svg
 
-> 安装 webpack、webpack-cli，创建 webpack.config.js 文件
 
-```shell
-yarn add webpack webpack-cli -D
-```
-
-## 3、处理 svg
-
-> 安装 svg 加载器；通过 js 批量引入 .svg
+安装 `svg` 加载器；通过 `js` 批量引入 `.svg`
 
 ```shell
-yarn add svg-sprite-loader -D
+pnpm add svg-sprite-loader -D
 ```
 
 ```javascript
@@ -52,9 +47,8 @@ const req = require.context('../src', true, /\.svg$/)
 req.keys().forEach(req)
 ```
 
-## 4、配置 webpack
+## 配置webpack
 
-> 创建 webpack.config.js 文件
 
 ```javascript
 // webpack.config.js
@@ -90,12 +84,13 @@ module.exports = {
 }
 ```
 
-## 5、选用 webpack-chain
+## 选用webpack-chain
 
-> 使用 webpack-chain 链式操作配置webpackConfig
+
+使用 `webpack-chain` 链式操作配置 `webpackConfig`
 
 ```shell
-yarn add webpack-chain -D
+pnpm add webpack-chain -D
 ```
 
 ```javascript
@@ -142,6 +137,7 @@ module.exports = config.toConfig();
 ```
 
 ## 参考文档
+
 
 [webpack（中文文档）](https://webpack.docschina.org/concepts/)
 
