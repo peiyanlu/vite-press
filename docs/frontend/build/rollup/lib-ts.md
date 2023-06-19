@@ -42,6 +42,37 @@ tsc --init
 
 :::
 
+## 配置tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "moduleResolution": "Node",
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src",
+    "rollup.config.ts"
+  ]
+}
+```
+
 
 ## 配置rollup
 
@@ -144,6 +175,10 @@ process.on('exit', () => {
 ```json
 {
   "scripts": {
+    "clean": "npx rimraf node_modules pnpm-lock.yaml",
+    "build": "rollup --config rollup.config.ts --configPlugin esbuild",
+    "dev": "pnpm build:lib --watch",
+    "preinstall": "npx only-allow pnpm"
   }
 }
 ```

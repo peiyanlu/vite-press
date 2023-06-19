@@ -53,14 +53,14 @@ body {
     &::before {
       position: absolute;
       top: 50%;
-      left: -12px;
-      width: 6px;
-      height: 6px;
+      left: -17px;
+      width: 3px;
+      height: 80%;
       content: "";
       transition: transform 0.3s ease-in-out;
       transform: scale(0) translateY(-50%);
-      border-radius: 50%;
-      background: var(--vp-c-green-dimm-3);
+      border-radius: 2px;
+      background: var(--vp-c-green-light);
     }
     
     &.is-active {
