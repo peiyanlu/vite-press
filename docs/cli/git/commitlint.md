@@ -43,34 +43,34 @@ pnpm add -D cz-customizable
 module.exports = {
   // 引导用户输入的提示信息
   types: [
-    { value: ":rocket: initial", name: "🎉 initial:   初始化项目" },
-    { value: ":construction: wip", name: "🚧 wip:       工作进行中" },
-    { value: ":sparkles: feat", name: "✨ feat:      新增一个功能" },
-    { value: ":bug: fix", name: "🐛 fix:       修复一个Bug" },
+    { value: ":rocket: initial", name: "🎉 initial: 初始化项目" },
+    { value: ":construction: wip", name: "🚧 wip: 工作进行中" },
+    { value: ":sparkles: feat", name: "✨ feat: 新增一个功能" },
+    { value: ":bug: fix", name: "🐛 fix: 修复一个Bug" },
     {
       value: ":hammer: refactor",
-      name: "🔨 refactor:  重构（既不修复bug也不添加特性的代码更改）",
+      name: "🔨 refactor: 重构（既不修复bug也不添加特性的代码更改）",
     },
-    { value: ":pencil: docs", name: "📝 docs:      文档变更" },
+    { value: ":pencil: docs", name: "📝 docs: 文档变更" },
     {
       value: ":white_check_mark: test",
-      name: "✅ test:      添加缺失的测试或更正现有的测试",
+      name: "✅ test: 添加缺失的测试或更正现有的测试",
     },
     {
       value: ":thought_balloon: chore",
-      name: "🗯 chore:     构建过程或辅助工具的变动",
+      name: "💭 chore: 构建过程或辅助工具的变动",
     },
-    { value: "revert", name: "⏪ revert:    代码回退" },
-    { value: ":zap: perf", name: "⚡️ perf:      提升性能" },
-    { value: ":lipstick: ui", name: "💄 ui:        更新UI和样式" },
-    { value: ":art: style", name: "🎨 style:     改进代码结构/代码格式" },
-    { value: ":truck: mv", name: "🚚 mv:        移动重命名文件" },
-    { value: ":fire: delte", name: "🔥 delte:     删除文件" },
-    { value: ":fire: up", name: "⬆️ up:        升级依赖" },
-    { value: ":fire: down", name: "⬇️ down:      降级依赖" },
-    { value: ":whale: docker", name: "🐳 ocker:    docker相关" },
-    { value: ":bookmark: tag", name: "🔖 tag:       发行/版本标签" },
-    { value: ":ambulance: patch", name: "🚑 patch:     重要补丁" },
+    { value: ":rewind: revert", name: "⏪ revert: 代码回退" },
+    { value: ":zap: perf", name: "⚡️ perf: 提升性能" },
+    { value: ":lipstick: ui", name: "💄 ui: 更新UI和样式" },
+    { value: ":art: style", name: "🎨 style: 改进代码结构/代码格式" },
+    { value: ":truck: mv", name: "🚚 mv: 移动重命名文件" },
+    { value: ":fire: delete", name: "🔥 delete: 删除文件" },
+    { value: ":arrow_up: up", name: "⬆️ up: 升级依赖" },
+    { value: ":arrow_down: down", name: "⬇️ down: 降级依赖" },
+    { value: ":whale: docker", name: "🐳 docker: docker相关" },
+    { value: ":bookmark: tag", name: "🔖 tag: 发行/版本标签" },
+    { value: ":ambulance: patch", name: "🚑 patch: 重要补丁" },
   ],
   // 选择scope的提示信息
   messages: {
@@ -123,7 +123,7 @@ module.exports = {
 ```
 
 :::warning
-使用 `git-cz 需要安装 ``commitizen`
+使用 `git-cz` 需要安装 `commitizen`
 :::
 
 使用方法
@@ -261,7 +261,7 @@ pnpm exec lint-staged
 在项目根目录下，直接执行如下命令：
 
 ```shell
-pnpx mrm@2 lint-staged
+pnpx mrm lint-staged
 ```
 
 执行命令之后，就会看到 `package.json` 里多了一个 `lint-staged` 配置项，且根目录下多了一个 `.husky` 目录，里面就包含了 `pre-commit` 文件，里面包含了一个最基础的命令：`npx lint-staged`。

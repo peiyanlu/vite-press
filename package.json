@@ -31,7 +31,7 @@
     "sass": "^1.62.1",
     "vite": "^4.3.9",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.0.0-beta.1",
+    "vitepress": "1.0.0-beta.3",
     "vitepress-plugin-helper": "0.0.5",
     "vue": "^3.3.4"
   },
