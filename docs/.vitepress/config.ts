@@ -1,6 +1,8 @@
 import { withPwa } from '@vite-pwa/vitepress'
 import fs from 'fs'
+import container from 'markdown-it-container'
 import { defineConfig } from 'vitepress'
+import { renderSandbox } from 'vitepress-plugin-sandpack'
 import { BASE_URL, withBase } from './config/common'
 import { nav, sidebar } from './config/menu'
 import { pwa } from './config/pwa'
@@ -26,6 +28,15 @@ export default withPwa(defineConfig({
   cleanUrls: true,
   markdown: {
     lineNumbers: true,
+    config(md) {
+      md
+        // the second parameter is html tag name
+        .use(container, 'sandbox', {
+          render(tokens: any[], idx: number) {
+            return renderSandbox(tokens, idx, 'sandbox')
+          },
+        })
+    },
   },
   themeConfig: {
     logo: '/logo.svg',

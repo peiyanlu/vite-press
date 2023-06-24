@@ -17,29 +17,34 @@ export const menuMapping: SidebarMapping = {
     order: 2,
     collapsed: true,
   },
+  vue: {
+    text: 'Vue',
+    order: 3,
+    collapsed: true,
+  },
   html: {
     text: 'HTML',
-    order: 3,
+    order: 4,
     collapsed: true,
   },
   css: {
     text: 'CSS',
-    order: 4,
+    order: 5,
     collapsed: true,
   },
   javascript: {
     text: 'JavaScript',
-    order: 5,
+    order: 6,
     collapsed: true,
   },
   npm: {
     text: '依赖包',
-    order: 6,
+    order: 7,
     collapsed: true,
   },
   regex: {
     text: '正则',
-    order: 7,
+    order: 8,
     collapsed: true,
   },
   code: {

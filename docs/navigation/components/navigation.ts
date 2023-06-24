@@ -585,7 +585,7 @@ export const NAV_DATA: NavData[] = [
         icon: 'https://eslint.org/favicon.ico',
         title: 'ESLint',
         desc: '可组装的、用于 JavaScript 和 JSX 的代码检查工具',
-        link: 'https://eslint.org/',
+        link: 'https://eslint.nodejs.cn/',
       },
       {
         icon: 'https://stylelint.docschina.org/_/src/components/DefaultHeadMeta/favicon.7f672624abe02127db4972965ea73002.ico',

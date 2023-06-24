@@ -45,7 +45,7 @@ module.exports = {
   types: [
     { value: ":rocket: initial", name: "🎉 initial: 初始化项目" },
     { value: ":construction: wip", name: "🚧 wip: 工作进行中" },
-    { value: ":sparkles: feat", name: "✨ feat: 新增一个功能" },
+    { value: ":sparkles: feat", name: "✨  feat: 新增一个功能" },
     { value: ":bug: fix", name: "🐛 fix: 修复一个Bug" },
     {
       value: ":hammer: refactor",
@@ -54,13 +54,13 @@ module.exports = {
     { value: ":pencil: docs", name: "📝 docs: 文档变更" },
     {
       value: ":white_check_mark: test",
-      name: "✅ test: 添加缺失的测试或更正现有的测试",
+      name: "✅  test: 添加缺失的测试或更正现有的测试",
     },
     {
       value: ":thought_balloon: chore",
       name: "💭 chore: 构建过程或辅助工具的变动",
     },
-    { value: ":rewind: revert", name: "⏪ revert: 代码回退" },
+    { value: ":rewind: revert", name: "⏪  revert: 代码回退" },
     { value: ":zap: perf", name: "⚡️ perf: 提升性能" },
     { value: ":lipstick: ui", name: "💄 ui: 更新UI和样式" },
     { value: ":art: style", name: "🎨 style: 改进代码结构/代码格式" },
@@ -74,15 +74,15 @@ module.exports = {
   ],
   // 选择scope的提示信息
   messages: {
-    type: "请选择您要提交的类型:",
+    type: "请选择提交类型:",
     scope: "请输入修改范围(可选):",
     // allowCustomScopes为true时使用
     customScope: "请输入文件修改范围(可选):",
     subject: "请简要描述提交(必选):",
     body: "请输入详细描述，使用'|'换行(可选):",
-    breaking: "列出任何突破性的变化(可选)",
-    footer: "请输入要关闭的issue(可选)。例:#31，#34:",
-    confirmCommit: "您确定要继续执行上面的提交吗?",
+    breaking: "列出任何突破性的变化(可选):",
+    footer: "请输入要关闭的issue(可选)。例:#31,#34:",
+    confirmCommit: "确定要继续执行上面的提交吗?",
   },
   scopes: [
     "user",
@@ -107,9 +107,9 @@ module.exports = {
 };
 ```
 
-配置 package.json
+配置 `package.json`
 
-```json
+```json lines
 {
   "script": {
     "commit": "cz-customizable"
@@ -123,7 +123,25 @@ module.exports = {
 ```
 
 :::warning
-使用 `git-cz` 需要安装 `commitizen`
+
+- 使用 `git cz` 需要安装 `commitizen`
+
+- 如果使用 `cjs` 需要手动指定配置文件，否则识别不到
+
+```json lines
+{
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    },
+    // [!code ++:4]
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
+    }
+  }
+}
+```
+
 :::
 
 使用方法
@@ -137,8 +155,8 @@ pnpm commit
 
 
 我们已经约束好啦 `Commit` 规范，但是开发者还是开始可以通过 `git commit` 命令提交约束之外的消息。这也使得我们的规范失去了意义。
-因此需要在开发者 `commit` 的时候对其提交消息做一次拦截验证，只有符合规范的才能被正确的提交到
-`Git` 仓库，从而 `push` 到远端。而 `husky` 则是专门做这种操作的，它支持所有的 `Git` 钩子，在触发钩子之前做一些额外的事情，例如 `commit` 校验、运行测试等等。
+因此需要在开发者 `commit` 的时候对其提交消息做一次拦截验证，只有符合规范的才能被正确的提交到`Git` 仓库，从而 `push` 到远端。
+而 `husky` 则是专门做这种操作的，它支持所有的 `Git` 钩子，在触发钩子之前做一些额外的事情，例如 `commit` 校验、运行测试等等。
 
 因为我们定制的 `commit` 是以 `emoji` 开头的，而 `commitlint` 中并没有提供匹配 `emoji` 开头的校验包，因此需要接入 `commitlint-config-gitmoji` 来完成 `commit` 检验。
 
@@ -208,21 +226,9 @@ pnpm add lint-staged -D
 
 配置方式：
 
-- package.json 中的 lint-staged 配置项
+- `package.json` 中的 `lint-staged` 配置项
 
-- JSON 风格或 YML 风格的 .lintstagedrc
-    
-    - .lintstagedrc.json
-    
-    - .lintstagedrc.yaml
-    
-    - .lintstagedrc.yml
-
-- .lintstagedrc.mjs 或 .lintstagedrc.config.mjs
-
-- .lintstagedrc.cjs 或 .lintstagedrc.config.cjs
-
-- lint-staged.js 或 lint-staged.config.js
+- `JSON` 风格或 `YML` 风格的 `.lintstagedrc`
 
 ```json
 {
