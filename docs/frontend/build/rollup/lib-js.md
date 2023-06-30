@@ -83,6 +83,10 @@ pnpm lib
 
 `rollup` 打包的结果是 `ES6`，如果需要兼容低版本，则需要 `babel`
 
+```shell
+pnpm add -D @babel/core @babel/preset-env @rollup/plugin-babel
+``
+
 1. 配置babel预设
 
 在 `src/.babelrc` 中配置
@@ -119,21 +123,10 @@ pnpm lib
 
 2. 配置babelHelpers
 
-如果在 `babel` 插件中设置使用 `runtime` 模式，如下
-
-```js
-export default {
-  plugins: [
-    babel({
-      // 默认bundled，但需要显示设置
-      babelHelpers: 'runtime', // [!code ++]
-    })
-  ],
-}
-```
+如果在 `babel` 插件中设置使用 `runtime` 模式：
 
 ```shell
-pnpm add -D @babel/core @babel/preset-env @babel/plugin-transform-runtime @babel/runtime @rollup/plugin-babel
+pnpm add -D  @babel/plugin-transform-runtime @babel/runtime
 ```
 
 `rollup.config.js` 中：
@@ -142,6 +135,12 @@ pnpm add -D @babel/core @babel/preset-env @babel/plugin-transform-runtime @babel
 import babel from '@rollup/plugin-babel' // [!code ++]
 
 export default {
+  plugins: [
+    babel({  // [!code ++:4]
+      // 默认bundled，但需要显示设置
+      babelHelpers: 'runtime',
+    })
+  ],
   external: [
     /@babel\/runtime/ // [!code ++]
   ]
