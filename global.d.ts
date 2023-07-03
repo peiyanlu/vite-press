@@ -1,8 +1,12 @@
 /// <reference types="vite/client" />
 
-declare module global {
-  var Gitalk: Function
-  var jinrishici: Function
+
+declare global {
+  interface Window {
+    _hmt: any
+    Gitalk: Function
+    jinrishici: Function
+  }
 }
 
 export {}

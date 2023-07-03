@@ -76,6 +76,7 @@ export default withPwa(defineConfig({
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
     search: algolia,
+    externalLinkIcon: true,
   },
   locales: {
     root: {

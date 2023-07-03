@@ -24,7 +24,7 @@
     "chokidar": "^3.5.3",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
-    "live2d-lib": "^1.0.6",
+    "live2d-lib": "^1.0.7",
     "markdown-it-container": "^3.0.0",
     "md5": "^2.3.0",
     "mkdirp": "^3.0.1",
@@ -33,7 +33,7 @@
     "sass": "^1.62.1",
     "vite": "^4.3.9",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.0.0-beta.3",
+    "vitepress": "1.0.0-beta.5",
     "vitepress-plugin-helper": "0.0.5",
     "vitepress-plugin-sandpack": "^0.3.0",
     "vue": "^3.3.4"

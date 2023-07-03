@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const getColor = () => {
   const r = () => Math.floor(Math.random() * 116) + 140
-  return `rgba(${ r() }, ${ r() }, ${ r() }, ${ Math.random() * 0.75 + 0.25 })`
+  return `rgba(${r()}, ${r()}, ${r()}, ${Math.random() * 0.75 + 0.25})`
 };
 </script>
 
@@ -20,6 +20,6 @@ const getColor = () => {
   white-space: nowrap;
   letter-spacing: 0.02em;
   border-radius: 4px;
-  background: v-bind(getColor());
+  background: v-bind('getColor()');
 }
 </style>
