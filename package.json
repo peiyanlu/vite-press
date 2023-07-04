@@ -8,6 +8,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "clean": "npx rimraf node_modules pnpm-lock.yaml",
+    "clean:cache": "pnpm store prune",
     "dev": "run-p docs:dev watch",
     "watch": "vitepress-helper watch --dir docs --output docs/.vitepress/helper/restart-trigger.ts",
     "preinstall": "npx only-allow pnpm"
@@ -24,7 +25,7 @@
     "chokidar": "^3.5.3",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
-    "live2d-lib": "^1.0.7",
+    "live2d-lib": "1.0.6",
     "markdown-it-container": "^3.0.0",
     "md5": "^2.3.0",
     "mkdirp": "^3.0.1",

@@ -1,5 +1,4 @@
 import { withPwa } from '@vite-pwa/vitepress'
-import fs from 'fs'
 import container from 'markdown-it-container'
 import { defineConfig } from 'vitepress'
 import { renderSandbox } from 'vitepress-plugin-sandpack'
@@ -10,8 +9,6 @@ import { algolia } from './config/search'
 import { vite } from './config/vite'
 import './helper/restart-trigger'
 
-
-fs.writeFileSync('sidebar.json', JSON.stringify(sidebar))
 
 export default withPwa(defineConfig({
   title: '笔记',

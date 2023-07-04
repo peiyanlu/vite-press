@@ -33,6 +33,6 @@ export const vite: UserConfig = {
     chunkSizeWarningLimit: 1000,
   },
   define: {
-    PWA: false,
+    PWA: true,
   },
 }

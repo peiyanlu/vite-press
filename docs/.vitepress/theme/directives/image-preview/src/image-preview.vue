@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import ImageLazyLoad from '@theme/components/global/ImageLazyLoad.vue'
 import vFileDownload from '@theme/directives/file-download'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { computed, onMounted, onUnmounted, PropType, ref } from 'vue'
 import icons from './image-preview-icons'
 import ImagePreviewService from './image-preview-service'
+import ImageLazyLoad from './ImageLazyLoad.vue'
 import Transform from './transform'
 
 
@@ -169,7 +169,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   user-select: none;
-
+  
   &__main-image {
     width: auto;
     max-width: 90%;
@@ -181,7 +181,7 @@ onUnmounted(() => {
     border-radius: 4px;
     background: #FFFFFF;
   }
-
+  
   @keyframes img {
     0% {
       opacity: 0;
@@ -196,12 +196,12 @@ onUnmounted(() => {
       transform: translate3d(0, 0, 0) scale(1.0);
     }
   }
-
+  
   //@mixin fixed-button() {}
   //@include fixed-button();
-
+  
   --toolbar-height: 42px;
-
+  
   &__toolbar {
     position: fixed;
     z-index: 2;
@@ -219,7 +219,7 @@ onUnmounted(() => {
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
     gap: 24px;
     backdrop-filter: blur(5px);
-
+    
     &-left,
     &-middle,
     &-right {
@@ -228,9 +228,9 @@ onUnmounted(() => {
       justify-content: center;
       height: 100%;
       gap: 8px;
-
+      
       --size: 32px;
-
+      
       button {
         font-size: 12px;
         display: inline-flex;
@@ -242,18 +242,18 @@ onUnmounted(() => {
         border: none;
         outline: 0;
         background-color: transparent;
-
+        
         &:has(svg) {
           overflow: hidden;
           transition: all 0.15s ease;
           border-radius: 30%;
-
+          
           &:hover:not(:disabled) {
             color: rgba(255, 255, 255, 1);
             background: rgba(66, 66, 66, 1);
           }
         }
-
+        
         &:has(span) {
           display: inline-flex;
           min-width: 48px;
@@ -262,13 +262,13 @@ onUnmounted(() => {
           cursor: auto;
           white-space: nowrap;
         }
-
+        
         &:has(i > svg) {
           display: inline-flex;
           width: var(--size);
           margin-left: -10px;
         }
-
+        
         :deep(svg) {
           width: var(--size);
           height: var(--size);
@@ -276,7 +276,7 @@ onUnmounted(() => {
           border-radius: 30%;
           aspect-ratio: 1 / 1;
         }
-
+        
         &:disabled {
           cursor: not-allowed;
           filter: brightness(0.5);
@@ -284,7 +284,7 @@ onUnmounted(() => {
       }
     }
   }
-
+  
   &__thumbnail {
     position: absolute;
     z-index: 1;
@@ -301,7 +301,7 @@ onUnmounted(() => {
     grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 4px;
     backdrop-filter: blur(3px);
-
+    
     &-item {
       position: relative;
       display: block;
@@ -311,11 +311,11 @@ onUnmounted(() => {
       background: white;
       aspect-ratio: 5 / 4;
       object-fit: fill;
-
+      
       img {
         object-fit: cover;
       }
-
+      
       span {
         font-size: 12px;
         line-height: 1;
@@ -331,7 +331,7 @@ onUnmounted(() => {
         background: rgba(0, 0, 0, 0.6);
         text-shadow: 0 0 white;
       }
-
+      
       &.active {
         &:before {
           position: absolute;
@@ -346,15 +346,15 @@ onUnmounted(() => {
       }
     }
   }
-
+  
   .thumbnail-enter-active {
     animation: show 0.3s ease-in-out;
   }
-
+  
   .thumbnail-leave-active {
     animation: show 0.8s ease-in-out reverse;
   }
-
+  
   @keyframes show {
     0% {
       bottom: -100%;
@@ -399,30 +399,30 @@ onUnmounted(() => {
 @media (max-width: 750px) {
   .VPDoc-image-preview {
     --toolbar-height: 36px;
-
+    
     &__toolbar {
       padding: 0 4px;
       border-radius: 4px;
       gap: 4px;
-
+      
       &-left,
       &-middle,
       &-right {
         gap: 4px;
-
+        
         --size: 26px;
-
+        
         button {
           &:has(span) {
             min-width: 38px;
             margin-right: -6px;
             margin-left: -6px;
           }
-
+          
           &:has(i > svg) {
             margin-left: -8px;
           }
-
+          
           :deep(svg) {
             padding: 4px;
           }

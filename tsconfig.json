@@ -20,7 +20,8 @@
     ]
   },
   "include": [
-    "*.d.ts",
-    "docs/**/*"
+    "docs/**/*",
+    ".vitepress/**/*",
+    "*.d.ts"
   ]
 }
