@@ -547,10 +547,10 @@ export const NAV_DATA: NavData[] = [
     title: '工程化',
     items: [
       {
-        icon: 'https://www.pnpm.cn/img/favicon.png',
+        icon: 'https://pnpm.io/zh/img/favicon.png',
         title: 'pnpm',
         desc: '速度快、节省磁盘空间的软件包管理器',
-        link: 'https://www.pnpm.cn/installation',
+        link: 'https://pnpm.io/zh',
       },
       {
         icon: 'https://npm.nodejs.cn/favicon-32x32.png',

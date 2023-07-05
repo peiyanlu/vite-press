@@ -44,8 +44,8 @@ devDependencies:
     specifier: ^4.0.3
     version: 4.0.3
   live2d-lib:
-    specifier: 1.0.7
-    version: 1.0.7
+    specifier: ^1.0.8
+    version: 1.0.8
   markdown-it-container:
     specifier: ^3.0.0
     version: 3.0.0
@@ -4481,8 +4481,8 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /live2d-lib@1.0.7:
-    resolution: {integrity: sha512-zzKBGMnIf/lmTGOqJhPu9rvsooa7v/zuZGgXYNFCqaIiuz9aLQWWcRFXfOURLsR8C1Rp4waDlYaRfvXR9r8//Q==}
+  /live2d-lib@1.0.8:
+    resolution: {integrity: sha512-6Z8/esG1xwA1xHRaWGfyGp1IQIMSfxHxuqZaROFslmsvj/l6H6s9hFY368Fzo2PwXWDN6SHz+2yIDKWF+Xbj4A==}
     hasBin: true
     requiresBuild: true
     dependencies:
