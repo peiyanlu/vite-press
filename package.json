@@ -31,12 +31,14 @@
     "npm-run-all": "^4.1.5",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.62.1",
-    "vite": "^4.3.9",
+    "vite": "^4.4.3",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitepress": "1.0.0-beta.5",
+    "vitepress": "^1.0.0-beta.5",
     "vitepress-plugin-helper": "0.0.5",
     "vitepress-plugin-sandpack": "^0.3.0",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "@types/crawler": "^1.2.2",
+    "crawler": "^1.4.0"
   },
   "pnpm": {
     "overrides": {

@@ -16,6 +16,9 @@ export default withPwa(defineConfig({
   description: '小路的开发笔记',
   head: [
     [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ],
+    [ 'meta', { property: 'og:title', content: '开发笔记' } ],
+    [ 'meta', { property: 'og:image', content: withBase('/logo.svg') } ],
+    [ 'meta', { property: 'og:description', content: '小路的开发笔记' } ],
   ],
   lang: 'zh-CN',
   base: BASE_URL,
@@ -60,7 +63,9 @@ export default withPwa(defineConfig({
     },
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',
-    lastUpdatedText: '上次更新',
+    lastUpdated: {
+      text: '上次更新',
+    },
     darkModeSwitchLabel: '外观',
     langMenuLabel: '切换语言',
     socialLinks: [
@@ -81,7 +86,7 @@ export default withPwa(defineConfig({
       lang: 'zh-CN',
     },
   },
-  vite: vite,
+  vite: vite as any,
   pwa: pwa,
 }))
 
