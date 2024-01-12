@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { slugify } from '@mdit-vue/shared';
-import { useNamespace } from '@theme/hooks/useNamespace';
-import { computed } from 'vue';
-import ImageIcon from './ImageIcon.vue';
+import { slugify } from '@mdit-vue/shared'
+import { useNamespace } from '@theme/hooks/useNamespace'
+import { computed } from 'vue'
+import ImageIcon from './ImageIcon.vue'
 
-import { NavLink } from './navigation';
+import { NavLink } from './navigation'
 
 
 const props = defineProps<{
@@ -12,11 +12,11 @@ const props = defineProps<{
   title?: NavLink['title']
   desc?: NavLink['desc']
   link: NavLink['link']
-}>();
+}>()
 
-const formatTitle = computed(() => props.title ? slugify(props.title) : '');
+const formatTitle = computed(() => props.title ? slugify(props.title) : '')
 
-const ns = useNamespace('site-nav-link');
+const ns = useNamespace('site-nav-link')
 </script>
 
 <template>

@@ -16,12 +16,14 @@
   "devDependencies": {
     "@antv/g2plot": "^2.4.31",
     "@mdit-vue/shared": "^0.12.0",
+    "@types/crawler": "^1.2.2",
     "@types/markdown-it-container": "^2.0.5",
     "@types/md5": "^2.3.2",
     "@types/node": "^18.16.14",
     "@vite-pwa/vitepress": "^0.0.5",
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",
+    "crawler": "^1.4.0",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "live2d-lib": "^1.0.8",
@@ -36,9 +38,7 @@
     "vitepress": "^1.0.0-beta.5",
     "vitepress-plugin-helper": "0.0.5",
     "vitepress-plugin-sandpack": "^0.3.0",
-    "vue": "^3.3.4",
-    "@types/crawler": "^1.2.2",
-    "crawler": "^1.4.0"
+    "vue": "^3.3.4"
   },
   "pnpm": {
     "overrides": {
@@ -51,5 +51,8 @@
         "@algolia/client-search"
       ]
     }
+  },
+  "dependencies": {
+    "typed.js": "^2.0.16"
   }
 }
