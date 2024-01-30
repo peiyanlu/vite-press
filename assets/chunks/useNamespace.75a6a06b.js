@@ -1,1 +1,0 @@
-function o(n,t,s){let a=n;return t&&(a+=`__${t}`),s&&(a+=`--${s}`),a}function r(n,t=!1){const s=t?`.VPDoc-${n}`:`VPDoc-${n}`;return{b:()=>o(s),e:c=>c?o(s,c):"",m:c=>c?o(s,"",c):"",em:(c,u)=>c&&u?o(s,c,u):""}}export{r as u};
