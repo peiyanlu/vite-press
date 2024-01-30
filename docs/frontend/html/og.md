@@ -1,20 +1,24 @@
 ---
 title: OG 协议
 description: 实现分享的链接可以预览图片、标题、描述
-category: uncategorized
+category: html
 tags:
-  - uncategorized
+  - html
   - url
   - OG
 ---
 
+
 # {{ $frontmatter.title }}
+
 
 `Open Graph Protocol`（[开放图谱协议](https://ogp.me/)），简称 `OG` 协议。它是 `Facebook`
 公布的一种网页元信息（`Meta Information`）标记协议，属于 `Meta Tag`
 （`Meta` 标签）的范畴，是一种为社交分享而生的 `Meta` 标签，用于标准化网页中元数据的使用，使得社交媒体得以以丰富的“图形”对象来表示共享的页面内容
 
+
 ## 基本元数据
+
 
 如果要将网页转换为图形对象，需要向网页的 `＜head＞` 中放置额外的基本元数据（`＜meta＞` 标签）。每个页面所需的四个属性是：
 
@@ -27,6 +31,7 @@ tags:
 - `og:url`：对象的规范 `URL`，将在图中用作其永久 `ID`，例如 `https://www.imdb.com/title/tt0117500/`.
 
 ```html
+
 <meta property="og:title" content="The Rock" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
@@ -51,6 +56,7 @@ tags:
 - `og:video`：此对象附带的视频文件的 `URL`。
 
 ```html
+
 <meta property="og:audio" content="https://example.com/bond/theme.mp3" />
 <meta property="og:description" content="description." />
 <meta property="og:determiner" content="the" />
@@ -63,20 +69,27 @@ tags:
 
 ## 结构化属性
 
+
 某些属性可以附加额外的元数据。这些元数据的指定方式与其他具有属性和内容的元数据相同，但该属性将具有额外的：。
 
-og:image属性具有一些可选的结构化属性：
+`og:image` 属性具有一些可选的结构化属性：
 
-og:image:url-与og:image相同。
-og:image:secure_url-如果网页需要HTTPS，则使用备用url。
-og:image:type-此图像的MIME类型。
-og:image:width-宽的像素数。
-og:image:height-高像素数。
-og:image:alt-对图像中内容的描述（不是标题）。如果页面指定了og:image，则应该指定og:image:alt。
+`og:image:url` -与 `og:image` 相同。
+
+`og:image:secure_url` -如果网页需要 `HTTPS`，则使用备用 `url`。
+
+`og:image:type` -此图像的 `MIME` 类型。
+
+`og:image:width` -宽的像素数。
+
+`og:image:height` -高像素数。
+
+`og:image:alt` -对图像中内容的描述（不是标题）。如果页面指定了 `og:image`，则应该指定 `og:image:alt`。
 
 完整图像示例：
 
 ```html
+
 <meta property="og:image" content="https://example.com/ogp.jpg" />
 <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -85,9 +98,10 @@ og:image:alt-对图像中内容的描述（不是标题）。如果页面指定�
 <meta property="og:image:alt" content="A shiny red apple with a bite taken out" />
 ```
 
-og:video标签具有与og:image相同的标签。以下是一个示例：
+`og:video` 标签具有与 `og:image` 相同的标签。以下是一个示例：
 
 ```html
+
 <meta property="og:video" content="https://example.com/movie.swf" />
 <meta property="og:video:secure_url" content="https://secure.example.com/movie.swf" />
 <meta property="og:video:type" content="application/x-shockwave-flash" />
@@ -95,20 +109,22 @@ og:video标签具有与og:image相同的标签。以下是一个示例：
 <meta property="og:video:height" content="300" />
 ```
 
-og:audio标签只有前3个可用属性（因为大小对声音没有意义）：
+`og:audio` 标签只有前 `3` 个可用属性（因为大小对声音没有意义）：
 
 ```html
+
 <meta property="og:audio" content="https://example.com/sound.mp3" />
 <meta property="og:audio:secure_url" content="https://secure.example.com/sound.mp3" />
 <meta property="og:audio:type" content="audio/mpeg" />
 ```
 
-
 ## 数组
+
 
 如果一个标记可以有多个值，只需将同一 <meta> 标记的多个版本放在页面上即可。第一个标记（从上到下）在冲突期间被赋予优先权。
 
 ```html
+
 <meta property="og:image" content="https://example.com/rock.jpg" />
 <meta property="og:image" content="https://example.com/rock2.jpg" />
 ```
@@ -116,6 +132,7 @@ og:audio标签只有前3个可用属性（因为大小对声音没有意义）�
 在声明结构化属性的根标记后放置它们。每当解析另一个根元素时，就会认为该结构化属性已完成，并启动另一个。例如：
 
 ```html
+
 <meta property="og:image" content="https://example.com/rock.jpg" />
 <meta property="og:image:width" content="300" />
 <meta property="og:image:height" content="300" />
@@ -129,22 +146,28 @@ og:audio标签只有前3个可用属性（因为大小对声音没有意义）�
 
 ## 对象类型
 
+
 为了在图形中表示对象，您需要指定其类型。这是使用og:type属性完成的：
 
 ```html
+
 <meta property="og:type" content="website" />
 ```
 
 当社区就某个类型的模式达成一致时，它就会被添加到全局类型列表中。类型系统中的所有其他对象都是CURIE形式
 
 ```html
+
 <head prefix="my_namespace: https://example.com/ns#">
-<meta property="og:type" content="my_namespace:my_type" />
+  <meta property="og:type" content="my_namespace:my_type" />
 ```
 
 全局类型分为垂直类型。每个竖排都有自己的名称空间。命名空间的og:type值总是以命名空间为前缀，然后是句点。这是为了减少与用户定义的名称空间类型的混淆，这些类型中总是有冒号。
 
-Music
+
+### Music
+
+
 Namespace URI: https://ogp.me/ns/music#
 
 og:type values:
@@ -176,8 +199,12 @@ music.radio_station
 
 music:creator - profile - The creator of this station.
 
-Video
+
+### Video
+
+
 Namespace URI: https://ogp.me/ns/video#
+
 og:type values:
 
 video.movie
@@ -207,7 +234,10 @@ video.other
 
 A video that doesn't belong in any other category. The metadata is identical to video.movie.
 
-No Vertical
+
+### No Vertical
+
+
 These are globally defined objects that just don't fit into a vertical but yet are broadly used and agreed upon.
 
 og:type values:
@@ -239,7 +269,10 @@ website - Namespace URI: https://ogp.me/ns/website#
 
 No additional properties other than the basic ones. Any non-marked up webpage should be treated as og:type website.
 
-Types
+
+## Types
+
+
 The following types are used when defining attributes in Open Graph protocol.
 
 | 类型       | 描述                                       | 字面量                                             |
