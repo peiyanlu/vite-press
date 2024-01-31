@@ -49,6 +49,11 @@ export const menuMapping: SidebarMapping = {
   },
   code: {
     text: '代码',
+    order: 9,
+    collapsed: true,
+  },
+  uncategorized: {
+    text: '暂未分类',
     order: 99,
     collapsed: true,
   },

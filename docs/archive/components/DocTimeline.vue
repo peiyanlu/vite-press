@@ -231,7 +231,7 @@ const ns = useNamespace('doc-timeline-item')
         
         .line {
           height: 100%;
-          border-left: 2px solid var(--vp-c-green-light);
+          border-left: 2px solid var(--vp-c-brand-3);
         }
       }
       
@@ -313,28 +313,28 @@ const ns = useNamespace('doc-timeline-item')
         }
         
         .line {
-          border-left: 2px dashed var(--vp-c-green-light);
+          border-left: 2px dashed var(--vp-c-brand-3);
         }
       }
       
       &:last-child {
         .line {
           border-image: linear-gradient(
-            to top,
-            var(--vp-c-green-light) 0,
-            var(--vp-c-green-light) 5px,
-            transparent 5px,
-            transparent 10px,
-            var(--vp-c-green-light) 10px,
-            var(--vp-c-green-light) 15px,
-            transparent 15px,
-            transparent 20px,
-            var(--vp-c-green-light) 20px,
-            var(--vp-c-green-light) 25px,
-            transparent 25px,
-            transparent 30px,
-            var(--vp-c-green-light) 30px,
-            var(--vp-c-green-light) 100%
+              to top,
+              var(--vp-c-brand-3) 0,
+              var(--vp-c-brand-3) 5px,
+              transparent 5px,
+              transparent 10px,
+              var(--vp-c-brand-3) 10px,
+              var(--vp-c-brand-3) 15px,
+              transparent 15px,
+              transparent 20px,
+              var(--vp-c-brand-3) 20px,
+              var(--vp-c-brand-3) 25px,
+              transparent 25px,
+              transparent 30px,
+              var(--vp-c-brand-3) 30px,
+              var(--vp-c-brand-3) 100%
           ) 1;
         }
       }

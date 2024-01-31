@@ -60,14 +60,14 @@ body {
       transition: transform 0.3s ease-in-out;
       transform: scale(0) translateY(-50%);
       border-radius: 2px;
-      background: var(--vp-c-green-light);
+      background: var(--vp-c-brand-3);
     }
     
     &.is-active {
       background: linear-gradient(
         to right,
         transparent 0%,
-        var(--vp-c-green-dimm-2) 35%,
+        var(--vp-c-brand-soft) 35%,
         transparent 100%
       );
       
@@ -99,8 +99,8 @@ body {
   blockquote {
     margin: 1rem 0;
     padding: 0.2rem 1rem;
-    border-left: 4px solid var(--vp-c-green-dimm-3);
-    background-color: var(--vp-c-green-dimm-1);
+    border-left: 4px solid var(--vp-c-brand-3);
+    background-color: var(--vp-c-brand-soft);
     
     p {
       font-size: 14px;
