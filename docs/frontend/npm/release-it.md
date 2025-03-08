@@ -29,7 +29,11 @@ order: 0
 - 自动安装
 
 ```shell
-pnpm dlx release-it init
+npm init release-it
+√ Publish a GitHub Release with every release? ... yes
+? Where to add the release-it config? »  
+>   .release-it.json
+    package.json
 ```
 
 - 手动安装
@@ -38,7 +42,7 @@ pnpm dlx release-it init
 pnpm add release-it -D
 ```
 
-```txt
+```json lines
 {
   "name": "my-package",
   "version": "1.0.0",
@@ -53,16 +57,19 @@ pnpm add release-it -D
 
 ## 增加配置
 
-在项目根目录中使用 `.release-it.json` 文件，或在 `package.json` 中使用 `release-it` 属性。
+在 `.release-it.json` 文件，或 `package.json` 的 `release-it` 属性中添加：
 
 ```json lines .release-it.json
 {
-  "git": {
-    "commitMessage": "chore: release v${version}"
-  },
   "github": {
     "release": true
-  }
+  },
+  "git": { // [!code ++:6]
+    "commitMessage": "chore: release v${version}"
+  },
+  "hooks": {
+    "after:bump": "echo 更新版本成功"
+  },
 }
 ```
 

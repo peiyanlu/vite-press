@@ -1,6 +1,6 @@
 ---
-title: 权重
-description: CSS选择器的权重
+title: CSS 权重
+description: CSS 选择器的权重
 category: css
 tags:
   - weight
@@ -8,7 +8,7 @@ tags:
 ---
 
 
-# CSS选择器权重
+# CSS 选择器权重
 
 
 ## 权重值
