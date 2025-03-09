@@ -39,7 +39,6 @@ export default {
   },
   enhanceApp(ctx) {
     const components: Record<string, AsyncComponentLoader> = import.meta.glob('./components/global/*.vue')
-    console.log(components)
     Object
       .entries(components)
       .forEach(([ key, value ]) => {

@@ -12,6 +12,6 @@ order: 5
 import DocTimelineItem from './components/DocTimeline.vue'
 </script>
 
-<style lang="scss" src="./index.scss"></style>
+<style lang="css" src="./index.css"></style>
 
 <DocTimelineItem></DocTimelineItem>
