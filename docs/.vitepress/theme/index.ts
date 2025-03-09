@@ -1,7 +1,7 @@
 // 组件/公共组件
-import Live2dWidget from '@theme/components/Live2dWidget.vue'
-import SlotDocAfter from '@theme/components/SlotDocAfter.vue'
-import SlotDocFooterBefore from '@theme/components/SlotDocFooterBefore.vue'
+import Live2dWidget from './components/Live2dWidget.vue'
+import SlotDocAfter from './components/SlotDocAfter.vue'
+import SlotDocFooterBefore from './components/SlotDocFooterBefore.vue'
 // 依赖
 import { ImagePreviewService } from './directives/image-preview'
 import { useEventListener } from '@vueuse/core'
@@ -39,6 +39,7 @@ export default {
   },
   enhanceApp(ctx) {
     const components: Record<string, AsyncComponentLoader> = import.meta.glob('./components/global/*.vue')
+    console.log(components)
     Object
       .entries(components)
       .forEach(([ key, value ]) => {

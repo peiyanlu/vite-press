@@ -3,11 +3,10 @@ import container from 'markdown-it-container'
 import { defineConfig } from 'vitepress'
 import { renderSandbox } from 'vitepress-plugin-sandpack'
 import { BASE_URL, withBase } from './config/common'
-import { nav, sidebar } from './config/menu'
 import { pwa } from './config/pwa'
-import { algolia, local } from './config/search'
+import { algolia } from './config/search'
 import { vite } from './config/vite'
-import './helper/restart-trigger'
+import { getNav, getSidebar } from './menu'
 
 
 export default withPwa(defineConfig({
@@ -49,9 +48,9 @@ export default withPwa(defineConfig({
       level: 'deep',
       label: '快速导航',
     },
-    nav: nav,
+    nav: getNav(),
     aside: true,
-    sidebar: sidebar,
+    sidebar: getSidebar(),
     editLink: {
       pattern: 'https://github.com/peiyanlu/vite-press/edit/docs-deploy/docs/:path',
       text: `编辑此页`,

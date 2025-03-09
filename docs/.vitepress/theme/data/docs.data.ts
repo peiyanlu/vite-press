@@ -9,7 +9,7 @@ interface FrontMatterResult {
   description?: string
 }
 
-interface DocData extends FrontMatterResult {
+export interface DocData extends FrontMatterResult {
   path: string
   createdDate: number
   updatedDate: number
@@ -37,7 +37,7 @@ const ignoredIndex: string[] = [ 'archive' ].map(name => `!**/${ name }/index.md
 export default {
   watch: [ 'docs/**/*.md', ...ignoredIndex ],
   async load(watchedFiles: string[]): Promise<DocData[]> {
-    // 解析文章 Frontmatter
+    // 解析文章 Front matter
     return await Promise.all(watchedFiles.map(async (articleFile: string) => {
       const { data } = matter.read(articleFile)
       
@@ -59,5 +59,5 @@ export default {
 }
 
 declare const data: DocData[]
-export { data, DocData }
+export { data }
 

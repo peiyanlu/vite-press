@@ -1,8 +1,8 @@
 import path from 'path'
-import { visualizer } from 'rollup-plugin-visualizer'
 import { fileURLToPath } from 'url'
 import { UserConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { vitePressHelperPlugin } from 'vitepress-plugin-helper'
 
 
 export const vite: UserConfig = {
@@ -27,9 +27,14 @@ export const vite: UserConfig = {
       // 自定义元素id
       customDomId: '__svg__icons__dom__',
     }),
-    visualizer() as any,
+    vitePressHelperPlugin({
+      sidebarOptions: {
+        ignoreDirs: [ 'img' ],
+      },
+    }),
   ],
   build: {
+    target: 'esnext',
     chunkSizeWarningLimit: 1000,
     commonjsOptions: {
       transformMixedEsModules: true,
