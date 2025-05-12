@@ -27,6 +27,7 @@
     "docs/.vitepress/**/*.d.ts",
     "docs/.vitepress/**/*.ts",
     "docs/.vitepress/**/*.vue",
-    "docs/**/*.ts"
+    "docs/**/*.ts",
+    "docs/**/*.vue"
   ]
 }

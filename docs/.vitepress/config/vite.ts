@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { UserConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -10,16 +10,14 @@ export const vite: UserConfig = {
     alias: [
       {
         find: '@theme',
-        replacement: fileURLToPath(
-          new URL('../theme', import.meta.url),
-        ),
+        replacement: fileURLToPath(new URL('../theme', import.meta.url)),
       },
     ],
   },
   plugins: [
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
-      iconDirs: [ path.resolve(process.cwd(), 'docs/public/icons') ],
+      iconDirs: [ resolve(process.cwd(), 'docs/public/icons') ],
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
       // 自定义插入位置
@@ -44,6 +42,6 @@ export const vite: UserConfig = {
     PWA: true,
   },
   ssr: {
-    noExternal: [ "@antv/g2plot" ]
-  }
+    noExternal: [ '@antv/g2plot' ],
+  },
 }

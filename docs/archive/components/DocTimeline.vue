@@ -66,9 +66,9 @@ onBeforeMount(() => {
   }
 })
 
-const handleSelectedTag = (tag: string, data: DocData[]) => {
+const handleSelectedTag = (tag: string | number, data: DocData[]) => {
   isSelected.value = true
-  resetPageData(tag, data)
+  resetPageData(String(tag), data)
 }
 
 
@@ -76,7 +76,7 @@ const isCurrentYear = (year: number) => {
   return new Date().getFullYear() === year
 }
 
-const shadow = isDark ? 'rgba(125, 125, 125, .1)' : 'rgba(0, 0, 0, .1)'
+const shadow = isDark ? '125, 125, 125' : '0, 0, 0'
 
 const ns = useNamespace('doc-timeline-item')
 </script>
@@ -295,7 +295,7 @@ const ns = useNamespace('doc-timeline-item')
             }
             
             &:hover {
-              box-shadow: 0 2px 12px 0 v-bind(shadow);
+              box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
               
               .title {
                 div {

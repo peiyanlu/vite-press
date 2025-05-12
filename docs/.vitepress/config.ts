@@ -28,17 +28,16 @@ export default withPwa(defineConfig({
   markdown: {
     lineNumbers: true,
     config(md) {
-      md
-        // the second parameter is html tag name
-        .use(container, 'sandbox', {
-          render(tokens: any[], idx: number) {
-            return renderSandbox(tokens, idx, 'sandbox')
-          },
-        })
+      // the second parameter is HTML tag name
+      md.use(container, 'sandbox', {
+        render(tokens: [], idx: number) {
+          return renderSandbox(tokens, idx, 'sandbox')
+        },
+      })
     },
     image: {
-      lazyLoading: true
-    }
+      lazyLoading: true,
+    },
   },
   themeConfig: {
     logo: '/logo.svg',

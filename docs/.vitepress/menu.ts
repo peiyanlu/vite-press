@@ -37,10 +37,17 @@ export const getNav = () => [
     "sidebar": true
   },
   {
+    "link": "/interview/",
+    "text": "面试",
+    "activeMatch": "/interview/",
+    "order": 5,
+    "sidebar": true
+  },
+  {
     "link": "/archive/",
     "text": "归档",
     "activeMatch": "/archive/",
-    "order": 5,
+    "order": 6,
     "sidebar": false
   }
 ] as unknown as DefaultTheme.NavItem[]
@@ -580,6 +587,18 @@ export const getSidebar = () => ({
       ],
       "collapsed": false,
       "order": 115
+    }
+  ],
+  "/interview/": [
+    {
+      "text": "NestJs",
+      "link": "/interview/NestJs",
+      "order": 78
+    },
+    {
+      "text": "Vue3",
+      "link": "/interview/Vue3",
+      "order": 86
     }
   ]
 })

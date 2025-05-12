@@ -2,6 +2,8 @@ import { PwaOptions } from '@vite-pwa/vitepress'
 import { withBase } from './common'
 
 
+const assets = [ 'images', 'icons', 'svg' ]
+
 export const pwa: PwaOptions = {
   strategies: 'generateSW',
   registerType: 'autoUpdate',
@@ -32,10 +34,13 @@ export const pwa: PwaOptions = {
     clientsClaim: true,
     skipWaiting: true,
     globPatterns: [ '**/*.{css,js,html,svg,png,ico,txt,woff2,xml,txt}' ],
-    globIgnores: [ 'assets/images/**', 'assets/icons/**', 'assets/svg/**' ],
+    globIgnores: assets.map(k => `assets/${ k }/**`),
     runtimeCaching: [
       {
-        urlPattern: ({ sameOrigin, url }) => sameOrigin && [ 'images', 'icons', 'svg' ].some(path => url.pathname.startsWith(`/assets/${ path }/`)),
+        urlPattern: ({
+          sameOrigin,
+          url,
+        }) => sameOrigin && assets.some(path => url.pathname.startsWith(`/assets/${ path }/`)),
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'assets-images-cache',
