@@ -31,7 +31,7 @@ export default {
         class: frontmatter.value?.layoutClass,
       },
       {
-        'layout-bottom': () => h(Live2dWidget),
+        // 'layout-bottom': () => h(Live2dWidget),
         'doc-after': () => h(SlotDocAfter),
         'doc-footer-before': () => h(SlotDocFooterBefore),
       },

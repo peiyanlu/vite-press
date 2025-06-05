@@ -302,7 +302,7 @@ jobs:
           publish_dir: docs/.vitepress/dist
 ```
 
-[获取个人令牌](/vcs/git-hub#获取-token-私人令牌)
+[获取个人令牌](/cli/git/hub#获取-token-私人令牌)
 
 ### 同步 `gh-pages` 分支到 `Gitee`
 

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { slugify } from '@mdit-vue/shared'
+import vTypedText from '@theme/directives/typed-text'
 import { useNamespace } from '@theme/hooks/useNamespace'
 import { computed } from 'vue'
 import ImageIcon from './ImageIcon.vue'
@@ -17,15 +18,35 @@ const props = defineProps<{
 const formatTitle = computed(() => props.title ? slugify(props.title) : '')
 
 const ns = useNamespace('site-nav-link')
+
 </script>
 
 <template>
-  <a v-if="link" :class="ns.b()" :href="link" rel="noreferrer" target="_blank">
+  <a
+    v-if="link"
+    :class="ns.b()"
+    :href="link"
+    rel="noreferrer"
+    target="_blank"
+    v-typed-text="{
+      text: title ?? '',
+      childSelector: `#${formatTitle}`
+    }"
+  >
     <div :class="ns.e('header')">
       <ImageIcon :icon="icon" :title="title" />
-      <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
+      <span
+        v-if="title"
+        :id="formatTitle"
+        class="title"
+        v-text="title"
+      />
     </div>
-    <p v-if="desc" :class="ns.e('footer')">{{ desc }}</p>
+    <p
+      v-if="desc"
+      :class="ns.e('footer')"
+      v-text="desc"
+    />
   </a>
 </template>
 
@@ -42,25 +63,30 @@ const ns = useNamespace('site-nav-link')
   border-radius: 8px;
   text-decoration: none;
   
-  &:hover {
-    text-decoration: unset;
-    background-color: var(--vp-c-bg-soft);
-    
-    .title {
-      &::after {
-        animation: show 1s steps(24, end) forwards;
-      }
-    }
-  }
+  background-image: linear-gradient(90deg, rgba(159, 219, 252, 0.05) 3%, transparent 0px), linear-gradient(1turn,
+    rgba(159, 219, 252, 0.05) 3%, transparent 0px);
+  background-size: 20px 20px;
+  background-position: 50% center;
   
-  @keyframes show {
-    from {
-      transform: scaleX(1.15);
-    }
-    to {
-      transform: scaleX(0);
-    }
-  }
+  // &:hover {
+  //   text-decoration: unset;
+  //   background-color: var(--vp-c-bg-soft);
+  //
+  //   .title {
+  //     &::after {
+  //       animation: show 1s steps(24, end) forwards;
+  //     }
+  //   }
+  // }
+  //
+  // @keyframes show {
+  //   from {
+  //     transform: scaleX(1.15);
+  //   }
+  //   to {
+  //     transform: scaleX(0);
+  //   }9999999999999
+  // }
   
   &__header {
     display: flex;
@@ -108,22 +134,22 @@ const ns = useNamespace('site-nav-link')
       font-weight: 600;
       line-height: 48px;
       overflow: hidden;
-      flex-grow: 1;
+      // flex-grow: 1;
       white-space: nowrap;
       text-overflow: ellipsis;
       
-      &::after {
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        content: "";
-        transform: scaleX(0);
-        transform-origin: center right;
-        background-color: var(--vp-c-bg-soft);
-      }
+      // &::after {
+      //   position: absolute;
+      //   z-index: 1;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   content: "";
+      //   transform: scaleX(0);
+      //   transform-origin: center right;
+      //   background-color: var(--vp-c-bg-soft);
+      // }
     }
   }
   

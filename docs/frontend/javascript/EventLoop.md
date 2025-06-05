@@ -44,7 +44,7 @@ script、setTimeout、SetInterval、setImmediate(node)、requestAnimationFrame�
 
 * 微任务（micro-task）
 
-process.nextTick(node)、Promise、Object.observer(废弃)、MutationObserver
+process.nextTick(node)、Promise、Object.observer(废弃)、MutationObserver、queueMicrotask
 
 ## 事件循环执行机制
 

@@ -138,26 +138,26 @@ evt?.clientY
 
 ## 应用
 
-* 计算元素距离**浏览器左上角**的距离
+* 计算元素距离 **浏览器左上角** 的距离
 
-```js
-const getOffsetLeft = (dom) => {
-  let tmp = dom.offsetLeft
-  let val = dom.offsetParent
-  while (val != null) {
-    tmp += val.offsetLeft
-    val = val.offsetParent
+```ts
+const getOffsetLeft = (dom: HTMLElement) => {
+  let offsetLeft = dom.offsetLeft
+  let parent = dom.offsetParent as (HTMLElement | null)
+  while (parent) {
+    offsetLeft += parent.offsetLeft
+    parent = parent.offsetParent as (HTMLElement | null)
   }
-  return tmp
+  return offsetLeft
 }
 
-const getOffsetTop = (dom) => {
-  let tmp = dom.offsetTop
-  let val = dom.offsetParent
-  while (val != null) {
-    tmp += val.offsetTop
-    val = val.offsetParent
+const getOffsetTop = (dom: HTMLElement) => {
+  let offsetTop = dom.offsetTop
+  let parent = dom.offsetParent as (HTMLElement | null)
+  while (parent) {
+    offsetTop += parent.offsetTop
+    parent = parent.offsetParent as (HTMLElement | null)
   }
-  return tmp
+  return offsetTop
 }
 ```

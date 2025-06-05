@@ -334,6 +334,11 @@ export const getSidebar = () => ({
           "order": 104
         },
         {
+          "text": "请求代理",
+          "link": "/frontend/network/proxy",
+          "order": 112
+        },
+        {
           "text": "资源请求",
           "link": "/frontend/network/request",
           "order": 114
@@ -408,6 +413,11 @@ export const getSidebar = () => ({
         {
           "text": "打补丁",
           "link": "/frontend/npm/package-patch",
+          "order": 112
+        },
+        {
+          "text": "pnpm 安装",
+          "link": "/frontend/npm/pnpm",
           "order": 112
         }
       ],
@@ -591,6 +601,41 @@ export const getSidebar = () => ({
   ],
   "/interview/": [
     {
+      "text": "计算机网络",
+      "link": "/interview/01-Network",
+      "order": 48
+    },
+    {
+      "text": "浏览器原理",
+      "link": "/interview/02-Browser",
+      "order": 48
+    },
+    {
+      "text": "HTML5 && CSS",
+      "link": "/interview/03-HTML && CSS",
+      "order": 48
+    },
+    {
+      "text": "JavaScript 面试题",
+      "link": "/interview/04-JavaScript",
+      "order": 48
+    },
+    {
+      "text": "TypeScript",
+      "link": "/interview/06-TypeScript",
+      "order": 48
+    },
+    {
+      "text": "Vue 面试题",
+      "link": "/interview/07-Vue",
+      "order": 48
+    },
+    {
+      "text": "08-React",
+      "link": "/interview/08-React",
+      "order": 48
+    },
+    {
       "text": "NestJs",
       "link": "/interview/NestJs",
       "order": 78
@@ -599,6 +644,16 @@ export const getSidebar = () => ({
       "text": "Vue3",
       "link": "/interview/Vue3",
       "order": 86
+    },
+    {
+      "text": "前后端联动部署",
+      "link": "/interview/backend-link-deploy",
+      "order": 98
+    },
+    {
+      "text": "部署前端应用",
+      "link": "/interview/docker-frontend-deploy",
+      "order": 100
     }
   ]
 })
