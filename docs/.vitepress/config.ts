@@ -4,10 +4,12 @@ import { defineConfig } from 'vitepress'
 import { renderSandbox } from 'vitepress-plugin-sandpack'
 import { BASE_URL, withBase } from './config/common'
 import { pwa } from './config/pwa'
-import { algolia } from './config/search'
+import { algolia, local } from './config/search'
 import { vite } from './config/vite'
 import { getNav, getSidebar } from './menu'
 
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 export default withPwa(defineConfig({
   title: '笔记',
@@ -78,7 +80,7 @@ export default withPwa(defineConfig({
       },
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
-    search: algolia,
+    search: isDev ? local : algolia,
     externalLinkIcon: true,
   },
   locales: {

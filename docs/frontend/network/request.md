@@ -11,7 +11,7 @@ tags:
 # {{ $frontmatter.title }}
 
 
-## 跨域请求携带cookie
+## 跨域请求携带 Cookie
 
 1. 前端请求时在 `request` 对象中配置 `withCredentials: true`；
 

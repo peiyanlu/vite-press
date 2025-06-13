@@ -51,7 +51,7 @@ const ns = useNamespace('type-child')
     width: 24px;
     height: 100%;
     aspect-ratio: 1 / 1;
-    background: var(--vp-c-green);
+    background: var(--vp-c-brand-1);
     font-size: 12px;
     color: #ffffff;
     text-align: center;
@@ -60,25 +60,25 @@ const ns = useNamespace('type-child')
   
   &.aa {
     span:first-of-type {
-      background: var(--vp-c-yellow-lighter);
+      background: var(--vp-c-warning-3);
     }
   }
   
   &.bb {
     div:first-child {
-      background: var(--vp-c-red-dimm-3);
+      background: var(--vp-c-caution-3);
     }
   }
   
   &.cc {
     div:nth-child(n) {
-      background: var(--vp-c-red);
+      background: var(--vp-c-success-3);
     }
   }
   
   &.dd {
     a:nth-of-type(2n) {
-      background: var(--vp-c-yellow);
+      background: var(--vp-c-warning-3);
     }
   }
   
@@ -90,26 +90,26 @@ const ns = useNamespace('type-child')
   
   &.ff {
     span:nth-last-of-type(2n) {
-      background: var(--vp-c-red-dimm-3);
+      background: var(--vp-c-caution-3);
     }
   }
   
   &.gg {
     a:nth-last-child(2n) {
-      background: var(--vp-c-yellow);
+      background: var(--vp-c-warning-3);
     }
   }
   
   &.hh {
     p:last-of-type {
-      background: var(--vp-c-red);
+      background: var(--vp-c-caution-3);
     }
   }
   
   
   &.ii {
     span:last-child {
-      background: var(--vp-c-red);
+      background: var(--vp-c-caution-3);
     }
   }
   

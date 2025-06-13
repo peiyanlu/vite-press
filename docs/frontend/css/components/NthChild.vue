@@ -28,36 +28,36 @@ const ns = useNamespace('nth-child')
   &__item {
     width: 30px;
     height: 30px;
-    background: var(--vp-c-green);
+    background: var(--vp-c-brand-1);
   }
 
   &.aa {
     div:nth-child(2n) {
-      background: var(--vp-c-yellow-lighter);
+      background: var(--vp-c-warning-3);
     }
   }
 
   &.bb {
     div:nth-child(2n-1) {
-      background: var(--vp-c-yellow);
+      background: var(--vp-c-warning-3);
     }
   }
 
   &.cc {
     div:nth-child(n+6) {
-      background: var(--vp-c-red-dimm-3);
+      background: var(--vp-c-caution-3);
     }
   }
 
   &.dd {
     div:nth-child(-n+6) {
-      background: var(--vp-c-yellow-dark);
+      background: var(--vp-c-warning-3);
     }
   }
 
   &.ee {
     div:nth-child(n + 6):nth-child(-n + 9) {
-      background: var(--vp-c-red);
+      background: var(--vp-c-success-3);
     }
   }
 }

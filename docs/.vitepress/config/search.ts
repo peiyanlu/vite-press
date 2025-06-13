@@ -75,6 +75,16 @@ export const local: DefaultTheme.Config['search'] = {
           }
         }
       }
+    },
+    async _render(src, env, md) {
+      const html = md.render(src, env)
+      
+      if (env.frontmatter?.title) {
+        const title = env.frontmatter.title as string
+        return html.replaceAll('{{ $frontmatter.title }}', title)
+      }
+      
+      return html
     }
   }
 }

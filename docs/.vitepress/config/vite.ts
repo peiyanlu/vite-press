@@ -3,7 +3,10 @@ import { fileURLToPath } from 'url'
 import { UserConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { vitePressHelperPlugin } from 'vitepress-plugin-helper'
+import llmstxt from 'vitepress-plugin-llms'
 
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 export const vite: UserConfig = {
   resolve: {
@@ -27,9 +30,10 @@ export const vite: UserConfig = {
     }),
     vitePressHelperPlugin({
       sidebarOptions: {
-        ignoreDirs: [ 'img' ],
+        ignoreDirs: [ 'img', 'components' ],
       },
     }),
+    !isDev && llmstxt(),
   ],
   build: {
     target: 'esnext',

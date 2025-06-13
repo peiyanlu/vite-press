@@ -1,5 +1,5 @@
 ---
-title: 数据存储
+title: 浏览器数据存储
 description: 浏览器中的数据存储方式
 category: browser
 tags:
@@ -7,11 +7,15 @@ tags:
   - storage
 ---
 
-# 浏览器存储
+
+# {{ $frontmatter.title }}
+
 
 浏览器的本地存储主要分为 `Cookie`、`WebStorage` 和 `IndexedDB`，其中 `WebStorage` 又分为 `localStorage`（本地存储）和 `sessionStorage`（会话存储）
 
+
 ## cookie
+
 
 `cookie` 最开始并不是用于本地存储的，而是为了弥补 `HTTP` 在状态管理上的不足：
 `HTTP` 是一个无状态的协议，客户端向服务器发送请求，服务器返回响应，但是下一次发送请求时服务端就无法识别客户端的身份信息，故而产生了 `cookie`。
@@ -55,6 +59,7 @@ tags:
 
 ### session（后端）
 
+
 `cookie` 和 `session` 都是用来跟踪浏览器用户的身份的方式，有以下区别：
 
 1. 保存方式
@@ -97,50 +102,51 @@ tags:
 6. 应用场景
 
 - **`cookie`：**
-  
-  - 判断用户是否登陆过网站，以便下次登录时能够实现自动登录（或者记住密码）。如果我们删除 `cookie`，则每次登录必须重新填写登录的相关信息。
-  
-  - 保存上次登录的时间等信息。
-  
-  - 保存上次查看的页面
-  
-  - 浏览计数
+
+    - 判断用户是否登陆过网站，以便下次登录时能够实现自动登录（或者记住密码）。如果我们删除 `cookie`，则每次登录必须重新填写登录的相关信息。
+
+    - 保存上次登录的时间等信息。
+
+    - 保存上次查看的页面
+
+    - 浏览计数
 
 - **`session`：**`session` 用于保存每个用户的专用信息，变量的值保存在服务器端，通过 `session id` 来区分不同的客户。
-  
-  - 网上商城中的购物车
-  
-  - 保存用户登录信息
-  
-  - 将某些数据放入 `session` 中，供同一用户的不同页面使用
-  
-  - 防止用户非法登录
+
+    - 网上商城中的购物车
+
+    - 保存用户登录信息
+
+    - 将某些数据放入 `session` 中，供同一用户的不同页面使用
+
+    - 防止用户非法登录
 
 7. 缺点
 
 - **`cookie`：**
-  
-  - 大小受限，不能超过 `4kb`；
-  
-  - 用户可以操作（禁用）`cookie`，使功能受限；
-  
-  - 安全性较低；
-  
-  - 有些状态不能保存在客户端；
-  
-  - 每次访问都要传送 `cookie` 给服务器，浪费带宽；
-  
-  - `cookie` 数据有路径（`path`）的概念，可以限制 `cookie` 只属于某个路径下。
+
+    - 大小受限，不能超过 `4kb`；
+
+    - 用户可以操作（禁用）`cookie`，使功能受限；
+
+    - 安全性较低；
+
+    - 有些状态不能保存在客户端；
+
+    - 每次访问都要传送 `cookie` 给服务器，浪费带宽；
+
+    - `cookie` 数据有路径（`path`）的概念，可以限制 `cookie` 只属于某个路径下。
 
 - **`session`：**
-  
-  - `session` 保存的东西越多，就越占用服务器内存，对于用户在线人数较多的网站，服务器的内存压力会比较大。
-  
-  - 依赖于 `cookie`（`session id` 保存在 `cookie`），如果禁用 `cookie`，则要使用 `URL` 重写，不安全。
-  
-  - 创建 `session` 变量有很大的随意性，可随时调用，不需要开发者做精确地处理，所以，过度使用 `session` 变量将会导致代码不可读而且不好维护。
+
+    - `session` 保存的东西越多，就越占用服务器内存，对于用户在线人数较多的网站，服务器的内存压力会比较大。
+
+    - 依赖于 `cookie`（`session id` 保存在 `cookie`），如果禁用 `cookie`，则要使用 `URL` 重写，不安全。
+
+    - 创建 `session` 变量有很大的随意性，可随时调用，不需要开发者做精确地处理，所以，过度使用 `session` 变量将会导致代码不可读而且不好维护。
 
 ### 用法
+
 
 `cookie` 本身没有封装 `API`，需要手动封装或者使用已有的库 [js-cookie](https://www.npmjs.com/package/js-cookie)
 
@@ -171,11 +177,14 @@ const removeCookie = (name: string) => {
 
 ## Web storage API
 
+
 `Web Storage` 存储机制是对 `HTML4` 中 `cookie` 存储机制的一个改善。由于 `cookie` 存储机制有很多缺点，`HTML5` 不再使用它，转而使用改良后的 `Web Storage` 存储机制。
 
 `Web Storage` 提供两种类型的 `API`：`localStorage` 在本地永久性存储数据，除非显式将其删除或清空；`sessionStorage` 存储的数据只在会话期间有效，关闭浏览器则自动删除。
 
+
 ### localStorage
+
 
 `localStorage` 的存储都是字符串，如果是存储对象，那么在存储时就需要调用 `JSON.stringify` 方法，并且在取值时用 `JSON.parse`
 来解析成对象。
@@ -183,22 +192,23 @@ const removeCookie = (name: string) => {
 **与 `cookie` 的异同：**
 
 - **同：**
-  
-  - 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
+
+    - 针对一个域名，即在同一域名下，会存储同一段 `localStorage`。
 
 - **异：**
-  
-  - 容量：`localStorage` 的容量上线为 `5MB`。
-  
-  - 只存储在客户端，默认不参与与服务器端的通讯，这样就很好的避免了 `cookie` 带来的性能和安全问题。
-  
-  - 接口封装：通过 `localStorage` 暴露在全局，并通过它的 `setItem` 和 `getItem` 等方法进行操作。
+
+    - 容量：`localStorage` 的容量上线为 `5MB`。
+
+    - 只存储在客户端，默认不参与与服务器端的通讯，这样就很好的避免了 `cookie` 带来的性能和安全问题。
+
+    - 接口封装：通过 `localStorage` 暴露在全局，并通过它的 `setItem` 和 `getItem` 等方法进行操作。
 
 **应用场景：**
 
 - 因为 `localStorage` 的较大容量和持久特性，可以利用 `localStorage` 存储一些内容稳定的资源；例如官网的 `logo`，存储 `Base64` 格式的图片资源。
 
 ### sessionStorage
+
 
 将数据保存在 `session Storage` 对象中。
 
@@ -213,20 +223,20 @@ const removeCookie = (name: string) => {
 **与 `localStorage` 的异同：**
 
 - **同：**
-  
-  - 容量：`sessionStorage` 的容量上线也为 `5MB`。
-  
-  - 只存储在客户端，默认不参与与服务器端的通讯。
-  
-  - 接口封装：除了名字变化，`sessionStorage` 的存储方式和操作方式均和 `localStorage` 一样。
-  
-  - `localStorage` 和 `sessionStorage` 只能存储字符串类型。
+
+    - 容量：`sessionStorage` 的容量上线也为 `5MB`。
+
+    - 只存储在客户端，默认不参与与服务器端的通讯。
+
+    - 接口封装：除了名字变化，`sessionStorage` 的存储方式和操作方式均和 `localStorage` 一样。
+
+    - `localStorage` 和 `sessionStorage` 只能存储字符串类型。
 
 - **异：**
-  
-  - `sessionStorage` 将数据保存在 `Session` 对象中。而 `localStorage` 将数据保存在客户端本地的硬件设备，即使浏览器被关闭了该数据依然存在，下次打开浏览器访问网站时可以继续使用。
-  
-  - `localStorage` 的生命周期是永久的，`sessionStorage` 的生命周期是在仅在当前会话下有效。
+
+    - `sessionStorage` 将数据保存在 `Session` 对象中。而 `localStorage` 将数据保存在客户端本地的硬件设备，即使浏览器被关闭了该数据依然存在，下次打开浏览器访问网站时可以继续使用。
+
+    - `localStorage` 的生命周期是永久的，`sessionStorage` 的生命周期是在仅在当前会话下有效。
 
 **应用场景：**
 
@@ -251,6 +261,7 @@ localStorage.clear();
 ```
 
 ## indexedDB
+
 
 `IndexedDB` 是一个基于 `JavaScript` 的面向对象数据库。是一个事务型数据库系统。
 

@@ -1,5 +1,5 @@
 body {
-  overflow: overlay;
+  overflow: auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -35,6 +35,10 @@ body {
       }
     }
     
+    strong {
+      color: var(--vp-c-brand-1);
+      font-weight: normal;
+    }
   }
 }
 

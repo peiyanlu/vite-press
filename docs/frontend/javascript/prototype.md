@@ -20,7 +20,7 @@ tags:
 
 ## 原型链
 
-当我们访问一个 `对象` 的属性或者方法的时候，会先在对象自身属性上查找，有则直接使用，没有则通过他的隐式属性`person.__proto__（Person.prototype）`
+当我们访问一个 `对象` 的属性或者方法的时候，会先在对象自身属性上查找，有则直接使用，没有则通过他的隐式属性 `person.__proto__（Person.prototype）`
 上查找，如果没有找到则会在其构造函数的 `prototype` 的 `__proto__` 中查找，没有找到就再往上一层查找，直到 `Object`，这样一层一层的查找就会形成一个链式结构——**原型链**
 
 ![img.png](img/prototype/img_1.png)
@@ -29,10 +29,23 @@ tags:
 
 `new` 关键字会进行如下的操作：
 
-1. 创建一个空的简单 `JavaScript` 对象（即 `{}`）；
+1. 创建一个空对象 `obj`；
 
-2. 为步骤 `1` 新创建的对象添加属性 `__proto__`，将该属性链接至构造函数的原型对象；
+2. 为 `obj` 添加原型属性 `__proto__` 链接构造函数的原型对象 ；
 
-3. 将步骤 `1` 新创建的对象作为 `this` 的上下文；
+3. 将构造函数的 this 指向新对象 `obj`；
 
-4. 如果该函数没有返回对象，则返回 `this`。
+4. 如果构造函数没有返回对象，则返回 `obj`。
+
+```javascript
+function myNew(Func: Function, ...args: any[]) {
+  // 1. 创建一个空对象
+  const obj = Object.create(null)
+  // 2. 将构造函数原型对象指向新对象原型
+  obj.__proto__ = Func.prototype
+  // 3. 将构造函数的 this 指向新对象
+  const result = Func.apply(obj, args)
+  // 4. 根据返回值判断
+  return result instanceof Object ? result : obj
+}
+```

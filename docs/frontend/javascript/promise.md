@@ -58,8 +58,7 @@ promise.then(res => {
 
 无论执行的结果是成功还是失败，最终都会执行 `.finally` 方法。`finally` 方法接收的也是一个函数。
 
-
-`then` 和 `catch` 支持链式操作
+`then` 和 `catch` 支持链式操作，因为返回的是**新的 Promise 对象**。
 
 
 ## 静态方法
@@ -84,13 +83,13 @@ console.log(Promise.all([])) // will be immediately resolved: Promise { <state>:
 ```
 
 - 异步返回：返回一个处理中（`pending`）的 `Promise`。
-    
+
     - 如果传入的参数不包含任何 `promise`，则返回一个异步完成（`asynchronously resolved`）`Promise`。
-      
+
       :::warning
       `Google Chrome 58` 在这种情况下返回一个已完成（`already resolved`）状态的 `Promise`。
       :::
-    
+
     - 其他情况下这个返回的 `promise` 之后会在所有的 `promise` 都完成或有一个 `promise` 失败时异步地变为完成或失败。
 
 ```ts
@@ -126,7 +125,6 @@ console.log(Promise.allSettled([])) // will be immediately resolved: Promise { <
 
 返回的 `promise` 在给定的 `iterable` 中所有 `promise` 已经敲定时（要么已兑现，要么已拒绝）变为成功。
 
-
 **每个结果对象都有以下的属性：**
 
 - `status`：一个字符串，要么是 `fulfilled`，要么是 `rejected`，表示 `promise` 的最终状态。
@@ -151,7 +149,6 @@ console.log(Promise.allSettled([])) // will be immediately resolved: Promise { <
 
 [Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) 方法接收 `iterable` 类型数据并且返回一个 `Promise` 实例。
 
-
 返回一个处理中（`pending`）的 `Promise`。迭代器中的任意一个 `promise` 解决或拒绝，返回的 `promise` 就会异步地解析或拒绝（一旦堆栈为空）。
 
 - 如果传的迭代是空的，则返回的 `promise` 将永远等待。
@@ -171,29 +168,30 @@ console.log(Promise.allSettled([])) // will be immediately resolved: Promise { <
 
 ### Promise.reject
 
+
 `Promise.reject()` 方法返回一个带有拒绝原因的 `Promise` 对象
 
 ```ts
 Promise.reject(false)
 
 // 等同于
-new Promise((resolve, reject)=>{
+new Promise((resolve, reject) => {
   reject(false)
 })
 ```
 
 ### Promise.resolve
 
+
 `Promise.resolve()` 方法将给定的值 `resolves` 为 `Promise`。
 如果值是一个 `thenable`，`Promise.resolve` 将调用 `then` 方法，并准备两个回调；否则，返回的 `Promise` 将以该值实现。
-
-
 
 1. 如果参数本身就是一个 `Promise` 对象，则直接返回这个 `Promise` 对象。
 
 2. 如果参数是一个 `thenable` 对象
 
 `thenable` 对象指的是具有 `then` 方法的对象：
+
 ```ts
 let thenable = {
   then: (resolve, reject) => {
@@ -206,13 +204,13 @@ let thenable = {
 
 ```ts
 let thenable = {
-  then: function(resolve, reject) {
+  then: function (resolve, reject) {
     resolve(42);
   }
 };
 
 let p1 = Promise.resolve(thenable);
-p1.then(function(value) {
+p1.then(function (value) {
   console.log(value);  // 42
 });
 ```
@@ -244,10 +242,11 @@ Promise.resolve(thenable) //这会造成一个死循环
 `Promise.resolve` 方法允许调用时不带参数，直接返回一个 `resolved` 状态的 `Promise` 对象。
 
 :::warning
+
 - 立即 `resolve` 的 `Promise` 对象，是在本轮 **事件循环** （event loop）的结束时执行执行，不是马上执行，也不是在下一轮 **事件循环** 的开始时执行
 
 - 原因：传递到 `then()` 中的函数被置入了一个微任务队列，而不是立即执行，这意味着它是在 `JavaScript` 事件队列的所有运行时结束了，事件队列被清空之后，才开始执行
-:::
+  :::
 
 ---
 **resolve()本质作用**
@@ -257,3 +256,133 @@ Promise.resolve(thenable) //这会造成一个死循环
 - `promise` 调用 `then` 的前提是 `promise` 的状态为 `fulfilled`；
 
 - 只有 `promise` 调用 `then` 的时候，`then` 里面的函数才会被推入微任务中；
+
+## async/await
+
+
+> `async/await` 是 JavaScript（ES2017 引入）中基于 `Promise` 的语法糖。`await` 的作用相当于在 `.then()` 中获取结果。它使异步代码更接近同步流程写法。
+
+**async**：用于声明一个异步函数，函数会隐式返回一个 `Promise`。
+
+**await**：只能在 `async` 函数中使用，等待 `Promise` 对象的解析结果。如果不是 `Promise`，它会被自动包装成一个 `Promise.resolve(...)`。
+
+
+### 注意事项
+
+- await 会阻塞当前 async 函数内部后续代码的执行，直到 Promise 完成。
+
+- 异步函数默认返回一个 Promise，可以使用 .then() 继续链式调用。
+
+- 不能在顶层作用域直接使用 await（除非是在模块中，或者环境支持顶层 await，比如 Node.js v14+ / 浏览器模块）。
+
+### await 支持
+
+| 表达式                   | 是否被 `await` 支持 | 说明                  |
+|-----------------------|----------------|---------------------|
+| `Promise.resolve(1)`  | ✅              | 等待其完成               |
+| `123` / `"str"`       | ✅              | 自动包装成 Promise       |
+| `asyncFn()`           | ✅              | 返回的是 Promise        |
+| `Promise.reject(err)` | ✅（需捕获）         | 会抛出异常               |
+| `{ then() { ... } }`  | ✅              | 被当作 Thenable 处理     |
+| `null` / `undefined`  | ✅              | 自动包装为 Promise       |
+| `throw new Error()`   | ✅（需捕获）         | 表达式本身抛出同步异常也会 catch |
+
+### 应用
+
+- 重试
+
+```ts
+async function retry<T>(fn: () => Promise<T>, times: number): Promise<T> {
+  let error;
+  for (let i = 0; i < times; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      error = e;
+    }
+  }
+  throw error;
+}
+```
+
+- 顺序执行
+
+```ts
+async function runSequential(tasks: (() => Promise<any>)[]) {
+  for (const task of tasks) {
+    await task();
+  }
+}
+```
+
+- sleep
+
+```ts
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+```
+
+- 并发
+
+```ts
+export async function asyncPool<T>(
+  limit: number,                          // 并发限制数，比如最多同时执行 3 个任务
+  tasks: (() => Promise<T>)[]            // 任务列表，都是返回 Promise 的函数
+): Promise<T[]> {
+  const results: T[] = []                // 存储每个任务的返回结果（按顺序）
+  const executing: Promise<void>[] = []  // 当前正在执行的任务（用于 await 所有）
+  
+  let index = 0                          // 当前要处理的任务下标
+  
+  // 定义一个内部函数，用来递归启动后续任务
+  const runNext = async () => {
+    if (index >= tasks.length) return    // 边界条件：所有任务都已处理完
+    
+    const i = index++                    // 拿到当前任务索引并自增
+    const task = tasks[i]                // 拿到当前要执行的任务函数
+    
+    try {
+      const result = await task()        // 执行任务并等待其完成
+      results[i] = result                // 将结果存入对应位置（保证顺序）
+    } catch (e) {
+      // 也可以选择忽略错误或用 null 占位
+      results[i] = Promise.reject(e) as any  // 捕获错误，放入对应位置
+    }
+    
+    // 递归执行下一个任务（一个完成就继续下一个）
+    await runNext()
+  }
+  
+  // 启动前 limit 个任务（最多不超过任务总数）
+  for (let i = 0; i < Math.min(limit, tasks.length); i++) {
+    const p = runNext()                  // 启动一个任务链
+    executing.push(p)                    // 加入执行中的 Promise 列表
+  }
+  
+  await Promise.all(executing)           // 等待所有任务完成
+  return results                         // 返回最终的任务结果数组
+}
+
+```
+
+| 位置                       | 说明                                   |
+|--------------------------|--------------------------------------|
+| `index++`                | 控制当前任务编号并推进，下一个任务编号就是递增后的值。是任务调度的核心。 |
+| `runNext()`              | 每个任务完成后会调用自己，从而形成递归，继续推进下一个任务。       |
+| `Promise.all(executing)` | 控制整个“任务启动器”流程在所有并发任务链执行完后再返回结果。      |
+| `results[i] = ...`       | 保证了结果数组的顺序性（即结果和任务顺序一致），而不是异步完成顺序。   |
+
+🔄 并发流程示意图（假设 limit = 2）
+
+```text
+初始任务队列: [task0, task1, task2, task3, task4]
+
+⏱ 第1轮：
+- task0 开始（runNext0）——等待
+- task1 开始（runNext1）——等待
+
+🟢 task0 完成后 → runNext0 启动 task2
+🟢 task1 完成后 → runNext1 启动 task3
+🟢 task2 完成后 → runNext0 启动 task4
+🟢 task3、task4 完成 → 所有执行完成
+
+```

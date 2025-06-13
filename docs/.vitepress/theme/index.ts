@@ -47,6 +47,8 @@ export default {
         ctx.app.component(name, defineAsyncComponent(value))
       })
     
+    DefaultTheme.enhanceApp(ctx)
+    
     ctx.app.component('Sandbox', Sandbox)
   },
 } as Theme

@@ -55,10 +55,10 @@ export const getNav = () => [
 export const getSidebar = () => ({
   "/frontend/": [
     {
-      "text": "browser",
+      "text": "浏览器",
       "items": [
         {
-          "text": "基础知识",
+          "text": "浏览器基础知识",
           "link": "/frontend/browser/basics",
           "order": 98
         },
@@ -68,16 +68,16 @@ export const getSidebar = () => ({
           "order": 99
         },
         {
-          "text": "数据存储",
+          "text": "浏览器数据存储",
           "link": "/frontend/browser/storage",
           "order": 115
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 98
     },
     {
-      "text": "build",
+      "text": "编译构建",
       "items": [
         {
           "text": "monorepo",
@@ -148,11 +148,11 @@ export const getSidebar = () => ({
           "order": 119
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 98
     },
     {
-      "text": "code",
+      "text": "代码",
       "items": [
         {
           "text": "防抖与节流",
@@ -185,17 +185,16 @@ export const getSidebar = () => ({
           "order": 112
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 99
     },
     {
-      "text": "css",
+      "text": "CSS",
       "items": [
         {
-          "text": "components",
-          "items": [],
-          "collapsed": false,
-          "order": 99
+          "text": "BFC",
+          "link": "/frontend/css/bfc",
+          "order": 98
         },
         {
           "text": "CSS 选择器",
@@ -213,23 +212,28 @@ export const getSidebar = () => ({
           "order": 119
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 99
     },
     {
-      "text": "html",
+      "text": "Html",
       "items": [
+        {
+          "text": "HTML 杂项",
+          "link": "/frontend/html/misc",
+          "order": 109
+        },
         {
           "text": "OG 协议",
           "link": "/frontend/html/og",
           "order": 111
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 104
     },
     {
-      "text": "javascript",
+      "text": "JavaScript",
       "items": [
         {
           "text": "ES6+",
@@ -262,6 +266,11 @@ export const getSidebar = () => ({
           "order": 69
         },
         {
+          "text": "垃圾回收机制",
+          "link": "/frontend/javascript/GarbageCollection",
+          "order": 71
+        },
+        {
           "text": "Ajax",
           "link": "/frontend/javascript/ajax",
           "order": 97
@@ -285,6 +294,11 @@ export const getSidebar = () => ({
           "text": "fetch",
           "link": "/frontend/javascript/fetch",
           "order": 102
+        },
+        {
+          "text": "深（浅）拷贝",
+          "link": "/frontend/javascript/object-copy",
+          "order": 111
         },
         {
           "text": "对象",
@@ -311,12 +325,17 @@ export const getSidebar = () => ({
       "order": 106
     },
     {
-      "text": "network",
+      "text": "计算机网络",
       "items": [
         {
           "text": "长连接",
           "link": "/frontend/network/KeepAlive",
           "order": 75
+        },
+        {
+          "text": "OSI 与 TCP/IP 模型对比",
+          "link": "/frontend/network/OSI_vs_TCPIP_comparison",
+          "order": 79
         },
         {
           "text": "跨域",
@@ -334,6 +353,11 @@ export const getSidebar = () => ({
           "order": 104
         },
         {
+          "text": "OSI 七层模型",
+          "link": "/frontend/network/osi_model_layers",
+          "order": 111
+        },
+        {
           "text": "请求代理",
           "link": "/frontend/network/proxy",
           "order": 112
@@ -349,16 +373,16 @@ export const getSidebar = () => ({
           "order": 115
         },
         {
-          "text": "TCP",
+          "text": "TCP & UDP",
           "link": "/frontend/network/tcp",
           "order": 116
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 110
     },
     {
-      "text": "npm",
+      "text": "NPM",
       "items": [
         {
           "text": "changesets",
@@ -421,11 +445,11 @@ export const getSidebar = () => ({
           "order": 112
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 110
     },
     {
-      "text": "regex",
+      "text": "正则",
       "items": [
         {
           "text": "基础概念",
@@ -438,19 +462,29 @@ export const getSidebar = () => ({
           "order": 117
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 114
     },
     {
-      "text": "vue",
+      "text": "Vue",
       "items": [
+        {
+          "text": "KeepAlive",
+          "link": "/frontend/vue/keep-alive",
+          "order": 107
+        },
+        {
+          "text": "nextTick",
+          "link": "/frontend/vue/nextTick",
+          "order": 110
+        },
         {
           "text": "vue2打包组件库",
           "link": "/frontend/vue/vue2-components",
           "order": 118
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 118
     }
   ],
@@ -569,6 +603,11 @@ export const getSidebar = () => ({
           "text": "进程",
           "link": "/backend/node/process",
           "order": 0
+        },
+        {
+          "text": "Node 读写流",
+          "link": "/backend/node/streams",
+          "order": 115
         }
       ],
       "collapsed": false,
@@ -631,7 +670,7 @@ export const getSidebar = () => ({
       "order": 48
     },
     {
-      "text": "08-React",
+      "text": "React 面试题",
       "link": "/interview/08-React",
       "order": 48
     },
