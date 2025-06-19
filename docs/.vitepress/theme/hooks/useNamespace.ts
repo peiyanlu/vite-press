@@ -5,33 +5,30 @@ export type UseNamespace = {
   em: (el: string, mo: string) => string;
 };
 
-function createBem(namespace: string, element?: string, modifier?: string): string {
-  let cls = namespace;
-  if (element) {
-    cls += `__${element}`;
-  }
-  if (modifier) {
-    cls += `--${modifier}`;
-  }
-  return cls;
-}
 
 /**
  * useNamespace
  * @param block current block name
- * @param needDot Do you need a dot prefix (defalut: false)
+ * @param needDot Do you need a dot prefix (default: false)
  * @returns UseNamespace
  */
-export function useNamespace(block: string, needDot = false): UseNamespace {
-  const namespace = needDot ? `.VPDoc-${block}` : `VPDoc-${block}`;
-  const b = () => createBem(namespace);
-  const e = (element: string) => (element ? createBem(namespace, element) : '');
-  const m = (modifier: string) => (modifier ? createBem(namespace, '', modifier) : '');
-  const em = (element: string, modifier: string) => (element && modifier ? createBem(namespace, element, modifier) : '');
-  return {
-    b,
-    e,
-    m,
-    em,
-  };
+export const useNamespace = (block: string, needDot = false): UseNamespace => {
+  const createBem = (namespace: string, element?: string, modifier?: string): string => {
+    let cls = namespace
+    if (element) {
+      cls += `__${ element }`
+    }
+    if (modifier) {
+      cls += `--${ modifier }`
+    }
+    return cls
+  }
+  
+  const namespace = needDot ? `.VPDoc-${ block }` : `VPDoc-${ block }`
+  const b = () => createBem(namespace)
+  const e = (element: string) => element ? createBem(namespace, element) : ''
+  const m = (modifier: string) => modifier ? createBem(namespace, '', modifier) : ''
+  const em = (element: string, modifier: string) => element && modifier ? createBem(namespace, element, modifier) : ''
+  
+  return { b, e, m, em }
 }

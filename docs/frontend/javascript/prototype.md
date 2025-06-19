@@ -31,9 +31,9 @@ tags:
 
 1. 创建一个空对象 `obj`；
 
-2. 为 `obj` 添加原型属性 `__proto__` 链接构造函数的原型对象 ；
+2. 为 `obj` 添加原型属性 `__proto__` 链接构造函数的原型对象；
 
-3. 将构造函数的 this 指向新对象 `obj`；
+3. 将构造函数的 this 指向 `obj`；
 
 4. 如果构造函数没有返回对象，则返回 `obj`。
 
@@ -43,9 +43,9 @@ function myNew(Func: Function, ...args: any[]) {
   const obj = Object.create(null)
   // 2. 将构造函数原型对象指向新对象原型
   obj.__proto__ = Func.prototype
-  // 3. 将构造函数的 this 指向新对象
+  // 3. 将构造函数的 this 指向新对象，调用构造函数
   const result = Func.apply(obj, args)
   // 4. 根据返回值判断
   return result instanceof Object ? result : obj
 }
-```
+``` 

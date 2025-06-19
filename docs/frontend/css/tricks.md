@@ -1,5 +1,5 @@
 ---
-title: CSS 奇淫巧技
+title: 奇淫巧技
 description: 一看就会，一写就废
 category: css
 tags:

@@ -197,26 +197,26 @@ export const getSidebar = () => ({
           "order": 98
         },
         {
-          "text": "CSS 选择器",
+          "text": "滚动条样式",
+          "link": "/frontend/css/scrollbar",
+          "order": 115
+        },
+        {
+          "text": "选择器",
           "link": "/frontend/css/selector",
           "order": 115
         },
         {
-          "text": "CSS 奇淫巧技",
+          "text": "奇淫巧技",
           "link": "/frontend/css/tricks",
           "order": 116
-        },
-        {
-          "text": "CSS 权重",
-          "link": "/frontend/css/weight",
-          "order": 119
         }
       ],
       "collapsed": true,
       "order": 99
     },
     {
-      "text": "Html",
+      "text": "HTML",
       "items": [
         {
           "text": "HTML 杂项",
@@ -271,6 +271,11 @@ export const getSidebar = () => ({
           "order": 71
         },
         {
+          "text": "词法作用域",
+          "link": "/frontend/javascript/LexicalScope",
+          "order": 76
+        },
+        {
           "text": "Ajax",
           "link": "/frontend/javascript/ajax",
           "order": 97
@@ -319,6 +324,11 @@ export const getSidebar = () => ({
           "text": "作用域",
           "link": "/frontend/javascript/scope",
           "order": 115
+        },
+        {
+          "text": "this 指向总结",
+          "link": "/frontend/javascript/this_usage",
+          "order": 116
         }
       ],
       "collapsed": false,
@@ -447,6 +457,35 @@ export const getSidebar = () => ({
       ],
       "collapsed": true,
       "order": 110
+    },
+    {
+      "text": "performance",
+      "items": [
+        {
+          "text": "前端性能衡量标准",
+          "link": "/frontend/performance/WebVitals",
+          "order": 87
+        }
+      ],
+      "collapsed": false,
+      "order": 112
+    },
+    {
+      "text": "React",
+      "items": [
+        {
+          "text": "Redux Toolkit 使用示例",
+          "link": "/frontend/react/redux-toolkit",
+          "order": 114
+        },
+        {
+          "text": "Redux 使用示例",
+          "link": "/frontend/react/redux",
+          "order": 114
+        }
+      ],
+      "collapsed": true,
+      "order": 114
     },
     {
       "text": "正则",
@@ -680,6 +719,11 @@ export const getSidebar = () => ({
       "order": 78
     },
     {
+      "text": "Performance",
+      "link": "/interview/Performance",
+      "order": 80
+    },
+    {
       "text": "Vue3",
       "link": "/interview/Vue3",
       "order": 86
@@ -693,6 +737,11 @@ export const getSidebar = () => ({
       "text": "部署前端应用",
       "link": "/interview/docker-frontend-deploy",
       "order": 100
+    },
+    {
+      "text": "useState",
+      "link": "/interview/useState",
+      "order": 117
     }
   ]
 })

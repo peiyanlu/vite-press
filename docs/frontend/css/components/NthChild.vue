@@ -8,10 +8,11 @@ const ns = useNamespace('nth-child')
 <template>
   <div :class="ns.b()">
     <div
-      v-for="i of 10"
+      v-for="i of 17"
       :key="i"
       :class="ns.e('item')"
-    ></div>
+      v-text="i"
+    />
   </div>
 </template>
 
@@ -23,7 +24,11 @@ const ns = useNamespace('nth-child')
   justify-content: flex-start;
   width: 100%;
   height: 30px;
-  gap: 20.5px;
+  gap: 10px;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 30px;
 
   &__item {
     width: 30px;

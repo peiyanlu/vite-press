@@ -59,12 +59,12 @@ const ns = useNamespace('site-nav-link')
   cursor: pointer;
   user-select: none;
   color: var(--vp-c-text-1);
-  border: 1px solid var(--vp-c-bg-soft);
+  // border: 1px solid var(--vp-c-bg-soft);
   border-radius: 8px;
   text-decoration: none;
-  
-  background-image: linear-gradient(90deg, rgba(159, 219, 252, 0.05) 3%, transparent 0px), linear-gradient(1turn,
-    rgba(159, 219, 252, 0.05) 3%, transparent 0px);
+  background-color: var(--vp-c-bg-soft);
+  background-image: linear-gradient(90deg, rgba(159, 219, 252, 0.025) 3%, transparent 0px),
+  linear-gradient(1turn, rgba(159, 219, 252, 0.025) 3%, transparent 0px);
   background-size: 20px 20px;
   background-position: 50% center;
   
@@ -134,9 +134,9 @@ const ns = useNamespace('site-nav-link')
       font-weight: 600;
       line-height: 48px;
       overflow: hidden;
-      // flex-grow: 1;
       white-space: nowrap;
       text-overflow: ellipsis;
+      // flex-grow: 1;
       
       // &::after {
       //   position: absolute;

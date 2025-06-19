@@ -3,7 +3,7 @@ title: 深（浅）拷贝
 description: 浅拷贝、深拷贝是什么？如何实现
 category: javascript
 tags:
-  - javascript
+  - JavaScript
   - copy
 ---
 

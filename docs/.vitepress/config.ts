@@ -2,14 +2,12 @@ import { withPwa } from '@vite-pwa/vitepress'
 import container from 'markdown-it-container'
 import { defineConfig } from 'vitepress'
 import { renderSandbox } from 'vitepress-plugin-sandpack'
-import { BASE_URL, withBase } from './config/common'
+import { BASE_URL, withBase, isDev } from './config/common'
 import { pwa } from './config/pwa'
 import { algolia, local } from './config/search'
 import { vite } from './config/vite'
 import { getNav, getSidebar } from './menu'
 
-
-const isDev = process.env.NODE_ENV !== 'production'
 
 export default withPwa(defineConfig({
   title: '笔记',

@@ -1,0 +1,53 @@
+---
+title: 滚动条样式
+description: webkit 滚动条样式修改
+category: css
+tags:
+  - css
+  - scrollbar
+---
+
+
+# {{ $frontmatter.title }}
+
+
+```css
+/*滚动条*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/*滑块*/
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: linear-gradient(-45deg, rgba(189, 52, 154, 0.3), rgba(65, 209, 255, 0.3));;
+}
+
+/*上下箭头*/
+::-webkit-scrollbar-button {
+  /*background: black;*/
+}
+
+/*滚动条轨道*/
+::-webkit-scrollbar-track {
+  /*background: #ff0;*/
+}
+
+/*滚动条没有滑块的轨道部分*/
+::-webkit-scrollbar-track-piece {
+  /*background: #bd34fe;*/
+}
+
+/*垂直滚动条和水平滚动条交汇*/
+::-webkit-scrollbar-corner {
+  /*background: #bd34fe;*/
+}
+
+/*轨道背景色优先级*/
+/*-webkit-scrollbar-track-piece > -webkit-scrollbar-track > -webkit-scrollbar*/
+::selection {
+  background: var(--vp-c-brand-soft);
+}
+
+```

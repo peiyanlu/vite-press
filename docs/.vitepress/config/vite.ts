@@ -4,9 +4,8 @@ import { UserConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { vitePressHelperPlugin } from 'vitepress-plugin-helper'
 import llmstxt from 'vitepress-plugin-llms'
+import { isProd } from './common.js'
 
-
-const isDev = process.env.NODE_ENV !== 'production'
 
 export const vite: UserConfig = {
   resolve: {
@@ -17,7 +16,11 @@ export const vite: UserConfig = {
       },
     ],
   },
-  plugins: [
+  server: {
+    port: 5274
+  },
+  plugins:
+    [
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
       iconDirs: [ resolve(process.cwd(), 'docs/public/icons') ],
@@ -30,10 +33,11 @@ export const vite: UserConfig = {
     }),
     vitePressHelperPlugin({
       sidebarOptions: {
-        ignoreDirs: [ 'img', 'components' ],
+        ignore: [ '**/*-ignore.md' ],
+        ignoreDirs: [ 'img', 'components', 'ES6' ],
       },
     }),
-    !isDev && llmstxt(),
+    isProd && llmstxt(),
   ],
   build: {
     target: 'esnext',

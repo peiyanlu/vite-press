@@ -33,7 +33,8 @@ const ns = useNamespace('type-child')
       :is="item"
       :key="item+i"
       :class="ns.e('item')"
-    >{{ item.slice(0,1) }}</component>
+      v-text="item"
+    />
   </div>
 </template>
 
@@ -44,18 +45,18 @@ const ns = useNamespace('type-child')
   flex-flow: row nowrap;
   justify-content: flex-start;
   width: 100%;
-  height: 24px;
+  height: 30px;
   gap: 10px;
   
   &__item {
-    width: 24px;
+    width: 30px;
     height: 100%;
     aspect-ratio: 1 / 1;
     background: var(--vp-c-brand-1);
     font-size: 12px;
     color: #ffffff;
     text-align: center;
-    line-height: 24px;
+    line-height: 30px;
   }
   
   &.aa {

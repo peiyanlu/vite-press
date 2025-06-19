@@ -3,7 +3,7 @@ title: 垃圾回收机制
 description: JavaScript 的垃圾回收机制（GC）
 category: javascript
 tags:
-  - javascript
+  - JavaScript
   - GC
 ---
 
