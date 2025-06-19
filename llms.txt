@@ -46,24 +46,25 @@ writing
 ### CSS
 
 - [BFC](/frontend/css/bfc.md): 块级格式化上下文
-- [CSS 选择器](/frontend/css/selector.md): CSS选择器
-- [CSS 奇淫巧技](/frontend/css/tricks.md): 一看就会，一写就废
-- [CSS 权重](/frontend/css/weight.md): CSS 选择器的权重
+- [滚动条样式](/frontend/css/scrollbar.md): webkit 滚动条样式修改
+- [选择器](/frontend/css/selector.md): CSS 选择器
+- [奇淫巧技](/frontend/css/tricks.md): 一看就会，一写就废
 
-### Html
+### HTML
 
 - [HTML 杂项](/frontend/html/misc.md)
 - [OG 协议](/frontend/html/og.md): 实现分享的链接可以预览图片、标题、描述
 
 ### JavaScript
 
-- [ES6+](/frontend/javascript/ES6+.md): ES新版本API总结
+- [ES6+](/frontend/javascript/ES6+.md): ES 新版本 API 总结
 - [字符串](/frontend/javascript/string.md): 按版本分类的字符串方法
 - [浏览器监听](/frontend/javascript/BOMObserver.md): 监听元素变化、浏览器干预行为
 - [调用栈](/frontend/javascript/CallStack.md): 掌握函数的调用关系
 - [元素位置](/frontend/javascript/ElementPosition.md): 获取元素位置和鼠标位置
 - [事件循环](/frontend/javascript/EventLoop.md): 了解离不开的事件循环
 - [垃圾回收机制](/frontend/javascript/GarbageCollection.md): JavaScript 的垃圾回收机制（GC）
+- [词法作用域](/frontend/javascript/LexicalScope.md): js 使用的作用域
 - [Ajax](/frontend/javascript/ajax.md): Ajax的了解和使用
 - [数组](/frontend/javascript/array.md): 按版本分类的数组方法
 - [二进制](/frontend/javascript/binary.md): js中的二进制使用方法
@@ -74,6 +75,7 @@ writing
 - [Promise](/frontend/javascript/promise.md): 详细介绍promise
 - [原型链](/frontend/javascript/prototype.md): 百问不厌的原型链
 - [作用域](/frontend/javascript/scope.md): 代码调试中遇到的作用域
+- [this 指向总结](/frontend/javascript/this_usage.md): 可恶的 this 指向问题
 
 ### 计算机网络
 
@@ -102,6 +104,15 @@ writing
 - [包管理器](/frontend/npm/package-manager.md): 目前最流行的三种包管理工具
 - [打补丁](/frontend/npm/package-patch.md): 修改依赖包之后对其打补丁
 - [pnpm 安装](/frontend/npm/pnpm.md)
+
+### performance
+
+- [前端性能衡量标准](/frontend/performance/WebVitals.md): 前端性能衡量标准
+
+### React
+
+- [Redux Toolkit 使用示例](/frontend/react/redux-toolkit.md): Redux Toolkit 示例代码
+- [Redux 使用示例](/frontend/react/redux.md): Redux
 
 ### 正则
 
@@ -167,13 +178,26 @@ writing
 
 
 
+
+
 ### Other
 
+- [/usr/bin/env node](/frontend/javascript/ES6/ES2023-ignore.md)
 - [CLI](/cli.md)
 - [CSS](/frontend/css.md)
-- [Html](/frontend/html.md)
+- [HTML](/frontend/html.md)
 - [JavaScript](/frontend/javascript.md)
 - [NPM](/frontend/npm.md)
+- [React](/frontend/react.md)
+- [Untitled](/frontend/javascript/ES6/ES2015-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2016-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2017-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2018-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2019-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2020-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2021-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2022-ignore.md)
+- [Untitled](/frontend/javascript/ES6/ES2024-ignore.md)
 - [Vue](/frontend/vue.md)
 - [代码](/frontend/code.md)
 - [前端](/frontend.md)
