@@ -105,12 +105,13 @@ writing
 - [打补丁](/frontend/npm/package-patch.md): 修改依赖包之后对其打补丁
 - [pnpm 安装](/frontend/npm/pnpm.md)
 
-### performance
+### 性能
 
 - [前端性能衡量标准](/frontend/performance/WebVitals.md): 前端性能衡量标准
 
 ### React
 
+- [React vs Vue](/frontend/react/react2vue.md): React 对比 Vue3 API
 - [Redux Toolkit 使用示例](/frontend/react/redux-toolkit.md): Redux Toolkit 示例代码
 - [Redux 使用示例](/frontend/react/redux.md): Redux
 
@@ -124,25 +125,6 @@ writing
 - [KeepAlive](/frontend/vue/keep-alive.md): 在多个组件间动态切换时缓存被移除的组件实例
 - [nextTick](/frontend/vue/nextTick.md): Vue nextTick 作用与原理
 - [vue2打包组件库](/frontend/vue/vue2-components.md): 使用vue2打包公共组件
-
-### git
-
-- [CommitLint](/cli/git/commitlint.md): git 提交约束
-- [问题](/cli/git/FAQ.md): Git问题记录
-- [CLI](/cli/git/cli.md): Git常用命令
-- [集成](/cli/git/hub.md): Git集成：GitHub、Gitee
-- [使用](/cli/git/use.md): Git使用记录
-
-### linux
-
-- [CLI](/cli/linux/cli.md): Linux常用命令
-- [使用](/cli/linux/use.md): Linux命令使用记录
-
-### windows
-
-- [问题](/cli/windows/FAQ.md): Windows问题记录
-- [CLI](/cli/windows/cli.md): Windows常用命令
-- [WSL 安装 Docker](/cli/windows/wsl.md): Win11 启用 WSL 并安装 Docker
 
 ### koa
 
@@ -166,6 +148,26 @@ writing
 ### sqlite
 
 - [SQLite 递归查询](/backend/sqlite/recursion.md): 递归查询
+
+### git
+
+- [CommitLint](/cli/git/commitlint.md): git 提交约束
+- [问题](/cli/git/FAQ.md): Git问题记录
+- [CLI](/cli/git/cli.md): Git常用命令
+- [集成](/cli/git/hub.md): Git集成：GitHub、Gitee
+- [使用](/cli/git/use.md): Git使用记录
+
+### linux
+
+- [CLI](/cli/linux/cli.md): Linux常用命令
+- [使用](/cli/linux/use.md): Linux命令使用记录
+
+### windows
+
+- [问题](/cli/windows/FAQ.md): Windows问题记录
+- [CLI](/cli/windows/cli.md): Windows常用命令
+- [WSL 安装 Docker](/cli/windows/wsl.md): Win11 启用 WSL 并安装 Docker
+
 
 
 
@@ -204,6 +206,7 @@ writing
 - [后端](/backend.md)
 - [导航](/navigation.md)
 - [归档](/archive.md)
+- [性能](/frontend/performance.md)
 - [正则](/frontend/regex.md)
 - [浏览器](/frontend/browser.md)
 - [编译构建](/frontend/build.md)

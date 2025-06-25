@@ -1,7 +1,8 @@
 ---
 url: /interview/Performance.md
 ---
-# 前端性能优化答题模板
+
+# {{ $frontmatter.title }}答题模板
 
 ## 一、为什么要进行性能优化？
 

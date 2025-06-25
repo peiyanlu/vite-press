@@ -5,6 +5,21 @@ description: Redux
 
 # {{ $frontmatter.title }}
 
+* **Redux 是一个管理全局应用状态的库**
+  * Redux 通常与 React-Redux 库一起使用，把 Redux 和 React 集成在一起
+  * Redux Toolkit 是编写 Redux 逻辑的推荐方式
+* **Redux 使用 "单向数据流"**
+  * State 描述了应用程序在某个时间点的状态，视图基于该 state 渲染
+  * 当应用程序中发生某些事情时：
+    * 视图 dispatch 一个 action
+    * store 调用 reducer，随后根据发生的事情来更新 state
+    * store 将 state 发生了变化的情况通知 UI
+  * 视图基于新 state 重新渲染
+* **Redux 有这几种类型的代码**
+  * *Action* 是有 `type` 字段的纯对象，描述发生了什么
+  * *Reducer* 是纯函数，基于先前的 state 和 action 来计算新的 state
+  * 每当 dispatch 一个 action 后，*store* 就会调用 root reducer
+
 ## 📁 项目结构
 
 ```

@@ -2756,7 +2756,8 @@ description: 在多个组件间动态切换时缓存被移除的组件实例
 ---
 url: /interview/NestJs.md
 ---
-# NestJS 面试题及答案大全
+
+# {{ $frontmatter.title }}
 
 ## 一、基础概念
 
@@ -5253,6 +5254,119 @@ flushSync(() => {
 ---
 
 ---
+url: /frontend/react/react2vue.md
+description: React 对比 Vue3 API
+---
+
+# {{ $frontmatter.title }}
+
+# Vue 3 Composition API ↔ React 18 Hooks API 对照文档
+
+## ✅ 状态管理
+
+| Vue 3        | React 18                      | 功能说明                                |
+|--------------|-------------------------------|-------------------------------------|
+| `ref()`      | `useState()`                  | Vue 的基本响应式单值；React 的基本状态钩子          |
+| `reactive()` | `useState()` / `useReducer()` | Vue 深层响应；React 需使用对象/Reducer 管理复杂状态 |
+| `readonly()` | 无                             | React 默认不变，Vue 可显式标注只读              |
+
+***
+
+## ✅ 派生状态（计算值）
+
+| Vue 3                 | React 18                     | 功能说明                    |
+|-----------------------|------------------------------|-------------------------|
+| `computed(() => ...)` | `useMemo(() => ..., [deps])` | Vue 自动依赖收集，React 手动管理依赖 |
+
+***
+
+## ✅ 副作用监听
+
+| Vue 3               | React 18                       | 功能说明                                      |
+|---------------------|--------------------------------|-------------------------------------------|
+| `watch(source, cb)` | `useEffect(() => ..., [deps])` | Vue 可监听 ref/reactive，React 监听 state/props |
+| `watchEffect(cb)`   | `useEffect(() => ..., [deps])` | Vue 自动依赖追踪；React 需手动写 deps                |
+| `onUnmounted(cb)`   | `useEffect` 的返回值清理函数           | 都在组件卸载时执行                                 |
+
+***
+
+## ✅ 生命周期对照
+
+| 生命周期阶段  | Vue 3               | React 18                                   |
+|---------|---------------------|--------------------------------------------|
+| 挂载      | `onMounted()`       | `useEffect(() => {}, [])`                  |
+| 卸载      | `onUnmounted()`     | `useEffect(() => { return () => {} }, [])` |
+| 更新      | `onUpdated()`       | 无等价，`useEffect(() => {}, [deps])` 可近似      |
+| 错误捕获    | `onErrorCaptured()` | `<ErrorBoundary>`（类组件）                     |
+| DOM 更新后 | `nextTick()`        | `setTimeout(..., 0)` 或微任务                  |
+
+***
+
+## ✅ DOM 引用
+
+| Vue 3                      | React 18                   | 功能说明          |
+|----------------------------|----------------------------|---------------|
+| `ref="el"` + `elRef.value` | `useRef()` + `ref={elRef}` | 都可访问原生 DOM 元素 |
+
+***
+
+## ✅ 依赖注入与共享
+
+| Vue 3            | React 18                   | 功能说明                         |
+|------------------|----------------------------|------------------------------|
+| `provide/inject` | `createContext/useContext` | Vue 灵活支持跨层注入；React 组件树结构限制更大 |
+| `pinia`          | Redux / Zustand 等          | 全局状态管理库，功能对等                 |
+
+***
+
+## ✅ Suspense/异步组件
+
+| Vue 3                  | React 18       | 功能说明      |
+|------------------------|----------------|-----------|
+| `defineAsyncComponent` | `React.lazy()` | 支持懒加载组件   |
+| `<Suspense>`           | `<Suspense>`   | 同名组件，用法类似 |
+
+***
+
+## ✅ 逻辑复用
+
+| Vue 3                 | React 18            | 功能说明         |
+|-----------------------|---------------------|--------------|
+| Composable (`useXxx`) | 自定义 Hook (`useXxx`) | 封装逻辑复用方式完全一致 |
+
+***
+
+## ✅ 并发特性（React 专属）
+
+| 功能                 | Vue 3 | React 18              |
+|--------------------|-------|-----------------------|
+| 并发渲染               | ❌     | ✅ `startTransition()` |
+| `useTransition`    | ❌     | ✅                     |
+| `useDeferredValue` | ❌     | ✅                     |
+
+***
+
+## 🧭 项目迁移建议（Vue → React）
+
+* `ref` → `useState`
+* `reactive` → `useState({})` 或 `useReducer`
+* `computed` → `useMemo`
+* `watch/watchEffect` → `useEffect`
+* `onMounted/onUnmounted` → `useEffect(..., [])`
+* `ref="el"` → `useRef()`
+* 插槽 `<slot>` → `props.children`
+* `provide/inject` → `Context.Provider` / `useContext`
+
+***
+
+## 🔗 参考
+
+* Vue 官网：<https://vuejs.org>
+* React 官网：<https://react.dev>
+
+---
+
+---
 url: /interview/08-React.md
 ---
 
@@ -5659,6 +5773,21 @@ description: Redux
 ---
 
 # {{ $frontmatter.title }}
+
+* **Redux 是一个管理全局应用状态的库**
+  * Redux 通常与 React-Redux 库一起使用，把 Redux 和 React 集成在一起
+  * Redux Toolkit 是编写 Redux 逻辑的推荐方式
+* **Redux 使用 "单向数据流"**
+  * State 描述了应用程序在某个时间点的状态，视图基于该 state 渲染
+  * 当应用程序中发生某些事情时：
+    * 视图 dispatch 一个 action
+    * store 调用 reducer，随后根据发生的事情来更新 state
+    * store 将 state 发生了变化的情况通知 UI
+  * 视图基于新 state 重新渲染
+* **Redux 有这几种类型的代码**
+  * *Action* 是有 `type` 字段的纯对象，描述发生了什么
+  * *Reducer* 是纯函数，基于先前的 state 和 action 来计算新的 state
+  * 每当 dispatch 一个 action 后，*store* 就会调用 root reducer
 
 ## 📁 项目结构
 
@@ -9485,6 +9614,210 @@ console.log(wellFormed); // "A�B"
 ---
 
 ---
+url: /interview/vite.md
+---
+
+# {{ $frontmatter.title }}
+
+# Vite 面试题题库（含详细答案）
+
+***
+
+## 一、基础理解类
+
+### 1. 什么是 Vite？
+
+Vite 是一个下一代前端构建工具，基于原生 ESM，开发时无需打包，利用浏览器原生支持 ES 模块特性按需加载模块。
+
+### 2. Vite 和 Webpack 的区别？
+
+| 特性      | Vite               | Webpack      |
+| ------- | ------------------ | ------------ |
+| 构建方式    | 开发时无需打包            | 启动时整体打包      |
+| 启动速度    | 快，秒级启动             | 慢，项目越大越慢     |
+| HMR 热更新 | 快速、精细模块热替换         | 慢，重新构建依赖链    |
+| 生产构建    | 基于 Rollup          | 自定义打包机制      |
+| 插件体系    | 兼容 Rollup 插件 + 自定义 | Webpack 插件体系 |
+
+***
+
+## 二、配置与使用类
+
+### 3. 如何配置路径别名（alias）？
+
+```ts
+resolve: {
+  alias: {
+    '@': path.resolve(__dirname, 'src')
+  }
+}
+```
+
+### 4. 如何使用环境变量？
+
+* 新建 `.env` 文件，变量以 `VITE_` 开头
+
+```env
+VITE_API_URL=https://api.xxx.com
+```
+
+* 使用：
+
+```ts
+const url = import.meta.env.VITE_API_URL
+```
+
+### 5. 如何配置多页面（MPA）应用？
+
+```ts
+build: {
+  rollupOptions: {
+    input: {
+      main: 'index.html',
+      admin: 'admin.html'
+    }
+  }
+}
+```
+
+### 6. 如何使用插件？
+
+```ts
+import vue from '@vitejs/plugin-vue'
+plugins: [vue()]
+```
+
+Vite 插件与 Rollup 插件兼容，支持开发专属钩子，如 `configureServer`、`transformIndexHtml`。
+
+***
+
+## 三、原理与架构类
+
+### 7. Vite 为什么启动快？
+
+* 利用原生 ESM 按需加载模块，不做整体打包
+* 使用 `esbuild` 快速转译 TS/JS，速度远超 Babel
+
+### 8. HMR 是如何实现的？
+
+* 利用 WebSocket 与浏览器通信
+* 文件改动后，增量推送变更模块
+* 通过 `import.meta.hot` 接口接受更新
+
+### 9. Vite 的预构建（pre-bundling）机制？
+
+* 对 `node_modules` 中非 ESM 包预打包为 ESM
+* 依赖 `esbuild` 转译，提升加载性能
+* 可配置 `optimizeDeps.include/exclude`
+
+### 10. Vite 的 SSR 原理？
+
+* 使用 `vite.ssrLoadModule()` 加载模块
+* 在 Node 环境中执行并渲染 HTML 字符串
+* 配合框架实现 SSR，如 React/Vue 等
+
+***
+
+## 四、性能优化类
+
+### 11. 如何优化构建速度？
+
+* 减少全局导入（如全局样式）
+* 精简依赖数量
+* 配置缓存策略和分包策略
+* 使用 `optimizeDeps` 提前构建三方依赖
+
+### 12. 如何分析构建产物？
+
+```bash
+npm i -D rollup-plugin-visualizer
+```
+
+```ts
+import { visualizer } from 'rollup-plugin-visualizer'
+plugins: [visualizer({ open: true })]
+```
+
+### 13. 如何支持老旧浏览器？
+
+```ts
+import legacy from '@vitejs/plugin-legacy'
+plugins: [legacy({ targets: ['defaults', 'not IE 11'] })]
+```
+
+***
+
+## 五、实战技巧类
+
+### 14. 如何配置静态资源路径？
+
+```ts
+base: '/your-sub-path/'
+```
+
+设置部署路径前缀，适用于 GitHub Pages 等场景。
+
+### 15. 如何集成 PWA？
+
+使用插件：`vite-plugin-pwa`
+
+```ts
+import { VitePWA } from 'vite-plugin-pwa'
+plugins: [VitePWA({...})]
+```
+
+### 16. 如何自定义开发服务器行为？
+
+```ts
+configureServer(server) {
+  server.middlewares.use((req, res, next) => {
+    // 自定义逻辑
+    next()
+  })
+}
+```
+
+***
+
+## 六、加分项
+
+### 17. 如何开发一个 Vite 插件？
+
+```ts
+export default function myPlugin() {
+  return {
+    name: 'my-plugin',
+    transform(code, id) {
+      if (id.endsWith('.js')) {
+        // 转换逻辑
+        return code.replace('old', 'new')
+      }
+    }
+  }
+}
+```
+
+### 18. Vite 是否可以用于构建库？
+
+可以，通过 `build.lib` 选项支持打包为库模式：
+
+```ts
+build: {
+  lib: {
+    entry: 'src/index.ts',
+    name: 'MyLib',
+    fileName: 'my-lib'
+  }
+}
+```
+
+***
+
+如需生成 PDF，可将本 Markdown 文件复制粘贴到 Typora、VSCode 插件 `Markdown PDF` 或使用在线工具转换。
+
+---
+
+---
 url: /frontend/vue.md
 ---
 
@@ -12373,7 +12706,8 @@ engine-strict=true
 ---
 url: /interview/Performance.md
 ---
-# 前端性能优化答题模板
+
+# {{ $frontmatter.title }}答题模板
 
 ## 一、为什么要进行性能优化？
 
@@ -12461,12 +12795,12 @@ description: 前端性能衡量标准
 
 ## 一、核心 Web Vitals（关键用户体验指标）
 
-| 指标名                                | 含义                  | 衡量点                    | 理想值     |
-|------------------------------------|---------------------|------------------------|---------|
-| **LCP（Largest Contentful Paint）**  | 最大内容绘制时间            | 页面最大内容元素出现在视口中所需时间     | ≤ 2.5s  |
-| **FID（First Input Delay）**         | 首次输入延迟              | 用户首次交互（点击等）到浏览器响应之间的延迟 | ≤ 100ms |
-| **INP（Interaction to Next Paint）** | 与用户交互后的响应速度（取代 FID） | 所有交互中响应最慢的一次           | ≤ 200ms |
-| **CLS（Cumulative Layout Shift）**   | 累计布局偏移              | 页面布局在加载过程中的跳动程度        | ≤ 0.1   |
+| 指标名                                | 含义                  | 衡量点                       | 理想值     |
+|------------------------------------|---------------------|---------------------------|---------|
+| **LCP（Largest Contentful Paint）**  | 最大内容绘制时间            | 页面最大内容元素出现在视口中所需时间 （加载性能） | ≤ 2.5s  |
+| **FID（First Input Delay）**         | 首次输入延迟              | 用户首次交互（点击等）到浏览器响应之间的延迟    | ≤ 100ms |
+| **INP（Interaction to Next Paint）** | 与用户交互后的响应速度（取代 FID） | 所有交互中响应最慢的一次 （交互性能）       | ≤ 200ms |
+| **CLS（Cumulative Layout Shift）**   | 累计布局偏移              | 页面布局在加载过程中的跳动程度 （视觉稳定性）   | ≤ 0.1   |
 
 ## 二、加载性能指标
 
@@ -16097,6 +16431,13 @@ description: rollup
 [babel官方文档](https://www.babeljs.cn/docs/usage)
 
 [Rollup 配置（Babel7）](https://xiaogliu.github.io/2019/07/24/rollup-config/)
+
+---
+
+---
+url: /frontend/performance.md
+---
+
 
 ---
 
