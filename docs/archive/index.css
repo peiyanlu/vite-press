@@ -1,8 +1,10 @@
 .doc-archive {
+  scroll-behavior: smooth;
+  
   .VPContent {
     .VPDoc {
       .container {
-        max-width: calc(var(--vp-layout-max-width) - 420px) !important;
+      
       }
     }
   }

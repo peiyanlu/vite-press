@@ -1,6 +1,6 @@
 ---
 title: CLI
-order: 3
+order: 4
 sidebar: true
 group: false
 ---

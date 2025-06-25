@@ -23,16 +23,16 @@ export const getNav = () => [
     "sidebar": true
   },
   {
-    "link": "/cli/",
-    "text": "CLI",
-    "activeMatch": "/cli/",
+    "link": "/backend/",
+    "text": "后端",
+    "activeMatch": "/backend/",
     "order": 3,
     "sidebar": true
   },
   {
-    "link": "/backend/",
-    "text": "后端",
-    "activeMatch": "/backend/",
+    "link": "/cli/",
+    "text": "CLI",
+    "activeMatch": "/cli/",
     "order": 4,
     "sidebar": true
   },
@@ -459,7 +459,7 @@ export const getSidebar = () => ({
       "order": 110
     },
     {
-      "text": "performance",
+      "text": "性能",
       "items": [
         {
           "text": "前端性能衡量标准",
@@ -467,12 +467,17 @@ export const getSidebar = () => ({
           "order": 87
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 112
     },
     {
       "text": "React",
       "items": [
+        {
+          "text": "React vs Vue",
+          "link": "/frontend/react/react2vue",
+          "order": 114
+        },
         {
           "text": "Redux Toolkit 使用示例",
           "link": "/frontend/react/redux-toolkit",
@@ -525,79 +530,6 @@ export const getSidebar = () => ({
       ],
       "collapsed": true,
       "order": 118
-    }
-  ],
-  "/cli/": [
-    {
-      "text": "git",
-      "items": [
-        {
-          "text": "CommitLint",
-          "link": "/cli/git/commitlint",
-          "order": 0
-        },
-        {
-          "text": "问题",
-          "link": "/cli/git/FAQ",
-          "order": 70
-        },
-        {
-          "text": "CLI",
-          "link": "/cli/git/cli",
-          "order": 99
-        },
-        {
-          "text": "集成",
-          "link": "/cli/git/hub",
-          "order": 104
-        },
-        {
-          "text": "使用",
-          "link": "/cli/git/use",
-          "order": 117
-        }
-      ],
-      "collapsed": false,
-      "order": 103
-    },
-    {
-      "text": "linux",
-      "items": [
-        {
-          "text": "CLI",
-          "link": "/cli/linux/cli",
-          "order": 99
-        },
-        {
-          "text": "使用",
-          "link": "/cli/linux/use",
-          "order": 117
-        }
-      ],
-      "collapsed": false,
-      "order": 108
-    },
-    {
-      "text": "windows",
-      "items": [
-        {
-          "text": "问题",
-          "link": "/cli/windows/FAQ",
-          "order": 70
-        },
-        {
-          "text": "CLI",
-          "link": "/cli/windows/cli",
-          "order": 99
-        },
-        {
-          "text": "WSL 安装 Docker",
-          "link": "/cli/windows/wsl",
-          "order": 119
-        }
-      ],
-      "collapsed": false,
-      "order": 119
     }
   ],
   "/backend/": [
@@ -677,6 +609,79 @@ export const getSidebar = () => ({
       "order": 115
     }
   ],
+  "/cli/": [
+    {
+      "text": "git",
+      "items": [
+        {
+          "text": "CommitLint",
+          "link": "/cli/git/commitlint",
+          "order": 0
+        },
+        {
+          "text": "问题",
+          "link": "/cli/git/FAQ",
+          "order": 70
+        },
+        {
+          "text": "CLI",
+          "link": "/cli/git/cli",
+          "order": 99
+        },
+        {
+          "text": "集成",
+          "link": "/cli/git/hub",
+          "order": 104
+        },
+        {
+          "text": "使用",
+          "link": "/cli/git/use",
+          "order": 117
+        }
+      ],
+      "collapsed": false,
+      "order": 103
+    },
+    {
+      "text": "linux",
+      "items": [
+        {
+          "text": "CLI",
+          "link": "/cli/linux/cli",
+          "order": 99
+        },
+        {
+          "text": "使用",
+          "link": "/cli/linux/use",
+          "order": 117
+        }
+      ],
+      "collapsed": false,
+      "order": 108
+    },
+    {
+      "text": "windows",
+      "items": [
+        {
+          "text": "问题",
+          "link": "/cli/windows/FAQ",
+          "order": 70
+        },
+        {
+          "text": "CLI",
+          "link": "/cli/windows/cli",
+          "order": 99
+        },
+        {
+          "text": "WSL 安装 Docker",
+          "link": "/cli/windows/wsl",
+          "order": 119
+        }
+      ],
+      "collapsed": false,
+      "order": 119
+    }
+  ],
   "/interview/": [
     {
       "text": "计算机网络",
@@ -714,12 +719,12 @@ export const getSidebar = () => ({
       "order": 48
     },
     {
-      "text": "NestJs",
+      "text": "NestJs 面试题",
       "link": "/interview/NestJs",
       "order": 78
     },
     {
-      "text": "Performance",
+      "text": "前端性能优化面试题",
       "link": "/interview/Performance",
       "order": 80
     },
@@ -742,6 +747,11 @@ export const getSidebar = () => ({
       "text": "useState",
       "link": "/interview/useState",
       "order": 117
+    },
+    {
+      "text": "Vite 面试题",
+      "link": "/interview/vite",
+      "order": 118
     }
   ]
 })

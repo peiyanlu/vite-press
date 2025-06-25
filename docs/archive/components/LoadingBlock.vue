@@ -1,20 +1,30 @@
 <script lang="ts" setup>
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { computed } from 'vue'
 
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const smAndSmaller = breakpoints.smaller('sm')
 
-const height = smAndSmaller.value ? '200px' : '300px'
+const height = computed(() => {
+  return smAndSmaller.value ? '200px' : '300px'
+})
+
+withDefaults(
+  defineProps<{
+    type?: 'DoubleRing' | 'DualBall' | 'Spinner',
+    size?: string,
+  }>(),
+  {
+    type: 'DualBall',
+    size: '48',
+  },
+)
 </script>
 
 <template>
   <div class="empty-block">
-    <div class="loader">
-      <div class="outer" />
-      <div class="middle" />
-      <div class="inner" />
-    </div>
+    <svg-icon :size :name="`loading-${type}`" />
   </div>
 </template>
 
@@ -27,51 +37,4 @@ const height = smAndSmaller.value ? '200px' : '300px'
   width: 100%;
   height: v-bind(height);
 }
-
-.loader {
-  position: relative;
-}
-
-.outer,
-.middle,
-.inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 3px solid transparent;
-  border-top-color: var(--vp-c-brand);
-  border-right-color: var(--vp-c-brand);
-  border-radius: 50%;
-}
-
-.outer {
-  width: 3.5em;
-  height: 3.5em;
-  margin-top: -1.75em;
-  margin-left: -1.75em;
-  animation: spin 2s linear infinite;
-}
-
-.middle {
-  width: 2.1em;
-  height: 2.1em;
-  margin-top: -1.05em;
-  margin-left: -1.05em;
-  animation: spin 1.75s linear reverse infinite;
-}
-
-.inner {
-  width: 0.8em;
-  height: 0.8em;
-  margin-top: -0.4em;
-  margin-left: -0.4em;
-  animation: spin 1.5s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 </style>

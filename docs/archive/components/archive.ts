@@ -17,8 +17,9 @@ export const getTimeline = (list: DocData[] = data) => {
   return list
     .sort((a, b) => b.createdDate - a.createdDate)
     .reduce<TimelineData>((list, item) => {
-      const year: string = `${ new Date(item.createdDate).getFullYear() }年`
-      const month: string = `${ new Date(item.createdDate).getMonth() + 1 }月`
+      const date: Date = new Date(item.createdDate)
+      const year: string = `${ date.getFullYear() } 年`
+      const month: string = `${ date.getMonth() + 1 } 月`
       
       list[year] ??= {}
       
@@ -71,3 +72,24 @@ export const getZodiacAlias = (year: number) => {
     '未羊',
   ].at(year % 12)
 }
+
+export const isCurrentYear = (year: number) => {
+  return new Date().getFullYear() === year
+}
+
+
+export const getUrlParams = (urlSearch = location.search) => Object.fromEntries(new URLSearchParams(urlSearch))
+
+
+export const resetUrl = (search: string = '') => {
+  const baseUrl = () => {
+    const { origin, pathname } = location
+    return `${ origin }${ pathname }`
+  }
+  history.replaceState('', '', baseUrl() + search)
+}
+
+
+export { data }
+
+export type { DocData }

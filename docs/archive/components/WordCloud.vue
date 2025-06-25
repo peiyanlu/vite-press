@@ -6,7 +6,7 @@
 import { Datum, WordCloud } from '@antv/g2plot'
 import type { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
 import { tags } from './archive'
 
 
@@ -18,11 +18,12 @@ const emit = defineEmits<{
   getSelected: [ tag: string | number, data: DocData[] ]
 }>()
 
-function useWordCloud<T extends Record<string, string | number>>(
+
+const useWordCloud = <T extends Record<string, string | number>>(
   dom: HTMLElement,
   data: T[],
   onClickCallback?: (data: T) => void,
-) {
+) => {
   const wordCloud = new WordCloud(dom, {
     height: smAndSmaller.value ? 200 : 300,
     data: data,
@@ -59,9 +60,7 @@ function useWordCloud<T extends Record<string, string | number>>(
     dom?.setAttribute('style', 'cursor: default')
   })
   
-  const destroy = () => wordCloud.destroy()
-  
-  return { destroy: destroy }
+  onBeforeUnmount(() => wordCloud.destroy())
 }
 
 
@@ -73,17 +72,16 @@ const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags)
     }
   })
 
-const wordCloudRef = ref<HTMLDivElement | null>(null)
+const wordCloudRef = useTemplateRef('wordCloudRef')
 onMounted(() => {
   if (wordCloudRef.value) {
-    const { destroy } = useWordCloud(
+    useWordCloud(
       wordCloudRef.value,
       initWordCloud(tags),
       (data) => {
         emit('getSelected', data.name, tags[data.name])
       },
     )
-    onBeforeUnmount(() => destroy())
   }
 })
 </script>

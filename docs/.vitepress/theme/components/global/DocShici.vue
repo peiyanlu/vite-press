@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import SvgIcon from '@theme/components/global/SvgIcon.vue'
 import { useDebounceFn } from '@vueuse/core'
 import { useData } from 'vitepress'
-import { ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 
 interface ResultData {
@@ -20,7 +21,7 @@ interface ResultData {
   content: string
 }
 
-interface ShiciResult {
+interface ShiCiResult {
   data: ResultData;
   ipAddress: string;
   status: 'success' | 'error';
@@ -31,10 +32,11 @@ const { title } = useData()
 
 const result = ref<ResultData>()
 const loaded = ref(false)
+const loading = ref(false)
 
-const getResult = (): Promise<ShiciResult> => {
+const getResult = (): Promise<ShiCiResult> => {
   return new Promise((resolve) => {
-    (window as any).jinrishici.load((result: ShiciResult) => resolve(result))
+    (window as any).jinrishici.load((result: ShiCiResult) => resolve(result))
   })
 }
 
@@ -42,21 +44,33 @@ const handleLoad = () => {
   loaded.value = true
 }
 
-
 const handleContent = useDebounceFn(async () => {
+  loading.value = true
   const { data } = await getResult().catch()
   result.value = data
+  loading.value = false
 }, 300)
+
 
 watchEffect(async () => {
   if (loaded.value) {
     await handleContent()
   }
 })
+
+const origin = computed(() => {
+  if (!result.value) return
+  const { origin: { author, dynasty } } = result.value
+  return [ author, dynasty ].join(' · ')
+})
+
+const mTitle = computed(() => {
+  return result.value?.origin?.title || ''
+})
 </script>
 
 <template>
-  <div class="jinrishici">
+  <div class="shi-wrapper">
     <teleport to="body">
       <component
         is="script"
@@ -65,15 +79,32 @@ watchEffect(async () => {
         @load="handleLoad"
       />
     </teleport>
-    <div v-if="result" class="jinrishici-content" @click="handleContent">
-      <div>{{ result.content }}</div>
-      <sub>{{ result.origin.dynasty }} · {{ result.origin.author }}</sub>
+    
+    <div
+      v-if="result"
+      class="shi-wrapper-content"
+    >
+      <svg-icon
+        v-if="loading"
+        style="font-size: 20px;"
+        name="loading-DoubleRing"
+      />
+      
+      <div
+        v-else
+        class="content"
+        @click="handleContent"
+        :title="mTitle"
+      >
+        <div v-text="result.content" />
+        <sub v-text="origin" />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.jinrishici {
+.shi-wrapper {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -81,15 +112,17 @@ watchEffect(async () => {
   text-align: center;
   
   &-content {
-    line-height: 1;
-    display: flex;
-    align-items: flex-end;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    height: 16px;
-    cursor: pointer;
-    color: var(--vp-c-text-light-2);
-    gap: 6px;
+    .content {
+      line-height: 1;
+      display: flex;
+      align-items: flex-end;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      height: 16px;
+      cursor: pointer;
+      color: var(--vp-c-text-light-2);
+      gap: 6px;
+    }
   }
 }
 </style>
