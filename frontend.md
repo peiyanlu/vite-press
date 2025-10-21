@@ -1,5 +1,5 @@
 ---
-url: /frontend.md
+url: /vite-press/frontend.md
 ---
 
 # FrontEnd

@@ -1,5 +1,5 @@
 ---
-url: /interview/vite.md
+url: /vite-press/interview/vite.md
 ---
 
 # {{ $frontmatter.title }}
@@ -42,7 +42,7 @@ resolve: {
 
 * 新建 `.env` 文件，变量以 `VITE_` 开头
 
-```env
+```text
 VITE_API_URL=https://api.xxx.com
 ```
 

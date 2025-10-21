@@ -1,5 +1,5 @@
 ---
-url: /backend/sqlite/recursion.md
+url: /vite-press/backend/sqlite/recursion.md
 description: 递归查询
 ---
 

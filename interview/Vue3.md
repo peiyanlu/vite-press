@@ -1,5 +1,5 @@
 ---
-url: /interview/Vue3.md
+url: /vite-press/interview/Vue3.md
 ---
 # Vue 3 面试题大全
 

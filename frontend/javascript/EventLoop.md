@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/EventLoop.md
+url: /vite-press/frontend/javascript/EventLoop.md
 description: 了解离不开的事件循环
 ---
 

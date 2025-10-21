@@ -1,5 +1,5 @@
 ---
-url: /frontend/build/rollup/lib-js.md
+url: /vite-press/frontend/build/rollup/lib-js.md
 description: 使用rollup构建一个js库
 ---
 

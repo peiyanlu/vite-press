@@ -1,8 +1,11 @@
 ---
-url: /interview/07-Vue.md
+url: /vite-press/interview/07-Vue.md
 ---
 
 # {{ $frontmatter.title }}
+
+Vue 的 diff 算法主要是比较新旧虚拟 DOM 树的差异，并尽量复用节点、减少 DOM 操作。在列表 diff 中，Vue 采用双端指针比较和 key 映射查找，
+Vue 3 进一步引入最长递增子序列算法来减少节点移动，从而提高性能。整体是同层比较，时间复杂度一般是 O(n)。
 
 ## 1. Vue 有了数据响应式，为何还要 diff？
 

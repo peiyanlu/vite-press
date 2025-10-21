@@ -1,5 +1,5 @@
 ---
-url: /backend/node/env.md
+url: /vite-press/backend/node/env.md
 description: 环境变量中的环境信息
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/react/redux-toolkit.md
+url: /vite-press/frontend/react/redux-toolkit.md
 description: Redux Toolkit 示例代码
 ---
 

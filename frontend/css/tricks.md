@@ -1,5 +1,5 @@
 ---
-url: /frontend/css/tricks.md
+url: /vite-press/frontend/css/tricks.md
 description: 一看就会，一写就废
 ---
 

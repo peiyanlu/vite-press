@@ -1,4 +1,4 @@
 ---
-url: /frontend/network.md
+url: /vite-press/frontend/network.md
 ---
 

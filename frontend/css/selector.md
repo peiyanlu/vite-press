@@ -1,5 +1,5 @@
 ---
-url: /frontend/css/selector.md
+url: /vite-press/frontend/css/selector.md
 description: CSS 选择器
 ---
 
@@ -60,7 +60,7 @@ description: CSS 选择器
 | `[attr^=value]`  | 属性以 value 开头     | `[href^="https"]`   | `<p lang="ennn">`                                       |
 | `[attr$=value]`  | 属性以 value 结尾     | `[src$=".jpg"]`     | `<a href="/file.pdf" />`                                |
 
-::: tip
+::: info
 
 `~=`、 `|=`、 `^=`、 `$=`、 `*=` 的区别：
 
@@ -70,7 +70,7 @@ description: CSS 选择器
 
 ***
 
-* `attribute` 属性中**包含** `value`
+* `attribute` 属性值中 **包含** `value`
 
 `~=`： 包含独立的单词
 
@@ -84,7 +84,7 @@ description: CSS 选择器
 [title*=flower]  -->  <img title="ffffflowerrrrrr" />
 ```
 
-* `attribute` 属性以 `value` **开头**
+* `attribute` 属性值以 `value` **开头**
 
 `|=`： 必须是完整且唯一的单词，或者以 `-` 分隔开
 

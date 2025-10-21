@@ -1,5 +1,5 @@
 ---
-url: /frontend/npm/package-patch.md
+url: /vite-press/frontend/npm/package-patch.md
 description: 修改依赖包之后对其打补丁
 ---
 

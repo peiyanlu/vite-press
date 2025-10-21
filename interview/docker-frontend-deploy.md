@@ -1,5 +1,5 @@
 ---
-url: /interview/docker-frontend-deploy.md
+url: /vite-press/interview/docker-frontend-deploy.md
 ---
 
 # {{ $frontmatter.title }}（静态资源）

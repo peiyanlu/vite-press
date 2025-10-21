@@ -1,5 +1,5 @@
 ---
-url: /frontend/npm/FAQ.md
+url: /vite-press/frontend/npm/FAQ.md
 description: npm遇到的各种牛鬼蛇神
 ---
 

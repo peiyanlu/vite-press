@@ -1,5 +1,5 @@
 ---
-url: /interview/backend-link-deploy.md
+url: /vite-press/interview/backend-link-deploy.md
 ---
 
 # {{ $frontmatter.title }}（Docker Compose）

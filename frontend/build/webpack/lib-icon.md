@@ -1,6 +1,6 @@
 ---
-url: /frontend/build/webpack/lib-icon.md
-description: 使用webpack打包svg图标
+url: /vite-press/frontend/build/webpack/lib-icon.md
+description: 使用 webpack 打sv图标
 ---
 
 # {{ $frontmatter.title }}

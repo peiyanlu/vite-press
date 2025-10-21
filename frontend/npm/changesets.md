@@ -1,6 +1,6 @@
 ---
-url: /frontend/npm/changesets.md
-description: monorepo发包工具
+url: /vite-press/frontend/npm/changesets.md
+description: monorepo 发包工具
 ---
 
 # {{ $frontmatter.title }}
@@ -115,7 +115,7 @@ pnpm publish --access public
 
 * 本次变更涉及哪些包的变更。
 
-* 本次变更需要升级的版本号类型，类型符合 [semver](../../npm/SemVer.md) 规范。
+* 本次变更需要升级的版本号类型，类型符合 [semver](SemVer.md) 规范。
 
 * 本次变更的 `Changelog` 信息。
 

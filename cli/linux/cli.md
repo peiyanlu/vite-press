@@ -1,5 +1,5 @@
 ---
-url: /cli/linux/cli.md
+url: /vite-press/cli/linux/cli.md
 description: Linux常用命令
 ---
 

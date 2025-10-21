@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/ES6/ES2015-ignore.md
+url: /vite-press/frontend/javascript/ES6/ES2015-ignore.md
 ---
 ## [ES6(2015)](https://262.ecma-international.org/6.0/)
 

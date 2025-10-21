@@ -1,5 +1,5 @@
 ---
-url: /frontend/react/react2vue.md
+url: /vite-press/frontend/react/react2vue.md
 description: React 对比 Vue3 API
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/LexicalScope.md
+url: /vite-press/frontend/javascript/LexicalScope.md
 description: js 使用的作用域
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /cli/windows/FAQ.md
+url: /vite-press/cli/windows/FAQ.md
 description: Windows问题记录
 ---
 

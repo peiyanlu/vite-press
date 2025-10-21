@@ -1,5 +1,5 @@
 ---
-url: /frontend/browser/cache.md
+url: /vite-press/frontend/browser/cache.md
 description: 浏览器缓存方式以及区别
 ---
 

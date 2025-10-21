@@ -1,6 +1,6 @@
 ---
-url: /frontend/code/pretter.md
-description: pretter配置详解
+url: /vite-press/frontend/code/pretter.md
+description: pretter 配置详解
 ---
 
 # {{ $frontmatter.title }}

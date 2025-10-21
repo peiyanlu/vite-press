@@ -1,6 +1,6 @@
 ---
-url: /frontend/npm/cli.md
-description: npm命令行
+url: /vite-press/frontend/npm/cli.md
+description: npm 命令行
 ---
 
 # NPM CLI

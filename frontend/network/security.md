@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/security.md
+url: /vite-press/frontend/network/security.md
 description: 常见的网络攻击手段与防护
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/array.md
+url: /vite-press/frontend/javascript/array.md
 description: 按版本分类的数组方法
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /interview/03-HTML && CSS.md
+url: /vite-press/interview/03-HTML && CSS.md
 ---
 
 # {{ $frontmatter.title }}

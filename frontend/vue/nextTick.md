@@ -1,5 +1,5 @@
 ---
-url: /frontend/vue/nextTick.md
+url: /vite-press/frontend/vue/nextTick.md
 description: Vue nextTick 作用与原理
 ---
 

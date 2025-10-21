@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/binary.md
+url: /vite-press/frontend/javascript/binary.md
 description: js中的二进制使用方法
 ---
 
@@ -7,7 +7,7 @@ description: js中的二进制使用方法
 
 > Blob、File、FileReader、ArrayBuffer、Base64
 
-![img.png](img/binary/img.png)
+![img.png](/assets/img.BgZoOJV_.png)
 
 ## Blob
 

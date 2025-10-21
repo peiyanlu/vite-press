@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/osi_model_layers.md
+url: /vite-press/frontend/network/osi_model_layers.md
 description: 介绍什么是 OSI 七层模型（OSI Model）
 ---
 

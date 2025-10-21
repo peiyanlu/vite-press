@@ -1,6 +1,6 @@
 ---
-url: /frontend/npm/package-exports.md
-description: package中的expors使用记录
+url: /vite-press/frontend/npm/package-exports.md
+description: package中的 exports 使用记录
 ---
 
 # NPM包自定义导出

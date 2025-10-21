@@ -1,4 +1,4 @@
 ---
-url: /frontend/npm.md
+url: /vite-press/frontend/npm.md
 ---
 

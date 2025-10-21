@@ -1,5 +1,5 @@
 ---
-url: /frontend/npm/SemVer.md
+url: /vite-press/frontend/npm/SemVer.md
 description: npm包的版本规范
 ---
 

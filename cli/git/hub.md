@@ -1,5 +1,5 @@
 ---
-url: /cli/git/hub.md
+url: /vite-press/cli/git/hub.md
 description: Git集成：GitHub、Gitee
 ---
 

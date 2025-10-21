@@ -1,4 +1,4 @@
 ---
-url: /frontend/vue.md
+url: /vite-press/frontend/vue.md
 ---
 

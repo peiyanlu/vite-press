@@ -1,4 +1,4 @@
 ---
-url: /frontend/react.md
+url: /vite-press/frontend/react.md
 ---
 

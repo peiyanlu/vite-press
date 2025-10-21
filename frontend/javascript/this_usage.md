@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/this_usage.md
+url: /vite-press/frontend/javascript/this_usage.md
 description: 可恶的 this 指向问题
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /interview/NestJs.md
+url: /vite-press/interview/NestJs.md
 ---
 
 # {{ $frontmatter.title }}

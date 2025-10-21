@@ -1,5 +1,5 @@
 ---
-url: /interview/04-JavaScript.md
+url: /vite-press/interview/04-JavaScript.md
 ---
 
 # {{ $frontmatter.title }}

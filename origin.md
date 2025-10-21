@@ -1,5 +1,5 @@
 ---
-url: /origin.md
+url: /vite-press/origin.md
 ---
 
 # VitePress 搭建静态网站
@@ -26,7 +26,7 @@ pnpm run docs:dev
 
 执行 `pnpm exec vitepress init` 会出现一些交互式问答，帮助我们快速初始化配置：
 
-![img.png](img/img.png)
+![img.png](/assets/img.BgZoOJV_.png)
 
 1. `VitePress` 初始化配置目录，可以是根目录 `./` 也可以是二级目录 `./docs`
 2. `Theme` 配置：

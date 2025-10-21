@@ -1,5 +1,5 @@
 ---
-url: /cli/linux/use.md
+url: /vite-press/cli/linux/use.md
 description: Linux命令使用记录
 ---
 

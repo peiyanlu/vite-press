@@ -1,5 +1,5 @@
 ---
-url: /frontend/vue/keep-alive.md
+url: /vite-press/frontend/vue/keep-alive.md
 description: 在多个组件间动态切换时缓存被移除的组件实例
 ---
 

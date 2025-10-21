@@ -1,5 +1,5 @@
 ---
-url: /frontend/code/image-lazy.md
+url: /vite-press/frontend/code/image-lazy.md
 description: 新版本浏览器图片懒加载实现
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/GarbageCollection.md
+url: /vite-press/frontend/javascript/GarbageCollection.md
 description: JavaScript 的垃圾回收机制（GC）
 ---
 

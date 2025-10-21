@@ -1,6 +1,6 @@
 ---
-url: /frontend/npm/libs.md
-description: 常用的npm效率工具库
+url: /vite-press/frontend/npm/libs.md
+description: 常用的 npm 效率工具库
 ---
 
 # NPM 库推荐

@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/cors.md
+url: /vite-press/frontend/network/cors.md
 description: 什么是跨域
 ---
 

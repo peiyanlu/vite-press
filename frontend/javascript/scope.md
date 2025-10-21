@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/scope.md
+url: /vite-press/frontend/javascript/scope.md
 description: 代码调试中遇到的作用域
 ---
 

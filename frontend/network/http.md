@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/http.md
+url: /vite-press/frontend/network/http.md
 description: 介绍什么是HTTP
 ---
 

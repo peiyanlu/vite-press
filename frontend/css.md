@@ -1,4 +1,4 @@
 ---
-url: /frontend/css.md
+url: /vite-press/frontend/css.md
 ---
 

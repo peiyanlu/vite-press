@@ -1,5 +1,5 @@
 ---
-url: /frontend/html/misc.md
+url: /vite-press/frontend/html/misc.md
 ---
 
 # {{ $frontmatter.title }}

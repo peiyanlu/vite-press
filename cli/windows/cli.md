@@ -1,5 +1,5 @@
 ---
-url: /cli/windows/cli.md
+url: /vite-press/cli/windows/cli.md
 description: Windows常用命令
 ---
 

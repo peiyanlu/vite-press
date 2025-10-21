@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/encryption.md
+url: /vite-press/frontend/network/encryption.md
 description: 了解常用的加密算法
 ---
 

@@ -1,6 +1,6 @@
 ---
-url: /frontend/build/monorepo/quickstart.md
-description: 从零搭建monorepo
+url: /vite-press/frontend/build/monorepo/quickstart.md
+description: 从零搭建 monorepo
 ---
 
 # {{ $frontmatter.title }}

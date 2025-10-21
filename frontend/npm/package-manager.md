@@ -1,5 +1,5 @@
 ---
-url: /frontend/npm/package-manager.md
+url: /vite-press/frontend/npm/package-manager.md
 description: 目前最流行的三种包管理工具
 ---
 

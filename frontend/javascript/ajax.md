@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/ajax.md
+url: /vite-press/frontend/javascript/ajax.md
 description: Ajax的了解和使用
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/css/bfc.md
+url: /vite-press/frontend/css/bfc.md
 description: 块级格式化上下文
 ---
 

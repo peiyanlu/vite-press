@@ -1,4 +1,4 @@
 ---
-url: /frontend/regex.md
+url: /vite-press/frontend/regex.md
 ---
 

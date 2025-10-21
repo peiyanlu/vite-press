@@ -1,4 +1,4 @@
 ---
-url: /frontend/performance.md
+url: /vite-press/frontend/performance.md
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/ElementPosition.md
+url: /vite-press/frontend/javascript/ElementPosition.md
 description: 获取元素位置和鼠标位置
 ---
 

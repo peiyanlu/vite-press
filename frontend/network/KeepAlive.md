@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/KeepAlive.md
+url: /vite-press/frontend/network/KeepAlive.md
 description: 了解实现长连接的几种方式
 ---
 

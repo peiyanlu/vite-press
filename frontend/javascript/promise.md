@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/promise.md
+url: /vite-press/frontend/javascript/promise.md
 description: 详细介绍promise
 ---
 

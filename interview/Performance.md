@@ -1,5 +1,5 @@
 ---
-url: /interview/Performance.md
+url: /vite-press/interview/Performance.md
 ---
 
 # {{ $frontmatter.title }}答题模板

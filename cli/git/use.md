@@ -1,5 +1,5 @@
 ---
-url: /cli/git/use.md
+url: /vite-press/cli/git/use.md
 description: Git使用记录
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/ES6/ES2023-ignore.md
+url: /vite-press/frontend/javascript/ES6/ES2023-ignore.md
 ---
 ## [ES2023(ES14)](https://tc39.es/ecma262/2023/)
 

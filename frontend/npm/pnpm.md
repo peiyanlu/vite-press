@@ -1,5 +1,5 @@
 ---
-url: /frontend/npm/pnpm.md
+url: /vite-press/frontend/npm/pnpm.md
 ---
 
 # {{ $frontmatter.title }}

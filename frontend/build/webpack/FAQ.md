@@ -1,6 +1,6 @@
 ---
-url: /frontend/build/webpack/FAQ.md
-description: npm遇到的各种牛鬼蛇神
+url: /vite-press/frontend/build/webpack/FAQ.md
+description: npm 遇到的各种牛鬼蛇神
 ---
 
 # {{ $frontmatter.title }}

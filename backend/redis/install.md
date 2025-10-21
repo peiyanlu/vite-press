@@ -1,5 +1,5 @@
 ---
-url: /backend/redis/install.md
+url: /vite-press/backend/redis/install.md
 description: Redis安装
 ---
 

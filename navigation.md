@@ -1,4 +1,4 @@
 ---
-url: /navigation.md
+url: /vite-press/navigation.md
 ---
 

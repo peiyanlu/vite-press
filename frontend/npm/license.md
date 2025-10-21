@@ -1,11 +1,11 @@
 ---
-url: /frontend/npm/license.md
+url: /vite-press/frontend/npm/license.md
 description: 七中开源许可协议
 ---
 
 # 七种开源许可证
 
-![npm\_license\_img.png](img/npm_license_img.png)
+![npm\_license\_img.png](/assets/npm_license_img.BlecLQ15.png)
 
 ## Apache许可
 

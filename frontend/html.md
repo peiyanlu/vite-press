@@ -1,4 +1,4 @@
 ---
-url: /frontend/html.md
+url: /vite-press/frontend/html.md
 ---
 

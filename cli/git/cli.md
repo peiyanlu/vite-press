@@ -1,5 +1,5 @@
 ---
-url: /cli/git/cli.md
+url: /vite-press/cli/git/cli.md
 description: Git常用命令
 ---
 

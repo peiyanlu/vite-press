@@ -1,6 +1,6 @@
 ---
-url: /frontend/vue/vue2-components.md
-description: 使用vue2打包公共组件
+url: /vite-press/frontend/vue/vue2-components.md
+description: 使用 vue2 打包公共组件
 ---
 
 # {{ $frontmatter.title }}

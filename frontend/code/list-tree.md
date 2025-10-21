@@ -1,5 +1,5 @@
 ---
-url: /frontend/code/list-tree.md
+url: /vite-press/frontend/code/list-tree.md
 description: 树与列表相互转换
 ---
 

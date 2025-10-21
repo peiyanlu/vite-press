@@ -1,5 +1,5 @@
 ---
-url: /interview/useState.md
+url: /vite-press/interview/useState.md
 ---
 # React useState 是同步还是异步？性能调度详解
 

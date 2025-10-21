@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/object-copy.md
+url: /vite-press/frontend/javascript/object-copy.md
 description: 浅拷贝、深拷贝是什么？如何实现
 ---
 

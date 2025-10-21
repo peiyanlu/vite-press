@@ -1,5 +1,5 @@
 ---
-url: /frontend/build/rollup/lib-ts.md
+url: /vite-press/frontend/build/rollup/lib-ts.md
 description: 使用rollup构建一个ts库
 ---
 

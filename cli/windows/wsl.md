@@ -1,5 +1,5 @@
 ---
-url: /cli/windows/wsl.md
+url: /vite-press/cli/windows/wsl.md
 description: Win11 启用 WSL 并安装 Docker
 ---
 

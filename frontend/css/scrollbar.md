@@ -1,5 +1,5 @@
 ---
-url: /frontend/css/scrollbar.md
+url: /vite-press/frontend/css/scrollbar.md
 description: webkit 滚动条样式修改
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/regex/basics.md
+url: /vite-press/frontend/regex/basics.md
 description: 正则基础概念
 ---
 

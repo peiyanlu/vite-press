@@ -1,4 +1,4 @@
 ---
-url: /frontend/javascript.md
+url: /vite-press/frontend/javascript.md
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/react/redux.md
+url: /vite-press/frontend/react/redux.md
 description: Redux
 ---
 

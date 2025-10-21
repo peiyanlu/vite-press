@@ -1,5 +1,5 @@
 ---
-url: /cli.md
+url: /vite-press/cli.md
 ---
 
 # CLI

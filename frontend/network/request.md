@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/request.md
+url: /vite-press/frontend/network/request.md
 description: 请求中常见的相关内容
 ---
 

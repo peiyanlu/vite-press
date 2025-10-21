@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/string.md
+url: /vite-press/frontend/javascript/string.md
 description: 按版本分类的字符串方法
 ---
 

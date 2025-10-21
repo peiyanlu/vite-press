@@ -1,5 +1,5 @@
 ---
-url: /frontend/browser/storage.md
+url: /vite-press/frontend/browser/storage.md
 description: 浏览器中的数据存储方式
 ---
 

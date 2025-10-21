@@ -1,4 +1,4 @@
 ---
-url: /archive.md
+url: /vite-press/archive.md
 ---
 

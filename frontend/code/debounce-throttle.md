@@ -1,5 +1,5 @@
 ---
-url: /frontend/code/debounce-throttle.md
+url: /vite-press/frontend/code/debounce-throttle.md
 description: 防抖与节流
 ---
 

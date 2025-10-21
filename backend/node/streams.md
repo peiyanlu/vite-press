@@ -1,5 +1,5 @@
 ---
-url: /backend/node/streams.md
+url: /vite-press/backend/node/streams.md
 description: 读写流处理大数据、文件、网络通信等常用方式
 ---
 

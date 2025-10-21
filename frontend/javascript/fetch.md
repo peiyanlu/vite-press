@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/fetch.md
+url: /vite-press/frontend/javascript/fetch.md
 description: 了解支持promise的HTTP请求方法
 ---
 

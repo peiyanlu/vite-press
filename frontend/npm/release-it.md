@@ -1,6 +1,6 @@
 ---
-url: /frontend/npm/release-it.md
-description: 使用release-it自动管理版本号和CHANGELOG
+url: /vite-press/frontend/npm/release-it.md
+description: 使用 release-it 自动管理版本号和 CHANGELOG
 ---
 
 # {{ $frontmatter.title }}

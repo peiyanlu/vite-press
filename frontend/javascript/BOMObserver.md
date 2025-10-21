@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/BOMObserver.md
+url: /vite-press/frontend/javascript/BOMObserver.md
 description: 监听元素变化、浏览器干预行为
 ---
 

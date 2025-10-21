@@ -1,5 +1,5 @@
 ---
-url: /frontend/network/OSI_vs_TCPIP_comparison.md
+url: /vite-press/frontend/network/OSI_vs_TCPIP_comparison.md
 description: 对比 OSI 七层模型与 TCP/IP 四层模型差异
 ---
 

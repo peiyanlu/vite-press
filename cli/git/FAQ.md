@@ -1,5 +1,5 @@
 ---
-url: /cli/git/FAQ.md
+url: /vite-press/cli/git/FAQ.md
 description: Git问题记录
 ---
 

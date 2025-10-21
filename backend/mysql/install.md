@@ -1,5 +1,5 @@
 ---
-url: /backend/mysql/install.md
+url: /vite-press/backend/mysql/install.md
 description: MySQL安装
 ---
 

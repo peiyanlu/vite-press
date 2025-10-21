@@ -1,6 +1,6 @@
 ---
-url: /frontend/build/monorepo/turborepo.md
-description: 如何使用turbo管理monorepo
+url: /vite-press/frontend/build/monorepo/turborepo.md
+description: 如何使用 turbo 管理 monorepo
 ---
 
 # {{ $frontmatter.title }}

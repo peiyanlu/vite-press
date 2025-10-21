@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/object.md
+url: /vite-press/frontend/javascript/object.md
 description: 按版本分类的对象方法
 ---
 

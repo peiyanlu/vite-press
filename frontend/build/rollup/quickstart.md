@@ -1,5 +1,5 @@
 ---
-url: /frontend/build/rollup/quickstart.md
+url: /vite-press/frontend/build/rollup/quickstart.md
 description: rollup
 ---
 

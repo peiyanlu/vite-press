@@ -1,5 +1,5 @@
 ---
-url: /frontend/performance/WebVitals.md
+url: /vite-press/frontend/performance/WebVitals.md
 description: 前端性能衡量标准
 ---
 

@@ -1,5 +1,5 @@
 ---
-url: /frontend/javascript/dictionary.md
+url: /vite-press/frontend/javascript/dictionary.md
 description: 开发中常用术语
 ---
 

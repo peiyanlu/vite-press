@@ -1,5 +1,5 @@
 ---
-url: /cli/git/commitlint.md
+url: /vite-press/cli/git/commitlint.md
 description: git 提交约束
 ---
 

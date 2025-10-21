@@ -8,165 +8,170 @@ writing
 
 ### 浏览器
 
-- [浏览器基础知识](/frontend/browser/basics.md): 浏览器常问的基础知识
-- [浏览器缓存](/frontend/browser/cache.md): 浏览器缓存方式以及区别
-- [浏览器数据存储](/frontend/browser/storage.md): 浏览器中的数据存储方式
+- [浏览器基础知识](/vite-press/frontend/browser/basics.md): 浏览器常问的基础知识
+- [浏览器缓存](/vite-press/frontend/browser/cache.md): 浏览器缓存方式以及区别
+- [浏览器数据存储](/vite-press/frontend/browser/storage.md): 浏览器中的数据存储方式
 
 ### 编译构建
 
 #### monorepo
 
-- [快速开始](/frontend/build/monorepo/quickstart.md): 从零搭建monorepo
-- [turborepo](/frontend/build/monorepo/turborepo.md): 如何使用turbo管理monorepo
+- [快速开始](/vite-press/frontend/build/monorepo/quickstart.md): 从零搭建 monorepo
+- [turborepo](/vite-press/frontend/build/monorepo/turborepo.md): 如何使用 turbo 管理 monorepo
 
 #### rollup
 
-- [快速开始](/frontend/build/rollup/quickstart.md): rollup
-- [构建JS库](/frontend/build/rollup/lib-js.md): 使用rollup构建一个js库
-- [构建TS库](/frontend/build/rollup/lib-ts.md): 使用rollup构建一个ts库
+- [快速开始](/vite-press/frontend/build/rollup/quickstart.md): rollup
+- [构建JS库](/vite-press/frontend/build/rollup/lib-js.md): 使用rollup构建一个js库
+- [构建TS库](/vite-press/frontend/build/rollup/lib-ts.md): 使用rollup构建一个ts库
 
 #### vite
 
-- [构建TS库](/frontend/build/vite/ts.md): 用vite构建一个TS编写的库
+- [构建TS库](/vite-press/frontend/build/vite/ts.md): 用 vite 构建一个 TS 编写的库
 
 #### webpack
 
-- [构建ICON库](/frontend/build/webpack/lib-icon.md): 使用webpack打包svg图标
-- [问题记录](/frontend/build/webpack/FAQ.md): npm遇到的各种牛鬼蛇神
+- [构建ICON库](/vite-press/frontend/build/webpack/lib-icon.md): 使用 webpack 打sv图标
+- [问题记录](/vite-press/frontend/build/webpack/FAQ.md): npm 遇到的各种牛鬼蛇神
 
 ### 代码
 
-- [防抖与节流](/frontend/code/debounce-throttle.md): 防抖与节流
-- [JSON导出EXCEL](/frontend/code/excel-json.md): json转出Excel以及解析Excel为json
-- [图片懒加载](/frontend/code/image-lazy.md): 新版本浏览器图片懒加载实现
-- [列表与树](/frontend/code/list-tree.md): 树与列表相互转换
-- [其他应用](/frontend/code/others.md): js实用技巧
-- [pretter配置](/frontend/code/pretter.md): pretter配置详解
+- [EventLoop 执行示例](/vite-press/frontend/code/EventLoop.md): EventLoop
+- [防抖与节流](/vite-press/frontend/code/debounce-throttle.md): 防抖与节流
+- [JSON导出EXCEL](/vite-press/frontend/code/excel-json.md): json转出Excel以及解析Excel为json
+- [封装 fetch 支持 timeout](/vite-press/frontend/code/fetchWithTimeout.md)
+- [图片懒加载](/vite-press/frontend/code/image-lazy.md): 新版本浏览器图片懒加载实现
+- [列表与树](/vite-press/frontend/code/list-tree.md): 树与列表相互转换
+- [node 路径归一化](/vite-press/frontend/code/normalize.md)
+- [其他应用](/vite-press/frontend/code/others.md): js实用技巧
+- [pretter 配置](/vite-press/frontend/code/pretter.md): pretter 配置详解
 
 ### CSS
 
-- [BFC](/frontend/css/bfc.md): 块级格式化上下文
-- [滚动条样式](/frontend/css/scrollbar.md): webkit 滚动条样式修改
-- [选择器](/frontend/css/selector.md): CSS 选择器
-- [奇淫巧技](/frontend/css/tricks.md): 一看就会，一写就废
+- [BFC](/vite-press/frontend/css/bfc.md): 块级格式化上下文
+- [滚动条样式](/vite-press/frontend/css/scrollbar.md): webkit 滚动条样式修改
+- [选择器](/vite-press/frontend/css/selector.md): CSS 选择器
+- [奇淫巧技](/vite-press/frontend/css/tricks.md): 一看就会，一写就废
 
 ### HTML
 
-- [HTML 杂项](/frontend/html/misc.md)
-- [OG 协议](/frontend/html/og.md): 实现分享的链接可以预览图片、标题、描述
+- [HTML 杂项](/vite-press/frontend/html/misc.md)
+- [OG 协议](/vite-press/frontend/html/og.md): 实现分享的链接可以预览图片、标题、描述
 
 ### JavaScript
 
-- [ES6+](/frontend/javascript/ES6+.md): ES 新版本 API 总结
-- [字符串](/frontend/javascript/string.md): 按版本分类的字符串方法
-- [浏览器监听](/frontend/javascript/BOMObserver.md): 监听元素变化、浏览器干预行为
-- [调用栈](/frontend/javascript/CallStack.md): 掌握函数的调用关系
-- [元素位置](/frontend/javascript/ElementPosition.md): 获取元素位置和鼠标位置
-- [事件循环](/frontend/javascript/EventLoop.md): 了解离不开的事件循环
-- [垃圾回收机制](/frontend/javascript/GarbageCollection.md): JavaScript 的垃圾回收机制（GC）
-- [词法作用域](/frontend/javascript/LexicalScope.md): js 使用的作用域
-- [Ajax](/frontend/javascript/ajax.md): Ajax的了解和使用
-- [数组](/frontend/javascript/array.md): 按版本分类的数组方法
-- [二进制](/frontend/javascript/binary.md): js中的二进制使用方法
-- [辞海](/frontend/javascript/dictionary.md): 开发中常用术语
-- [fetch](/frontend/javascript/fetch.md): 了解支持promise的HTTP请求方法
-- [深（浅）拷贝](/frontend/javascript/object-copy.md): 浅拷贝、深拷贝是什么？如何实现
-- [对象](/frontend/javascript/object.md): 按版本分类的对象方法
-- [Promise](/frontend/javascript/promise.md): 详细介绍promise
-- [原型链](/frontend/javascript/prototype.md): 百问不厌的原型链
-- [作用域](/frontend/javascript/scope.md): 代码调试中遇到的作用域
-- [this 指向总结](/frontend/javascript/this_usage.md): 可恶的 this 指向问题
+- [ES6+](/vite-press/frontend/javascript/ES6+.md): ES 新版本 API 总结
+- [字符串](/vite-press/frontend/javascript/string.md): 按版本分类的字符串方法
+- [浏览器监听](/vite-press/frontend/javascript/BOMObserver.md): 监听元素变化、浏览器干预行为
+- [调用栈](/vite-press/frontend/javascript/CallStack.md): 掌握函数的调用关系
+- [元素位置](/vite-press/frontend/javascript/ElementPosition.md): 获取元素位置和鼠标位置
+- [事件循环](/vite-press/frontend/javascript/EventLoop.md): 了解离不开的事件循环
+- [垃圾回收机制](/vite-press/frontend/javascript/GarbageCollection.md): JavaScript 的垃圾回收机制（GC）
+- [词法作用域](/vite-press/frontend/javascript/LexicalScope.md): js 使用的作用域
+- [Ajax](/vite-press/frontend/javascript/ajax.md): Ajax的了解和使用
+- [数组](/vite-press/frontend/javascript/array.md): 按版本分类的数组方法
+- [二进制](/vite-press/frontend/javascript/binary.md): js中的二进制使用方法
+- [辞海](/vite-press/frontend/javascript/dictionary.md): 开发中常用术语
+- [fetch](/vite-press/frontend/javascript/fetch.md): 了解支持promise的HTTP请求方法
+- [深（浅）拷贝](/vite-press/frontend/javascript/object-copy.md): 浅拷贝、深拷贝是什么？如何实现
+- [对象](/vite-press/frontend/javascript/object.md): 按版本分类的对象方法
+- [Promise](/vite-press/frontend/javascript/promise.md): 详细介绍promise
+- [原型链](/vite-press/frontend/javascript/prototype.md): 百问不厌的原型链
+- [作用域](/vite-press/frontend/javascript/scope.md): 代码调试中遇到的作用域
+- [严格模式](/vite-press/frontend/javascript/strict-mode.md)
+- [this 指向总结](/vite-press/frontend/javascript/this_usage.md): 可恶的 this 指向问题
 
 ### 计算机网络
 
-- [长连接](/frontend/network/KeepAlive.md): 了解实现长连接的几种方式
-- [OSI 与 TCP/IP 模型对比](/frontend/network/OSI_vs_TCPIP_comparison.md): 对比 OSI 七层模型与 TCP/IP 四层模型差异
-- [跨域](/frontend/network/cors.md): 什么是跨域
-- [加密算法](/frontend/network/encryption.md): 了解常用的加密算法
-- [HTTP](/frontend/network/http.md): 介绍什么是HTTP
-- [OSI 七层模型](/frontend/network/osi_model_layers.md): 介绍什么是 OSI 七层模型（OSI Model）
-- [请求代理](/frontend/network/proxy.md): 正向代理和方向代理的定义和区别
-- [资源请求](/frontend/network/request.md): 请求中常见的相关内容
-- [网络安全](/frontend/network/security.md): 常见的网络攻击手段与防护
-- [TCP & UDP](/frontend/network/tcp.md): 介绍什么是 TCP
+- [长连接](/vite-press/frontend/network/KeepAlive.md): 了解实现长连接的几种方式
+- [OSI 与 TCP/IP 模型对比](/vite-press/frontend/network/OSI_vs_TCPIP_comparison.md): 对比 OSI 七层模型与 TCP/IP 四层模型差异
+- [跨域](/vite-press/frontend/network/cors.md): 什么是跨域
+- [加密算法](/vite-press/frontend/network/encryption.md): 了解常用的加密算法
+- [HTTP](/vite-press/frontend/network/http.md): 介绍什么是HTTP
+- [OSI 七层模型](/vite-press/frontend/network/osi_model_layers.md): 介绍什么是 OSI 七层模型（OSI Model）
+- [请求代理](/vite-press/frontend/network/proxy.md): 正向代理和方向代理的定义和区别
+- [资源请求](/vite-press/frontend/network/request.md): 请求中常见的相关内容
+- [网络安全](/vite-press/frontend/network/security.md): 常见的网络攻击手段与防护
+- [TCP & UDP](/vite-press/frontend/network/tcp.md): 介绍什么是 TCP
 
 ### NPM
 
-- [changesets](/frontend/npm/changesets.md): monorepo发包工具
-- [release-it](/frontend/npm/release-it.md): 使用release-it自动管理版本号和CHANGELOG
-- [版本规范](/frontend/npm/SemVer.md): npm包的版本规范
-- [CLI](/frontend/npm/cli.md): npm命令行
-- [问题记录](/frontend/npm/FAQ.md): npm遇到的各种牛鬼蛇神
-- [常用推荐](/frontend/npm/libs.md): 常用的npm效率工具库
-- [开源许可协议](/frontend/npm/license.md): 七中开源许可协议
-- [package-exports](/frontend/npm/package-exports.md): package中的expors使用记录
-- [package.json](/frontend/npm/package-json.md): package.json中的字段详解
-- [包管理器](/frontend/npm/package-manager.md): 目前最流行的三种包管理工具
-- [打补丁](/frontend/npm/package-patch.md): 修改依赖包之后对其打补丁
-- [pnpm 安装](/frontend/npm/pnpm.md)
+- [changesets](/vite-press/frontend/npm/changesets.md): monorepo 发包工具
+- [release-it](/vite-press/frontend/npm/release-it.md): 使用 release-it 自动管理版本号和 CHANGELOG
+- [版本规范](/vite-press/frontend/npm/SemVer.md): npm包的版本规范
+- [CLI](/vite-press/frontend/npm/cli.md): npm 命令行
+- [问题记录](/vite-press/frontend/npm/FAQ.md): npm遇到的各种牛鬼蛇神
+- [常用推荐](/vite-press/frontend/npm/libs.md): 常用的 npm 效率工具库
+- [开源许可协议](/vite-press/frontend/npm/license.md): 七中开源许可协议
+- [package-exports](/vite-press/frontend/npm/package-exports.md): package中的 exports 使用记录
+- [package.json](/vite-press/frontend/npm/package-json.md): package.json 中的字段详解
+- [包管理器](/vite-press/frontend/npm/package-manager.md): 目前最流行的三种包管理工具
+- [打补丁](/vite-press/frontend/npm/package-patch.md): 修改依赖包之后对其打补丁
+- [pnpm 安装](/vite-press/frontend/npm/pnpm.md)
 
 ### 性能
 
-- [前端性能衡量标准](/frontend/performance/WebVitals.md): 前端性能衡量标准
+- [前端性能衡量标准](/vite-press/frontend/performance/WebVitals.md): 前端性能衡量标准
 
 ### React
 
-- [React vs Vue](/frontend/react/react2vue.md): React 对比 Vue3 API
-- [Redux Toolkit 使用示例](/frontend/react/redux-toolkit.md): Redux Toolkit 示例代码
-- [Redux 使用示例](/frontend/react/redux.md): Redux
+- [React vs Vue](/vite-press/frontend/react/react2vue.md): React 对比 Vue3 API
+- [Redux Toolkit 使用示例](/vite-press/frontend/react/redux-toolkit.md): Redux Toolkit 示例代码
+- [Redux 使用示例](/vite-press/frontend/react/redux.md): Redux
 
 ### 正则
 
-- [基础概念](/frontend/regex/basics.md): 正则基础概念
-- [正则应用](/frontend/regex/use.md): 正则使用记录
+- [基础概念](/vite-press/frontend/regex/basics.md): 正则基础概念
+- [正则应用](/vite-press/frontend/regex/use.md): 正则使用记录
 
 ### Vue
 
-- [KeepAlive](/frontend/vue/keep-alive.md): 在多个组件间动态切换时缓存被移除的组件实例
-- [nextTick](/frontend/vue/nextTick.md): Vue nextTick 作用与原理
-- [vue2打包组件库](/frontend/vue/vue2-components.md): 使用vue2打包公共组件
+- [KeepAlive](/vite-press/frontend/vue/keep-alive.md): 在多个组件间动态切换时缓存被移除的组件实例
+- [nextTick](/vite-press/frontend/vue/nextTick.md): Vue nextTick 作用与原理
+- [vue2 打包组件库](/vite-press/frontend/vue/vue2-components.md): 使用 vue2 打包公共组件
 
 ### koa
 
-- [开始](/backend/koa/start.md): 开始
-- [实战](/backend/koa/use.md): Koa + MySQL + TS
+- [开始](/vite-press/backend/koa/start.md): 开始
+- [实战](/vite-press/backend/koa/use.md): Koa + MySQL + TS
 
 ### mysql
 
-- [安装](/backend/mysql/install.md): MySQL安装
+- [安装](/vite-press/backend/mysql/install.md): MySQL安装
 
 ### node
 
-- [NodeEnv](/backend/node/env.md): 环境变量中的环境信息
-- [进程](/backend/node/process.md): node进程相关知识
-- [Node 读写流](/backend/node/streams.md): 读写流处理大数据、文件、网络通信等常用方式
+- [NodeEnv](/vite-press/backend/node/env.md): 环境变量中的环境信息
+- [进程](/vite-press/backend/node/process.md): node进程相关知识
+- [Node 读写流](/vite-press/backend/node/streams.md): 读写流处理大数据、文件、网络通信等常用方式
 
 ### redis
 
-- [安装](/backend/redis/install.md): Redis安装
+- [安装](/vite-press/backend/redis/install.md): Redis安装
 
 ### sqlite
 
-- [SQLite 递归查询](/backend/sqlite/recursion.md): 递归查询
+- [SQLite 递归查询](/vite-press/backend/sqlite/recursion.md): 递归查询
 
 ### git
 
-- [CommitLint](/cli/git/commitlint.md): git 提交约束
-- [问题](/cli/git/FAQ.md): Git问题记录
-- [CLI](/cli/git/cli.md): Git常用命令
-- [集成](/cli/git/hub.md): Git集成：GitHub、Gitee
-- [使用](/cli/git/use.md): Git使用记录
+- [CommitLint](/vite-press/cli/git/commitlint.md): git 提交约束
+- [问题](/vite-press/cli/git/FAQ.md): Git问题记录
+- [CLI](/vite-press/cli/git/cli.md): Git常用命令
+- [集成](/vite-press/cli/git/hub.md): Git集成：GitHub、Gitee
+- [使用](/vite-press/cli/git/use.md): Git使用记录
 
 ### linux
 
-- [CLI](/cli/linux/cli.md): Linux常用命令
-- [使用](/cli/linux/use.md): Linux命令使用记录
+- [CLI](/vite-press/cli/linux/cli.md): Linux常用命令
+- [使用](/vite-press/cli/linux/use.md): Linux命令使用记录
 
 ### windows
 
-- [问题](/cli/windows/FAQ.md): Windows问题记录
-- [CLI](/cli/windows/cli.md): Windows常用命令
-- [WSL 安装 Docker](/cli/windows/wsl.md): Win11 启用 WSL 并安装 Docker
+- [问题](/vite-press/cli/windows/FAQ.md): Windows问题记录
+- [CLI](/vite-press/cli/windows/cli.md): Windows常用命令
+- [WSL 安装 Docker](/vite-press/cli/windows/wsl.md): Win11 启用 WSL 并安装 Docker
+
 
 
 
@@ -184,32 +189,32 @@ writing
 
 ### Other
 
-- [/usr/bin/env node](/frontend/javascript/ES6/ES2023-ignore.md)
-- [CLI](/cli.md)
-- [CSS](/frontend/css.md)
-- [HTML](/frontend/html.md)
-- [JavaScript](/frontend/javascript.md)
-- [NPM](/frontend/npm.md)
-- [React](/frontend/react.md)
-- [Untitled](/frontend/javascript/ES6/ES2015-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2016-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2017-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2018-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2019-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2020-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2021-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2022-ignore.md)
-- [Untitled](/frontend/javascript/ES6/ES2024-ignore.md)
-- [Vue](/frontend/vue.md)
-- [代码](/frontend/code.md)
-- [前端](/frontend.md)
-- [后端](/backend.md)
-- [导航](/navigation.md)
-- [归档](/archive.md)
-- [性能](/frontend/performance.md)
-- [正则](/frontend/regex.md)
-- [浏览器](/frontend/browser.md)
-- [编译构建](/frontend/build.md)
-- [计算机网络](/frontend/network.md)
-- [起源](/origin.md)
-- [面试](/interview.md): 常见面试题及答案
+- [/usr/bin/env node](/vite-press/frontend/javascript/ES6/ES2023-ignore.md)
+- [CLI](/vite-press/cli.md)
+- [CSS](/vite-press/frontend/css.md)
+- [HTML](/vite-press/frontend/html.md)
+- [JavaScript](/vite-press/frontend/javascript.md)
+- [NPM](/vite-press/frontend/npm.md)
+- [React](/vite-press/frontend/react.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2015-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2016-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2018-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2017-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2019-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2020-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2021-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2022-ignore.md)
+- [Untitled](/vite-press/frontend/javascript/ES6/ES2024-ignore.md)
+- [Vue](/vite-press/frontend/vue.md)
+- [代码](/vite-press/frontend/code.md)
+- [前端](/vite-press/frontend.md)
+- [后端](/vite-press/backend.md)
+- [导航](/vite-press/navigation.md)
+- [归档](/vite-press/archive.md)
+- [性能](/vite-press/frontend/performance.md)
+- [正则](/vite-press/frontend/regex.md)
+- [浏览器](/vite-press/frontend/browser.md)
+- [编译构建](/vite-press/frontend/build.md)
+- [计算机网络](/vite-press/frontend/network.md)
+- [起源](/vite-press/origin.md)
+- [面试](/vite-press/interview.md): 常见面试题及答案

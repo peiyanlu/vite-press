@@ -1,5 +1,5 @@
 ---
-url: /frontend/regex/use.md
+url: /vite-press/frontend/regex/use.md
 description: 正则使用记录
 ---
 
