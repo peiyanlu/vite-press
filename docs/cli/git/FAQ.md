@@ -1,7 +1,6 @@
 ---
 title: 问题
 description: Git问题记录
-category: git
 tags:
   - FAQ
 ---

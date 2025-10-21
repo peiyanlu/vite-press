@@ -1,7 +1,6 @@
 ---
 title: turborepo
-description: 如何使用turbo管理monorepo
-category: build
+description: 如何使用 turbo 管理 monorepo
 tags:
   - build
   - turborepo

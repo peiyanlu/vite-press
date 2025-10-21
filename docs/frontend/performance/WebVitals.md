@@ -1,7 +1,6 @@
 ---
 title: 前端性能衡量标准
 description: 前端性能衡量标准
-category: frontend
 tags:
   - frontend
   - vital

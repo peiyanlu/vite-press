@@ -1,7 +1,6 @@
 ---
 title: 集成
 description: Git集成：GitHub、Gitee
-category: git
 tags:
   - Git
   - Hub

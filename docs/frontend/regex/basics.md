@@ -1,7 +1,6 @@
 ---
 title: 基础概念
 description: 正则基础概念
-category: regex
 tags:
   - Regex
 ---

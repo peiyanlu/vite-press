@@ -1,7 +1,6 @@
 ---
 title: OSI 七层模型
 description: 介绍什么是 OSI 七层模型（OSI Model）
-category: network
 tags:
   - network
   - OSI

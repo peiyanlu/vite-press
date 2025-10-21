@@ -1,6 +1,5 @@
 ---
 title: Vite 面试题
-category: interview
 tags:
   - interview
   - vite
@@ -55,7 +54,7 @@ resolve: {
 
 * 新建 `.env` 文件，变量以 `VITE_` 开头
 
-```env
+```text
 VITE_API_URL=https://api.xxx.com
 ```
 

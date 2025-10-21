@@ -1,7 +1,6 @@
 ---
 title: Ajax
 description: Ajax的了解和使用
-category: javascript
 tags:
   - Ajax
 ---

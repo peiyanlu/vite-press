@@ -1,6 +1,5 @@
 ---
 title: 浏览器原理
-category: interview
 tags:
   - interview
   - browser

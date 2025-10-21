@@ -1,7 +1,6 @@
 ---
 title: package.json
-description: package.json中的字段详解
-category: npm
+description: package.json 中的字段详解
 tags:
   - NPM
   - package.json
@@ -30,7 +29,7 @@ tags:
 
 ### version
 
-项目的版本号，开源项目的版本号通常遵循 [semver](npm-SemVer) 语义化规范
+项目的版本号，开源项目的版本号通常遵循 [semver](SemVer.md) 语义化规范
 
 > **name + version** 能共同构成一个完全唯一的项目标识符，所以它两是最重要的两个字段。
 
@@ -92,7 +91,7 @@ tags:
 
 ### license
 
-项目的开源许可证。项目的版权拥有人可以使用开源许可证来**限制源码的使用、复制、修改和再发布**等行为。[如何选择开源许可证？](npm-license.md)
+项目的开源许可证。项目的版权拥有人可以使用开源许可证来**限制源码的使用、复制、修改和再发布**等行为。[如何选择开源许可证？](license.md)
 
 ```json
 {
@@ -223,7 +222,7 @@ module.exports = {
 
 `node` 在 `14.13` 支持在 `package.json` 里定义 `exports` 字段，拥有了**条件导出**的功能。 `exports` 字段可以配置不同环境对应的模块入口文件，并且当它存在时，它的**优先级最高**。
 
-主要作用：分环境配置、支持配置子路径、限制访问路径，[实战记录](npm-package-exports.md)
+主要作用：分环境配置、支持配置子路径、限制访问路径，[实战记录](package-exports.md)
 
 > `exports` 使用 `browser` 和 `node` 字段定义 `browser` 和 `Node` 环境中的入口。
 

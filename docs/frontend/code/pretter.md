@@ -1,7 +1,6 @@
 ---
-title: pretter配置
-description: pretter配置详解
-category: code
+title: pretter 配置
+description: pretter 配置详解
 tags:
   - code
   - pretter

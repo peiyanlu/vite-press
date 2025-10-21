@@ -1,7 +1,6 @@
 ---
 title: 滚动条样式
 description: webkit 滚动条样式修改
-category: css
 tags:
   - css
   - scrollbar

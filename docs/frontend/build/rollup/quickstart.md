@@ -1,7 +1,6 @@
 ---
 title: 快速开始
 description: rollup
-category: rollup
 tags:
   - rollup
   - doc

@@ -32,7 +32,7 @@ const top = () => {
     <div
       class="nav"
       v-for="([ year, months]) of navs"
-      :key="year"
+      :key="year as string"
     >
       <a :href="`#${year}`">{{ year }}</a>
       

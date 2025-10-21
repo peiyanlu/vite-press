@@ -1,7 +1,6 @@
 ---
 title: release-it
-description: 使用release-it自动管理版本号和CHANGELOG
-category: npm
+description: 使用 release-it 自动管理版本号和 CHANGELOG
 tags:
   - npm
   - release-it

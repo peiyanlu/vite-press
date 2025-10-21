@@ -1,7 +1,6 @@
 ---
 title: OG 协议
 description: 实现分享的链接可以预览图片、标题、描述
-category: html
 tags:
   - html
   - url

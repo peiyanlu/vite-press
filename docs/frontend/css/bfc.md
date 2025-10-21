@@ -1,7 +1,6 @@
 ---
 title: BFC
 description: 块级格式化上下文
-category: css
 tags:
   - CSS
   - BFC

@@ -1,7 +1,6 @@
 ---
 title: 进程
 description: node进程相关知识
-category: node
 tags:
   - node
   - process

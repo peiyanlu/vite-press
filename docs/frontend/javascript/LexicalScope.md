@@ -1,7 +1,6 @@
 ---
 title: 词法作用域
 description: js 使用的作用域
-category: JavaScript
 tags:
   - JavaScript
   - scope

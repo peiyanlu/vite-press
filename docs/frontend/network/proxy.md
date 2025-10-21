@@ -1,7 +1,6 @@
 ---
 title: 请求代理
 description: 正向代理和方向代理的定义和区别
-category: network
 tags:
   - network
   - proxy

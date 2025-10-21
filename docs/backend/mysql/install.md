@@ -1,7 +1,6 @@
 ---
 title: 安装
 description: MySQL安装
-category: mysql
 tags:
   - MySQL
 ---

@@ -1,6 +1,5 @@
 ---
 title: 部署前端应用
-category: interview
 tags:
   - interview
   - Docker

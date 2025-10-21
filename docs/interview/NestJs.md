@@ -1,6 +1,5 @@
 ---
 title: NestJs 面试题
-category: interview
 tags:
   - interview
   - nest

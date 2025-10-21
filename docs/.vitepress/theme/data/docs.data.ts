@@ -12,7 +12,6 @@ const __dirname = dirname(__filename)
 interface FrontMatterResult {
   title?: string
   tags?: string[]
-  category?: string
   description?: string
 }
 
@@ -52,35 +51,3 @@ export default createContentLoader(
 declare const data: DocData[]
 
 export { data }
-
-
-
-// export default {
-//   watch: [
-//     'docs/**/*.md',
-//     '!**/*-ignore.md',
-//     ...ignoredIndex,
-//   ],
-//   async load(watchedFiles: string[]): Promise<DocData[]> {
-//     // 解析文章 Front matter
-//     return Promise.all(watchedFiles.map(async (articleFile: string) => {
-//       const { data } = matter.read(articleFile)
-//
-//       const updatedDate = await getGitTimestamp(articleFile)
-//       const createdDate = await getGitTimestampCreate(articleFile)
-//
-//       return {
-//         ...data,
-//         path: articleFile
-//           .replace(/^docs\//, '')
-//           .replace(/\.md$/, '')
-//           .replace(/index$/, '')
-//           .replace(/\/+/g, '/'),
-//         updatedDate,
-//         createdDate,
-//       }
-//     }))
-//   },
-// }
-
-

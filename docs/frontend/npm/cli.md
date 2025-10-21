@@ -1,7 +1,6 @@
 ---
 title: CLI
-description: npm命令行
-category: npm
+description: npm 命令行
 tags:
   - NPM
   - CLI

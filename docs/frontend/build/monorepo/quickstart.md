@@ -1,7 +1,6 @@
 ---
 title: 快速开始
-description: 从零搭建monorepo
-category: monorepo
+description: 从零搭建 monorepo
 tags:
   - monorepo
   - pnpm

@@ -1,6 +1,5 @@
 ---
 title: 前端性能优化面试题
-category: interview
 tags:
   - interview
   - performance

@@ -1,7 +1,6 @@
 ---
 title: 跨域
 description: 什么是跨域
-category: network
 tags:
   - network
   - cors

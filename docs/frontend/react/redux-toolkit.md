@@ -1,7 +1,6 @@
 ---
 title: Redux Toolkit 使用示例
 description: Redux Toolkit 示例代码
-category: react
 tags:
   - react
   - toolkit

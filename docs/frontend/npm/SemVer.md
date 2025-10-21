@@ -1,7 +1,6 @@
 ---
 title: 版本规范
 description: npm包的版本规范
-category: npm
 tags:
   - NPM
   - SemVer

@@ -1,7 +1,6 @@
 ---
 title: 作用域
 description: 代码调试中遇到的作用域
-category: javascript
 tags:
   - 作用域
 ---

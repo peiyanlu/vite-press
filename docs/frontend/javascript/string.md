@@ -1,7 +1,6 @@
 ---
 title: 字符串
 description: 按版本分类的字符串方法
-category: javascript
 tags:
   - String
   - ES5

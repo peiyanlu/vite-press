@@ -1,7 +1,6 @@
 ---
 title: React vs Vue
 description: React 对比 Vue3 API
-category: React
 tags:
   - React
 ---

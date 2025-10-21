@@ -1,7 +1,6 @@
 ---
 title: CLI
 description: Git常用命令
-category: git
 tags:
   - Git
   - CLI

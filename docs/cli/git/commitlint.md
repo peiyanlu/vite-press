@@ -1,7 +1,6 @@
 ---
 title: CommitLint
 description: git 提交约束
-category: git
 tags:
   - git
   - commit

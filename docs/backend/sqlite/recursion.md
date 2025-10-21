@@ -1,7 +1,6 @@
 ---
 title: SQLite 递归查询
 description: 递归查询
-category: sqlite
 tags:
   - sqlite
 ---

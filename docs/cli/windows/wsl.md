@@ -1,7 +1,6 @@
 ---
 title: WSL 安装 Docker
 description: Win11 启用 WSL 并安装 Docker
-category: windows
 tags:
   - windows
   - Win11

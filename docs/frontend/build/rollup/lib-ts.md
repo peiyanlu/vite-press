@@ -1,11 +1,10 @@
 ---
 title: 构建TS库
 description: 使用rollup构建一个ts库
-category: rollup
 tags:
   - rollup
   - lib
-  - ts
+  - TypeScript
 ---
 
 

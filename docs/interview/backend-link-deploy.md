@@ -1,6 +1,5 @@
 ---
 title: 前后端联动部署
-category: interview
 tags:
   - interview
   - Docker

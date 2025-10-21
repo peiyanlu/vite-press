@@ -1,7 +1,6 @@
 ---
 title: CLI
 description: Linux常用命令
-category: linux
 tags:
   - Linux
   - CLI

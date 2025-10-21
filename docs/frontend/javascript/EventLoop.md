@@ -1,7 +1,6 @@
 ---
 title: 事件循环
 description: 了解离不开的事件循环
-category: javascript
 tags:
   - EventLoop
 ---

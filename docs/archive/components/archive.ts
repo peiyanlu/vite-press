@@ -3,11 +3,12 @@ import { data, DocData } from '@theme/data/docs.data'
 
 type TimelineData = Record<string, Record<string, DocData[]>>
 
+
 export const tags = data
   .filter(k => k.tags?.length)
   .reduce<Record<string, DocData[]>>((tagsRecords, item) => {
     item.tags?.forEach(tag => {
-      (tagsRecords[tag] ??= []).push(item)
+      ;(tagsRecords[tag] ??= []).push(item)
       tagsRecords[tag].sort((a, b) => b.createdDate - a.createdDate)
     })
     return tagsRecords

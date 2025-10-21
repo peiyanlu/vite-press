@@ -1,7 +1,6 @@
 ---
 title: Node 读写流
 description: 读写流处理大数据、文件、网络通信等常用方式
-category: node
 tags:
   - node
   - stream

@@ -1,7 +1,6 @@
 ---
 title: this 指向总结
 description: 可恶的 this 指向问题
-category: javascript
 tags:
   - JavaScript
   - this

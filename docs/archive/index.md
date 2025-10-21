@@ -9,9 +9,17 @@ order: 6
 ---
 
 <script setup>
-import DocTimelineItem from './components/DocTimeline.vue'
+import { defineAsyncComponent } from 'vue';
+import EmptyBlock from './components/LoadingBlock.vue';
+
+
+const AsyncComponent= defineAsyncComponent({
+  loader: () => import('./components/DocTimeline.vue'),
+  loadingComponent: EmptyBlock,
+})
+
 </script>
 
 <style lang="css" src="./index.css"></style>
 
-<DocTimelineItem></DocTimelineItem>
+<AsyncComponent></AsyncComponent>

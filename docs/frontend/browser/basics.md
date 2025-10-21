@@ -1,7 +1,6 @@
 ---
 title: 浏览器基础知识
 description: 浏览器常问的基础知识
-category: browser
 tags:
   - 浏览器
 ---

@@ -1,7 +1,6 @@
 ---
 title: 列表与树
 description: 树与列表相互转换
-category: code
 tags:
   - list
   - tree

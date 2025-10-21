@@ -1,7 +1,6 @@
 ---
 title: Promise
 description: 详细介绍promise
-category: javascript
 tags:
   - JavaScript
   - promise

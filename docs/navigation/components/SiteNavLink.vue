@@ -59,7 +59,6 @@ const ns = useNamespace('site-nav-link')
   cursor: pointer;
   user-select: none;
   color: var(--vp-c-text-1);
-  // border: 1px solid var(--vp-c-bg-soft);
   border-radius: 8px;
   text-decoration: none;
   background-color: var(--vp-c-bg-soft);
@@ -67,26 +66,7 @@ const ns = useNamespace('site-nav-link')
   linear-gradient(1turn, rgba(159, 219, 252, 0.025) 3%, transparent 0px);
   background-size: 20px 20px;
   background-position: 50% center;
-  
-  // &:hover {
-  //   text-decoration: unset;
-  //   background-color: var(--vp-c-bg-soft);
-  //
-  //   .title {
-  //     &::after {
-  //       animation: show 1s steps(24, end) forwards;
-  //     }
-  //   }
-  // }
-  //
-  // @keyframes show {
-  //   from {
-  //     transform: scaleX(1.15);
-  //   }
-  //   to {
-  //     transform: scaleX(0);
-  //   }9999999999999
-  // }
+  transition: .15s transform linear;
   
   &__header {
     display: flex;
@@ -164,6 +144,10 @@ const ns = useNamespace('site-nav-link')
     color: var(--vp-c-text-2);
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
   }
 }
 

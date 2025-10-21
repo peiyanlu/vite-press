@@ -1,6 +1,5 @@
 ---
 title: pnpm 安装
-category: npm
 tags:
   - npm
   - pnpm

@@ -1,7 +1,6 @@
 ---
 title: nextTick
 description: Vue nextTick 作用与原理
-category: vue
 tags:
   - vue
   - nextTick

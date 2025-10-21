@@ -1,7 +1,6 @@
 ---
 title: 构建ICON库
-description: 使用webpack打包svg图标
-category: webpack
+description: 使用 webpack 打sv图标
 tags:
   - Webpack
   - svg

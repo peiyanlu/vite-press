@@ -1,7 +1,6 @@
 ---
 title: 使用
 description: Linux命令使用记录
-category: linux
 tags:
   - Linux
   - CLI

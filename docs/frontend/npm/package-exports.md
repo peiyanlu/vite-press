@@ -1,7 +1,6 @@
 ---
 title: package-exports
-description: package中的expors使用记录
-category: npm
+description: package中的 exports 使用记录
 tags:
   - NPM
   - package

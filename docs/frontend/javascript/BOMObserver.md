@@ -1,7 +1,6 @@
 ---
 title: 浏览器监听
 description: 监听元素变化、浏览器干预行为
-category: javascript
 tags:
   - 浏览器
   - Observer

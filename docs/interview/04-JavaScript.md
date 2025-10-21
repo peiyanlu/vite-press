@@ -1,6 +1,5 @@
 ---
 title: JavaScript 面试题
-category: interview
 tags:
   - interview
   - JavaScript

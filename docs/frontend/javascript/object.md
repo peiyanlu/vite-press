@@ -1,7 +1,6 @@
 ---
 title: 对象
 description: 按版本分类的对象方法
-category: javascript
 tags:
   - Object
   - ES5

@@ -1,8 +1,7 @@
 import { withPwa } from '@vite-pwa/vitepress'
 import container from 'markdown-it-container'
 import { defineConfig } from 'vitepress'
-import { renderSandbox } from 'vitepress-plugin-sandpack'
-import { BASE_URL, withBase, isDev } from './config/common'
+import { BASE_URL, isDev, withBase } from './config/common'
 import { pwa } from './config/pwa'
 import { algolia, local } from './config/search'
 import { vite } from './config/vite'
@@ -31,7 +30,7 @@ export default withPwa(defineConfig({
       // the second parameter is HTML tag name
       md.use(container, 'sandbox', {
         render(tokens: [], idx: number) {
-          return renderSandbox(tokens, idx, 'sandbox')
+        
         },
       })
     },
@@ -78,7 +77,8 @@ export default withPwa(defineConfig({
       },
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
-    search: isDev ? local : algolia,
+    // search: isDev ? local : algolia,
+    search: algolia,
     externalLinkIcon: true,
   },
   locales: {
@@ -87,7 +87,10 @@ export default withPwa(defineConfig({
       lang: 'zh-CN',
     },
   },
-  vite: vite,
+  vite: vite as any,
   pwa: pwa,
+  async buildEnd() {
+  
+  },
 }))
 

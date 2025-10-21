@@ -1,11 +1,10 @@
 ---
 title: 实战
 description: Koa + MySQL + TS
-category: koa
 tags:
   - Koa
   - MySQL
-  - ts
+  - TypeScript
 ---
 
 # Koa + MySQL + TS

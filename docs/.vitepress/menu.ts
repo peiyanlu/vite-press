@@ -155,6 +155,11 @@ export const getSidebar = () => ({
       "text": "代码",
       "items": [
         {
+          "text": "EventLoop 执行示例",
+          "link": "/frontend/code/EventLoop",
+          "order": 69
+        },
+        {
           "text": "防抖与节流",
           "link": "/frontend/code/debounce-throttle",
           "order": 100
@@ -163,6 +168,11 @@ export const getSidebar = () => ({
           "text": "JSON导出EXCEL",
           "link": "/frontend/code/excel-json",
           "order": 101
+        },
+        {
+          "text": "封装 fetch 支持 timeout",
+          "link": "/frontend/code/fetchWithTimeout",
+          "order": 102
         },
         {
           "text": "图片懒加载",
@@ -175,12 +185,17 @@ export const getSidebar = () => ({
           "order": 108
         },
         {
+          "text": "node 路径归一化",
+          "link": "/frontend/code/normalize",
+          "order": 110
+        },
+        {
           "text": "其他应用",
           "link": "/frontend/code/others",
           "order": 111
         },
         {
-          "text": "pretter配置",
+          "text": "pretter 配置",
           "link": "/frontend/code/pretter",
           "order": 112
         }
@@ -323,6 +338,11 @@ export const getSidebar = () => ({
         {
           "text": "作用域",
           "link": "/frontend/javascript/scope",
+          "order": 115
+        },
+        {
+          "text": "严格模式",
+          "link": "/frontend/javascript/strict-mode",
           "order": 115
         },
         {
@@ -523,7 +543,7 @@ export const getSidebar = () => ({
           "order": 110
         },
         {
-          "text": "vue2打包组件库",
+          "text": "vue2 打包组件库",
           "link": "/frontend/vue/vue2-components",
           "order": 118
         }
@@ -752,6 +772,11 @@ export const getSidebar = () => ({
       "text": "Vite 面试题",
       "link": "/interview/vite",
       "order": 118
+    },
+    {
+      "text": "webpack 基础知识",
+      "link": "/interview/webpack",
+      "order": 119
     }
   ]
 })

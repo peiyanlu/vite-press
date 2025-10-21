@@ -1,5 +1,4 @@
 // 组件/公共组件
-import Live2dWidget from './components/Live2dWidget.vue'
 import SlotDocAfter from './components/SlotDocAfter.vue'
 import SlotDocFooterBefore from './components/SlotDocFooterBefore.vue'
 // 依赖
@@ -10,7 +9,6 @@ import 'virtual:svg-icons-register'
 import { Theme, useData, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
-import { Sandbox } from 'vitepress-plugin-sandpack'
 // 样式文件
 import './style/index'
 
@@ -37,21 +35,22 @@ export default {
       },
     )
   },
-  enhanceApp(ctx) {
+  async enhanceApp(ctx) {
+    DefaultTheme.enhanceApp(ctx)
+    
+    await nextTick()
+    
     const components: Record<string, AsyncComponentLoader> = import.meta.glob('./components/global/*.vue')
     Object
       .entries(components)
       .forEach(([ key, value ]) => {
-        // const name = key.split('/').pop()?.split('.').shift() as string
         const name = key.split('/').at(-1)?.split('.').at(0) as string
         ctx.app.component(name, defineAsyncComponent(value))
       })
-    
-    DefaultTheme.enhanceApp(ctx)
-    
-    ctx.app.component('Sandbox', Sandbox)
   },
-} as Theme
+} satisfies Theme
+
+
 
 const imagePreviewFn = () => {
   if (!inBrowser) return

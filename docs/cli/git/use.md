@@ -1,7 +1,6 @@
 ---
 title: 使用
 description: Git使用记录
-category: git
 tags:
   - Git
 ---

@@ -16,6 +16,7 @@
     #47caff 50%
   );
   --vp-home-hero-image-filter: blur(40px);
+  text-autospace: normal;
 }
 
 @media (min-width: 640px) {

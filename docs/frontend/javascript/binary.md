@@ -1,7 +1,6 @@
 ---
 title: 二进制
 description: js中的二进制使用方法
-category: javascript
 tags:
   - Blob
 ---

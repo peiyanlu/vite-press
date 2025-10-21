@@ -1,7 +1,6 @@
 ---
 title: HTTP
 description: 介绍什么是HTTP
-category: network
 tags:
   - network
   - HTTP

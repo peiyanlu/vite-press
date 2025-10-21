@@ -1,7 +1,6 @@
 ---
 title: 网络安全
 description: 常见的网络攻击手段与防护
-category: network
 tags:
   - network
   - security

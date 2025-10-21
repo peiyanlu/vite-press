@@ -1,7 +1,6 @@
 ---
 title: TCP & UDP
 description: 介绍什么是 TCP
-category: network
 tags:
   - network
   - TCP

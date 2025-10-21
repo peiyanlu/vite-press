@@ -30,7 +30,7 @@ const props = defineProps({
     default: 'currentColor',
   },
   size: {
-    type: String,
+    type: [ String, Number ],
     default: '1em',
   },
 })

@@ -1,7 +1,6 @@
 ---
 title: Redux 使用示例
 description: Redux
-category: react
 tags:
   - react
   - redux

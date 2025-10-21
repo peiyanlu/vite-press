@@ -1,6 +1,5 @@
 ---
 title: 计算机网络
-category: interview
 tags:
   - interview
   - network

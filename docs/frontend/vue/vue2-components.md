@@ -1,7 +1,6 @@
 ---
-title: vue2打包组件库
-description: 使用vue2打包公共组件
-category: vue
+title: vue2 打包组件库
+description: 使用 vue2 打包公共组件
 tags:
   - vue
   - vue2

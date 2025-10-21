@@ -9,18 +9,13 @@ import DocTimelineItem from './DocTimelineItem.vue'
 import EmptyBlock from './LoadingBlock.vue'
 
 
-const AsyncWordCloud = defineAsyncComponent({
-  // 加载函数
-  loader: () => import('./WordCloud.vue'),
-  // 展示加载组件前的延迟时间，默认为 200ms
-  delay: 1000,
+const AsyncDocWordCloud = defineAsyncComponent({
+  loader: () => import('./DocWordCloud.vue'),
   loadingComponent: EmptyBlock,
 })
 
 
-type TimelineData = Record<string, Record<string, DocData[]>>
-
-const list = ref<TimelineData>({})
+const list = ref<Record<string, Record<string, DocData[]>>>({})
 const isSelected = ref(false)
 const selected = reactive({
   type: '',
@@ -32,7 +27,7 @@ const resetList = (data: DocData[]) => {
   list.value = getTimeline(data)
 }
 
-const resetPageData = (tag: string, data: DocData[]): void => {
+const resetPageData = (tag: string, data: DocData[] = []): void => {
   selected.type = tag
   selected.data = data
   
@@ -79,9 +74,7 @@ const count = computed(() => {
 
 <template>
   <div class="doc-archive">
-    <Suspense>
-      <AsyncWordCloud @get-selected="handleSelectedTag" />
-    </Suspense>
+    <AsyncDocWordCloud @get-selected="handleSelectedTag" />
     
     <div class="doc-archive-title">
       <div class="tag">

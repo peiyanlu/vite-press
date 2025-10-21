@@ -1,7 +1,6 @@
 ---
 title: KeepAlive
 description: 在多个组件间动态切换时缓存被移除的组件实例
-category: vue
 tags:
   - vue
 ---

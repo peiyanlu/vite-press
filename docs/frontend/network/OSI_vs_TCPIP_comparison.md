@@ -1,7 +1,6 @@
 ---
 title: OSI 与 TCP/IP 模型对比
 description: 对比 OSI 七层模型与 TCP/IP 四层模型差异
-category: network
 tags:
   - network
   - OSI

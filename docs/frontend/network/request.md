@@ -1,7 +1,6 @@
 ---
 title: 资源请求
 description: 请求中常见的相关内容
-category: network
 tags:
   - network
   - request

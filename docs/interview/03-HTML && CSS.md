@@ -1,6 +1,5 @@
 ---
 title: HTML5 && CSS
-category: interview
 tags:
   - interview
   - html5

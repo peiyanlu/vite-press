@@ -1,7 +1,6 @@
 ---
 title: 浏览器数据存储
 description: 浏览器中的数据存储方式
-category: browser
 tags:
   - browser
   - storage

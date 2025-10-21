@@ -1,7 +1,6 @@
 ---
 title: 加密算法
 description: 了解常用的加密算法
-category: network
 tags:
   - network
   - encryption

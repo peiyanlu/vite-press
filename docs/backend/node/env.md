@@ -1,7 +1,6 @@
 ---
 title: NodeEnv
 description: 环境变量中的环境信息
-category: node
 tags:
   - node
   - env

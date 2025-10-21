@@ -1,10 +1,9 @@
 ---
 title: 构建TS库
-description: 用vite构建一个TS编写的库
-category: vite
+description: 用 vite 构建一个 TS 编写的库
 tags:
   - vite
-  - ts
+  - TypeScript
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 title: 其他应用
 description: js实用技巧
-category: code
 tags:
   - code
 ---
@@ -81,15 +80,24 @@ export const getUrlSearchToObject = (urlSearch = location.search) => Object.from
 ## 对象转URL字符串
 
 ```ts
+const params: Record<string, string | number> = {
+  a: 456,
+  b: 'cd',
+}
+
 Object.keys(param).map(key => `${ key }=${ param[key] }`).join('&')
+// a=456&b=cd
 
-
-const queryString = Object.entries(params).reduce((acc, [ key, value ]) => `${ acc }${ key }=${ value }&`, "?").slice(0, -1);
+const queryString = Object
+  .entries(params)
+  .reduce((acc, [ key, value ]) => `${ acc }${ key }=${ value }&`, '?')
+  .slice(0, -1);
+// ?a=456&b=cd
 ```
 
 ## 修改URL参数不刷新
 
 ```ts
-const newUrl = location.href.split(location.search).shift()
+const newUrl = location.href.split(location.search || '?').shift()
 history.replaceState('', '', nerUrl)
 ```

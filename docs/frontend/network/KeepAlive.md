@@ -1,7 +1,6 @@
 ---
 title: 长连接
 description: 了解实现长连接的几种方式
-category: network
 tags:
   - network
   - KeepAlive

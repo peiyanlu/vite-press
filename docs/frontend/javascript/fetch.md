@@ -1,7 +1,6 @@
 ---
 title: fetch
 description: 了解支持promise的HTTP请求方法
-category: javascript
 tags:
   - fetch
 ---

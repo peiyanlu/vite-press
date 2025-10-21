@@ -1,7 +1,6 @@
 ---
 title: 包管理器
 description: 目前最流行的三种包管理工具
-category: npm
 tags:
   - npm
   - yarn

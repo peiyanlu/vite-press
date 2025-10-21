@@ -1,7 +1,6 @@
 ---
 title: 数组
 description: 按版本分类的数组方法
-category: javascript
 tags:
   - Array
   - ES5

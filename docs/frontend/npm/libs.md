@@ -1,7 +1,6 @@
 ---
 title: 常用推荐
-description: 常用的npm效率工具库
-category: npm
+description: 常用的 npm 效率工具库
 tags:
   - NPM
 ---
