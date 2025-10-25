@@ -1,12 +1,8 @@
-import { fileURLToPath } from 'node:url'
 import pMap from 'p-map'
-import { dirname, join, sep } from 'path'
-import { createContentLoader } from 'vitepress'
-import { getGitTimestamps } from './utils'
-
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+import { join } from 'path'
+import { normalizePath } from 'vite'
+import { createContentLoader, SiteConfig } from 'vitepress'
+import { getGitTimestamp, loadCache, saveCache } from '../../utils/getGitTimestamp'
 
 
 interface FrontMatterResult {
@@ -29,21 +25,23 @@ export default createContentLoader(
   ],
   {
     async transform(rawData) {
-      return pMap(
+      const { cacheDir } = (globalThis as any).VITEPRESS_CONFIG as SiteConfig
+      loadCache(cacheDir)
+      
+      const res = await pMap(
         rawData.map(({ frontmatter, url }) => ({ ...frontmatter, url })),
         async ({ url, ...reset }) => {
-          const articleFile = join('docs', `${ url }.md`).replaceAll(sep, '/')
-          const { createdDate, updatedDate } = await getGitTimestamps(articleFile)
+          const articleFile = normalizePath(join(process.cwd(), 'docs', `${ url }.md`))
+          const { createdDate, updatedDate } = await getGitTimestamp(articleFile)
           
-          return {
-            ...reset,
-            url,
-            createdDate,
-            updatedDate,
-          }
+          return { ...reset, url, createdDate, updatedDate }
         },
         { concurrency: 16 },
       )
+      
+      saveCache(cacheDir)
+      
+      return res
     },
   },
 )

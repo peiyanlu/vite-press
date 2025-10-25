@@ -1,9 +1,9 @@
 <template>
-  <div ref="wordCloudRef" class="word-cloud" />
+  <div ref="wordCloudRef" />
 </template>
 
 <script lang="ts" setup>
-import { Datum, WordCloud } from '@antv/g2plot'
+import { Chart } from '@antv/g2'
 import type { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
@@ -19,67 +19,70 @@ const emit = defineEmits<{
 }>()
 
 
-const useWordCloud = <T extends Record<string, string | number>>(
+interface WordCloudData {
+  text: string
+  value: string | number
+}
+
+const useWordCloud = <T extends WordCloudData>(
   dom: HTMLElement,
   data: T[],
   onClickCallback?: (data: T) => void,
 ) => {
-  const wordCloud = new WordCloud(dom, {
-    height: smAndSmaller.value ? 200 : 300,
-    data: data,
-    wordField: 'name',
-    weightField: 'value',
-    colorField: 'name',
-    wordStyle: {
-      rotation: [ -Math.PI / 2, Math.PI / 2 ],
-      rotationSteps: 4,
-      fontFamily: 'Inter var',
-      fontSize: smAndSmaller.value ? [ 12, 18 ] : [ 18, 28 ],
-      padding: 8,
-    },
-    spiral: 'rectangular',
-    tooltip: {
-      formatter: (datum: Datum) => {
-        return { name: datum.text + ' ', value: datum.value + ' 篇' }
-      },
-    },
-  })
-  wordCloud.render().catch(err => console.error(err))
+  const isSmaller = smAndSmaller.value
   
-  const onClick = (event: { data: { data: { datum: T; }; }; }) => {
-    onClickCallback?.(event.data.data.datum)
-  }
-  wordCloud.on('element:click', onClick)
-  
-  // 给 tooltip 添加点击事件
-  wordCloud.on('tooltip:show', () => {
-    dom?.setAttribute('style', 'cursor: pointer !important')
+  const chart = new Chart({
+    container: dom,
+    autoFit: true,
+    theme: 'classicDark',
+    height: isSmaller ? 200 : 300,
+    padding: 0,
+    clip: false,
   })
   
-  wordCloud.on('tooltip:hide', () => {
-    dom?.setAttribute('style', 'cursor: default')
-  })
+  chart
+    .wordCloud()
+    .legend(false)
+    .data(data)
+    .layout({
+      spiral: 'archimedean',
+      font: 'Inter var',
+      fontSize: isSmaller ? [ 12, 18 ] : [ 16, 28 ],
+      padding: 4,
+      rotate: (_d) => (Math.random() * 4 - 2) * 2,
+    })
+    .encode('color', 'text')
+    .style({ cursor: 'pointer' })
+    .tooltip({
+      title: (d) => `${ d.text.toUpperCase() }`,
+      items: [
+        (data) => ({
+          name: data.text,
+          value: `共计 ${ data.value } 篇`,
+        }),
+      ],
+    })
   
-  onBeforeUnmount(() => wordCloud.destroy())
+  chart.render()
+  
+  chart.on('element:click', (event) => onClickCallback?.(event.data.data))
+  
+  onBeforeUnmount(() => chart.destroy())
 }
 
 
-const initWordCloud = (tags: Record<string, DocData[]>) => Object.keys(tags)
-  .map<Record<string, string | number>>(key => {
-    return {
-      name: key,
-      value: tags[key].length,
-    }
-  })
+const initData = (tags: Record<string, DocData[]>) => Object
+  .keys(tags)
+  .map<WordCloudData>(key => ({ text: key, value: tags[key].length }))
 
-const wordCloudRef = useTemplateRef('wordCloudRef')
+const wordCloudRef = useTemplateRef<HTMLDivElement>('wordCloudRef')
 onMounted(() => {
   if (wordCloudRef.value) {
     useWordCloud(
       wordCloudRef.value,
-      initWordCloud(tags),
+      initData(tags),
       (data) => {
-        emit('getSelected', data.name, tags[data.name])
+        emit('getSelected', data.text, tags[data.text])
       },
     )
   }
@@ -87,23 +90,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.word-cloud {
-  canvas {
-    cursor: inherit !important;
-  }
-  
-  .g2-tooltip-value {
-    margin-left: 6px !important;
-  }
-}
 
-html.dark {
-  .word-cloud {
-    .g2-tooltip {
-      color: rgb(166, 166, 166) !important;
-      background-color: rgb(31, 31, 31) !important;
-      box-shadow: rgba(0, 0, 0, 0.5) 0 2px 4px !important;
-    }
-  }
-}
 </style>

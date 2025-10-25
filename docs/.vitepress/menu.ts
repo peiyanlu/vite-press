@@ -351,7 +351,7 @@ export const getSidebar = () => ({
           "order": 116
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "order": 106
     },
     {

@@ -139,9 +139,6 @@ setup()
 
 ## ✅ 面试题练习
 
-
-### 题 1
-
 ```js
 function sayHi() {
   console.log(this.name);
@@ -156,8 +153,6 @@ obj.sayHi(); // 对象
 sayHi();     // 全局（或 undefined）
 ```
 
-### 题 2
-
 ```js
 function Person(name) {
   this.name = name;
@@ -166,8 +161,6 @@ function Person(name) {
 const p = new Person("小明");
 console.log(p.name); // 小明
 ```
-
-### 题 3
 
 ```js
 const obj = {
@@ -178,8 +171,6 @@ const obj = {
 };
 obj.show(); // undefined
 ```
-
-### 题 4
 
 ```js
 const obj = {
@@ -195,10 +186,8 @@ fn2(); // 测试
 obj.say(); // 测试
 ```
 
-### 题 5（多选）
-
-
 以下哪种情况不会改变 `this`：
+
 A. `fn.call(obj)`
 
 B. `fn.bind(obj)`

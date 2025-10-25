@@ -1,4 +1,4 @@
 ---
 title: JavaScript
-collapsed: false
+collapsed: true
 ---

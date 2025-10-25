@@ -17,6 +17,7 @@ const emit = defineEmits<{
   getSelected: [ tag: string | number, data: DocData[] ]
 }>()
 
+
 const getTimeAgo = (date: number) => {
   return useTimeAgo(date).value
 }
@@ -71,24 +72,24 @@ const handleClick = (tag: string) => {
   flex-flow: column nowrap;
   justify-content: space-between;
   padding: 18px 18px;
-  transition: .3s;
+  transition: all .3s ease;
   border-radius: 4px;
   gap: 18px;
   background-color: var(--vp-c-bg-soft);
   margin-bottom: 16px;
-  height: 120px;
   position: relative;
+  min-height: 118px;
   
   .title {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    transition: all 0.3s ease-in-out;
     white-space: nowrap;
     letter-spacing: 0.02em;
     gap: 20px;
+    backface-visibility: hidden;
     
     a {
       flex-shrink: 0;
@@ -97,10 +98,8 @@ const handleClick = (tag: string) => {
     
     div {
       font-size: 12px;
-      line-height: 1;
       overflow: hidden;
       flex: 1;
-      transition: all 0.3s ease-in-out;
       white-space: nowrap;
       text-overflow: ellipsis;
       opacity: .5;
@@ -192,20 +191,9 @@ const handleClick = (tag: string) => {
   }
   
   &:hover {
-    height: 138px;
-    transform: scale(1.05);
+    transform: perspective(1px) scale(1.05);
     box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
     border-radius: 22px;
-    gap: 0;
-    
-    .title {
-      font-size: 18px;
-      line-height: 2.4;
-      
-      div {
-        line-height: 2.2;
-      }
-    }
     
     &::after {
       opacity: .5;

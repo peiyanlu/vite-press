@@ -216,7 +216,7 @@ const ns = useNamespace('doc-timeline-item')
       }
       
       .group-content {
-        padding-right: calc(var(--gap) * 4);
+        padding-right: calc(var(--gap) * 2);
         
         .subgroup-header {
           font-size: 18px;

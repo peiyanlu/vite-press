@@ -92,7 +92,7 @@ const mTitle = computed(() => {
       
       <div
         v-else
-        class="content"
+        class="line"
         @click="handleContent"
         :title="mTitle"
       >
@@ -112,7 +112,7 @@ const mTitle = computed(() => {
   text-align: center;
   
   &-content {
-    .content {
+    .line {
       line-height: 1;
       display: flex;
       align-items: flex-end;

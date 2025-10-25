@@ -2,7 +2,7 @@
 title: Vue 面试题
 tags:
   - interview
-  - Vue
+  - vue
 ---
 
 

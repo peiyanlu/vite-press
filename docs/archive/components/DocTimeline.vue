@@ -104,7 +104,7 @@ const count = computed(() => {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  gap: 32px;
+  gap: 28px;
   
   .doc-archive-title {
     font-size: 32px;
@@ -160,8 +160,12 @@ const count = computed(() => {
 }
 
 @media (max-width: 960px) {
-  .doc-archive-title {
-    font-size: 22px !important;
+  .doc-archive {
+    gap: 24px;
+    
+    .doc-archive-title {
+      font-size: 22px !important;
+    }
   }
 }
 </style>
