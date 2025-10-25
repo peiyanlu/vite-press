@@ -1,5 +1,5 @@
 import { execSync, spawn, spawnSync } from 'node:child_process'
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { Transform, type TransformCallback } from 'node:stream'
 import { basename, dirname } from 'path'
@@ -25,6 +25,7 @@ export const loadCache = (cacheDir: string) => {
 
 export const saveCache = (cacheDir: string) => {
   const CACHE_FILE = resolve(cacheDir, '.git-timestamps-cache.json')
+  mkdirSync(cacheDir, { recursive: true })
   return writeFileSync(
     CACHE_FILE,
     JSON.stringify(Object.fromEntries(cache), null, 2),
