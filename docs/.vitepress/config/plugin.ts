@@ -1,5 +1,5 @@
 import { Plugin } from 'vite'
-import type { DefaultTheme, SiteConfig } from 'vitepress'
+import { DefaultTheme, SiteConfig } from 'vitepress'
 import { cacheAllGitTimestamps, saveCache } from '../utils/getGitTimestamp'
 
 
