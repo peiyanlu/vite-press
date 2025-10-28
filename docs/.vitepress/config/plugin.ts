@@ -18,7 +18,7 @@ export function createGitCachePlugin(): Plugin {
       if (resolvedConfig.vitepress) {
         const { srcDir, cacheDir } = resolvedConfig.vitepress
         
-        await cacheAllGitTimestamps(srcDir)
+        await cacheAllGitTimestamps(srcDir, [ '*.md' ], [ /README\.md$/, /index\.md$/, /-ignore\.md$/ ])
         saveCache(cacheDir)
       }
     },

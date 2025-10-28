@@ -13,7 +13,7 @@ export default withPwa(defineConfig({
   titleTemplate: '开发笔记',
   description: '小路的开发笔记',
   head: [
-    [ 'link', { rel: 'icon', href: withBase('/logo.svg') } ],
+    [ 'link', { rel: 'icon', href: withBase('/favicon.ico') } ],
     [ 'meta', { property: 'og:title', content: '开发笔记' } ],
     [ 'meta', { property: 'og:image', content: withBase('/logo.svg') } ],
     [ 'meta', { property: 'og:description', content: '小路的开发笔记' } ],
@@ -77,8 +77,8 @@ export default withPwa(defineConfig({
       },
       { icon: 'github', link: 'https://github.com/peiyanlu/vite-press/' },
     ],
-    // search: isDev ? local : algolia,
-    search: algolia,
+    search: isDev ? local : algolia,
+    // search: algolia,
     externalLinkIcon: true,
   },
   locales: {

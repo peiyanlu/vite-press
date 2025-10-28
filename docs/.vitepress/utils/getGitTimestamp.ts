@@ -47,7 +47,7 @@ export const slash = (p: string): string => p.replace(/\\/g, '/')
 // }
 
 
-export async function getGitTimestamp(file: string): Promise<GitFileTimes> {
+export const getGitTimestamp = async (file: string): Promise<GitFileTimes> => {
   const cached = cache.get(file)
   if (cached) return cached
   
@@ -70,7 +70,7 @@ export async function getGitTimestamp(file: string): Promise<GitFileTimes> {
   return res
 }
 
-export async function cacheAllGitTimestamps(root: string, patterns: string[] = [ '*.md' ]) {
+export const cacheAllGitTimestamps = async (root: string, patterns: string[] = [ '*.md' ], excludes: RegExp[] = []) => {
   // git 根目录
   const cp = spawnSync('git', [ 'rev-parse', '--show-toplevel' ], { encoding: 'utf8' })
   if (cp.error) throw cp.error
@@ -79,7 +79,8 @@ export async function cacheAllGitTimestamps(root: string, patterns: string[] = [
   // 文件列表
   const args = [ 'ls-files', ...patterns ]
   const { stdout: lsOut } = spawnSync('git', args, { cwd: root, encoding: 'utf8' })
-  const files = lsOut.split('\n').filter(Boolean)
+  const ls = lsOut.split('\n').filter(Boolean)
+  const files = ls.filter(file => !excludes.some((r) => r.test(file)))
   
   const asyncFn = (file: string) => {
     return new Promise<GitFileTimes>((resolve, reject) => {

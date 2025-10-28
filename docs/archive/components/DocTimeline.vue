@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import DocShici from '@theme/components/global/DocShici.vue'
+import DocShiCi from './DocShiCi.vue'
 import DocTag from '@theme/components/global/DocTag.vue'
 import SvgIcon from '@theme/components/global/SvgIcon.vue'
 import { useMagicKeys } from '@vueuse/core'
@@ -84,7 +84,7 @@ const count = computed(() => {
       <div>{{ `共 ${ count } 篇，持续更新中` }}</div>
     </div>
     
-    <DocShici class="doc-shici" />
+    <DocShiCi class="doc-shici" />
     
     <div class="doc-timeline">
       <DocTimelineItem
