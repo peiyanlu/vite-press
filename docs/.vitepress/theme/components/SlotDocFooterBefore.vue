@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getColor } from '@utils/index'
 import { useData, withBase } from 'vitepress'
 
 
@@ -7,6 +8,7 @@ const { frontmatter } = useData()
 const handleRouter = () => {
 
 }
+
 </script>
 
 <template>
@@ -19,9 +21,12 @@ const handleRouter = () => {
           :key="tag"
           :href="withBase(`/archive/?tag=${encodeURIComponent(tag)}`)"
         >
-          <doc-tag
-            :text="tag"
+          <var-button
+            size="small"
             @click="handleRouter"
+            :color="getColor()"
+            v-text="tag"
+            :elevation="false"
           />
         </a>
       </div>

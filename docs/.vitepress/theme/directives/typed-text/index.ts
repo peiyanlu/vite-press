@@ -3,7 +3,7 @@ import type { Directive } from 'vue'
 
 
 interface TypedHoverOptions extends TypedOptions {
-  text: string | string[]// 要打字的文本
+  text: string | string[] // 要打字的文本
   once?: boolean // 是否只打字一次
   childSelector?: string | null // 生效的子元素
 }

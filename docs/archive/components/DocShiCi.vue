@@ -130,7 +130,7 @@ onMounted(() => {
     
     .error {
       color: var(--vp-c-danger-1);
-      opacity: .6;
+      opacity: .4;
     }
   }
 }

@@ -6,7 +6,8 @@
 import { Chart } from '@antv/g2'
 import type { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
+import { useData } from 'vitepress'
+import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue'
 import { tags } from './archive'
 
 
@@ -24,6 +25,9 @@ interface WordCloudData {
   value: string | number
 }
 
+
+const { isDark } = useData()
+
 const useWordCloud = <T extends WordCloudData>(
   dom: HTMLElement,
   data: T[],
@@ -34,7 +38,7 @@ const useWordCloud = <T extends WordCloudData>(
   const chart = new Chart({
     container: dom,
     autoFit: true,
-    theme: 'classicDark',
+    theme: isDark.value ? 'classicDark' : 'academy',
     height: isSmaller ? 200 : 300,
     padding: 0,
     clip: false,
@@ -76,6 +80,8 @@ const initData = (tags: Record<string, DocData[]>) => Object
   .map<WordCloudData>(key => ({ text: key, value: tags[key].length }))
 
 const wordCloudRef = useTemplateRef<HTMLDivElement>('wordCloudRef')
+
+
 onMounted(() => {
   if (wordCloudRef.value) {
     useWordCloud(
@@ -87,6 +93,7 @@ onMounted(() => {
     )
   }
 })
+
 </script>
 
 <style lang="scss">

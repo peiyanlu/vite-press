@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import DocTag from '@theme/components/global/DocTag.vue'
+import { getColor } from '@utils/index'
 import SvgIcon from '@theme/components/global/SvgIcon.vue'
 import { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints, useDateFormat, useTimeAgo } from '@vueuse/core'
@@ -28,6 +28,7 @@ const getDate = (date: number) => {
 const handleClick = (tag: string) => {
   emit('getSelected', tag, tags[tag])
 }
+
 </script>
 
 <template>
@@ -41,12 +42,14 @@ const handleClick = (tag: string) => {
       <div v-if="doc.tags?.length" class="tags">
         <svg-icon name="tags" />
         <div class="tag-list">
-          <doc-tag
+          <var-button
             v-for="tag of doc.tags"
-            :key="tag"
-            :text="tag"
-            style="padding: 4px 6px;"
+            size="mini"
             @click="handleClick(tag)"
+            :color="getColor()"
+            v-text="tag"
+            :elevation="false"
+            style="font-size: 12px;"
           />
         </div>
       </div>
@@ -191,13 +194,17 @@ const handleClick = (tag: string) => {
   }
   
   &:hover {
-    transform: perspective(1px) scale(1.05);
+    transform: perspective(1px) scale(1.04);
     box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
     border-radius: 22px;
     
     &::after {
       opacity: .5;
     }
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 </style>

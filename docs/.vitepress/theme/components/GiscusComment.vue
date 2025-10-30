@@ -5,17 +5,12 @@ import { computed, onMounted, ref, watchEffect } from 'vue'
 
 const { title, isDark, site } = useData()
 
-
 const theme = computed(() => `https://peiyanlu.github.io${ site.value.base }giscus/noborder_${ isDark.value ? 'dark' : 'light' }.css`)
-const isGitee = ref(false)
 
-onMounted(() => {
-  isGitee.value = inBrowser && location.host.includes('gitee')
-})
 </script>
 
 <template>
-  <div v-if="!isGitee" class="giscus-comment">
+  <div id="giscus">
     <component
       is="script"
       :key="title+isDark"
@@ -39,7 +34,5 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.giscus-comment {
 
-}
 </style>

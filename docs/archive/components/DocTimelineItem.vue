@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import SvgIcon from '@theme/components/global/SvgIcon.vue'
 import { useNamespace } from '@theme/hooks/useNamespace'
+import { onMounted, ref } from 'vue'
 import { DocData, getZodiac, getZodiacAlias } from './archive'
 import DocMetaData from './DocMetaData.vue'
 
 
-defineProps<{
+const props = defineProps<{
   year: string
   item: Record<string, DocData[]>
 }>()
@@ -20,6 +21,22 @@ const handleSelectedTag = (tag: string | number, data: DocData[]) => {
 
 const ns = useNamespace('doc-timeline-item')
 
+
+const collapseRef = ref(null)
+const collapseSubRef = ref(null)
+const value = ref<string[]>([])
+const subValue = ref<string[]>([])
+
+const styleVars = ref({
+  '--collapse-header-padding': '0px',
+  '--collapse-background': 'transparent',
+  '--collapse-content-padding': '0px',
+})
+
+onMounted(() => {
+  value.value = [ props.year ]
+  subValue.value = Object.keys(props.item).map((k) => props.year + k)
+})
 </script>
 
 <template>
@@ -34,28 +51,45 @@ const ns = useNamespace('doc-timeline-item')
     </div>
     
     <div :class="ns.e('wrapper')">
-      <div class="group-header" :id="year">{{ year }}</div>
-      
-      <div
-        v-for="(subItem, month) in item"
-        :key="month"
-        class="group-content"
-      >
-        <div class="subgroup-header" :id="month">{{ month }}</div>
-        <template
-          v-for="doc of subItem"
-          :key="doc.url"
-        >
-          <DocMetaData :doc @get-selected="handleSelectedTag" />
-        </template>
-      </div>
+      <var-style-provider :style-vars="styleVars">
+        <var-collapse v-model="value" ref="collapseRef" :elevation="false">
+          <var-collapse-item :name="year">
+            <template #title>
+              <div class="group-header" :id="year">{{ year }}</div>
+            </template>
+            
+            <div
+              v-for="(subItem, month) in item"
+              :key="month"
+              class="group-content"
+            >
+              <var-collapse v-model="subValue" ref="collapseSubRef" :elevation="false">
+                <var-collapse-item :name="year+month">
+                  <template #title>
+                    <div class="subgroup-header" :id="month">{{ month }}</div>
+                  </template>
+                  
+                  <div class="subgroup-content">
+                    <template
+                      v-for="doc of subItem"
+                      :key="doc.url"
+                    >
+                      <DocMetaData :doc @get-selected="handleSelectedTag" />
+                    </template>
+                  </div>
+                </var-collapse-item>
+              </var-collapse>
+            </div>
+          </var-collapse-item>
+        </var-collapse>
+      </var-style-provider>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .VPDoc-doc-timeline-item {
-  --gap: 36px;
+  --gap: 28px;
   --size: 30px;
   
   position: relative;
@@ -103,69 +137,21 @@ const ns = useNamespace('doc-timeline-item')
     
     .group-header {
       font-size: 24px;
-      line-height: var(--size);
+      line-height: 1.25;
       letter-spacing: -0.02em;
     }
     
     .group-content {
-      padding-left: var(--gap);
-      padding-right: var(--gap);
+      padding: calc(var(--gap) / 2) var(--gap);
       
       .subgroup-header {
         font-size: 20px;
-        line-height: 28px;
-        padding-top: 32px;
-        padding-bottom: 16px;
-        letter-spacing: -0.01em;
-        margin-left: calc(var(--gap) / 2 - var(--gap));
+        line-height: 1.25;
+        letter-spacing: -0.02em;
       }
       
       .subgroup-content {
-        display: flex;
-        overflow: hidden;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        padding: 18px 18px;
-        transition: .3s;
-        border-radius: 4px;
-        gap: 18px;
-        
-        .title {
-          font-size: 14px;
-          line-height: 1.2;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-start;
-          transition: all 0.3s ease-in-out;
-          white-space: nowrap;
-          letter-spacing: 0.02em;
-          gap: 20px;
-          
-          a {
-            flex-shrink: 0;
-          }
-          
-          div {
-            font-size: 12px;
-            line-height: 1;
-            overflow: hidden;
-            flex: 1;
-            transition: all 0.3s ease-in-out;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            opacity: 0;
-          }
-        }
-        
-        &:hover {
-          box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
-          
-          .title {
-            div {
-              opacity: 0.4;
-            }
-          }
-        }
+        padding: calc(var(--gap) / 2) var(--gap);
       }
     }
   }
@@ -216,13 +202,10 @@ const ns = useNamespace('doc-timeline-item')
       }
       
       .group-content {
-        padding-right: calc(var(--gap) * 2);
+        padding-right: calc(var(--gap) * 3);
         
         .subgroup-header {
           font-size: 18px;
-          line-height: 26px;
-          padding-top: 24px;
-          padding-bottom: 8px;
         }
       }
     }

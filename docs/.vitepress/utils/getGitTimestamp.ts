@@ -31,9 +31,6 @@ export const saveCache = (cacheDir: string) => {
   )
 }
 
-
-export const slash = (p: string): string => p.replace(/\\/g, '/')
-
 // const inner = (file: string) => {
 //   const [ cwd, filename ] = [ dirname(file), basename(file) ]
 //   const [ createdDate, updatedDate ] = [
@@ -100,6 +97,7 @@ export const cacheAllGitTimestamps = async (root: string, patterns: string[] = [
         .on('error', reject)
     })
   }
+  const slash = (p: string): string => p.replace(/\\/g, '/')
   
   return Promise.all(files.map(async file => {
     const slashed = slash(resolve(root, file))

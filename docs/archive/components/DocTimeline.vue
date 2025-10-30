@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import DocShiCi from './DocShiCi.vue'
-import DocTag from '@theme/components/global/DocTag.vue'
 import SvgIcon from '@theme/components/global/SvgIcon.vue'
+import { getColor } from '@utils/index'
 import { useMagicKeys } from '@vueuse/core'
 import { computed, defineAsyncComponent, onMounted, reactive, ref, watch } from 'vue'
 import { data, DocData, getTimeline, getUrlParams, isCurrentYear, resetUrl, tags } from './archive'
+import DocShiCi from './DocShiCi.vue'
 import DocTimelineItem from './DocTimelineItem.vue'
 import EmptyBlock from './LoadingBlock.vue'
 
@@ -55,12 +55,6 @@ onMounted(() => {
 })
 
 
-const navs = computed(() => {
-  return Object.entries(list.value).map(([ key, value ]) => {
-    return [ key, Object.keys(value) ]
-  })
-})
-
 const handleSelectedTag = (tag: string | number, data: DocData[]) => {
   isSelected.value = true
   resetPageData(String(tag), data)
@@ -79,7 +73,13 @@ const count = computed(() => {
     <div class="doc-archive-title">
       <div class="tag">
         <svg-icon name="tags" />
-        <doc-tag :text="selected.type" />
+        <var-button
+          size="mini"
+          :color="getColor()"
+          v-text="selected.type"
+          :elevation="false"
+          style="font-size: 12px;"
+        />
       </div>
       <div>{{ `共 ${ count } 篇，持续更新中` }}</div>
     </div>
@@ -96,6 +96,8 @@ const count = computed(() => {
         @get-selected="handleSelectedTag"
       />
     </div>
+    
+    <var-back-top :duration="300" :visibility-height="800" />
   </div>
 </template>
 

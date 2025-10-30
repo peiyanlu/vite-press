@@ -1,38 +1,24 @@
-// 组件/公共组件
-import SlotDocAfter from './components/SlotDocAfter.vue'
-import SlotDocFooterBefore from './components/SlotDocFooterBefore.vue'
-// 依赖
-import { ImagePreviewService } from './directives/image-preview'
-import { useEventListener } from '@vueuse/core'
 import 'virtual:svg-icons-names'
 import 'virtual:svg-icons-register'
-import { Theme, useData, inBrowser } from 'vitepress'
+import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
-// 样式文件
 import './style/index'
+import CustomLayout from './components/CustomLayout.vue'
+import 'virtual-icons'
 
 
-// 渲染
 export default {
-  ...DefaultTheme,
+  extends: DefaultTheme,
   Layout: () => {
     const { frontmatter } = useData()
     
-    nextTick(() => {
-      imagePreviewFn()
-    }).catch(e => console.error(e))
-    
     return h(
-      DefaultTheme.Layout,
+      CustomLayout,
       {
-        class: frontmatter.value?.layoutClass,
+        class: [ frontmatter.value?.layoutClass, 'test' ],
       },
-      {
-        // 'layout-bottom': () => h(Live2dWidget),
-        'doc-after': () => h(SlotDocAfter),
-        'doc-footer-before': () => h(SlotDocFooterBefore),
-      },
+      {},
     )
   },
   async enhanceApp(ctx) {
@@ -50,27 +36,4 @@ export default {
   },
 } satisfies Theme
 
-
-
-const imagePreviewFn = () => {
-  if (!inBrowser) return
-  
-  const scope = document.querySelector('.VPDoc .main')
-  if (!scope) return
-  
-  const getUrl = (img: HTMLImageElement) => img.getAttribute('src') || ''
-  const list = [ ...scope?.querySelectorAll('img') ].map(el => getUrl(el))
-  
-  document
-    .querySelectorAll<HTMLImageElement>('p > img')
-    .forEach((img) => {
-      img.setAttribute('style', 'cursor: pointer;')
-      useEventListener(img, 'click', () => {
-        ImagePreviewService.open({
-          url: getUrl(img),
-          previewUrlList: list,
-        })
-      })
-    })
-}
 

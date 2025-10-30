@@ -1,4 +1,8 @@
+import { VarletImportResolver } from '@varlet/import-resolver'
+import icon from '@varlet/unplugin-icon-builder/vite'
 import { resolve } from 'path'
+import autoImport from 'unplugin-auto-import/vite'
+import components from 'unplugin-vue-components/vite'
 import { fileURLToPath } from 'url'
 import { UserConfig } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -15,9 +19,14 @@ export const vite: UserConfig = {
         find: '@theme',
         replacement: fileURLToPath(new URL('../theme', import.meta.url)),
       },
+      {
+        find: '@utils',
+        replacement: fileURLToPath(new URL('../utils', import.meta.url)),
+      },
     ],
   },
   server: {
+    host: '0.0.0.0',
     port: 5274,
   },
   plugins:
@@ -40,6 +49,16 @@ export const vite: UserConfig = {
       }),
       isProd && llmstxt(),
       createGitCachePlugin(),
+      
+      components({
+        resolvers: [ VarletImportResolver() ],
+      }),
+      autoImport({
+        resolvers: [ VarletImportResolver({ autoImport: true }) ],
+      }),
+      icon({
+        dir: resolve(process.cwd(), 'docs/public/icons'),
+      }),
     ],
   build: {
     target: 'esnext',
