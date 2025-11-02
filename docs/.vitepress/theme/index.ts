@@ -4,8 +4,7 @@ import { Theme, useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { AsyncComponentLoader, defineAsyncComponent, h, nextTick } from 'vue'
 import './style/index'
-import CustomLayout from './components/CustomLayout.vue'
-import 'virtual-icons'
+import CustomLayout from './CustomLayout/index.vue'
 
 
 export default {

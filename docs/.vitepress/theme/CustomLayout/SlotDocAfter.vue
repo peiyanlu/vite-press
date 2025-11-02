@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import GiscusComment from '@theme/components/GiscusComment.vue'
+import GiscusComment from '../components/GiscusComment.vue'
 
 
 </script>

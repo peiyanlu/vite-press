@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Chart } from '@antv/g2'
 import type { DocData } from '@theme/data/docs.data'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { useData } from 'vitepress'
-import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue'
+import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
 import { tags } from './archive'
+// import {Chart} from '@antv/g2/esm/api/chart'
 
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
@@ -28,13 +28,14 @@ interface WordCloudData {
 
 const { isDark } = useData()
 
-const useWordCloud = <T extends WordCloudData>(
+const useWordCloud = async <T extends WordCloudData>(
   dom: HTMLElement,
   data: T[],
   onClickCallback?: (data: T) => void,
 ) => {
   const isSmaller = smAndSmaller.value
   
+  const { Chart } = await import('@antv/g2')
   const chart = new Chart({
     container: dom,
     autoFit: true,
