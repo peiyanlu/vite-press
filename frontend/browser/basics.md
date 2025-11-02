@@ -40,7 +40,7 @@ description: 浏览器常问的基础知识
 * 其他协议：除了上述主要的协议外，还有一些其他的协议可能涉及到浏览器输入 `URL` 到显示页面的过程，如 `ARP` 协议（用于将 `IP` 地址映射为 `MAC` 地址）、`ICMP`
   协议（用于网络诊断和错误报告）、`SSL/TLS` 协议（用于在 `HTTP` 之上提供加密和认证服务）等。
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 浏览器的主要功能
 
@@ -109,7 +109,7 @@ description: 浏览器常问的基础知识
 
 :::
 
-![img.png](/assets/img_2.BuKY2qSG.png)
+![img.png](/assets/images/img_2-BuKY2qSG.png)
 
 ## 渲染引擎工作流程
 
@@ -132,7 +132,7 @@ description: 浏览器常问的基础知识
 
 :::
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 ## 渲染引擎组成模块
 
@@ -158,7 +158,7 @@ description: 浏览器常问的基础知识
 不同的渲染引擎可能会将这些模块分配到不同的层级中，或者使用不同的模块名称。同时，由于不断的技术演进和浏览器竞争，渲染引擎的模块结构也在不断变化和优化。
 :::
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 浏览器架构
 

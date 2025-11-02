@@ -24,7 +24,7 @@ add();
 
 编译结束后会生成：**全局执行上下文** 和 **可执行代码**
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 * 执行阶段
 
@@ -36,7 +36,7 @@ add();
 
 3. 执行 `add` 函数，输出结果
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 函数调用完毕，在执行 `add` 函数时，会存在两个执行上下文，一个是全局执行上下文，一个是 `add` 函数的执行上下文。
 那么 `JS` 引擎是怎么管理多个执行上下文的呢？`JS` 引擎是通过栈来管理这些执行上下文的。
@@ -45,7 +45,7 @@ add();
 
 栈是一种数据呈**线性排列**的数据结构，特点是 **先进后出**。
 
-![img.png](/assets/img_2.BuKY2qSG.png)
+![img.png](/assets/images/img_2-BuKY2qSG.png)
 
 ## 调用栈
 
@@ -71,19 +71,19 @@ addAll(3, 6)
 
 * 第一步，创建全局执行上下文，并将其压入栈底。变量 `a`、函数 `add`、函数 `addAll` 都保存到 `全局执行上下文` 的变量环境对象中。如下图：
 
-![img.png](/assets/img_3.C0HM3Flz.png)
+![img.png](/assets/images/img_3-C0HM3Flz.png)
 
 * 第二步，执行上下文环境压入调用栈之后，`JS` 引擎开始执行全局代码：
 
 执行 `a = 2;` 该语句会将全局执行上下文变量环境中 `a` 的值设置为 `2`。全局执行上下文环境状态如下图：
 
-![img.png](/assets/img_4.CyvbB8IR.png)
+![img.png](/assets/images/img_4-CyvbB8IR.png)
 
 * 第三步，执行 `addAll(3, 6)` 调用 `addAll` 函数时：
 
 `JS` 引擎会编译 `addAll` 函数，并为 `addAll` 创建一个 `执行上下文`，最后将 `addAll` 函数的执行上下文环境压入栈中，如下图：
 
-![img.png](/assets/img_5.Drs_5nC6.png)
+![img.png](/assets/images/img_5-Drs_5nC6.png)
 
 * 第四步，`addAll` 函数的执行上下文创建成功之后，接着执行 `addAll` 函数的可执行代码：
 
@@ -95,25 +95,25 @@ return a + result + d
 
 * 第五步，执行到 `add` 函数调用语句时，同样会为 `add` 函数创建一个执行上下文环境，并将其压入调用栈，如图所示：
 
-![img.png](/assets/img_6.m_OcWdgB.png)
+![img.png](/assets/images/img_6-m_OcWdgB.png)
 
 * 第六步，创建好 `add` 函数的执行上下文环境之后，接着执行 `add` 函数的可执行代码 `return b + c;`。
 
 `add` 函数返回时，`add` 函数的执行上下文环境就会从调用栈顶部弹出，并将 `result` 的值设置为 `add` 函数的返回值 `9`，如下图：
 
-![img.png](/assets/img_7.iL_LI8U6.png)
+![img.png](/assets/images/img_7-iL_LI8U6.png)
 
 * 第六步，执行 `addAll` 函数中接下来可执行代码 `return a + result + d;`
 
 这个语句执行完成之后，把结果返回，`addAll` 函数的执行上下文环境也会从调用栈顶部弹出，此时调用栈中就只剩下全局执行上下文了。至此，整个 `JS` 流程执行结束，如下图所示：
 
-![img.png](/assets/img_8.8w_PlJhI.png)
+![img.png](/assets/images/img_8-8w_PlJhI.png)
 
 `JS` 调用栈是 `JS` 引擎追踪函数执行的一个机制，当一次有多个函数被调用时，通过调用栈就能够追踪到哪个函数正在被执行以及各个函数之间的调用关系。
 
 ## 浏览器中查看堆栈
 
-![img.png](/assets/img_9.CLyFwxk8.png)
+![img.png](/assets/images/img_9-CLyFwxk8.png)
 
 右边的 `CallStack` 下面显示出了函数的调用关系：
 栈的底部是 `anonymous`，也就是全局的函数入口；中间是 `addAll` 函数，顶部是 `add` 函数。非常清晰的反映了函数的调用关系。在分析复杂的代码时，调用栈是非常有用的。
@@ -122,7 +122,7 @@ return a + result + d
 
 也可以在代码中添加 `console.trace()` 来输出函数的调用关系，如在 `add` 函数中增加 `console.trace()` ，如下图：
 
-![img.png](/assets/img_10.BOUCCO8v.png)
+![img.png](/assets/images/img_10-BOUCCO8v.png)
 
 ## 栈溢出
 

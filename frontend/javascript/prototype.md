@@ -13,14 +13,14 @@ description: 百问不厌的原型链
 
 * 原型对象（`Person.prototype`）中有个 `constructor` 属性，这个属性指向该构造函数。这样原型对象和它的构造函数之间就产生了联系。
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 原型链
 
 当我们访问一个 `对象` 的属性或者方法的时候，会先在对象自身属性上查找，有则直接使用，没有则通过他的隐式属性 `person.__proto__（Person.prototype）`
 上查找，如果没有找到则会在其构造函数的 `prototype` 的 `__proto__` 中查找，没有找到就再往上一层查找，直到 `Object`，这样一层一层的查找就会形成一个链式结构——**原型链**
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 ## new
 

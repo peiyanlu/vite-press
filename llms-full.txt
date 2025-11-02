@@ -9870,6 +9870,38 @@ type StringProps = MyExtract<keyof Todo, string>;
 ---
 
 ---
+url: /vite-press/frontend/javascript/ES6/ES2016-ignore.md
+---
+## [ES2016(ES7)](https://tc39.es/ecma262/2016/)
+
+### 数组扩展
+
+* Array.prototype.includes
+
+> 用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 `true`，否则返回 `false`
+
+```ts
+// arr.includes(searchElement[, fromIndex])
+
+[ 1, 2, 3 ].includes(2);     // true
+[ 1, 2, 3 ].includes(4);     // false
+[ 1, 2, 3 ].includes(3, 3);  // false
+[ 1, 2, 3 ].includes(3, -1); // true
+[ 1, 2, NaN ].includes(NaN); // true
+```
+
+### 运算符扩展
+
+* `**` 幂运算符
+
+```ts
+console.log(Math.pow(2, 10)); // 1024
+console.log(2 ** 10); // 1024
+```
+
+---
+
+---
 url: /vite-press/frontend/javascript/ES6/ES2015-ignore.md
 ---
 ## [ES6(2015)](https://262.ecma-international.org/6.0/)
@@ -10713,38 +10745,6 @@ mySet.add("some text"); // Set [ 1, 5, "some text" ]
 
 [`symbol`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 是一种基本数据类型，`Symbol()` 返回的 `symbol` 值都是唯一的。一个 `symbol` 值能作为对象属性的标识符；这是该数据类型仅有的目的。
-
----
-
----
-url: /vite-press/frontend/javascript/ES6/ES2016-ignore.md
----
-## [ES2016(ES7)](https://tc39.es/ecma262/2016/)
-
-### 数组扩展
-
-* Array.prototype.includes
-
-> 用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 `true`，否则返回 `false`
-
-```ts
-// arr.includes(searchElement[, fromIndex])
-
-[ 1, 2, 3 ].includes(2);     // true
-[ 1, 2, 3 ].includes(4);     // false
-[ 1, 2, 3 ].includes(3, 3);  // false
-[ 1, 2, 3 ].includes(3, -1); // true
-[ 1, 2, NaN ].includes(NaN); // true
-```
-
-### 运算符扩展
-
-* `**` 幂运算符
-
-```ts
-console.log(Math.pow(2, 10)); // 1024
-console.log(2 ** 10); // 1024
-```
 
 ---
 
@@ -13578,7 +13578,7 @@ description: js中的二进制使用方法
 
 > Blob、File、FileReader、ArrayBuffer、Base64
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## Blob
 
@@ -15284,14 +15284,14 @@ description: 百问不厌的原型链
 
 * 原型对象（`Person.prototype`）中有个 `constructor` 属性，这个属性指向该构造函数。这样原型对象和它的构造函数之间就产生了联系。
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 原型链
 
 当我们访问一个 `对象` 的属性或者方法的时候，会先在对象自身属性上查找，有则直接使用，没有则通过他的隐式属性 `person.__proto__（Person.prototype）`
 上查找，如果没有找到则会在其构造函数的 `prototype` 的 `__proto__` 中查找，没有找到就再往上一层查找，直到 `Object`，这样一层一层的查找就会形成一个链式结构——**原型链**
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 ## new
 
@@ -18808,7 +18808,7 @@ description: 七中开源许可协议
 
 # 七种开源许可证
 
-![npm\_license\_img.png](/assets/npm_license_img.BlecLQ15.png)
+![npm\_license\_img.png](/assets/images/npm_license_img-BlecLQ15.png)
 
 ## Apache许可
 
@@ -20881,7 +20881,7 @@ description: 浏览器常问的基础知识
 * 其他协议：除了上述主要的协议外，还有一些其他的协议可能涉及到浏览器输入 `URL` 到显示页面的过程，如 `ARP` 协议（用于将 `IP` 地址映射为 `MAC` 地址）、`ICMP`
   协议（用于网络诊断和错误报告）、`SSL/TLS` 协议（用于在 `HTTP` 之上提供加密和认证服务）等。
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 浏览器的主要功能
 
@@ -20950,7 +20950,7 @@ description: 浏览器常问的基础知识
 
 :::
 
-![img.png](/assets/img_2.BuKY2qSG.png)
+![img.png](/assets/images/img_2-BuKY2qSG.png)
 
 ## 渲染引擎工作流程
 
@@ -20973,7 +20973,7 @@ description: 浏览器常问的基础知识
 
 :::
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 ## 渲染引擎组成模块
 
@@ -20999,7 +20999,7 @@ description: 浏览器常问的基础知识
 不同的渲染引擎可能会将这些模块分配到不同的层级中，或者使用不同的模块名称。同时，由于不断的技术演进和浏览器竞争，渲染引擎的模块结构也在不断变化和优化。
 :::
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## 浏览器架构
 
@@ -22748,7 +22748,7 @@ add();
 
 编译结束后会生成：**全局执行上下文** 和 **可执行代码**
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 * 执行阶段
 
@@ -22760,7 +22760,7 @@ add();
 
 3. 执行 `add` 函数，输出结果
 
-![img.png](/assets/img_1.CS20ER24.png)
+![img.png](/assets/images/img_1-CS20ER24.png)
 
 函数调用完毕，在执行 `add` 函数时，会存在两个执行上下文，一个是全局执行上下文，一个是 `add` 函数的执行上下文。
 那么 `JS` 引擎是怎么管理多个执行上下文的呢？`JS` 引擎是通过栈来管理这些执行上下文的。
@@ -22769,7 +22769,7 @@ add();
 
 栈是一种数据呈**线性排列**的数据结构，特点是 **先进后出**。
 
-![img.png](/assets/img_2.BuKY2qSG.png)
+![img.png](/assets/images/img_2-BuKY2qSG.png)
 
 ## 调用栈
 
@@ -22795,19 +22795,19 @@ addAll(3, 6)
 
 * 第一步，创建全局执行上下文，并将其压入栈底。变量 `a`、函数 `add`、函数 `addAll` 都保存到 `全局执行上下文` 的变量环境对象中。如下图：
 
-![img.png](/assets/img_3.C0HM3Flz.png)
+![img.png](/assets/images/img_3-C0HM3Flz.png)
 
 * 第二步，执行上下文环境压入调用栈之后，`JS` 引擎开始执行全局代码：
 
 执行 `a = 2;` 该语句会将全局执行上下文变量环境中 `a` 的值设置为 `2`。全局执行上下文环境状态如下图：
 
-![img.png](/assets/img_4.CyvbB8IR.png)
+![img.png](/assets/images/img_4-CyvbB8IR.png)
 
 * 第三步，执行 `addAll(3, 6)` 调用 `addAll` 函数时：
 
 `JS` 引擎会编译 `addAll` 函数，并为 `addAll` 创建一个 `执行上下文`，最后将 `addAll` 函数的执行上下文环境压入栈中，如下图：
 
-![img.png](/assets/img_5.Drs_5nC6.png)
+![img.png](/assets/images/img_5-Drs_5nC6.png)
 
 * 第四步，`addAll` 函数的执行上下文创建成功之后，接着执行 `addAll` 函数的可执行代码：
 
@@ -22819,25 +22819,25 @@ return a + result + d
 
 * 第五步，执行到 `add` 函数调用语句时，同样会为 `add` 函数创建一个执行上下文环境，并将其压入调用栈，如图所示：
 
-![img.png](/assets/img_6.m_OcWdgB.png)
+![img.png](/assets/images/img_6-m_OcWdgB.png)
 
 * 第六步，创建好 `add` 函数的执行上下文环境之后，接着执行 `add` 函数的可执行代码 `return b + c;`。
 
 `add` 函数返回时，`add` 函数的执行上下文环境就会从调用栈顶部弹出，并将 `result` 的值设置为 `add` 函数的返回值 `9`，如下图：
 
-![img.png](/assets/img_7.iL_LI8U6.png)
+![img.png](/assets/images/img_7-iL_LI8U6.png)
 
 * 第六步，执行 `addAll` 函数中接下来可执行代码 `return a + result + d;`
 
 这个语句执行完成之后，把结果返回，`addAll` 函数的执行上下文环境也会从调用栈顶部弹出，此时调用栈中就只剩下全局执行上下文了。至此，整个 `JS` 流程执行结束，如下图所示：
 
-![img.png](/assets/img_8.8w_PlJhI.png)
+![img.png](/assets/images/img_8-8w_PlJhI.png)
 
 `JS` 调用栈是 `JS` 引擎追踪函数执行的一个机制，当一次有多个函数被调用时，通过调用栈就能够追踪到哪个函数正在被执行以及各个函数之间的调用关系。
 
 ## 浏览器中查看堆栈
 
-![img.png](/assets/img_9.CLyFwxk8.png)
+![img.png](/assets/images/img_9-CLyFwxk8.png)
 
 右边的 `CallStack` 下面显示出了函数的调用关系：
 栈的底部是 `anonymous`，也就是全局的函数入口；中间是 `addAll` 函数，顶部是 `add` 函数。非常清晰的反映了函数的调用关系。在分析复杂的代码时，调用栈是非常有用的。
@@ -22846,7 +22846,7 @@ return a + result + d
 
 也可以在代码中添加 `console.trace()` 来输出函数的调用关系，如在 `add` 函数中增加 `console.trace()` ，如下图：
 
-![img.png](/assets/img_10.BOUCCO8v.png)
+![img.png](/assets/images/img_10-BOUCCO8v.png)
 
 ## 栈溢出
 
@@ -22972,7 +22972,7 @@ pnpm run docs:dev
 
 执行 `pnpm exec vitepress init` 会出现一些交互式问答，帮助我们快速初始化配置：
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 1. `VitePress` 初始化配置目录，可以是根目录 `./` 也可以是二级目录 `./docs`
 2. `Theme` 配置：

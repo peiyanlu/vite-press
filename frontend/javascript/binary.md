@@ -7,7 +7,7 @@ description: js中的二进制使用方法
 
 > Blob、File、FileReader、ArrayBuffer、Base64
 
-![img.png](/assets/img.BgZoOJV_.png)
+![img.png](/assets/images/img-BgZoOJV_.png)
 
 ## Blob
 
